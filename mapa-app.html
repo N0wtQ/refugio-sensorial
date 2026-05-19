@@ -55,38 +55,21 @@
   #header {
     background: var(--ink);
     padding: 0 16px;
-    display: flex; align-items: center; gap: 10px;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
     min-height: 54px; flex-shrink: 0;
     box-shadow: var(--shadow-lg);
     z-index: 1000;
-    border-bottom: 2px solid var(--c-super);
-    flex-wrap: wrap;
-    padding-top: 6px; padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
   }
-  .header-icon {
-    width: 30px; height: 30px;
-    background: rgba(13,148,136,0.14);
-    border: 1.5px solid rgba(82,201,185,0.35);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; color: #52c9b9;
-  }
-  #header h1 { font-family: var(--font-head); font-size: 17px; font-weight: 400; line-height: 1.2; flex: 1; color: #fff; }
-  #header h1 span { font-style: italic; color: #52c9b9; }
-    .header-nav { display: flex; gap: 4px; margin-left: auto; }
-  .header-nav a { padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.55); text-decoration: none; transition: all 150ms ease; }
-  .header-nav a:hover { background: rgba(255,255,255,0.1); color: #fff; }
-  .header-nav a.active { background: rgba(56,189,248,0.15); color: #38bdf8; }
-  .header-nav .cl { color: #34d399; border: 1px solid rgba(52,211,153,0.25); }
-  .header-nav .cl:hover { background: rgba(52,211,153,0.12); }
-  #header p.subtitle { font-size: 10px; color: rgba(255,255,255,0.38); font-weight: 300; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 3px; }
-  .header-nav { display: flex; gap: 4px; margin-left: auto; }
-  .header-nav a {
-    padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;
-    color: rgba(255,255,255,0.55); text-decoration: none; transition: all 150ms ease;
-  }
-  .header-nav a:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+  .logo-img { height: 38px; width: auto; display: block; }
+  .header-nav { display: flex; gap: 2px; align-items: center; }
+  .header-nav a { padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.55); text-decoration: none; transition: all 150ms ease; }
+  .header-nav a:hover { background: rgba(255,255,255,0.08); color: #fff; }
   .header-nav a.active { background: rgba(82,201,185,0.2); color: #52c9b9; }
+  .header-nav .cl { color: #E57B86; border: 1px solid rgba(229,123,134,0.25); }
+  .header-nav .cl:hover { background: rgba(229,123,134,0.1); }
+  :focus-visible { outline: 2px solid var(--c-super); outline-offset: 2px; }
 
   /* TOOLBAR */
   #toolbar {
@@ -272,9 +255,7 @@
 
   @media (max-width: 768px) {
     #header { gap: 8px; padding: 6px 12px; min-height: 44px; }
-    #header img { height: 30px !important; }
-    #header h1 { font-size: 13px; }
-    #header p.subtitle { display: none; }
+    .logo-img { height: 30px; }
     .header-nav { gap: 2px; }
     .header-nav a { padding: 4px 8px; font-size: 10px; }
     #toolbar { padding: 5px 8px; gap: 3px; }
@@ -294,9 +275,7 @@
   }
   @media (max-width: 480px) {
     #header { gap: 6px; padding: 4px 10px; }
-    #header img { height: 26px !important; }
-    #header h1 { font-size: 11px; }
-    #header > div { min-width: 0; }
+    .logo-img { height: 26px; }
     .header-nav a { padding: 3px 6px; font-size: 9px; }
     #toolbar { padding: 4px 6px; gap: 2px; }
     .chip { padding: 3px 6px; font-size: 9px; gap: 2px; }
@@ -310,15 +289,12 @@
 <body>
 
 <header id="header">
-  <a href="index.html" style="flex-shrink:0"><img src="logo-icon.png" alt="Neuroconecta" style="height:38px;width:auto"></a>
-  <div>
-    <h1>Espacios <span>para autistas</span> · España</h1>
-    <p class="subtitle">Lugares tranquilos · Hora silenciosa · TEA · Discapacidad invisible</p>
-  </div>
+  <a href="index.html" class="logo"><img src="logo-icon.png" alt="Neuroconecta" class="logo-img"></a>
   <nav class="header-nav">
     <a href="index.html">Inicio</a>
     <a href="mapa-app.html" class="active">Mapa</a>
     <a href="herramientas.html">Herramientas</a>
+    <a href="saturado.html" class="cl" aria-label="Apoyo en crisis"><i class="fa-solid fa-heart-pulse"></i> Necesito ayuda</a>
   </nav>
 </header>
 
