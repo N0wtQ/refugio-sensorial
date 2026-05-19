@@ -152,6 +152,12 @@
 
   .badges-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
 
+  /* NOTES */
+  .rc-notes {
+    font-size: 13px; line-height: 1.55; color: var(--muted);
+    margin-bottom: 12px;
+  }
+
   /* DESCRIPTION (hidden by default) */
   .rc-desc {
     font-size: 13px; line-height: 1.55; color: var(--muted);
@@ -351,10 +357,14 @@ function renderCard(r) {
     plHtml += '<span class="bp-overflow" title="' + overflowPl.join(", ") + '">+' + overflowPl.length + '</span>';
   }
 
+  var notas = r.Notas || "";
+  var notasHtml = notas ? '<p class="rc-notes">' + notas + '</p>' : '';
+
   var href = r.Enlace || "#";
   return '<a class="rc" href="' + href + '" target="_blank" rel="noopener noreferrer">' +
     '<div class="rc-top"><h3 class="rc-name">' + r.Recurso + '</h3></div>' +
     '<div class="badges-row"><span class="badge badge-cat"><i class="fa-solid ' + catIcon + '" aria-hidden="true"></i> ' + r.Categoría + '</span>' + precio + '</div>' +
+    notasHtml +
     '<div class="rc-ft">' + pfHtml + plHtml + '</div></a>';
 }
 
