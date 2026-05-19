@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
@@ -6,7 +6,8 @@
 <title>Mapa de Espacios para autistas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -21,8 +22,8 @@
     --shadow:     0 2px 8px rgba(15,23,42,0.09), 0 1px 3px rgba(15,23,42,0.06);
     --shadow-lg:  0 8px 24px rgba(15,23,42,0.12), 0 2px 8px rgba(15,23,42,0.08);
     --r:          10px;
-    --font-head:  'DM Serif Display', Georgia, serif;
-    --font-body:  'DM Sans', system-ui, sans-serif;
+    --font-head:  'Inter', system-ui, sans-serif;
+    --font-body:  'Inter', system-ui, sans-serif;
     --transition: 150ms ease;
     --c-super:    #0d9488;
     --c-super-d:  #f0fdfa;
@@ -70,6 +71,12 @@
   }
   #header h1 { font-family: var(--font-head); font-size: 17px; font-weight: 400; line-height: 1.2; flex: 1; color: #fff; }
   #header h1 span { font-style: italic; color: #52c9b9; }
+    .header-nav { display: flex; gap: 4px; margin-left: auto; }
+  .header-nav a { padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.55); text-decoration: none; transition: all 150ms ease; }
+  .header-nav a:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .header-nav a.active { background: rgba(56,189,248,0.15); color: #38bdf8; }
+  .header-nav .cl { color: #34d399; border: 1px solid rgba(52,211,153,0.25); }
+  .header-nav .cl:hover { background: rgba(52,211,153,0.12); }
   #header p.subtitle { font-size: 10px; color: rgba(255,255,255,0.38); font-weight: 300; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 3px; }
   .header-nav { display: flex; gap: 4px; margin-left: auto; }
   .header-nav a {
@@ -250,14 +257,14 @@
 
   /* COUNT */
   #count-badge {
-    position: absolute; top: 12px; left: 12px;
-    background: rgba(255,255,255,0.92);
+    position: absolute; top: 12px; right: 12px;
+    background: rgba(255,255,255,0.96);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(226,232,240,0.9);
     border-radius: 8px;
-    padding: 5px 12px; font-size: 11.5px; font-weight: 500; color: var(--soft-ink);
-    box-shadow: var(--shadow); z-index: 500; pointer-events: none;
+    padding: 7px 14px; font-size: 12.5px; font-weight: 600; color: var(--ink);
+    box-shadow: var(--shadow-lg); z-index: 1000; pointer-events: none;
   }
   #count-badge b { color: var(--ink); font-weight: 700; }
 
@@ -272,12 +279,7 @@
 <body>
 
 <header id="header">
-  <div class="header-icon">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-      <circle cx="12" cy="10" r="3"/>
-    </svg>
-  </div>
+  <a href="index.html" style="flex-shrink:0"><img src="logo-icon.png" alt="Neuroconecta" style="height:60px;width:auto"></a>
   <div>
     <h1>Espacios <span>para autistas</span> · España</h1>
     <p class="subtitle">Lugares tranquilos · Hora silenciosa · TEA · Discapacidad invisible</p>
@@ -297,16 +299,16 @@
   </div>
   <div class="tb-sep"></div>
   <span class="tb-label">Filtrar</span>
-  <button class="chip active" data-cat="all"              onclick="ft('all')">🗺️ Todos</button>
-  <button class="chip"        data-cat="supermercado"     onclick="ft('supermercado')">🛒 Hora silenciosa</button>
-  <button class="chip"        data-cat="centro_comercial" onclick="ft('centro_comercial')">🏬 C. Comercial</button>
-  <button class="chip"        data-cat="aeropuerto"       onclick="ft('aeropuerto')">✈️ Aeropuertos</button>
-  <button class="chip"        data-cat="sunflower"        onclick="ft('sunflower')">🌻 Discap. invisible</button>
-  <button class="chip"        data-cat="biblioteca"       onclick="ft('biblioteca')">📚 Bibliotecas</button>
-  <button class="chip"        data-cat="espacio_natural"  onclick="ft('espacio_natural')">🌿 Naturaleza</button>
-  <button class="chip"        data-cat="cultura"          onclick="ft('cultura')">🎭 Cultura</button>
-  <button class="chip"        data-cat="centro_civico"    onclick="ft('centro_civico')">🏛️ Cívico</button>
-  <button class="chip"        data-cat="hotel"            onclick="ft('hotel')">🏨 Hoteles</button>
+  <button class="chip active" data-cat="all"              onclick="ft('all')"><i class="fa-solid fa-map"></i> Todos</button>
+  <button class="chip"        data-cat="supermercado"     onclick="ft('supermercado')"><i class="fa-solid fa-cart-shopping"></i> Hora silenciosa</button>
+  <button class="chip"        data-cat="centro_comercial" onclick="ft('centro_comercial')"><i class="fa-solid fa-store"></i> C. Comercial</button>
+  <button class="chip"        data-cat="aeropuerto"       onclick="ft('aeropuerto')"><i class="fa-solid fa-plane"></i> Aeropuertos</button>
+  <button class="chip"        data-cat="sunflower"        onclick="ft('sunflower')"><i class="fa-solid fa-sun"></i> Discap. invisible</button>
+  <button class="chip"        data-cat="biblioteca"       onclick="ft('biblioteca')"><i class="fa-solid fa-book"></i> Bibliotecas</button>
+  <button class="chip"        data-cat="espacio_natural"  onclick="ft('espacio_natural')"><i class="fa-solid fa-leaf"></i> Naturaleza</button>
+  <button class="chip"        data-cat="cultura"          onclick="ft('cultura')"><i class="fa-solid fa-masks-theater"></i> Cultura</button>
+  <button class="chip"        data-cat="centro_civico"    onclick="ft('centro_civico')"><i class="fa-solid fa-landmark"></i> Cívico</button>
+  <button class="chip"        data-cat="hotel"            onclick="ft('hotel')"><i class="fa-solid fa-hotel"></i> Hoteles</button>
   <div class="spacer"></div>
   <a id="btn-suggest" href="#" onclick="openSuggest();return false;">+ Sugerir lugar</a>
 </div>
@@ -318,7 +320,7 @@
     <h4>Leyenda</h4>
     <div class="leg-row"><span class="leg-dot" style="background:#0d9488"></span>Hora silenciosa / Alojamiento</div>
     <div class="leg-row"><span class="leg-dot" style="background:#7c3aed"></span>Aeropuerto</div>
-    <div class="leg-row"><span class="leg-dot" style="background:#d97706"></span>Discapacidad invisible 🌻</div>
+    <div class="leg-row"><span class="leg-dot" style="background:#d97706"></span>Discapacidad invisible</div>
     <div class="leg-row"><span class="leg-dot" style="background:#b45309"></span>Biblioteca / Estudio</div>
     <div class="leg-row"><span class="leg-dot" style="background:#16a34a"></span>Espacio natural</div>
     <div class="leg-row"><span class="leg-dot" style="background:#dc2626"></span>Cultura / Restaurantes</div>
@@ -327,9 +329,9 @@
 </div>
 
 <script>
-const TIPO_ICON  = { supermercado:"🛒",biblioteca:"📚",sala_estudio:"✏️",espacio_natural:"🌿",centro_civico:"🏛️",centro_comercial:"🏬",aeropuerto:"✈️",sunflower:"🌻",cultura:"🎭",museo:"🎨",hotel:"🏨",coworking:"💼",otro:"📍" };
-const TIPO_LABEL = { supermercado:"Hora silenciosa",biblioteca:"Biblioteca / Estudio",sala_estudio:"Sala de estudio",espacio_natural:"Espacio natural",centro_civico:"Centro cívico",centro_comercial:"Centro comercial",aeropuerto:"Aeropuerto",sunflower:"Discapacidad invisible 🌻",cultura:"Cultura",museo:"Museo",hotel:"Hotel",coworking:"Coworking",otro:"Otro" };
-const ic = t => TIPO_ICON[t]  || "📍";
+const TIPO_FA={supermercado:"fa-cart-shopping",biblioteca:"fa-book",sala_estudio:"fa-pencil",espacio_natural:"fa-leaf",centro_civico:"fa-landmark",centro_comercial:"fa-store",aeropuerto:"fa-plane",sunflower:"fa-sun",cultura:"fa-masks-theater",museo:"fa-palette",hotel:"fa-hotel",coworking:"fa-briefcase",otro:"fa-location-dot"};
+const TIPO_LABEL={supermercado:"Hora silenciosa",biblioteca:"Biblioteca / Estudio",sala_estudio:"Sala de estudio",espacio_natural:"Espacio natural",centro_civico:"Centro cívico",centro_comercial:"Centro comercial",aeropuerto:"Aeropuerto",sunflower:"Discapacidad invisible",cultura:"Cultura",museo:"Museo",hotel:"Hotel",coworking:"Coworking",otro:"Otro"};
+const ic = t => `<i class="fa-solid ${TIPO_FA[t]||'fa-location-dot'}"></i>`;
 const lb = t => TIPO_LABEL[t] || t;
 
 function mkMarker(tipo) {
@@ -343,27 +345,38 @@ function mkPopup(p) {
   const vi = p.verificacion === "VERIFICADO" ? "✓" : "⏳";
   const vc = `verif-${p.verificacion||"PENDIENTE"}`;
   const hs = p.hora_silenciosa
-    ? `<div class="pop-hs"><span>🤫</span><div><b>Hora silenciosa</b><br>${p.hora_silenciosa}</div></div>` : "";
+    ? `<div class="pop-hs"><span><i class="fa-solid fa-volume-off"></i></span><div><b>Hora silenciosa</b><br>${p.hora_silenciosa}</div></div>` : "";
   let info = "";
   if (t === "sunflower") {
-    info = `<div class="pop-info"><span>🌻</span><div>Establecimientos adheridos al programa <b>Hidden Disabilities Sunflower</b>. El personal reconoce el cordón de girasol y ofrece ayuda discreta.<br><a href="https://hdsunflower.com/find-the-sunflower" target="_blank" rel="noopener">Ver mapa oficial →</a></div></div>`;
+    info = `<div class="pop-info"><span><i class="fa-solid fa-sun"></i></span><div>Establecimientos adheridos al programa <b>Hidden Disabilities Sunflower</b>. El personal reconoce el cordón de girasol y ofrece ayuda discreta.<br><a href="https://hdsunflower.com/find-the-sunflower" target="_blank" rel="noopener">Ver mapa oficial →</a></div></div>`;
   } else if (t === "aeropuerto" && p.fuente_tramite) {
-    info = `<div class="pop-info aero"><span>♿</span><div>Solicita el <b>Distintivo de Discapacidad Invisible de AENA</b> antes de tu vuelo:<br><a href="${p.fuente_tramite}" target="_blank" rel="noopener">Formulario AENA →</a></div></div>`;
+    info = `<div class="pop-info aero"><span><i class="fa-solid fa-wheelchair-move"></i></span><div>Solicita el <b>Distintivo de Discapacidad Invisible de AENA</b> antes de tu vuelo:<br><a href="${p.fuente_tramite}" target="_blank" rel="noopener">Formulario AENA →</a></div></div>`;
   }
-  const dir  = p.direccion       ? `<div class="pop-row"><span class="ico">📍</span><span>${p.direccion}</span></div>` : "";
-  const hor  = p.horario_general ? `<div class="pop-row"><span class="ico">🕐</span><span>${p.horario_general}</span></div>` : "";
-  const desc = p.descripcion     ? `<div class="pop-row"><span class="ico">ℹ️</span><span>${p.descripcion}</span></div>` : "";
+  const dir  = p.direccion       ? `<div class="pop-row"><span class="ico"><i class="fa-solid fa-location-dot"></i></span><span>${p.direccion}</span></div>` : "";
+  const hor  = p.horario_general ? `<div class="pop-row"><span class="ico"><i class="fa-regular fa-clock"></i></span><span>${p.horario_general}</span></div>` : "";
+  const desc = p.descripcion     ? `<div class="pop-row"><span class="ico"><i class="fa-solid fa-circle-info"></i></span><span>${p.descripcion}</span></div>` : "";
   const srcLabel = p.fuente_nota || "Fuente verificada";
-  const src  = p.fuente_url ? `<div class="pop-fuente">🔗 <a href="${p.fuente_url}" target="_blank" rel="noopener">${srcLabel}</a></div>` : "";
+  const src  = p.fuente_url ? `<div class="pop-fuente"><i class="fa-solid fa-link"></i> <a href="${p.fuente_url}" target="_blank" rel="noopener">${srcLabel}</a></div>` : "";
   return `<div class="pop-header"><div class="pop-meta"><span class="pop-badge badge-${t}">${ic(t)} ${lb(t)}</span><span class="pop-verif ${vc}">${vi} ${p.verificacion||"Pendiente"}</span></div><div class="pop-nombre">${p.nombre}</div></div><div class="pop-body">${hs}${info}${dir}${hor}${desc}${src}</div>`;
 }
 
 // ── MAP ──
-const map = L.map("map",{center:[40.2,-3.6],zoom:6});
-L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",{
-  attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>',
-  subdomains:"abcd",maxZoom:19
-}).addTo(map);
+console.log('Iniciando mapa Leaflet...');
+console.log('Elemento map:', document.getElementById('map'));
+
+try {
+  var leafletMap = L.map("map",{center:[40.2,-3.6],zoom:6});
+  console.log('Mapa creado exitosamente');
+  
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution: '© OpenStreetMap contributors',
+    maxZoom: 19
+  }).addTo(leafletMap);
+  console.log('Tiles cargados');
+} catch(e) {
+  console.error('Error al crear mapa:', e);
+  throw e;
+}
 
 // ── DATA ──
 const FEATURES = [
@@ -474,14 +487,12 @@ const FEATURES = [
   {c:[-5.3497,36.1502],p:{id:"SUN-013",nombre:"Gibraltar Airport",tipo:"sunflower",subtipo:"aeropuerto_sunflower",direccion:"British Lines Road, GX11 1AA Gibraltar",ciudad:"Gibraltar",comunidad_autonoma:"Gibraltar (territorio británico de ultramar)",horario_general:"Operativo las 24h",hora_silenciosa:null,descripcion:"Aeropuerto de Gibraltar adherido al programa Hidden Disabilities Sunflower. A diferencia de los aeropuertos AENA españoles, aquí sí se reconoce el cordón de girasol oficial.",fuente_url:"https://hdsunflower.com/find-the-sunflower",fuente_nota:"Parques Reunidos (3 abril 2025) + hdsunflower.com",verificacion:"VERIFICADO",fecha_verificacion:"2026-04-29"}},
 
   {c:[-5.3520,36.1460],p:{id:"SUN-014",nombre:"Special Needs Action Group (Gibraltar)",tipo:"sunflower",subtipo:"asociacion",direccion:"Commonwealth Park, Queensway, GX11 1AA Gibraltar",ciudad:"Gibraltar",comunidad_autonoma:"Gibraltar (territorio británico de ultramar)",horario_general:"Consultar con la organización",hora_silenciosa:null,descripcion:"Organización de apoyo a personas con necesidades especiales en Gibraltar, adherida al programa Hidden Disabilities Sunflower.",fuente_url:"https://hdsunflower.com/find-the-sunflower",fuente_nota:"Parques Reunidos (3 abril 2025) + hdsunflower.com",verificacion:"VERIFICADO",fecha_verificacion:"2026-04-29"}},
-  {c:[-9.1500,38.7260],p:{id:"SUN-015",nombre:"Bolt Support (Lisboa, Portugal)",tipo:"sunflower",subtipo:"servicio",direccion:"Praça do Marquês de Pombal, 1250-162 Lisboa, Portugal",ciudad:"Lisboa",comunidad_autonoma:"Portugal (fuera de España)",horario_general:"Consultar web oficial",hora_silenciosa:null,descripcion:"Servicio en Lisboa adherido al programa Hidden Disabilities Sunflower. ℹ️ Este lugar está en Portugal, fuera del territorio español, pero se incluye por su proximidad geográfica y por estar listado en el directorio oficial de Sunflower.",fuente_url:"https://hdsunflower.com/find-the-sunflower",fuente_nota:"Parques Reunidos (3 abril 2025) + hdsunflower.com",verificacion:"VERIFICADO",fecha_verificacion:"2026-04-29"}},
+  {c:[-9.1500,38.7260],p:{id:"SUN-015",nombre:"Bolt Support (Lisboa, Portugal)",tipo:"sunflower",subtipo:"servicio",direccion:"Praça do Marquês de Pombal, 1250-162 Lisboa, Portugal",ciudad:"Lisboa",comunidad_autonoma:"Portugal (fuera de España)",horario_general:"Consultar web oficial",hora_silenciosa:null,descripcion:"Servicio en Lisboa adherido al programa Hidden Disabilities Sunflower. Este lugar está en Portugal, fuera del territorio español, pero se incluye por su proximidad geográfica y por estar listado en el directorio oficial de Sunflower.",fuente_url:"https://hdsunflower.com/find-the-sunflower",fuente_nota:"Parques Reunidos (3 abril 2025) + hdsunflower.com",verificacion:"VERIFICADO",fecha_verificacion:"2026-04-29"}},
   {c:[-3.8785,40.3445],p:{id:"SUN-016",nombre:"Atlantis Aquarium Madrid",tipo:"sunflower",subtipo:"ocio_familiar",direccion:"Autopista A-5, CC Xanadú, 28939 Arroyomolinos, Madrid",ciudad:"Arroyomolinos",comunidad_autonoma:"Comunidad de Madrid",horario_general:"Consultar web oficial",hora_silenciosa:null,descripcion:"Acuario del grupo Parques Reunidos adherido a Hidden Disabilities Sunflower desde el 3 de abril de 2025, primera empresa en España en unirse a la iniciativa.",fuente_url:"https://hdsunflower.com/find-the-sunflower",fuente_nota:"Parques Reunidos (3 abril 2025) + hdsunflower.com",verificacion:"VERIFICADO",fecha_verificacion:"2026-04-29"}},
 
   // RUTA AUTISM FRIENDLY — MADRID (fuente: todoestaenmadrid.com/es/routes/ruta-autism-friendly)
   {c:[-3.6870,40.4291],p:{id:"REAL-018",nombre:"Sweet Space Museum",tipo:"cultura",subtipo:"ocio_autism_friendly",direccion:"C/ Serrano, 61, Planta 2 (ABC Serrano), 28006 Madrid",ciudad:"Madrid",comunidad_autonoma:"Comunidad de Madrid",horario_general:"Lu–Do: 11:00–13:30 y 15:30–20:00 h",hora_silenciosa:null,descripcion:"Museo interactivo de arte inmersivo y dulces con Sello Autism Friendly. Recorrido por salas temáticas con exposiciones de artistas. Adaptado para personas con TEA.",fuente_url:"https://todoestaenmadrid.com/es/shops/sweet-space-museum",fuente_nota:"Ficha oficial en Todo está en Madrid — Ruta Autism Friendly",verificacion:"VERIFICADO",fecha_verificacion:"2026-04-29"}},
-  
 
-  // NOVOTEL MADRID CENTER
   {c:[-3.6873,40.4237],p:{id:"REAL-017",nombre:"Novotel Madrid Center — Hotel Autism Friendly",tipo:"hotel",subtipo:"alojamiento_autism_friendly",direccion:"C/ O'Donnell 53, 28009 Madrid",ciudad:"Madrid",comunidad_autonoma:"Comunidad de Madrid",horario_general:"Recepción 24h",hora_silenciosa:null,descripcion:"Primer hotel de Madrid certificado Autism Friendly. Apoyo visual con pictogramas (SAAC), personal formado con el programa EU Autism Friendly Training, check-in prioritario, mesas preferentes, kit sensorial, zona tranquila en recepción y cartas adaptadas con pictogramas en restaurante y room service.",fuente_url:"https://www.novotelmadridcenter.com/home-v2/csr/autism-friendly/",fuente_nota:"Página oficial Autism Friendly — Novotel Madrid Center",verificacion:"VERIFICADO",fecha_verificacion:"2026-04-29"}},
   {c:[-16.7291,28.0857],p:{id:"REAL-020",nombre:"GF Victoria Gran Luxe — Hotel Autism Friendly",tipo:"hotel",subtipo:"alojamiento_autism_friendly",direccion:"C/ Fernando López Arvelo, 1, 38660 Costa Adeje, Tenerife",ciudad:"Costa Adeje",comunidad_autonoma:"Canarias",horario_general:"Recepción 24h",hora_silenciosa:null,descripcion:"Resort 5 estrellas GL con programa Autism Friendly propio: formulario previo a la estancia, equipo formado, entorno predecible, mapa visual del hotel y atención personalizada en comunicación, estímulos y rutina.",fuente_url:"https://www.gfvictoria.com/autism-friendly.html",fuente_nota:"Pégina oficial Autism Friendly de GF Victoria (verificada 2026)",verificacion:"VERIFICADO",fecha_verificacion:"2026-04-29"}},
 
@@ -557,8 +568,8 @@ const FEATURES = [
 
 ];
 
-const lyr  = L.layerGroup().addTo(map);
-const mkrs = FEATURES.map(({c,p}) => {
+var lyr = L.layerGroup().addTo(leafletMap);
+var mkrs = FEATURES.map(({c,p}) => {
   const m = L.marker([c[1],c[0]], {icon:mkMarker(p.tipo)});
   m.bindPopup(mkPopup(p), {maxWidth:330});
   m._tipo = p.tipo;
@@ -566,16 +577,16 @@ const mkrs = FEATURES.map(({c,p}) => {
   return m;
 });
 
-let active = "all", srch = "";
+var activeCat = "all", srch = "";
 function render() {
   lyr.clearLayers();
   const q = srch.trim().toLowerCase();
-  const vis = mkrs.filter(m => (active === "all" || m._tipo === active) && (!q || m._q.includes(q)));
+  const vis = mkrs.filter(m => (activeCat === "all" || m._tipo === activeCat) && (!q || m._q.includes(q)));
   vis.forEach(m => lyr.addLayer(m));
   document.getElementById("count-num").textContent = vis.length;
 }
 function ft(cat) {
-  active = cat;
+  activeCat = cat;
   document.querySelectorAll(".chip").forEach(c => c.classList.toggle("active", c.dataset.cat === cat));
   render();
 }
@@ -595,6 +606,49 @@ function openSuggest() {
   alert("Para sugerir un nuevo lugar necesitamos:\n\n• Nombre y dirección\n• Tipo (supermercado, biblioteca, espacio natural, aeropuerto…)\n• Descripción de la medida\n• URL de una fuente pública que lo confirme\n\nTodos los lugares se verifican antes de publicarse.\nEnvía la info a: atlasseek@proton.me");
 }
 render();
+
+// Click en mapa para sugerir lugar (verifica que sea tierra con reverse geocoding)
+leafletMap.on('click', function(e) {
+  var lat = e.latlng.lat.toFixed(5);
+  var lng = e.latlng.lng.toFixed(5);
+  fetch('https://nominatim.openstreetmap.org/reverse?lat=' + lat + '&lon=' + lng + '&format=json&zoom=10')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (!data.address || data.error) {
+        L.popup().setLatLng(e.latlng).setContent(
+          '<div style="font-family:var(--font-body);padding:4px;font-size:13px;color:#64748b">' +
+          '<i class="fa-solid fa-water" style="color:#3A82CA;margin-right:5px"></i>Esta zona es agua. Pulsa sobre tierra para sugerir un lugar.</div>'
+        ).openOn(leafletMap);
+        return;
+      }
+      var lugar = data.display_name ? data.display_name.split(',').slice(0,3).join(',') : '';
+      var html = '<div style="font-family:var(--font-body);max-width:280px">' +
+        '<div style="font-size:14px;font-weight:600;margin-bottom:8px"><i class="fa-solid fa-plus" style="color:#0d9488;margin-right:5px"></i>Sugerir un lugar aqu\u00ed</div>' +
+        (lugar ? '<div style="font-size:11.5px;color:#0f172a;margin-bottom:4px">' + lugar + '</div>' : '') +
+        '<div style="font-size:11px;color:#64748b;margin-bottom:10px">Coordenadas: ' + lat + ', ' + lng + '</div>' +
+        '<div style="font-size:12.5px;color:#0f172a;line-height:1.5;margin-bottom:10px">' +
+        'Para a\u00f1adir este lugar, env\u00eda un email con:' +
+        '<ul style="margin:6px 0 0 16px;padding:0">' +
+        '<li>Nombre del lugar</li>' +
+        '<li>Tipo (supermercado, biblioteca, etc.)</li>' +
+        '<li>Descripci\u00f3n de la medida de accesibilidad</li>' +
+        '<li>URL de una fuente p\u00fablica que lo confirme</li>' +
+        '</ul></div>' +
+        '<a href="mailto:atlasseek@proton.me?subject=Sugerencia%20Neuroconecta&body=Coordenadas:%20' + lat + ',%20' + lng + '%0AZona:%20' + encodeURIComponent(lugar) + '%0ANombre:%20%0ATipo:%20%0ADescripci%C3%B3n:%20%0AFuente%20URL:%20" ' +
+        'style="display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:6px;background:#0d9488;color:#fff;text-decoration:none;font-size:12px;font-weight:600">' +
+        '<i class="fa-solid fa-envelope"></i> Enviar sugerencia</a>' +
+        '</div>';
+      L.popup().setLatLng(e.latlng).setContent(html).openOn(leafletMap);
+    })
+    .catch(function() {
+      // Si falla la API, permitir igualmente
+      var html = '<div style="font-family:var(--font-body);max-width:280px">' +
+        '<div style="font-size:14px;font-weight:600;margin-bottom:8px"><i class="fa-solid fa-plus" style="color:#0d9488;margin-right:5px"></i>Sugerir un lugar aqu\u00ed</div>' +
+        '<div style="font-size:11px;color:#64748b;margin-bottom:10px">Coordenadas: ' + lat + ', ' + lng + '</div>' +
+        '<a href="mailto:atlasseek@proton.me?subject=Sugerencia%20Neuroconecta&body=Coordenadas:%20' + lat + ',%20' + lng + '%0ANombre:%20%0ATipo:%20%0ADescripci%C3%B3n:%20%0AFuente%20URL:%20" ' +
+        'style="display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:6px;background:#0d9488;color:#fff;text-decoration:none;font-size:12px;font-weight:600">' +
+        '<i class="fa-solid fa-envelope"></i> Enviar sugerencia</a></div>';
+      L.popup().setLatLng(e.latlng).setContent(html).openOn(leafletMap);
+    });
+});
 </script>
-</body>
-</html>
