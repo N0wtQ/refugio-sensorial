@@ -351,14 +351,10 @@ function renderCard(r) {
     plHtml += '<span class="bp-overflow" title="' + overflowPl.join(", ") + '">+' + overflowPl.length + '</span>';
   }
 
-  var desc = r["Por qué funciona"] || "";
-  var descHtml = desc ? '<button class="rc-more-btn" onclick="event.preventDefault();event.stopPropagation();this.nextElementSibling.classList.toggle(\'open\');this.textContent=this.nextElementSibling.classList.contains(\'open\')?\'Menos info\':\'Más info\'" aria-expanded="false">Más info</button><p class="rc-desc">' + desc + '</p>' : '';
-
   var href = r.Enlace || "#";
   return '<a class="rc" href="' + href + '" target="_blank" rel="noopener noreferrer">' +
     '<div class="rc-top"><h3 class="rc-name">' + r.Recurso + '</h3></div>' +
     '<div class="badges-row"><span class="badge badge-cat"><i class="fa-solid ' + catIcon + '" aria-hidden="true"></i> ' + r.Categoría + '</span>' + precio + '</div>' +
-    descHtml +
     '<div class="rc-ft">' + pfHtml + plHtml + '</div></a>';
 }
 
