@@ -33,48 +33,49 @@
   .hero-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border-radius:100px;background:var(--pri-g);border:1px solid rgba(56,189,248,.15);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--pri)}
   .hero h1{font-size:clamp(30px,5vw,50px);font-weight:700;line-height:1.15;margin-top:28px;letter-spacing:-.03em;color:var(--text)}
   .hero p{max-width:580px;margin:20px auto 0;font-size:17px;line-height:1.65;color:var(--muted)}
-.cards{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.cards { display:grid; gap:24px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
 
 @keyframes rotate-border {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
-.card{
-  padding:36px 32px;border-radius:var(--r);background:var(--surface);
-  border:none;text-decoration:none;color:inherit;
-  display:flex;flex-direction:column;
-  transition:transform .25s,box-shadow .25s;
-  position:relative;
+.card {
+  padding:36px 32px; border-radius:var(--r); background:var(--surface);
+  border:none; text-decoration:none; color:inherit;
+  display:flex; flex-direction:column;
+  transition:transform .25s, box-shadow .25s;
+  position:relative; overflow:hidden;
 }
 .card::before {
-  content:''; position:absolute; inset:0; border-radius:var(--r);
-  background: linear-gradient(270deg,
-    #E57B86, #FBB027, #9CC156, #48B0A1, #3A82CA, #816AB7,
+  content:''; position:absolute;
+  inset:-100%;
+  background: conic-gradient(
+    from 0deg,
     #E57B86, #FBB027, #9CC156, #48B0A1, #3A82CA, #816AB7, #E57B86
   );
-  background-size: 300% 300%;
-  opacity: 0;
-  animation: rotate-border 6s linear infinite;
-  padding: 2px;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  opacity:0;
+  animation:rotate-border 4s linear infinite;
+  transform-origin:center center;
 }
-.card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 40px rgba(0,0,0,.35);
-  background:var(--surface-h);
+.card::after {
+  content:''; position:absolute;
+  inset:2px; border-radius:calc(var(--r) - 1px);
+  background:var(--surface);
+  z-index:0;
 }
-.card:hover::before{opacity:1;}
+.card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,0,0,.35); }
+.card:hover::after { background:var(--surface-h); }
+.card:hover::before { opacity:1; }
 
-.card-ico{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:22px}
-.card-ico.map{background:var(--pri-g);color:var(--pri)}.card-ico.tools{background:var(--sec-g);color:var(--sec)}
-.card h2{font-size:22px;font-weight:600;margin-bottom:10px}
-.card p{font-size:15px;line-height:1.6;color:var(--muted);margin-bottom:18px}
-.card-lk{margin-top:auto;font-size:14px;font-weight:600;color:var(--pri);display:inline-flex;align-items:center;gap:6px}
-.card:hover .card-lk i{transform:translateX(4px)}.card-lk i{font-size:12px;transition:transform .2s}
+.card-ico { width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:22px; position:relative; z-index:1; }
+.card-ico.map { background:var(--pri-g); color:var(--pri); }
+.card-ico.tools { background:var(--sec-g); color:var(--sec); }
+.card h2 { font-size:22px; font-weight:600; margin-bottom:10px; position:relative; z-index:1; }
+.card p { font-size:15px; line-height:1.6; color:var(--muted); margin-bottom:18px; position:relative; z-index:1; }
+.card-lk { margin-top:auto; font-size:14px; font-weight:600; color:var(--pri); display:inline-flex; align-items:center; gap:6px; position:relative; z-index:1; }
+.card:hover .card-lk i { transform:translateX(4px); }
+.card-lk i { font-size:12px; transition:transform .2s; }
   .crisis{text-align:center;margin-top:56px}
   .crisis-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;border-radius:var(--r);background:var(--coral-g);border:1px solid rgba(229,123,134,.2);color:var(--coral);text-decoration:none;font-size:16px;font-weight:600;min-height:56px;transition:all .25s}
   .crisis-btn:hover{background:rgba(229,123,134,.15);border-color:rgba(229,123,134,.35)}
