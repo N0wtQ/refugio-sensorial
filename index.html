@@ -109,67 +109,71 @@
     .hero h1{font-size:22px}
     .hero-badge{font-size:10px;padding:4px 10px}
   }
+
+  /* ── Lang toggle ── */
+  .lang-toggle{display:flex;gap:2px;align-items:center;margin-left:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:3px}
+  .lang-btn{padding:4px 10px;border-radius:6px;border:none;background:transparent;color:var(--muted);font-family:var(--font);font-size:12px;font-weight:600;cursor:pointer;letter-spacing:.03em;transition:all .15s;min-width:32px}
+  .lang-btn.lang-active{background:rgba(255,255,255,.12);color:var(--text)}
+  .lang-btn:hover:not(.lang-active){color:var(--text)}
 </style>
+<script src="i18n.js"></script>
 </head>
 <body>
 <div class="orb orb-1"></div><div class="orb orb-2"></div>
 <header class="site-header"><div class="hdr">
   <a href="index.html" class="logo"><img src="logo-icon.png" alt="Neuroconecta" class="logo-img"></a>
   <nav>
-    <a href="index.html" class="active">Inicio</a>
-    <a href="#sobre-mi">Sobre mi</a>
-    <a href="#contactanos">Contactanos</a>
+    <a href="index.html" class="active" data-i18n="nav.home">Inicio</a>
+    <a href="#sobre-mi" data-i18n="nav.about">Sobre mi</a>
+    <a href="#contactanos" data-i18n="nav.contact">Contáctanos</a>
     <a href="ayuda.html" class="cl" aria-label="Apoyo en crisis" title="Accede a recursos de apoyo si estás en sobrecarga sensorial o ansiedad">
-  <i class="fa-solid fa-heart-pulse"></i> Necesito ayuda
+  <i class="fa-solid fa-heart-pulse"></i> <span data-i18n="nav.help">Necesito ayuda</span>
 </a>
   </nav>
 </div></header>
 <main>
   <section class="hero">
     <img src="logo.png" alt="Neuroconecta" class="logo-hero">
-    <span class="hero-badge"><i class="fa-solid fa-infinity" aria-hidden="true"></i> Recursos para Neurodivergentes </span>
-    <h1>Conecta con espacios y herramientas amigables para ti</h1>
-    <p>Explora lugares con hora silenciosa, salas sensoriales y distintivos de discapacidad invisible. Descubre apps y recursos digitales que te ayudan en el día a día.</p>
+    <span class="hero-badge"><i class="fa-solid fa-infinity" aria-hidden="true"></i> <span data-i18n="index.badge">Recursos para Neurodivergentes</span></span>
+    <h1 data-i18n="index.h1">Conecta con espacios y herramientas amigables para ti</h1>
+    <p data-i18n="index.p">Explora lugares con hora silenciosa, salas sensoriales y distintivos de discapacidad invisible. Descubre apps y recursos digitales que te ayudan en el día a día.</p>
   </section>
   <section class="cards">
-    <a href="mapa-app.html" class="card"><div class="card-ico map"><i class="fa-solid fa-location-dot"></i></div><h2>Mapa - Sitios silenciosos</h2><p>Mapa interactivo de lugares silenciosos o con accesibilidad sensorial en España.</p></a>
-    <a href="herramientas.html" class="card"><div class="card-ico tools"><i class="fa-solid fa-toolbox"></i></div><h2>Herramientas</h2><p>Biblioteca de apps, webs y recursos categorizados por necesidad.</p></a>
+    <a href="mapa-app.html" class="card"><div class="card-ico map"><i class="fa-solid fa-location-dot"></i></div><h2 data-i18n="index.card1.h2">Sitios silenciosos</h2><p data-i18n="index.card1.p">Mapa interactivo de lugares silenciosos o con accesibilidad sensorial en España.</p></a>
+    <a href="herramientas.html" class="card"><div class="card-ico tools"><i class="fa-solid fa-toolbox"></i></div><h2 data-i18n="index.card2.h2">Herramientas</h2><p data-i18n="index.card2.p">Biblioteca de apps, webs y recursos categorizados por necesidad.</p></a>
   </section>
 
 <section id="sobre-mi" class="section-content">
-  <h2>Sobre mí</h2>
+  <h2 data-i18n="index.about.h2">Sobre mí</h2>
   <div style="display:flex;align-items:center;gap:32px;flex-wrap:nowrap;">
     <img src="almudena.jpeg" alt="Foto de Almudena"
       style="width:140px;height:140px;border-radius:50%;object-fit:cover;border:3px solid var(--sec);flex-shrink:0;">
-    <p style="margin:0;">Hola, soy Almudena. <br>
-     Soy autista y creé Neuroconecta porque cuando más lo necesitaba, no encontraba recursos como este. <br>
-     La comunidad neurodivergente existe, es grande y merece más visibilidad. <br>
-     Este proyecto es mi forma de aportar algo concreto: un lugar donde encontrar espacios accesibles y herramientas reales para el día a día.</p>
+    <p data-i18n="index.about.p" style="margin:0;">Hola, soy Almudena. Soy autista y creé Neuroconecta porque cuando más lo necesitaba, no encontraba recursos como este. La comunidad neurodivergente existe, es grande y merece más visibilidad. Este proyecto es mi forma de aportar algo concreto: un lugar donde encontrar espacios accesibles y herramientas reales para el día a día.</p>
   </div>
 </section>
 <section id="contactanos" class="section-content">
-  <h2>Contáctanos</h2>
-  <p>¿Conoces un lugar accesible que no está en el mapa? ¿Quieres sugerir una herramienta o tienes alguna pregunta? Escríbeme, leo todos los mensajes.</p>
+  <h2 data-i18n="index.contact.h2">Contáctanos</h2>
+  <p data-i18n="index.contact.p">¿Conoces un lugar accesible que no está en el mapa? ¿Quieres sugerir una herramienta o tienes alguna pregunta? Escríbeme, leo todos los mensajes.</p>
 
   <form action="https://formspree.io/f/mwvzvdbd" method="POST" style="margin-top:24px;display:flex;flex-direction:column;gap:16px;">
     <div style="display:flex;flex-direction:column;gap:6px;">
-      <label for="nombre" style="font-size:14px;color:var(--muted)">Nombre *</label>
-      <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre"
+      <label for="nombre" style="font-size:14px;color:var(--muted)" data-i18n="index.form.name">Nombre *</label>
+      <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre" data-i18n-ph="index.form.ph.name"
         style="padding:12px 16px;border-radius:10px;background:var(--surface-h);border:1px solid var(--border);color:var(--text);font-size:15px;outline:none;font-family:var(--font)">
     </div>
     <div style="display:flex;flex-direction:column;gap:6px;">
-      <label for="correo" style="font-size:14px;color:var(--muted)">Correo electrónico *</label>
-      <input type="email" id="correo" name="email" required placeholder="tu@correo.com"
+      <label for="correo" style="font-size:14px;color:var(--muted)" data-i18n="index.form.email">Correo electrónico *</label>
+      <input type="email" id="correo" name="email" required placeholder="tu@correo.com" data-i18n-ph="index.form.ph.email"
         style="padding:12px 16px;border-radius:10px;background:var(--surface-h);border:1px solid var(--border);color:var(--text);font-size:15px;outline:none;font-family:var(--font)">
     </div>
     <div style="display:flex;flex-direction:column;gap:6px;">
-      <label for="pais" style="font-size:14px;color:var(--muted)">País *</label>
-      <input type="text" id="pais" name="pais" required placeholder="España"
+      <label for="pais" style="font-size:14px;color:var(--muted)" data-i18n="index.form.country">País *</label>
+      <input type="text" id="pais" name="pais" required placeholder="España" data-i18n-ph="index.form.ph.country"
         style="padding:12px 16px;border-radius:10px;background:var(--surface-h);border:1px solid var(--border);color:var(--text);font-size:15px;outline:none;font-family:var(--font)">
     </div>
     <div style="display:flex;flex-direction:column;gap:6px;">
-      <label for="mensaje" style="font-size:14px;color:var(--muted)">Mensaje *</label>
-      <textarea id="mensaje" name="mensaje" required rows="5" placeholder="Escribe tu mensaje aquí..."
+      <label for="mensaje" style="font-size:14px;color:var(--muted)" data-i18n="index.form.msg">Mensaje *</label>
+      <textarea id="mensaje" name="mensaje" required rows="5" placeholder="Escribe tu mensaje aquí..." data-i18n-ph="index.form.ph.msg"
         style="padding:12px 16px;border-radius:10px;background:var(--surface-h);border:1px solid var(--border);color:var(--text);font-size:15px;outline:none;resize:vertical;font-family:var(--font)"></textarea>
     </div>
     <button type="submit"
@@ -180,6 +184,12 @@
   </form>
 </section>
 </main>
-<footer>Neuroconecta · Hecho con cuidado para personas neurodivergentes</footer>
+<footer><span data-i18n="footer">Neuroconecta · Hecho con cuidado para personas neurodivergentes</span></footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  i18n.inject('nav');
+});
+</script>
 </body>
 </html>
