@@ -35,6 +35,9 @@
   .hero p{max-width:580px;margin:20px auto 0;font-size:17px;line-height:1.65;color:var(--muted)}
 .cards { display:grid; gap:24px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
 
+.about-row{display:flex;align-items:center;gap:32px;flex-wrap:wrap;}
+.about-row p{min-width:0;}
+
 @keyframes rotate-border {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
@@ -89,7 +92,8 @@
   footer{max-width:1060px;width:100%;margin:0 auto;padding:24px;border-top:1px solid var(--border);text-align:center;font-size:13px;color:var(--faint);position:relative;z-index:1}
   @media(max-width:768px){
     .site-header{padding:0 16px}
-    .hdr{min-height:56px;padding:6px 0;gap:8px}
+    .hdr{min-height:56px;padding:6px 0;gap:8px;flex-wrap:wrap;align-items:flex-start}
+    nav{width:100%;justify-content:center;flex-wrap:wrap}
     .logo-img{height:36px}
     nav a{padding:6px 10px;font-size:12px}
     nav .cl{margin-top:0;padding:6px 8px;font-size:11px}
@@ -97,6 +101,7 @@
     .hero .logo-hero{height:140px}
     .hero h1{font-size:26px;margin-top:20px}
     .hero p{font-size:15px}
+    .about-row{gap:18px}
     .cards{grid-template-columns:1fr}
     .card{padding:24px 20px}
     .crisis-btn{padding:14px 24px;font-size:14px}
@@ -145,7 +150,7 @@
 
 <section id="sobre-mi" class="section-content">
   <h2 data-i18n="index.about.h2">Sobre mí</h2>
-  <div style="display:flex;align-items:center;gap:32px;flex-wrap:nowrap;">
+  <div class="about-row">
     <img src="almudena.jpeg" alt="Foto de Almudena"
       style="width:140px;height:140px;border-radius:50%;object-fit:cover;border:3px solid var(--sec);flex-shrink:0;">
     <p data-i18n="index.about.p" style="margin:0;">Hola, soy Almudena. Soy autista y creé Neuroconecta porque cuando más lo necesitaba, no encontraba recursos como este. La comunidad neurodivergente existe, es grande y merece más visibilidad. Este proyecto es mi forma de aportar algo concreto: un lugar donde encontrar espacios accesibles y herramientas reales para el día a día.</p>
