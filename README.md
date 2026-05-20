@@ -1,5 +1,7 @@
 ## ¿Qué es Neuroconecta?
 
+Para acceder a la web -> https://n0wtq.github.io/Neuroconecta
+
 Neuroconecta es una plataforma web gratuita y de código abierto que conecta a personas neurodivergentes (TEA, TDAH, PAS, TOC, dislexia…) con:
 
 - **Espacios silenciosos y accesibles** en España (supermercados con hora silenciosa, aeropuertos con distintivo de discapacidad invisible, bibliotecas con salas de silencio, espacios naturales tranquilos, hoteles autism-friendly…)
