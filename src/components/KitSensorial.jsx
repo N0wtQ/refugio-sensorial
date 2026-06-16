@@ -489,9 +489,6 @@ export default function KitSensorial() {
               <i className="fa-solid fa-file-circle-plus text-xl" aria-hidden="true" />
             </div>
             <p className="text-sm font-semibold text-text mb-1">Aún no hay PDFs</p>
-            <p className="text-xs text-muted leading-relaxed max-w-xs mx-auto">
-              Sube tus PDFs a <code className="bg-surface px-1 py-0.5 rounded text-pri">public/docs/</code> y añádelos en{' '}
-              <code className="bg-surface px-1 py-0.5 rounded text-pri">src/data/recursos-pdf.js</code>.
             </p>
           </div>
         ) : (
