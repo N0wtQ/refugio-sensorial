@@ -49,8 +49,8 @@ export default function Hero() {
 
       {/* Logo */}
       <motion.img
-        src="/logo.png"
-        alt="Neuroconecta"
+        src="/logo.svg"
+        alt="Refugio Sensorial"
         className="mx-auto mb-5"
         style={{ height: 'clamp(110px, 18vw, 190px)', width: 'auto' }}
         {...fadeUp(prefersReduced, 0)}

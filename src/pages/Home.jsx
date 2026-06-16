@@ -140,7 +140,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-start gap-6">
               <img
                 src="/almudena.jpeg"
-                alt="Almudena, creadora de Neuroconecta"
+                alt="Almudena, creadora de Refugio Sensorial"
                 className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover border-2 border-sec/30 shrink-0"
               />
               <div>
@@ -149,7 +149,7 @@ export default function Home() {
                   <i className="fa-solid fa-quote-left text-sec/30 text-2xl absolute -top-1 -left-1" aria-hidden="true" />
                   <span className="pl-6">
                     Hola, soy <strong className="text-text font-semibold">Almudena</strong>.
-                    Soy autista y creé Neuroconecta porque cuando más lo necesitaba,
+                    Soy autista y creé Refugio Sensorial porque cuando más lo necesitaba,
                     no encontraba recursos como este. La comunidad neurodivergente existe,
                     es grande y merece más visibilidad. Este proyecto es mi forma de aportar
                     algo concreto: un lugar donde encontrar espacios accesibles y herramientas
@@ -158,7 +158,7 @@ export default function Home() {
                 </blockquote>
                 <div className="flex items-center gap-2 pl-6">
                   <span className="w-6 h-px bg-sec/40" aria-hidden="true" />
-                  <span className="text-xs font-semibold text-sec">Almudena · Creadora de Neuroconecta</span>
+                  <span className="text-xs font-semibold text-sec">Almudena · Creadora de Refugio Sensorial</span>
                 </div>
               </div>
             </div>
