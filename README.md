@@ -8,7 +8,7 @@
 
 ## ¿Qué es?
 
-Refugio Sensorial conecta a personas con TEA, TDAH, PAS, TOC, dislexia y otras formas de neurodivergencia con recursos útiles para el día a día:
+Refugio Sensorial conecta a personas con TEA, TDAH, TOC, DISLEXIA y otras formas de neurodivergencia con recursos útiles para el día a día:
 
 - **Mapa de espacios accesibles** — supermercados con hora silenciosa, aeropuertos con distintivo Sunflower, bibliotecas, espacios naturales, hoteles y restaurantes autism-friendly en España
 - **Biblioteca de herramientas** — más de 100 apps y recursos digitales clasificados por categoría, perfil neurodivergente y precio
@@ -87,8 +87,6 @@ npm run dev
 npm run build   # genera dist/
 npm run preview # previsualiza el build
 ```
-
-El despliegue a GitHub Pages es automático al fusionar a `main` mediante GitHub Actions.
 
 ---
 
