@@ -12,8 +12,8 @@ const URGENTES = [
 const APOYO = [
   { nombre:'Autismo España', desc:'Recursos, orientación y red de servicios para personas autistas y familias.', href:'https://autismo.org.es', icon:'fa-infinity', color:'pri' },
   { nombre:'Federación Autismo Madrid', desc:'Apoyo directo y orientación en la Comunidad de Madrid.', href:'https://www.autismomadrid.es', icon:'fa-map-location-dot', color:'sec' },
-  { nombre:'ACNAF — Red de apoyo', desc:'Familias con miembros neurodivergentes. Grupos de apoyo presencial.', href:'https://acnaf.org', icon:'fa-people-group', color:'acc' },
-  { nombre:'Proyecto STOP SUICIDIO', desc:'Información y recursos sobre conducta suicida.', href:'https://stopsuicidio.com', icon:'fa-heart', color:'sec' },
+  { nombre:'ConecTEA — Red de apoyo', desc:'Familias con miembros neurodivergentes. Grupos de apoyo presencial.', href:'https://www.fundacionconectea.org/', icon:'fa-people-group', color:'acc' },
+  { nombre:'Proyecto STOP SUICIDIOS', desc:'Información y recursos sobre conducta suicida.', href:'https://stopsuicidios.org', icon:'fa-heart', color:'sec' },
 ]
 
 const COLOR = {
