@@ -3,11 +3,10 @@ import { useState, useRef, useCallback, useEffect } from 'react'
 const BASE = import.meta.env.BASE_URL
 
 const SOUNDS = [
-  { id: 'white', label: 'Ruido blanco', icon: 'fa-wave-square',   color: 'text-text',  desc: 'Cobertura uniforme' },
-  { id: 'pink',  label: 'Ruido rosa',   icon: 'fa-signal',         color: 'text-coral', desc: 'Más suave y cálido' },
-  { id: 'brown', label: 'Ruido marrón', icon: 'fa-bars-staggered', color: 'text-warm',  desc: 'Profundo y envolvente' },
-  { id: 'rain',  label: 'Lluvia',       icon: 'fa-cloud-rain',     color: 'text-pri',   desc: 'Lluvia suave' },
-  { id: 'ocean', label: 'Mar',          icon: 'fa-water',          color: 'text-acc',   desc: 'Olas del mar' },
+  { id: 'rain',        label: 'Lluvia',    icon: 'fa-cloud-rain',    color: 'text-pri',  desc: 'Lluvia suave' },
+  { id: 'waves',       label: 'Mar',       icon: 'fa-water',         color: 'text-acc',  desc: 'Olas del mar' },
+  { id: 'thunderstorm',label: 'Tormenta',  icon: 'fa-cloud-bolt',    color: 'text-sec',  desc: 'Lluvia y truenos' },
+  { id: 'fireplace',   label: 'Chimenea',  icon: 'fa-fire',          color: 'text-coral',desc: 'Fuego crepitante' },
 ]
 
 export default function SoundPlayer() {
@@ -59,12 +58,12 @@ export default function SoundPlayer() {
           Sonidos ambientales
         </h3>
         <p className="text-xs text-muted leading-relaxed">
-          Ruido de fondo para la concentración y calma. Sin anuncios ni interrupciones.
+          Sonidos de fondo para la concentración y calma. Sin anuncios ni interrupciones.
           Útil durante meltdowns, al estudiar o para conciliar el sueño.
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2" role="group" aria-label="Elegir sonido">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2" role="group" aria-label="Elegir sonido">
         {SOUNDS.map(s => {
           const isOn = active === s.id
           return (
