@@ -1,6 +1,6 @@
 import { HashRouter, Routes, Route, useLocation, Link } from 'react-router-dom'
-import { useEffect } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect, Component } from 'react'
+import { motion } from 'framer-motion'
 import CanvasBg from './components/CanvasBg'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
@@ -9,15 +9,38 @@ import LibraryPage from './pages/LibraryPage'
 import AyudaPage from './pages/AyudaPage'
 import { useReducedMotion } from './hooks/useReducedMotion'
 
-// Page transition wrapper — instant when prefers-reduced-motion
+// Global error boundary — catches any React crash and shows a calm fallback
+class AppErrorBoundary extends Component {
+  constructor(props) { super(props); this.state = { error: null } }
+  static getDerivedStateFromError(error) { return { error } }
+  render() {
+    if (this.state.error) {
+      return (
+        <div className="min-h-dvh flex items-center justify-center p-8 text-center">
+          <div>
+            <p className="text-muted text-sm mb-4">Algo salió mal al cargar esta página.</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="px-5 py-2.5 rounded-xl bg-pri/10 text-pri text-sm font-semibold border border-pri/25"
+            >
+              Recargar página
+            </button>
+          </div>
+        </div>
+      )
+    }
+    return this.props.children
+  }
+}
+
+// Fade-in wrapper — instant when prefers-reduced-motion
 function PageTransition({ children }) {
   const prefersReduced = useReducedMotion()
   return (
     <motion.div
-      initial={prefersReduced ? {} : { opacity: 0 }}
+      initial={prefersReduced ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={prefersReduced ? {} : { opacity: 0 }}
-      transition={{ duration: prefersReduced ? 0 : 0.2 }}
+      transition={{ duration: prefersReduced ? 0 : 0.25, ease: 'easeOut' }}
     >
       {children}
     </motion.div>
@@ -27,40 +50,41 @@ function PageTransition({ children }) {
 // Scroll to top on route change
 function ScrollToTop() {
   const { pathname } = useLocation()
-  useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }) }, [pathname])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
   return null
 }
 
+// Routes — no AnimatePresence wrapping Routes (can conflict with HashRouter)
 function AppRoutes() {
-  const { pathname } = useLocation()
   return (
     <>
       <ScrollToTop />
-      <AnimatePresence mode="wait">
-        <Routes location={{ pathname }} key={pathname}>
-          <Route path="/" element={<PageTransition><Home /></PageTransition>} />
-          <Route path="/mapa" element={<PageTransition><MapPage /></PageTransition>} />
-          <Route path="/biblioteca" element={<PageTransition><LibraryPage /></PageTransition>} />
-          <Route path="/ayuda" element={<PageTransition><AyudaPage /></PageTransition>} />
-        </Routes>
-      </AnimatePresence>
+      <Routes>
+        <Route path="/"          element={<PageTransition><Home /></PageTransition>} />
+        <Route path="/mapa"      element={<PageTransition><MapPage /></PageTransition>} />
+        <Route path="/biblioteca" element={<PageTransition><LibraryPage /></PageTransition>} />
+        <Route path="/ayuda"     element={<PageTransition><AyudaPage /></PageTransition>} />
+      </Routes>
     </>
   )
 }
 
 export default function App() {
   return (
-    // HashRouter: URLs como /#/mapa — funciona sin configuración de servidor
     <HashRouter>
-      {/* 3D particle background — pointer-events-none, dismounts on reduced-motion */}
       <CanvasBg />
-
       <div className="relative z-10 min-h-dvh flex flex-col">
-        <Navbar />
-        <div className="flex-1">
-          <AppRoutes />
-        </div>
-        <Footer />
+        <AppErrorBoundary>
+          <Navbar />
+          <main className="flex-1">
+            <AppErrorBoundary>
+              <AppRoutes />
+            </AppErrorBoundary>
+          </main>
+          <Footer />
+        </AppErrorBoundary>
       </div>
     </HashRouter>
   )
@@ -68,7 +92,7 @@ export default function App() {
 
 function Footer() {
   return (
-    <footer className="border-t border-border mt-8">
+    <footer className="border-t border-border">
       <div className="max-w-5xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-faint">
         <p>Neuroconecta · Hecho con cuidado para personas neurodivergentes</p>
         <div className="flex items-center gap-4">
