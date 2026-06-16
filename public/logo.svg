@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-115 -58 230 148" role="img" aria-label="Refugio Sensorial">
+  <defs>
+    <linearGradient id="nd" gradientUnits="userSpaceOnUse" x1="-100" y1="0" x2="100" y2="0">
+      <stop offset="0%"   stop-color="#9C27B0"/>
+      <stop offset="17%"  stop-color="#3F51B5"/>
+      <stop offset="33%"  stop-color="#2196F3"/>
+      <stop offset="50%"  stop-color="#00BCD4"/>
+      <stop offset="65%"  stop-color="#4CAF50"/>
+      <stop offset="80%"  stop-color="#FF9800"/>
+      <stop offset="100%" stop-color="#F44336"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Glow layer -->
+  <path
+    d="M 100,0 C 100,-42 8,-42 0,0 C -8,42 -100,42 -100,0 C -100,-42 -8,-42 0,0 C 8,42 100,42 100,0 Z"
+    fill="none"
+    stroke="url(#nd)"
+    stroke-width="26"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    opacity="0.25"
+    filter="url(#glow)"
+  />
+  <!-- Main infinity stroke -->
+  <path
+    d="M 100,0 C 100,-42 8,-42 0,0 C -8,42 -100,42 -100,0 C -100,-42 -8,-42 0,0 C 8,42 100,42 100,0 Z"
+    fill="none"
+    stroke="url(#nd)"
+    stroke-width="16"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Site name -->
+  <text
+    x="0" y="72"
+    text-anchor="middle"
+    font-family="Inter, system-ui, -apple-system, sans-serif"
+    font-size="17"
+    font-weight="700"
+    fill="#E5E7EB"
+    letter-spacing="3"
+  >REFUGIO SENSORIAL</text>
+</svg>

@@ -109,7 +109,7 @@ function Footer() {
   return (
     <footer className="border-t border-border">
       <div className="max-w-5xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-faint">
-        <p>Neuroconecta · Hecho con cuidado para personas neurodivergentes</p>
+        <p>Refugio Sensorial · Hecho con cuidado para personas neurodivergentes</p>
         <div className="flex items-center gap-4">
           <a
             href="https://autismo.org.es"
