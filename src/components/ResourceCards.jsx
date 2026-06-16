@@ -64,7 +64,7 @@ export default function ResourceCards() {
   return (
     <section aria-labelledby="cards-heading" className="px-4 pb-14">
       <h2 id="cards-heading" className="sr-only">Secciones principales</h2>
-      <div className="max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="max-w-3xl mx-auto grid sm:grid-cols-2 gap-6">
         {cards.map((card, i) => {
           const isExternal = !!card.href
           const className = `group relative flex flex-col p-7 rounded-card border border-border bg-surface overflow-hidden
