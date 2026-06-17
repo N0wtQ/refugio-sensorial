@@ -27,4 +27,13 @@ export const RECURSOS_PDF = [
     categoria: 'Vida adulta',
     color: '#816AB7',
   },
+  {
+    id: 4,
+    titulo: '¿Cómo recuperarse de un Burnout siendo autista?',
+    descripcion: 'Artículo de Mujeres y Autismo con estrategias prácticas de recuperación: descanso real, reducción de enmascaramiento, apoyos y ritmos sostenibles.',
+    url: 'https://www.mujeresyautismo.com/post/c%C3%B3mo-recuperarse-de-un-burnout-siendo-autista',
+    categoria: 'Burnout',
+    color: '#E57B86',
+    icono: 'fa-globe',
+  },
 ]
