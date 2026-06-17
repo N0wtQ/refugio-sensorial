@@ -25,7 +25,7 @@ export default function NotFoundPage() {
         <div
           className="absolute inset-0 bg-center bg-no-repeat bg-contain opacity-80"
           style={{
-            backgroundImage: "url('https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif')",
+            backgroundImage: "url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjZ5aG5wdTlyMmR1azU5eGhoejZmZHVqbXBnc3lqeWs5ZW9qZDRtNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/14uQ3cOFteDaU/giphy.gif')",
           }}
           role="img"
           aria-label="Ilustración animada de una página no encontrada"
