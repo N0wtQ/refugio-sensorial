@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { RECURSOS_PDF } from '../data/recursos-pdf'
+import { GlowCard } from '@/components/ui/spotlight-card'
 
 // ── MELTDOWN / SHUTDOWN / BURNOUT ─────────────────────────────────────────────
 
@@ -170,6 +171,7 @@ const KITS = [
     bgColor: 'bg-acc/5',
     badgeBg: 'bg-acc/10 text-acc border-acc/20',
     glowColor: 'rgba(72,176,161,0.08)',
+    spotlightColor: 'green',
     items: [
       { icon: 'fa-headphones',  label: 'Auriculares o tapones', nota: 'Bloqueadores de ruido' },
       { icon: 'fa-sun',         label: 'Gafas de sol',          nota: 'Para luz intensa' },
@@ -190,6 +192,7 @@ const KITS = [
     bgColor: 'bg-sec/5',
     badgeBg: 'bg-sec/10 text-sec border-sec/20',
     glowColor: 'rgba(129,106,183,0.08)',
+    spotlightColor: 'purple',
     items: [
       { icon: 'fa-headphones',     label: 'Auriculares NC',        nota: 'Cancelación activa de ruido' },
       { icon: 'fa-sun',            label: 'Gafas de sol',          nota: 'Filtro de luz' },
@@ -214,6 +217,7 @@ const KITS = [
     bgColor: 'bg-coral/5',
     badgeBg: 'bg-coral/10 text-coral border-coral/20',
     glowColor: 'rgba(229,123,134,0.08)',
+    spotlightColor: 'orange',
     items: [
       { icon: 'fa-headphones',     label: 'Auriculares NC premium', nota: 'La herramienta más importante' },
       { icon: 'fa-sun',            label: 'Gafas de sol oscuras',   nota: 'Polarizadas si es posible' },
@@ -233,28 +237,38 @@ const KITS = [
   },
 ]
 
-function KitIcon({ kit, selected }) {
+function KitSelectorCard({ kit, selected, onClick }) {
+  const dotCount = kit.id === 'pequeno' ? 1 : kit.id === 'grande' ? 2 : 3
+
   return (
-    <div className="flex flex-col items-center gap-1.5">
-      <div
-        className={`relative flex flex-col items-center justify-center gap-1 w-20 h-24 rounded-2xl border-2 transition-all duration-200
-          ${selected ? `${kit.borderColor} ${kit.bgColor}` : 'border-border bg-surface/60'}
-        `}
+    <button
+      onClick={onClick}
+      aria-pressed={selected}
+      className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pri focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded-2xl"
+    >
+      <GlowCard
+        glowColor={kit.spotlightColor}
+        customSize
+        className={`w-28 h-36 flex flex-col items-center justify-center gap-2 cursor-pointer transition-all duration-200 !grid-rows-none
+          ${selected ? `opacity-100 scale-105` : 'opacity-60 hover:opacity-80'}`}
       >
-        <i className={`fa-solid ${kit.icon} ${selected ? kit.color : 'text-muted'} ${kit.iconSize} transition-colors duration-200`} aria-hidden="true" />
-        <div className="flex gap-0.5">
-          {Array.from({ length: kit.id === 'pequeno' ? 1 : kit.id === 'grande' ? 2 : 3 }).map((_, i) => (
+        <i
+          className={`fa-solid ${kit.icon} ${kit.iconSize} transition-colors duration-200 ${selected ? kit.color : 'text-muted'}`}
+          aria-hidden="true"
+        />
+        <div className="flex gap-0.5 mt-1">
+          {Array.from({ length: dotCount }).map((_, i) => (
             <div
               key={i}
-              className={`w-1.5 h-1.5 rounded-full transition-colors duration-200 ${selected ? kit.color.replace('text-', 'bg-') : 'bg-border'}`}
+              className={`w-1.5 h-1.5 rounded-full transition-colors duration-200 ${selected ? kit.color.replace('text-', 'bg-') : 'bg-muted/40'}`}
             />
           ))}
         </div>
-      </div>
-      <span className={`text-xs font-semibold transition-colors duration-200 ${selected ? kit.color : 'text-muted'}`}>
-        {kit.label.split(' ')[0]}
-      </span>
-    </div>
+        <span className={`text-xs font-semibold transition-colors duration-200 ${selected ? kit.color : 'text-muted'}`}>
+          {kit.label.split(' ')[0]}
+        </span>
+      </GlowCard>
+    </button>
   )
 }
 
@@ -405,17 +419,15 @@ export default function KitSensorial() {
           </div>
         </motion.div>
 
-        {/* Size selector */}
+        {/* Size selector — GlowCards */}
         <div className="flex justify-center gap-6 mb-8" role="group" aria-label="Tamaño del bolso">
           {KITS.map(kit => (
-            <button
+            <KitSelectorCard
               key={kit.id}
+              kit={kit}
+              selected={selectedKit === kit.id}
               onClick={() => setSelectedKit(kit.id)}
-              aria-pressed={selectedKit === kit.id}
-              className="flex flex-col items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pri focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded-2xl p-1"
-            >
-              <KitIcon kit={kit} selected={selectedKit === kit.id} />
-            </button>
+            />
           ))}
         </div>
 
