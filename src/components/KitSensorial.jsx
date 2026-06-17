@@ -292,7 +292,7 @@ function PDFCard({ pdf, prefersReduced, index }) {
         className="w-10 h-10 rounded-xl flex items-center justify-center text-sm shrink-0"
         style={{ background: `${pdf.color}18`, color: pdf.color }}
       >
-        <i className="fa-solid fa-file-pdf text-base" aria-hidden="true" />
+        <i className={`fa-solid ${pdf.icono ?? 'fa-file-pdf'} text-base`} aria-hidden="true" />
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-start justify-between gap-2">
