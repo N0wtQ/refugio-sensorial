@@ -12,39 +12,31 @@ export default function NotFoundPage() {
   const reduced = useReducedMotion()
 
   return (
-    <div className="min-h-[80dvh] flex flex-col items-center justify-center px-6 py-12 text-center">
+    <div className="min-h-[80dvh] flex flex-col items-center justify-center px-6 py-10 text-center">
 
-      {/* GIF animation with 404 number on top */}
+      {/* GIF — mix-blend-mode:screen makes the dark background invisible */}
       <motion.div
-        initial={reduced ? {} : { opacity: 0, y: -16 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={reduced ? {} : { opacity: 0, scale: 0.92 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: reduced ? 0 : 0.5, ease: 'easeOut' }}
-        className="relative w-full max-w-sm h-52 sm:h-64 mb-2"
+        className="w-full max-w-md"
+        style={{ mixBlendMode: 'screen' }}
+        aria-hidden="true"
       >
-        {/* Dribbble 404 GIF */}
-        <div
-          className="absolute inset-0 bg-center bg-no-repeat bg-contain opacity-80"
-          style={{
-            backgroundImage: "url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjZ5aG5wdTlyMmR1azU5eGhoejZmZHVqbXBnc3lqeWs5ZW9qZDRtNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/14uQ3cOFteDaU/giphy.gif')",
-          }}
-          role="img"
-          aria-label="Ilustración animada de una página no encontrada"
+        <img
+          src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjZ5aG5wdTlyMmR1azU5eGhoejZmZHVqbXBnc3lqeWs5ZW9qZDRtNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/14uQ3cOFteDaU/giphy.gif"
+          alt=""
+          className="w-full h-auto"
+          loading="eager"
         />
-        {/* 404 number overlay */}
-        <span
-          aria-hidden="true"
-          className="absolute inset-x-0 top-4 text-center text-7xl sm:text-8xl font-black text-text/90 leading-none select-none"
-        >
-          404
-        </span>
       </motion.div>
 
       {/* Text */}
       <motion.div
-        initial={reduced ? {} : { opacity: 0, y: 16 }}
+        initial={reduced ? {} : { opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: reduced ? 0 : 0.4, delay: reduced ? 0 : 0.15, ease: 'easeOut' }}
-        className="max-w-xs"
+        transition={{ duration: reduced ? 0 : 0.4, delay: reduced ? 0 : 0.2, ease: 'easeOut' }}
+        className="max-w-xs mt-2"
       >
         <h1 className="text-2xl font-bold text-text mb-2 leading-snug">
           Esta página no existe
@@ -56,9 +48,9 @@ export default function NotFoundPage() {
 
       {/* Primary button */}
       <motion.div
-        initial={reduced ? {} : { opacity: 0, y: 16 }}
+        initial={reduced ? {} : { opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: reduced ? 0 : 0.4, delay: reduced ? 0 : 0.25, ease: 'easeOut' }}
+        transition={{ duration: reduced ? 0 : 0.4, delay: reduced ? 0 : 0.3, ease: 'easeOut' }}
         className="mt-7"
       >
         <Link
@@ -74,9 +66,9 @@ export default function NotFoundPage() {
 
       {/* Quick-links */}
       <motion.div
-        initial={reduced ? {} : { opacity: 0, y: 16 }}
+        initial={reduced ? {} : { opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: reduced ? 0 : 0.4, delay: reduced ? 0 : 0.35, ease: 'easeOut' }}
+        transition={{ duration: reduced ? 0 : 0.4, delay: reduced ? 0 : 0.4, ease: 'easeOut' }}
         className="mt-8 w-full max-w-xs"
       >
         <p className="text-xs text-faint mb-3 uppercase tracking-wider font-medium">
