@@ -66,12 +66,14 @@ const cards = [
 const RAINBOW_VARS = {
   '--base':           '0',
   '--spread':         '360',
-  '--size':           '220',
-  '--border':         '1',
+  '--size':           '320',
+  '--border':         '3',
   '--radius':         '14',
   '--spotlight-size': 'calc(var(--size, 150) * 1px)',
   '--border-size':    'calc(var(--border, 2) * 1px)',
   '--hue':            'calc(var(--base) + (var(--xp, 0) * var(--spread, 0)))',
+  // Real CSS border must match --border so the mask clips correctly
+  border:             '3px solid rgba(129,106,183,0.12)',
 }
 
 export default function ResourceCards() {
@@ -98,7 +100,7 @@ export default function ResourceCards() {
       <div ref={gridRef} className="max-w-3xl mx-auto grid sm:grid-cols-2 gap-6">
         {cards.map((card, i) => {
           const isExternal = !!card.href
-          const cardClass = `group relative flex flex-col p-7 rounded-card border border-border bg-surface overflow-hidden
+          const cardClass = `group relative flex flex-col p-7 rounded-card bg-surface overflow-hidden
                              transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/25
                              focus-visible:ring-2 focus-visible:ring-pri focus-visible:ring-offset-2 focus-visible:ring-offset-bg`
           const inner = (
