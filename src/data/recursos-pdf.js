@@ -19,4 +19,12 @@ export const RECURSOS_PDF = [
     categoria: 'Educación',
     color: '#3A82CA',
   },
+  {
+    id: 3,
+    titulo: 'Educación de personas adultas con autismo',
+    descripcion: 'Para familias, profesores y terapeutas. Modelos teóricos, orientaciones pedagógicas y estrategias para la transición a la vida adulta. 210 páginas.',
+    url: 'https://drive.google.com/file/d/1fxIawEc4BNjHrU0Lu9WzJ1Lk5XLwjaHH/view?usp=drive_link',
+    categoria: 'Vida adulta',
+    color: '#816AB7',
+  },
 ]
