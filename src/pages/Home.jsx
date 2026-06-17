@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <div className="max-w-5xl mx-auto px-4 pb-20">
       {/* Aurora behind the Hero only */}
-      <div className="relative">
+      <div className="relative overflow-visible">
         <LiquidAurora />
         <Hero />
       </div>

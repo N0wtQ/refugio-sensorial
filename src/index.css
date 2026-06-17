@@ -43,8 +43,8 @@
 
 .liquid-aurora {
   position: absolute;
-  inset: 0;
-  overflow: hidden;
+  inset: -80px;          /* bleed beyond the Hero so blur fades naturally */
+  overflow: visible;
   pointer-events: none;
   z-index: 0;
 }
