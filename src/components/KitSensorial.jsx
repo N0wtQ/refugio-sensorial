@@ -148,7 +148,7 @@ function EstadoCard({ estado, prefersReduced, index }) {
 const REGULACION = [
   { icon: 'fa-snowflake',      color: 'text-pri',   bg: 'bg-pri/8',   titulo: 'Frío',           desc: 'Agua fría en muñecas y cara, hielo en manos o frente. Activa el reflejo de buceo y desacelera el sistema nervioso.' },
   { icon: 'fa-wind',           color: 'text-acc',   bg: 'bg-acc/8',   titulo: 'Respiración',     desc: 'Exhala el doble de lo que inhales. 4 seg. entrar, 8 salir. Activa el nervio vago y regula el ritmo cardíaco.' },
-  { icon: 'fa-ball',           color: 'text-coral', bg: 'bg-coral/8', titulo: 'Movimiento',      desc: 'Saltar, apretar una pelota, apretar los puños, estirarse. El movimiento propioceptivo calma el sistema nervioso.' },
+  { icon: 'fa-person-running',  color: 'text-coral', bg: 'bg-coral/8', titulo: 'Movimiento',      desc: 'Saltar, apretar una pelota, apretar los puños, estirarse. El movimiento propioceptivo calma el sistema nervioso.' },
   { icon: 'fa-headphones',     color: 'text-sec',   bg: 'bg-sec/8',   titulo: 'Sonido',          desc: 'Tapones, auriculares con cancelación de ruido o sonidos de fondo (lluvia, blanco). Reduce carga sensorial auditiva.' },
   { icon: 'fa-eye-slash',      color: 'text-pri',   bg: 'bg-pri/8',   titulo: 'Oscuridad',       desc: 'Cubrirse los ojos, gafas de sol o un cuarto oscuro. Elimina la sobrecarga visual y da sensación de refugio.' },
   { icon: 'fa-dumbbell',       color: 'text-acc',   bg: 'bg-acc/8',   titulo: 'Presión',         desc: 'Manta con peso, chaqueta apretada o simplemente abrazar las rodillas. La presión profunda regula el sistema nervioso.' },
@@ -163,10 +163,12 @@ const KITS = [
   {
     id: 'pequeno',
     label: 'Bolso pequeño',
+    shortLabel: 'Pequeño',
     sublabel: 'Lo esencial de emergencia',
     icon: 'fa-bag-shopping',
     iconSize: 'text-2xl',
     color: 'text-acc',
+    dotClass: 'bg-acc',
     borderColor: 'border-acc/30',
     bgColor: 'bg-acc/5',
     badgeBg: 'bg-acc/10 text-acc border-acc/20',
@@ -184,10 +186,12 @@ const KITS = [
   {
     id: 'grande',
     label: 'Bolso grande',
+    shortLabel: 'Grande',
     sublabel: 'Para salidas largas',
     icon: 'fa-briefcase',
     iconSize: 'text-3xl',
     color: 'text-sec',
+    dotClass: 'bg-sec',
     borderColor: 'border-sec/30',
     bgColor: 'bg-sec/5',
     badgeBg: 'bg-sec/10 text-sec border-sec/20',
@@ -209,10 +213,12 @@ const KITS = [
   {
     id: 'enorme',
     label: 'Mochila grande',
+    shortLabel: 'Mochila',
     sublabel: 'Días difíciles o viajes',
     icon: 'fa-person-hiking',
     iconSize: 'text-4xl',
     color: 'text-coral',
+    dotClass: 'bg-coral',
     borderColor: 'border-coral/30',
     bgColor: 'bg-coral/5',
     badgeBg: 'bg-coral/10 text-coral border-coral/20',
@@ -260,12 +266,12 @@ function KitSelectorCard({ kit, selected, onClick }) {
           {Array.from({ length: dotCount }).map((_, i) => (
             <div
               key={i}
-              className={`w-1.5 h-1.5 rounded-full transition-colors duration-200 ${selected ? kit.color.replace('text-', 'bg-') : 'bg-muted/40'}`}
+              className={`w-1.5 h-1.5 rounded-full transition-colors duration-200 ${selected ? kit.dotClass : 'bg-muted/40'}`}
             />
           ))}
         </div>
         <span className={`text-xs font-semibold transition-colors duration-200 ${selected ? kit.color : 'text-muted'}`}>
-          {kit.label.split(' ')[0]}
+          {kit.shortLabel}
         </span>
       </GlowCard>
     </button>
