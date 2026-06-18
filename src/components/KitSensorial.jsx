@@ -23,7 +23,7 @@ const ESTADOS = [
     que: 'Una respuesta involuntaria ante una sobrecarga sensorial, emocional o cognitiva que supera el límite del sistema nervioso. No es un berrinche ni un acto voluntario: el cerebro literalmente se desborda.',
     signos: ['Llanto o gritos incontrolables', 'Golpear, morder o auto-lesionarse levemente (estimulación de urgencia)', 'Huir del lugar', 'Incapacidad para hablar o responder', 'Rigidez o temblores en el cuerpo'],
     ayuda: ['Reducir estímulos: luces, sonido, personas', 'No hablar ni tocar salvo que la persona lo pida', 'Ofrecer un espacio seguro y tranquilo', 'Esperar sin juzgar hasta que el sistema nervioso se regule', 'Después, no pedir explicaciones inmediatas'],
-    tts: 'Meltdown. Crisis de sobrecarga. Es una respuesta involuntaria ante una sobrecarga sensorial, emocional o cognitiva que supera el límite del sistema nervioso. No es un berrinche ni un acto voluntario: el cerebro literalmente se desborda. Señales: llanto o gritos incontrolables, golpear, morder o autolesionarse levemente, huir del lugar, incapacidad para hablar o responder, rigidez o temblores en el cuerpo. Qué ayuda: reducir estímulos como luces, sonido y personas; no hablar ni tocar salvo que la persona lo pida; ofrecer un espacio seguro y tranquilo; esperar sin juzgar hasta que el sistema nervioso se regule; y después no pedir explicaciones inmediatas.',
+    tts: 'Si estás en un meltdown ahora mismo, lo que te pasa no es algo que hagas a propósito. Es tu sistema nervioso llegando al límite después de demasiada carga. Puede haber llanto, gritos, necesidad de moverte o de huir. Todo eso es una respuesta involuntaria, no un fallo tuyo. Lo que más ayuda en este momento es reducir lo que entra: apaga luces, baja el sonido, aléjate de las personas si puedes. No necesitas explicar nada ahora. Primero regularte, después hablar.',
     infografia: 'Meltdown.png',
   },
   {
@@ -41,7 +41,7 @@ const ESTADOS = [
     que: 'Una respuesta de cierre ante la sobrecarga: el sistema nervioso "se apaga" para protegerse. A diferencia del meltdown, el shutdown es hacia adentro — silencio, inmovilidad, desconexión.',
     signos: ['Silencio repentino y retirada social', 'Mirada fija o perdida', 'Movimientos lentos o "congelados"', 'Incapacidad para hablar (mutismo temporal)', 'Sensación de estar "dentro de un cristal"'],
     ayuda: ['Presencia calmada sin exigir respuesta', 'No interpretar el silencio como indiferencia', 'Ofrecer mantas, auriculares u objetos de confort', 'Permitir tiempo sin estimulación', 'Cuando pase, preguntar con amabilidad qué necesita'],
-    tts: 'Shutdown. Apagado interno. Es una respuesta de cierre ante la sobrecarga: el sistema nervioso se apaga para protegerse. A diferencia del meltdown, el shutdown es hacia adentro: silencio, inmovilidad, desconexión. Señales: silencio repentino y retirada social, mirada fija o perdida, movimientos lentos o congelados, incapacidad para hablar, sensación de estar dentro de un cristal. Qué ayuda: presencia calmada sin exigir respuesta; no interpretar el silencio como indiferencia; ofrecer mantas, auriculares u objetos de confort; permitir tiempo sin estimulación; y cuando pase, preguntar con amabilidad qué necesita.',
+    tts: 'En un shutdown tu sistema nervioso se cierra para protegerse de la sobrecarga. No es que no quieras responder, es que no puedes. Quedarse en silencio, inmóvil o desconectado no es indiferencia, es supervivencia. No te exijas salir de ahí de golpe. Lo que ayuda es un entorno tranquilo, sin preguntas ni demandas, con algo de confort cerca si lo aceptas: una manta, auriculares, oscuridad. Tu sistema nervioso irá volviendo a su propio ritmo.',
     infografia: 'Shutdown.png',
   },
   {
@@ -59,7 +59,7 @@ const ESTADOS = [
     que: 'Un estado de agotamiento profundo causado por el esfuerzo sostenido de enmascarar, adaptarse a un mundo neurotípico y manejar una carga sensorial y social que supera los recursos disponibles. Puede durar semanas o meses.',
     signos: ['Pérdida de habilidades que antes eran automáticas', 'Aumento de la sensibilidad sensorial', 'Dificultad extrema para procesar y comunicarse', 'Aislamiento y retirada de actividades', 'Agotamiento que no mejora con el descanso habitual'],
     ayuda: ['Reducir drásticamente las demandas y el masking', 'Priorizar el descanso verdadero (no solo físico)', 'Revisar y eliminar compromisos no esenciales', 'Buscar apoyo profesional especializado en autismo', 'Permitirse funcionar a un ritmo más lento sin culpa'],
-    tts: 'Burnout autista. Agotamiento acumulado. Es un estado de agotamiento profundo causado por el esfuerzo sostenido de enmascarar, adaptarse a un mundo neurotípico y manejar una carga sensorial y social que supera los recursos disponibles. Puede durar semanas o meses. Señales: pérdida de habilidades que antes eran automáticas, aumento de la sensibilidad sensorial, dificultad extrema para procesar y comunicarse, aislamiento y retirada de actividades, agotamiento que no mejora con el descanso habitual. Qué ayuda: reducir drásticamente las demandas y el enmascaramiento; priorizar el descanso verdadero; revisar y eliminar compromisos no esenciales; buscar apoyo profesional especializado en autismo; y permitirse funcionar a un ritmo más lento sin culpa.',
+    tts: 'El burnout autista es el resultado de haber dado demasiado durante demasiado tiempo, intentando encajar en un mundo que no está pensado para ti. No es flojera ni depresión, aunque puede parecerse. Puede que notes que cosas que antes hacías sin pensar ahora te cuestan muchísimo. Eso es normal en el burnout. Lo más importante ahora es reducir lo que puedas: compromisos, exigencias, el esfuerzo de enmascararte. Date permiso para funcionar más despacio. Busca apoyo si puedes, preferiblemente de alguien que entienda el autismo. Recuperarse lleva tiempo, y eso está bien.',
     infografia: 'Burnout.png',
   },
 ]
@@ -106,16 +106,18 @@ function EstadoCard({ estado, prefersReduced, index }) {
       </button>
 
       <div className="px-6 pb-4 flex items-center justify-between gap-3">
-        <a
-          href={`${BASE}infografias/${estado.infografia}`}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation()
+            window.open(`${BASE}infografias/${estado.infografia}`, '_blank', 'noopener,noreferrer')
+          }}
           className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-semibold border transition-colors duration-200 ${estado.badgeBg} hover:opacity-80`}
           aria-label={`Ver infografía de ${estado.titulo} (se abre en nueva pestaña)`}
         >
           <i className="fa-solid fa-image text-[9px]" aria-hidden="true" />
           Ver infografía
-        </a>
+        </button>
         <TTSButton text={estado.tts} />
       </div>
 
