@@ -1,5 +1,5 @@
-import { useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useMemo, useRef, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { herramientas, categorias, precios, perfiles } from '../data/herramientas'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 
@@ -117,6 +117,83 @@ function ToolCard({ h, index, prefersReduced }) {
   )
 }
 
+// ── Perfil dropdown ───────────────────────────────────────────────────────────
+
+function PerfilDropdown({ value, onChange }) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false) }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
+
+  const isFiltered = value !== 'todos'
+  const label = isFiltered ? `${value} (${PERFIL_COUNTS[value]})` : 'Todos'
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen(o => !o)}
+        aria-expanded={open}
+        aria-haspopup="listbox"
+        className={`flex items-center gap-1.5 pl-3 pr-2.5 py-1 rounded-lg text-xs font-semibold border transition-colors duration-200 ${
+          isFiltered
+            ? 'bg-acc/15 text-acc border-acc/30'
+            : 'bg-surface text-muted border-border hover:text-text'
+        }`}
+      >
+        <i className="fa-solid fa-user-tag text-[9px]" aria-hidden="true" />
+        {label}
+        <i className={`fa-solid fa-chevron-down text-[9px] transition-transform duration-150 ${open ? 'rotate-180' : ''}`} aria-hidden="true" />
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -4, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -4, scale: 0.97 }}
+            transition={{ duration: 0.13 }}
+            className="absolute top-full left-0 mt-1.5 w-48 rounded-xl border border-border bg-[#0C0E1E] shadow-xl shadow-black/40 overflow-hidden z-50 py-1"
+            role="listbox"
+            aria-label="Filtrar por perfil neurodivergente"
+          >
+            <button
+              role="option"
+              aria-selected={!isFiltered}
+              onClick={() => { onChange('todos'); setOpen(false) }}
+              className={`w-full flex items-center justify-between px-4 py-2 text-xs transition-colors duration-150 hover:bg-white/5 ${
+                !isFiltered ? 'text-text font-semibold' : 'text-muted'
+              }`}
+            >
+              Todos los perfiles
+              <span className="text-faint tabular-nums">{herramientas.length}</span>
+            </button>
+            <div className="h-px bg-border/50 mx-3 my-0.5" aria-hidden="true" />
+            {perfiles.map(p => (
+              <button
+                key={p}
+                role="option"
+                aria-selected={value === p}
+                onClick={() => { onChange(p); setOpen(false) }}
+                className={`w-full flex items-center justify-between px-4 py-2 text-xs transition-colors duration-150 hover:bg-white/5 ${
+                  value === p ? 'text-acc font-semibold' : 'text-muted'
+                }`}
+              >
+                {p}
+                <span className="text-faint tabular-nums">{PERFIL_COUNTS[p]}</span>
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
 // ── Category chips with counts ──────────────────────────────────────────────
 const CAT_COUNTS = categorias.reduce((acc, c) => {
   acc[c] = herramientas.filter(h => h.categoria === c).length
@@ -207,36 +284,7 @@ export default function ResourceLibrary() {
         ))}
       </div>
 
-      {/* ── Profile chips ── */}
-      <div className="flex flex-wrap gap-2" role="group" aria-label="Filtrar por perfil neurodivergente">
-        <button
-          onClick={() => setPerfilFilter('todos')}
-          className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors duration-200 ${
-            perfilFilter === 'todos'
-              ? 'bg-acc/15 text-acc border-acc/30'
-              : 'bg-surface text-muted border-border hover:text-text hover:border-border/80'
-          }`}
-          aria-pressed={perfilFilter === 'todos'}
-        >
-          Todos los perfiles ({herramientas.length})
-        </button>
-        {perfiles.map(p => (
-          <button
-            key={p}
-            onClick={() => setPerfilFilter(prev => prev === p ? 'todos' : p)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors duration-200 ${
-              perfilFilter === p
-                ? 'bg-acc/15 text-acc border-acc/30'
-                : 'bg-surface text-muted border-border hover:text-text hover:border-border/80'
-            }`}
-            aria-pressed={perfilFilter === p}
-          >
-            {p} ({PERFIL_COUNTS[p]})
-          </button>
-        ))}
-      </div>
-
-      {/* ── Price filter + result count ── */}
+      {/* ── Perfil dropdown + Price filter + result count ── */}
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <p className="text-xs text-faint" aria-live="polite" aria-atomic="true">
           {results.length === herramientas.length
@@ -244,22 +292,28 @@ export default function ResourceLibrary() {
             : <><strong className="text-text">{results.length}</strong> resultado{results.length !== 1 ? 's' : ''}</>
           }
         </p>
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-faint">Precio:</span>
-          {['todos', 'Gratis', 'Freemium', 'Pago'].map(p => (
-            <button
-              key={p}
-              onClick={() => setPrecioFilter(p)}
-              className={`px-2.5 py-1 rounded-lg text-xs font-semibold border transition-colors duration-200 ${
-                precioFilter === p
-                  ? 'bg-pri/12 text-pri border-pri/30'
-                  : 'bg-surface text-muted border-border hover:text-text'
-              }`}
-              aria-pressed={precioFilter === p}
-            >
-              {p === 'todos' ? 'Todos' : p}
-            </button>
-          ))}
+        <div className="flex items-center gap-3 flex-wrap justify-end">
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-faint">Perfil:</span>
+            <PerfilDropdown value={perfilFilter} onChange={setPerfilFilter} />
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-faint">Precio:</span>
+            {['todos', 'Gratis', 'Freemium', 'Pago'].map(p => (
+              <button
+                key={p}
+                onClick={() => setPrecioFilter(p)}
+                className={`px-2.5 py-1 rounded-lg text-xs font-semibold border transition-colors duration-200 ${
+                  precioFilter === p
+                    ? 'bg-pri/12 text-pri border-pri/30'
+                    : 'bg-surface text-muted border-border hover:text-text'
+                }`}
+                aria-pressed={precioFilter === p}
+              >
+                {p === 'todos' ? 'Todos' : p}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
