@@ -172,55 +172,55 @@ const REGULACION = [
     icon: 'fa-snowflake', color: 'text-pri', bg: 'bg-pri/8',
     titulo: 'Frío',
     desc: 'Agua fría en muñecas y cara, hielo en manos o frente. Activa el reflejo de buceo y desacelera el sistema nervioso.',
-    tts: 'Frío. Pon agua fría en las muñecas y en la cara, o sostén hielo en las manos o en la frente. Esto activa el reflejo de buceo y desacelera el sistema nervioso.',
+    tts: 'Si te sientes desbordado, el frío puede ayudarte a regularte muy rápido. Pon agua fría en las muñecas y la cara, o sostén un cubito de hielo en la mano. Notarás el efecto en pocos segundos: el frío activa el reflejo de buceo y le dice al sistema nervioso que frene.',
   },
   {
     icon: 'fa-wind', color: 'text-acc', bg: 'bg-acc/8',
     titulo: 'Respiración',
     desc: 'Exhala el doble de lo que inhales. 4 seg. entrar, 8 salir. Activa el nervio vago y regula el ritmo cardíaco.',
-    tts: 'Respiración. Exhala el doble de lo que inhalas. Cuatro segundos para entrar el aire, ocho segundos para soltarlo. Esto activa el nervio vago y regula el ritmo cardíaco.',
+    tts: 'Exhala el doble de lo que inhalas. Cuatro segundos metiendo el aire, ocho soltándolo. Esa exhalación larga activa el nervio vago y regula el ritmo cardíaco. Si cuatro y ocho te parece mucho, empieza con dos y cuatro. Lo importante es que la salida sea lenta.',
   },
   {
     icon: 'fa-person-running', color: 'text-coral', bg: 'bg-coral/8',
     titulo: 'Movimiento',
     desc: 'Saltar, apretar una pelota, apretar los puños, estirarse. El movimiento propioceptivo calma el sistema nervioso.',
-    tts: 'Movimiento. Salta, aprieta una pelota, aprieta los puños o estírate. El movimiento propioceptivo calma el sistema nervioso.',
+    tts: 'Cuando el cuerpo está saturado, moverse ayuda a liberar tensión. Salta, aprieta una pelota, aprieta los puños o estírate. Este tipo de movimiento manda señales al sistema nervioso de que todo está bajo control y lo ayuda a calmarse.',
   },
   {
     icon: 'fa-headphones', color: 'text-sec', bg: 'bg-sec/8',
     titulo: 'Sonido',
     desc: 'Tapones, auriculares con cancelación de ruido o sonidos de fondo (lluvia, blanco). Reduce carga sensorial auditiva.',
-    tts: 'Sonido. Usa tapones o auriculares con cancelación de ruido, o pon sonidos de fondo como lluvia o ruido blanco. Reduce la carga sensorial auditiva.',
+    tts: 'Si el entorno es demasiado ruidoso, cúbrete los oídos. Usa tapones o auriculares con cancelación de ruido. También puedes poner sonidos de fondo como lluvia o ruido blanco. Reducir la carga auditiva libera recursos que tu sistema nervioso puede usar para regularse.',
   },
   {
     icon: 'fa-eye-slash', color: 'text-pri', bg: 'bg-pri/8',
     titulo: 'Oscuridad',
     desc: 'Cubrirse los ojos, gafas de sol o un cuarto oscuro. Elimina la sobrecarga visual y da sensación de refugio.',
-    tts: 'Oscuridad. Cúbrete los ojos, ponte gafas de sol o busca un cuarto oscuro. Elimina la sobrecarga visual y da sensación de refugio.',
+    tts: 'La oscuridad puede ser un refugio cuando la sobrecarga es visual. Cúbrete los ojos, ponte las gafas de sol o busca un cuarto oscuro. Eliminar la estimulación visual le da al cerebro el respiro que necesita.',
   },
   {
     icon: 'fa-dumbbell', color: 'text-acc', bg: 'bg-acc/8',
     titulo: 'Presión',
     desc: 'Manta con peso, chaqueta apretada o simplemente abrazar las rodillas. La presión profunda regula el sistema nervioso.',
-    tts: 'Presión. Usa una manta con peso, ponte una chaqueta apretada o simplemente abraza tus rodillas. La presión profunda regula el sistema nervioso.',
+    tts: 'La presión profunda es muy calmante para el sistema nervioso. Usa una manta con peso, ponte una chaqueta apretada o simplemente abraza tus propias rodillas. Notarás que la activación baja y el cuerpo empieza a relajarse.',
   },
   {
     icon: 'fa-lemon', color: 'text-coral', bg: 'bg-coral/8',
     titulo: 'Sabor intenso',
     desc: 'Caramelo ácido, chicle, hielo. La estimulación oral fuerte atrae la atención del sistema nervioso a una sola cosa.',
-    tts: 'Sabor intenso. Come un caramelo ácido, chicle o hielo. La estimulación oral fuerte concentra la atención del sistema nervioso en una sola cosa.',
+    tts: 'Un sabor muy intenso puede anclar la atención del sistema nervioso en una sola cosa y cortar el bucle de saturación. Come un caramelo ácido, mastica chicle o sostén hielo en la boca. Cuanto más intenso el sabor, más efectivo el anclaje.',
   },
   {
     icon: 'fa-layer-group', color: 'text-sec', bg: 'bg-sec/8',
     titulo: 'Grounding 5-4-3',
     desc: 'Nombra 5 cosas que ves, 4 que tocas, 3 que oyes, 2 que hueles, 1 que saboreas. Ancla en el presente.',
-    tts: 'Técnica de anclaje. Nombra cinco cosas que ves, cuatro que tocas, tres que oyes, dos que hueles y una que saboreas. Esto te ancla en el presente.',
+    tts: 'Si estás en tu cabeza y necesitas volver al presente, nombra cinco cosas que ves ahora mismo, cuatro que puedes tocar, tres que oyes, dos que hueles y una que saboreas. No tienes que decirlo en voz alta, basta con notarlas. Cada sentido que activas reduce la activación del sistema nervioso.',
   },
   {
     icon: 'fa-person-walking', color: 'text-pri', bg: 'bg-pri/8',
     titulo: 'Salida',
     desc: 'Cambiar de entorno — salir a un pasillo, baño o al aire libre. A veces el único regulador es romper el estímulo.',
-    tts: 'Salida. Cambia de entorno. Sal a un pasillo, al baño o al aire libre. A veces el único regulador es alejarse del estímulo.',
+    tts: 'A veces el único regulador posible es cambiar de entorno. Si puedes, sal del espacio donde estás: un pasillo, el baño, el exterior. Alejarse del estímulo rompe el ciclo de sobrecarga y le da al sistema nervioso un punto de partida más limpio.',
   },
 ]
 
@@ -241,12 +241,13 @@ const KITS = [
     badgeBg: 'bg-acc/10 text-acc border-acc/20',
     glowColor: 'rgba(72,176,161,0.08)',
     spotlightColor: 'green',
+    tts: 'Bolso pequeño para emergencias. Lo que necesitas llevar: auriculares o tapones para bloquear el ruido, gafas de sol para la luz intensa, caramelos ácidos para regulación oral, un objeto textural para las manos, tu tarjeta de crisis con tu información y necesidades, y el móvil cargado.',
     items: [
       { icon: 'fa-headphones',  label: 'Auriculares o tapones', nota: 'Bloqueadores de ruido' },
       { icon: 'fa-sun',         label: 'Gafas de sol',          nota: 'Para luz intensa' },
       { icon: 'fa-candy-cane',  label: 'Caramelos ácidos',      nota: 'Regulación oral' },
       { icon: 'fa-hand-dots',   label: 'Objeto textural',       nota: 'Stim para las manos' },
-      { icon: 'fa-id-card',  label: 'Tarjeta de crisis',     nota: 'Con tu info y necesidades' },
+      { icon: 'fa-id-card',     label: 'Tarjeta de crisis',     nota: 'Con tu info y necesidades' },
       { icon: 'fa-mobile',      label: 'Móvil cargado',         nota: 'Con apps de apoyo' },
     ],
   },
@@ -264,12 +265,13 @@ const KITS = [
     badgeBg: 'bg-sec/10 text-sec border-sec/20',
     glowColor: 'rgba(129,106,183,0.08)',
     spotlightColor: 'purple',
+    tts: 'Bolso grande para salidas largas. Lleva auriculares con cancelación activa de ruido, gafas de sol, snacks sensoriales como caramelos o chicle, un fidget toy para las manos, tu tarjeta de crisis, el móvil con cargador portátil, agua fría para regulación por frío, una máscara de ojos por si necesitas oscuridad de emergencia, tu medicación si la tomas habitualmente, y algo de distracción como un libro o dispositivo.',
     items: [
       { icon: 'fa-headphones',     label: 'Auriculares NC',        nota: 'Cancelación activa de ruido' },
       { icon: 'fa-sun',            label: 'Gafas de sol',          nota: 'Filtro de luz' },
       { icon: 'fa-candy-cane',     label: 'Snacks sensoriales',    nota: 'Caramelos, chicle, crujientes' },
       { icon: 'fa-hand-dots',      label: 'Fidget toy',            nota: 'Spinner, cubo antiestrés' },
-      { icon: 'fa-id-card',     label: 'Tarjeta de crisis',     nota: 'AAC o texto simple' },
+      { icon: 'fa-id-card',        label: 'Tarjeta de crisis',     nota: 'AAC o texto simple' },
       { icon: 'fa-mobile',         label: 'Móvil + powerbank',     nota: 'Apps de apoyo y carga extra' },
       { icon: 'fa-bottle-water',   label: 'Agua fría',             nota: 'Regulación por frío' },
       { icon: 'fa-mask-face',      label: 'Máscara de ojos',       nota: 'Para oscuridad de emergencia' },
@@ -291,15 +293,16 @@ const KITS = [
     badgeBg: 'bg-coral/10 text-coral border-coral/20',
     glowColor: 'rgba(229,123,134,0.08)',
     spotlightColor: 'red',
+    tts: 'Mochila grande para días difíciles o viajes. Lleva los mejores auriculares con cancelación de ruido que tengas, gafas de sol polarizadas, un surtido sensorial con distintos sabores y texturas, varios fidgets de diferentes tipos y pesos, tus tarjetas de apoyo para crisis o comunicación, el móvil con un powerbank de alta capacidad, agua fría y snacks para hidratación y regulación, una mantita pequeña para peso o confort táctil, máscara de ojos para oscuridad de emergencia, tu medicación con dosis extra si el médico lo aprueba, algo de entretenimiento como una consola, libro o tablet, tu perfume o aroma favorito para estimulación olfativa, tapones de repuesto por si fallan los auriculares, y ropa cómoda de recambio por si el tejido actual se vuelve intolerable.',
     items: [
       { icon: 'fa-headphones',     label: 'Auriculares NC premium', nota: 'La herramienta más importante' },
       { icon: 'fa-sun',            label: 'Gafas de sol oscuras',   nota: 'Polarizadas si es posible' },
       { icon: 'fa-candy-cane',     label: 'Surtido sensorial',      nota: 'Varios sabores y texturas' },
       { icon: 'fa-hand-dots',      label: 'Set de fidgets',         nota: 'Diferentes texturas y pesos' },
-      { icon: 'fa-id-card',     label: 'Tarjetas de apoyo',      nota: 'Crisis, necesidades, AAC' },
+      { icon: 'fa-id-card',        label: 'Tarjetas de apoyo',      nota: 'Crisis, necesidades, AAC' },
       { icon: 'fa-mobile',         label: 'Móvil + powerbank',      nota: 'Powerbank de alta capacidad' },
       { icon: 'fa-bottle-water',   label: 'Agua fría + snacks',     nota: 'Hidratación y regulación oral' },
-      { icon: 'fa-layer-group',        label: 'Mantita pequeña',        nota: 'Peso o confort táctil' },
+      { icon: 'fa-layer-group',    label: 'Mantita pequeña',        nota: 'Peso o confort táctil' },
       { icon: 'fa-mask-face',      label: 'Máscara de ojos',        nota: 'Oscuridad de emergencia' },
       { icon: 'fa-notes-medical',  label: 'Medicación',             nota: 'Con dosis extra si el médico aprueba' },
       { icon: 'fa-gamepad',        label: 'Distracción',            nota: 'Nintendo Switch, libro, tablet' },
@@ -532,7 +535,7 @@ export default function KitSensorial() {
                 <div className="flex items-center gap-2">
                   <TTSButton
                     iconOnly
-                    text={`${activeKit.label}. ${activeKit.sublabel}. Contiene ${activeKit.items.length} objetos: ${activeKit.items.map(i => `${i.label}, ${i.nota}`).join('. ')}.`}
+                    text={activeKit.tts}
                   />
                   <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg border ${activeKit.badgeBg}`}>
                     {activeKit.items.length} objetos
