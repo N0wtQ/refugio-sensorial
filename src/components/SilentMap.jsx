@@ -9,13 +9,13 @@ const TYPE_CONFIG = {
   sala_estudio:          { color: '#9CC156', label: 'Sala de estudio',  icon: 'fa-graduation-cap' },
   espacio_natural:       { color: '#48B0A1', label: 'Espacio natural',  icon: 'fa-tree' },
   centro_civico:         { color: '#FBB027', label: 'Centro cívico',    icon: 'fa-building' },
-  centro_comercial:      { color: '#6366f1', label: 'Centro comercial', icon: 'fa-bag-shopping' },
-  aeropuerto:            { color: '#8b5cf6', label: 'Aeropuerto',       icon: 'fa-plane' },
+  centro_comercial:      { color: '#ec4899', label: 'Centro comercial', icon: 'fa-bag-shopping' },
+  aeropuerto:            { color: '#ef4444', label: 'Aeropuerto',       icon: 'fa-plane' },
   cultura:               { color: '#E57B86', label: 'Cultura / Museo',  icon: 'fa-landmark' },
-  hotel:                 { color: '#f59e0b', label: 'Hotel',            icon: 'fa-hotel' },
+  hotel:                 { color: '#06b6d4', label: 'Hotel',            icon: 'fa-hotel' },
   restaurante_silencioso:{ color: '#10b981', label: 'Restaurante',      icon: 'fa-utensils' },
   sunflower:             { color: '#eab308', label: 'Sunflower',        icon: 'fa-sun' },
-  coworking:             { color: '#06b6d4', label: 'Coworking',        icon: 'fa-laptop' },
+  coworking:             { color: '#a78bfa', label: 'Coworking',        icon: 'fa-laptop' },
 }
 
 function getColor(tipo) {
