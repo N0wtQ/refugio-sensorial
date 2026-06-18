@@ -23,6 +23,7 @@ const ESTADOS = [
     que: 'Una respuesta involuntaria ante una sobrecarga sensorial, emocional o cognitiva que supera el límite del sistema nervioso. No es un berrinche ni un acto voluntario: el cerebro literalmente se desborda.',
     signos: ['Llanto o gritos incontrolables', 'Golpear, morder o auto-lesionarse levemente (estimulación de urgencia)', 'Huir del lugar', 'Incapacidad para hablar o responder', 'Rigidez o temblores en el cuerpo'],
     ayuda: ['Reducir estímulos: luces, sonido, personas', 'No hablar ni tocar salvo que la persona lo pida', 'Ofrecer un espacio seguro y tranquilo', 'Esperar sin juzgar hasta que el sistema nervioso se regule', 'Después, no pedir explicaciones inmediatas'],
+    tts: 'Meltdown. Crisis de sobrecarga. Es una respuesta involuntaria ante una sobrecarga sensorial, emocional o cognitiva que supera el límite del sistema nervioso. No es un berrinche ni un acto voluntario: el cerebro literalmente se desborda. Señales: llanto o gritos incontrolables, golpear, morder o autolesionarse levemente, huir del lugar, incapacidad para hablar o responder, rigidez o temblores en el cuerpo. Qué ayuda: reducir estímulos como luces, sonido y personas; no hablar ni tocar salvo que la persona lo pida; ofrecer un espacio seguro y tranquilo; esperar sin juzgar hasta que el sistema nervioso se regule; y después no pedir explicaciones inmediatas.',
   },
   {
     id: 'shutdown',
@@ -39,6 +40,7 @@ const ESTADOS = [
     que: 'Una respuesta de cierre ante la sobrecarga: el sistema nervioso "se apaga" para protegerse. A diferencia del meltdown, el shutdown es hacia adentro — silencio, inmovilidad, desconexión.',
     signos: ['Silencio repentino y retirada social', 'Mirada fija o perdida', 'Movimientos lentos o "congelados"', 'Incapacidad para hablar (mutismo temporal)', 'Sensación de estar "dentro de un cristal"'],
     ayuda: ['Presencia calmada sin exigir respuesta', 'No interpretar el silencio como indiferencia', 'Ofrecer mantas, auriculares u objetos de confort', 'Permitir tiempo sin estimulación', 'Cuando pase, preguntar con amabilidad qué necesita'],
+    tts: 'Shutdown. Apagado interno. Es una respuesta de cierre ante la sobrecarga: el sistema nervioso se apaga para protegerse. A diferencia del meltdown, el shutdown es hacia adentro: silencio, inmovilidad, desconexión. Señales: silencio repentino y retirada social, mirada fija o perdida, movimientos lentos o congelados, incapacidad para hablar, sensación de estar dentro de un cristal. Qué ayuda: presencia calmada sin exigir respuesta; no interpretar el silencio como indiferencia; ofrecer mantas, auriculares u objetos de confort; permitir tiempo sin estimulación; y cuando pase, preguntar con amabilidad qué necesita.',
   },
   {
     id: 'burnout',
@@ -55,6 +57,7 @@ const ESTADOS = [
     que: 'Un estado de agotamiento profundo causado por el esfuerzo sostenido de enmascarar, adaptarse a un mundo neurotípico y manejar una carga sensorial y social que supera los recursos disponibles. Puede durar semanas o meses.',
     signos: ['Pérdida de habilidades que antes eran automáticas', 'Aumento de la sensibilidad sensorial', 'Dificultad extrema para procesar y comunicarse', 'Aislamiento y retirada de actividades', 'Agotamiento que no mejora con el descanso habitual'],
     ayuda: ['Reducir drásticamente las demandas y el masking', 'Priorizar el descanso verdadero (no solo físico)', 'Revisar y eliminar compromisos no esenciales', 'Buscar apoyo profesional especializado en autismo', 'Permitirse funcionar a un ritmo más lento sin culpa'],
+    tts: 'Burnout autista. Agotamiento acumulado. Es un estado de agotamiento profundo causado por el esfuerzo sostenido de enmascarar, adaptarse a un mundo neurotípico y manejar una carga sensorial y social que supera los recursos disponibles. Puede durar semanas o meses. Señales: pérdida de habilidades que antes eran automáticas, aumento de la sensibilidad sensorial, dificultad extrema para procesar y comunicarse, aislamiento y retirada de actividades, agotamiento que no mejora con el descanso habitual. Qué ayuda: reducir drásticamente las demandas y el enmascaramiento; priorizar el descanso verdadero; revisar y eliminar compromisos no esenciales; buscar apoyo profesional especializado en autismo; y permitirse funcionar a un ritmo más lento sin culpa.',
   },
 ]
 
@@ -78,7 +81,7 @@ function EstadoCard({ estado, prefersReduced, index }) {
       <button
         onClick={() => setOpen(!open)}
         aria-expanded={open}
-        className="relative w-full flex items-center gap-4 p-6 text-left"
+        className="relative w-full flex items-center gap-4 px-6 pt-6 pb-3 text-left"
       >
         <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-lg shrink-0 ${estado.iconBg} ${estado.iconColor}`}>
           <i className={`fa-solid ${estado.icon}`} aria-hidden="true" />
@@ -97,6 +100,10 @@ function EstadoCard({ estado, prefersReduced, index }) {
           aria-hidden="true"
         />
       </button>
+
+      <div className="px-6 pb-4 flex justify-end">
+        <TTSButton text={estado.tts} />
+      </div>
 
       <AnimatePresence initial={false}>
         {open && (
@@ -508,9 +515,15 @@ export default function KitSensorial() {
                   <h3 className={`text-base font-bold ${activeKit.color}`}>{activeKit.label}</h3>
                   <p className="text-xs text-muted mt-0.5">{activeKit.sublabel}</p>
                 </div>
-                <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg border ${activeKit.badgeBg}`}>
-                  {activeKit.items.length} objetos
-                </span>
+                <div className="flex items-center gap-2">
+                  <TTSButton
+                    iconOnly
+                    text={`${activeKit.label}. ${activeKit.sublabel}. Contiene ${activeKit.items.length} objetos: ${activeKit.items.map(i => `${i.label}, ${i.nota}`).join('. ')}.`}
+                  />
+                  <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg border ${activeKit.badgeBg}`}>
+                    {activeKit.items.length} objetos
+                  </span>
+                </div>
               </div>
 
               <div className="grid sm:grid-cols-2 gap-2.5">
