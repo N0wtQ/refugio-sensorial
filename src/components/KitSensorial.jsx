@@ -241,12 +241,13 @@ const KITS = [
     badgeBg: 'bg-acc/10 text-acc border-acc/20',
     glowColor: 'rgba(72,176,161,0.08)',
     spotlightColor: 'green',
+    tts: 'Bolso pequeño para emergencias. Lo que necesitas llevar: auriculares o tapones para bloquear el ruido, gafas de sol para la luz intensa, caramelos ácidos para regulación oral, un objeto textural para las manos, tu tarjeta de crisis con tu información y necesidades, y el móvil cargado.',
     items: [
       { icon: 'fa-headphones',  label: 'Auriculares o tapones', nota: 'Bloqueadores de ruido' },
       { icon: 'fa-sun',         label: 'Gafas de sol',          nota: 'Para luz intensa' },
       { icon: 'fa-candy-cane',  label: 'Caramelos ácidos',      nota: 'Regulación oral' },
       { icon: 'fa-hand-dots',   label: 'Objeto textural',       nota: 'Stim para las manos' },
-      { icon: 'fa-id-card',  label: 'Tarjeta de crisis',     nota: 'Con tu info y necesidades' },
+      { icon: 'fa-id-card',     label: 'Tarjeta de crisis',     nota: 'Con tu info y necesidades' },
       { icon: 'fa-mobile',      label: 'Móvil cargado',         nota: 'Con apps de apoyo' },
     ],
   },
@@ -264,12 +265,13 @@ const KITS = [
     badgeBg: 'bg-sec/10 text-sec border-sec/20',
     glowColor: 'rgba(129,106,183,0.08)',
     spotlightColor: 'purple',
+    tts: 'Bolso grande para salidas largas. Lleva auriculares con cancelación activa de ruido, gafas de sol, snacks sensoriales como caramelos o chicle, un fidget toy para las manos, tu tarjeta de crisis, el móvil con cargador portátil, agua fría para regulación por frío, una máscara de ojos por si necesitas oscuridad de emergencia, tu medicación si la tomas habitualmente, y algo de distracción como un libro o dispositivo.',
     items: [
       { icon: 'fa-headphones',     label: 'Auriculares NC',        nota: 'Cancelación activa de ruido' },
       { icon: 'fa-sun',            label: 'Gafas de sol',          nota: 'Filtro de luz' },
       { icon: 'fa-candy-cane',     label: 'Snacks sensoriales',    nota: 'Caramelos, chicle, crujientes' },
       { icon: 'fa-hand-dots',      label: 'Fidget toy',            nota: 'Spinner, cubo antiestrés' },
-      { icon: 'fa-id-card',     label: 'Tarjeta de crisis',     nota: 'AAC o texto simple' },
+      { icon: 'fa-id-card',        label: 'Tarjeta de crisis',     nota: 'AAC o texto simple' },
       { icon: 'fa-mobile',         label: 'Móvil + powerbank',     nota: 'Apps de apoyo y carga extra' },
       { icon: 'fa-bottle-water',   label: 'Agua fría',             nota: 'Regulación por frío' },
       { icon: 'fa-mask-face',      label: 'Máscara de ojos',       nota: 'Para oscuridad de emergencia' },
@@ -291,15 +293,16 @@ const KITS = [
     badgeBg: 'bg-coral/10 text-coral border-coral/20',
     glowColor: 'rgba(229,123,134,0.08)',
     spotlightColor: 'red',
+    tts: 'Mochila grande para días difíciles o viajes. Lleva los mejores auriculares con cancelación de ruido que tengas, gafas de sol polarizadas, un surtido sensorial con distintos sabores y texturas, varios fidgets de diferentes tipos y pesos, tus tarjetas de apoyo para crisis o comunicación, el móvil con un powerbank de alta capacidad, agua fría y snacks para hidratación y regulación, una mantita pequeña para peso o confort táctil, máscara de ojos para oscuridad de emergencia, tu medicación con dosis extra si el médico lo aprueba, algo de entretenimiento como una consola, libro o tablet, tu perfume o aroma favorito para estimulación olfativa, tapones de repuesto por si fallan los auriculares, y ropa cómoda de recambio por si el tejido actual se vuelve intolerable.',
     items: [
       { icon: 'fa-headphones',     label: 'Auriculares NC premium', nota: 'La herramienta más importante' },
       { icon: 'fa-sun',            label: 'Gafas de sol oscuras',   nota: 'Polarizadas si es posible' },
       { icon: 'fa-candy-cane',     label: 'Surtido sensorial',      nota: 'Varios sabores y texturas' },
       { icon: 'fa-hand-dots',      label: 'Set de fidgets',         nota: 'Diferentes texturas y pesos' },
-      { icon: 'fa-id-card',     label: 'Tarjetas de apoyo',      nota: 'Crisis, necesidades, AAC' },
+      { icon: 'fa-id-card',        label: 'Tarjetas de apoyo',      nota: 'Crisis, necesidades, AAC' },
       { icon: 'fa-mobile',         label: 'Móvil + powerbank',      nota: 'Powerbank de alta capacidad' },
       { icon: 'fa-bottle-water',   label: 'Agua fría + snacks',     nota: 'Hidratación y regulación oral' },
-      { icon: 'fa-layer-group',        label: 'Mantita pequeña',        nota: 'Peso o confort táctil' },
+      { icon: 'fa-layer-group',    label: 'Mantita pequeña',        nota: 'Peso o confort táctil' },
       { icon: 'fa-mask-face',      label: 'Máscara de ojos',        nota: 'Oscuridad de emergencia' },
       { icon: 'fa-notes-medical',  label: 'Medicación',             nota: 'Con dosis extra si el médico aprueba' },
       { icon: 'fa-gamepad',        label: 'Distracción',            nota: 'Nintendo Switch, libro, tablet' },
@@ -532,7 +535,7 @@ export default function KitSensorial() {
                 <div className="flex items-center gap-2">
                   <TTSButton
                     iconOnly
-                    text={`${activeKit.label}. ${activeKit.sublabel}. Contiene ${activeKit.items.length} objetos: ${activeKit.items.map(i => `${i.label}, ${i.nota}`).join('. ')}.`}
+                    text={activeKit.tts}
                   />
                   <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg border ${activeKit.badgeBg}`}>
                     {activeKit.items.length} objetos
