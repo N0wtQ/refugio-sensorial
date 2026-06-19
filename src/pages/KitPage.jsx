@@ -4,9 +4,9 @@ import { usePageMeta } from '../hooks/usePageMeta'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 
 const SUBNAV = [
-  { id: 'estados',   label: 'Estados',    icon: 'fa-brain' },
-  { id: 'regulacion', label: 'Regulación', icon: 'fa-heart-pulse' },
-  { id: 'kit-bolso', label: 'Kit de bolso', icon: 'fa-kit-medical' },
+  { id: 'estados',    label: 'Estados',      icon: 'fa-brain',       color: 'text-coral', bg: 'bg-coral/10',  border: 'border-coral/25'  },
+  { id: 'regulacion', label: 'Regulación',   icon: 'fa-heart-pulse', color: 'text-acc',   bg: 'bg-acc/10',    border: 'border-acc/25'    },
+  { id: 'kit-bolso',  label: 'Kit de bolso', icon: 'fa-kit-medical', color: 'text-sec',   bg: 'bg-sec/10',    border: 'border-sec/25'    },
 ]
 
 function scrollTo(id, prefersReduced) {
@@ -48,16 +48,16 @@ export default function KitPage() {
       <div className="sticky top-[64px] z-40 bg-[#0C0E1E]/95 backdrop-blur-sm border-b border-border">
         <nav
           aria-label="Secciones de esta página"
-          className="max-w-3xl mx-auto px-4 flex items-center gap-1 py-2 overflow-x-auto scrollbar-none"
+          className="max-w-3xl mx-auto px-4 flex items-center gap-2 py-2.5 overflow-x-auto scrollbar-none"
         >
           {SUBNAV.map(item => (
             <button
               key={item.id}
               type="button"
               onClick={() => scrollTo(item.id, prefersReduced)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-muted hover:text-text hover:bg-surface transition-colors duration-150 whitespace-nowrap shrink-0"
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-semibold border transition-all duration-150 whitespace-nowrap shrink-0 ${item.color} ${item.bg} ${item.border} hover:opacity-80 active:scale-95`}
             >
-              <i className={`fa-solid ${item.icon} text-[11px]`} aria-hidden="true" />
+              <i className={`fa-solid ${item.icon} text-xs`} aria-hidden="true" />
               {item.label}
             </button>
           ))}
