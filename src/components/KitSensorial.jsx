@@ -390,7 +390,7 @@ export default function KitSensorial() {
     <div className="max-w-3xl mx-auto px-4 pb-20 pt-8 space-y-14">
 
       {/* ── Qué me está pasando ──────────────────────────────────────────── */}
-      <section aria-labelledby="estados-heading">
+      <section id="estados" aria-labelledby="estados-heading" className="scroll-mt-32">
         <motion.div
           initial={prefersReduced ? {} : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -421,7 +421,7 @@ export default function KitSensorial() {
       </section>
 
       {/* ── Cómo regularme ───────────────────────────────────────────────── */}
-      <section aria-labelledby="regulacion-heading">
+      <section id="regulacion" aria-labelledby="regulacion-heading" className="scroll-mt-32">
         <motion.div
           initial={prefersReduced ? {} : { opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -466,7 +466,7 @@ export default function KitSensorial() {
       </section>
 
       {/* ── Kit de bolso ────────────────────────────────────────────────── */}
-      <section aria-labelledby="kit-heading">
+      <section id="kit-bolso" aria-labelledby="kit-heading" className="scroll-mt-32">
         <motion.div
           initial={prefersReduced ? {} : { opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
