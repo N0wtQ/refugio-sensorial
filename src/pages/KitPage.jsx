@@ -4,9 +4,9 @@ import { usePageMeta } from '../hooks/usePageMeta'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 
 const SUBNAV = [
-  { id: 'estados',    label: 'Estados',      icon: 'fa-brain',       color: 'text-coral', bg: 'bg-coral/10',  border: 'border-coral/25'  },
-  { id: 'regulacion', label: 'Regulación',   icon: 'fa-heart-pulse', color: 'text-acc',   bg: 'bg-acc/10',    border: 'border-acc/25'    },
-  { id: 'kit-bolso',  label: 'Kit de bolso', icon: 'fa-kit-medical', color: 'text-sec',   bg: 'bg-sec/10',    border: 'border-sec/25'    },
+  { id: 'estados',    label: '¿Qué me pasa?',    icon: 'fa-brain',       color: 'text-coral', bg: 'bg-coral/10',  border: 'border-coral/25'  },
+  { id: 'regulacion', label: 'Como regularse',   icon: 'fa-heart-pulse', color: 'text-acc',   bg: 'bg-acc/10',    border: 'border-acc/25'    },
+  { id: 'kit-bolso',  label: 'Kit de bolso',     icon: 'fa-kit-medical', color: 'text-sec',   bg: 'bg-sec/10',    border: 'border-sec/25'    },
 ]
 
 function scrollTo(id, prefersReduced) {
