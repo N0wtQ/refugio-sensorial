@@ -1,12 +1,27 @@
 import { Link } from 'react-router-dom'
 import KitSensorial from '../components/KitSensorial'
 import { usePageMeta } from '../hooks/usePageMeta'
+import { useReducedMotion } from '../hooks/useReducedMotion'
+
+const SUBNAV = [
+  { id: 'estados',   label: 'Estados',    icon: 'fa-brain' },
+  { id: 'regulacion', label: 'Regulación', icon: 'fa-heart-pulse' },
+  { id: 'kit-bolso', label: 'Kit de bolso', icon: 'fa-kit-medical' },
+]
+
+function scrollTo(id, prefersReduced) {
+  const el = document.getElementById(id)
+  if (!el) return
+  el.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' })
+}
 
 export default function KitPage() {
   usePageMeta({
     title: 'Kit Sensorial para personas autistas y con TDAH — Refugio Sensorial',
     description: 'Aprende a identificar meltdown, shutdown y burnout autista. Técnicas de regulación sensorial y guía de kit de bolso para salidas. Recursos para TEA y TDAH.',
   })
+  const prefersReduced = useReducedMotion()
+
   return (
     <div className="min-h-dvh">
       {/* Header with open background so canvas particles are visible */}
@@ -28,6 +43,27 @@ export default function KitPage() {
           Entiende lo que te pasa, regúlate y prepara tu kit para salir al mundo.
         </p>
       </div>
+
+      {/* Sticky sub-nav */}
+      <div className="sticky top-[64px] z-40 bg-[#0C0E1E]/95 backdrop-blur-sm border-b border-border">
+        <nav
+          aria-label="Secciones de esta página"
+          className="max-w-3xl mx-auto px-4 flex items-center gap-1 py-2 overflow-x-auto scrollbar-none"
+        >
+          {SUBNAV.map(item => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => scrollTo(item.id, prefersReduced)}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-muted hover:text-text hover:bg-surface transition-colors duration-150 whitespace-nowrap shrink-0"
+            >
+              <i className={`fa-solid ${item.icon} text-[11px]`} aria-hidden="true" />
+              {item.label}
+            </button>
+          ))}
+        </nav>
+      </div>
+
       <KitSensorial />
     </div>
   )
