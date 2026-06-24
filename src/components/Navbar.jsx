@@ -232,7 +232,7 @@ export default function Navbar({ onOpenSearch }) {
           </Link>
         </nav>
 
-        {/* Mobile right side */}
+        {/* Mobile right side — only search + hamburger */}
         <div className="flex items-center gap-2 md:hidden">
           <button
             type="button"
@@ -242,14 +242,6 @@ export default function Navbar({ onOpenSearch }) {
           >
             <i className="fa-solid fa-magnifying-glass text-sm" aria-hidden="true" />
           </button>
-          <Link
-            to="/ayuda"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-coral border border-coral/25 bg-coral/5"
-            aria-label="Necesito ayuda ahora"
-          >
-            <i className="fa-solid fa-heart-pulse" aria-hidden="true" />
-            Ayuda
-          </Link>
           <button
             ref={menuButtonRef}
             onClick={() => setMenuOpen(!menuOpen)}
