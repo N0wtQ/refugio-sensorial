@@ -177,15 +177,7 @@ function Footer() {
       <div className="max-w-5xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-faint">
         <p>Refugio Sensorial · Hecho con cuidado para personas neurodivergentes</p>
         <div className="flex items-center gap-4">
-          <a
-            href="https://autismo.org.es"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Autismo España (se abre en nueva pestaña)"
-            className="hover:text-text transition-colors duration-200"
-          >
-            Autismo España
-          </a>
+          <span>Creadora: Almudena Bedoya</span>
           <span aria-hidden="true">·</span>
           <Link
             to="/accesibilidad"
