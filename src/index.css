@@ -34,29 +34,38 @@
   ::-webkit-scrollbar-thumb:hover { background: rgba(129,106,183,0.25); }
 }
 
-@layer components {
-  /* Leaflet dark-mode override */
-  .leaflet-container {
-    background: #13152B !important;
-    font-family: 'Inter', system-ui, sans-serif !important;
-  }
-  .leaflet-popup-content-wrapper {
-    background: #1A1D38 !important;
-    color: #E5E7EB !important;
-    border: 1px solid rgba(129,106,183,0.15) !important;
-    border-radius: 12px !important;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
-  }
-  .leaflet-popup-tip { background: #1A1D38 !important; }
-  .leaflet-popup-close-button { color: #9CA3AF !important; }
-  .leaflet-popup-close-button:hover { color: #E5E7EB !important; }
-  .leaflet-control-zoom a {
-    background: #13152B !important;
-    color: #9CA3AF !important;
-    border-color: rgba(129,106,183,0.2) !important;
-  }
-  .leaflet-control-zoom a:hover { background: #1A1D38 !important; color: #E5E7EB !important; }
-  .leaflet-control-zoom a:focus-visible { outline: 2px solid #3A82CA !important; outline-offset: 2px !important; }
-  .leaflet-popup-close-button:focus-visible { outline: 2px solid #3A82CA !important; outline-offset: 2px !important; }
-  .leaflet-tile-pane { filter: brightness(0.75) saturate(0.6); }
+/* Leaflet dark-mode overrides — outside @layer so they beat leaflet.css unlayered styles */
+.leaflet-container {
+  background: #13152B;
+  font-family: 'Inter', system-ui, sans-serif;
 }
+.leaflet-popup-content-wrapper {
+  background: #1A1D38 !important;
+  color: #E5E7EB !important;
+  border: 1px solid rgba(129,106,183,0.2) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+  padding: 0 !important;
+}
+.leaflet-popup-content {
+  margin: 0 !important;
+  color: #E5E7EB !important;
+}
+.leaflet-popup-tip-container .leaflet-popup-tip {
+  background: #1A1D38 !important;
+}
+.leaflet-popup-close-button {
+  color: #9CA3AF !important;
+  top: 8px !important;
+  right: 8px !important;
+}
+.leaflet-popup-close-button:hover { color: #E5E7EB !important; }
+.leaflet-popup-close-button:focus-visible { outline: 2px solid #3A82CA !important; outline-offset: 2px !important; }
+.leaflet-control-zoom a {
+  background: #13152B !important;
+  color: #9CA3AF !important;
+  border-color: rgba(129,106,183,0.2) !important;
+}
+.leaflet-control-zoom a:hover { background: #1A1D38 !important; color: #E5E7EB !important; }
+.leaflet-control-zoom a:focus-visible { outline: 2px solid #3A82CA !important; outline-offset: 2px !important; }
+.leaflet-tile-pane { filter: brightness(0.75) saturate(0.6); }
