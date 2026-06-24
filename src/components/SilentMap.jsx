@@ -152,7 +152,7 @@ export default function SilentMap() {
               aria-label={`${lugar.nombre}, ${lugar.ciudad}`}
             >
               <Popup maxWidth={280}>
-                <div className="text-sm" style={{ minWidth: '220px', fontFamily: 'Inter, system-ui, sans-serif' }}>
+                <div className="text-sm" style={{ minWidth: '220px', fontFamily: 'Inter, system-ui, sans-serif', padding: '14px 16px 12px' }}>
                   <p
                     className="text-xs font-bold uppercase tracking-wider mb-1.5"
                     style={{ color: getColor(lugar.tipo) }}
