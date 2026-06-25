@@ -61,6 +61,7 @@ export default function Home() {
                     Hola, soy <strong className="text-text font-semibold">Almudena</strong>.
                     Soy autista y creé Refugio Sensorial porque cuando más lo necesitaba,
                     no encontraba recursos como este.
+                    <i className="fa-solid fa-quote-right text-sec/30 text-2xl align-middle ml-1" aria-hidden="true" />
                   </span>
                 </blockquote>
                 <div className="flex items-center gap-2 pl-6">
