@@ -23,6 +23,7 @@ import EntenderPrepararsePage from './pages/EntenderPrepararsePage'
 import EstadosPage from './pages/EstadosPage'
 import TecnicasPage from './pages/TecnicasPage'
 import KitBolsoPage from './pages/KitBolsoPage'
+import MaskingPage from './pages/MaskingPage'
 import { useReducedMotion } from './hooks/useReducedMotion'
 
 // Global error boundary — catches any React crash and shows a calm fallback
@@ -102,6 +103,7 @@ function AppRoutes({ onOpenSearch }) {
         <Route path="/entender-y-prepararse/senales"      element={<PageTransition><SenalesPage /></PageTransition>} />
         <Route path="/entender-y-prepararse/tecnicas"     element={<PageTransition><TecnicasPage /></PageTransition>} />
         <Route path="/entender-y-prepararse/kit-de-bolso" element={<PageTransition><KitBolsoPage /></PageTransition>} />
+        <Route path="/entender-y-prepararse/masking"     element={<PageTransition><MaskingPage /></PageTransition>} />
         <Route path="/entender-y-prepararse/guias"        element={<PageTransition><RecursosPage /></PageTransition>} />
 
         {/* Dynamic herramientas landings */}

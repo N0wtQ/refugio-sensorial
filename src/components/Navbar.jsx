@@ -39,6 +39,13 @@ const links = [
         desc: 'Qué llevar cuando sales de casa',
       },
       {
+        to: '/entender-y-prepararse/masking',
+        label: 'Masking',
+        icon: 'fa-masks-theater',
+        color: 'text-pri',
+        desc: 'Camuflaje autista: qué es y cómo reducirlo',
+      },
+      {
         to: '/entender-y-prepararse/guias',
         label: 'Guías y recursos',
         icon: 'fa-folder-open',

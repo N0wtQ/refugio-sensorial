@@ -91,4 +91,13 @@ export const RECURSOS_PDF = [
     color: '#FBB027',
     icono: 'fa-calculator',
   },
+  {
+    id: 11,
+    titulo: 'Guía práctica sobre Masking Autista',
+    descripcion: 'Qué es el enmascaramiento autista, por qué aparece, cómo identificarlo y estrategias para reducirlo de forma segura. Incluye checklist y ejercicios de reflexión.',
+    archivo: 'guia-masking-autista.pdf',
+    categoria: 'Masking',
+    color: '#3A82CA',
+    icono: 'fa-masks-theater',
+  },
 ]
