@@ -9,3 +9,4 @@ Disallow: /refugio-sensorial/assets/
 Sitemap: https://n0wtq.github.io/refugio-sensorial/sitemap.xml
 
 # Actualiza la URL del Sitemap cuando uses dominio propio
+# Verificación Google Search Console: googled79dac902b2e21a3.html
