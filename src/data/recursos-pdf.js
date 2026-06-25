@@ -82,4 +82,13 @@ export const RECURSOS_PDF = [
     color: '#48B0A1',
     icono: 'fa-circle-nodes',
   },
+  {
+    id: 10,
+    titulo: 'Señales de discalculia — Asociación Dislexia Burgos',
+    descripcion: 'Infografía de la ADbu con señales tempranas, dificultades de estimación y conteo, cálculo mental, resolución de problemas, vida cotidiana y visoespaciales. Basada en la lista de cotejo de la Universidad de Valladolid.',
+    archivo: 'senales-discalculia-adbu.pdf',
+    categoria: 'Discalculia',
+    color: '#FBB027',
+    icono: 'fa-calculator',
+  },
 ]
