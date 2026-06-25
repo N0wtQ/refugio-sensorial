@@ -42,6 +42,18 @@ const SECCIONES = [
     badge: null,
   },
   {
+    to: '/entender-y-prepararse/masking',
+    icon: 'fa-masks-theater',
+    color: 'text-pri',
+    bg: 'bg-pri/10',
+    border: 'border-pri/25',
+    bgCard: 'bg-pri/5',
+    glow: 'rgba(58,130,202,0.07)',
+    titulo: 'Masking',
+    desc: 'Entiende el camuflaje autista: por qué ocurre, cómo te afecta y estrategias para reducirlo de forma segura.',
+    badge: null,
+  },
+  {
     to: '/entender-y-prepararse/kit-de-bolso',
     icon: 'fa-kit-medical',
     color: 'text-pri',
