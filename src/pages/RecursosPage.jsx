@@ -19,6 +19,7 @@ const TTS_POR_PDF = {
   7: 'Esta guía del IACS está pensada para personas con TDAH. Explica qué es el trastorno, cómo se diagnostica, qué tratamientos existen y da orientaciones concretas para el día a día. Es un documento oficial del Sistema Nacional de Salud.',
   8: 'Esta guía breve de la Universidad Complutense explica cómo se observa la dislexia en el aula: en la lectura, la escritura y la comunicación oral. Incluye recomendaciones prácticas para docentes y adaptaciones para exámenes y trabajos.',
   9: 'Este manual de la Fundación FIPP explica el Trastorno Obsesivo Compulsivo desde dentro: qué tipos de obsesiones y compulsiones existen, cómo registrarlas y qué técnicas cognitivo-conductuales ayudan a manejarlas, como posponer el ritual o cambiar el modo de obsesionarse.',
+  10: 'Esta infografía de la Asociación Dislexia Burgos recoge las señales de discalculia agrupadas por áreas: señales tempranas, estimación, numeración y conteo, cálculo mental, resolución de problemas, vida cotidiana y dificultades visoespaciales. Está basada en la lista de cotejo de la Universidad de Valladolid.',
 }
 
 // Unique categories preserving first-seen order
