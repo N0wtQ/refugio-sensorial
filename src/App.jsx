@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation, Link } from 'react
 import { useEffect, useState, Component, lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import Navbar from './components/Navbar'
+import StorageToast from './components/ui/StorageToast'
 
 const CanvasBg = lazy(() =>
   import('./components/CanvasBg').catch(() => ({ default: () => null }))
@@ -167,6 +168,7 @@ export default function App() {
           <Suspense fallback={null}>
             <GlobalSearch open={searchOpen} onClose={() => setSearchOpen(false)} />
           </Suspense>
+          <StorageToast />
         </AppErrorBoundary>
       </div>
     </BrowserRouter>
