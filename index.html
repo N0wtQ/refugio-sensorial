@@ -22,12 +22,12 @@
   <!-- CSP parcial via meta (frame-ancestors y HSTS requieren Cloudflare para funcionar) -->
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
-    script-src 'self' 'unsafe-inline';
+    script-src 'self';
     style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com 'unsafe-inline';
     font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:;
     img-src 'self' data: blob: https://*.tile.openstreetmap.org https://*.cartocdn.com https://*.basemaps.cartocdn.com https://n0wtq.github.io https://media1.giphy.com;
     media-src 'self';
-    connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com;
+    connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://formspree.io;
     worker-src 'self' blob:;
     object-src 'none';
     base-uri 'self';
@@ -94,20 +94,7 @@
   }
   </script>
 
-  <script>
-    // Recover path encoded by 404.html redirect (SPA on GitHub Pages)
-    (function(l) {
-      if (l.search[1] === '/') {
-        var decoded = l.search.slice(1).split('&').map(function(s) {
-          return s.replace(/~and~/g, '&');
-        });
-        window.history.replaceState(null, null,
-          l.pathname.slice(0, -1) + decoded[0] +
-          (decoded[1] ? '?' + decoded[1] : '') + l.hash
-        );
-      }
-    }(window.location));
-  </script>
+  <script src="/refugio-sensorial/404-redirect.js"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -125,6 +112,7 @@
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     crossorigin="anonymous"
+    integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H"
   />
 </head>
 <body style="background:#0C0E1E;color:#E5E7EB;margin:0">

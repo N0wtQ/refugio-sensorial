@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation, Link } from 'react
 import { useEffect, useState, Component, lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import Navbar from './components/Navbar'
+import StorageToast from './components/ui/StorageToast'
 
 const CanvasBg = lazy(() =>
   import('./components/CanvasBg').catch(() => ({ default: () => null }))
@@ -167,6 +168,7 @@ export default function App() {
           <Suspense fallback={null}>
             <GlobalSearch open={searchOpen} onClose={() => setSearchOpen(false)} />
           </Suspense>
+          <StorageToast />
         </AppErrorBoundary>
       </div>
     </BrowserRouter>
@@ -180,6 +182,17 @@ function Footer() {
         <p>Refugio Sensorial · Hecho con cuidado para personas neurodivergentes</p>
         <div className="flex items-center gap-4">
           <span>Creadora: Almudena Bedoya</span>
+          <span aria-hidden="true">·</span>
+          <a
+            href="https://www.instagram.com/refugio.sensorial.oficial"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram de Refugio Sensorial"
+            className="flex items-center gap-1 hover:text-text transition-colors duration-200"
+          >
+            <i className="fa-brands fa-instagram text-sm" aria-hidden="true" />
+            Instagram
+          </a>
           <span aria-hidden="true">·</span>
           <Link
             to="/accesibilidad"

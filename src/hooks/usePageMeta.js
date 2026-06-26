@@ -13,6 +13,18 @@ import { getOgImage } from '../lib/og/index'
 
 const BASE_URL = `https://n0wtq.github.io/refugio-sensorial`
 
+function sanitizeText(str) {
+  return typeof str === 'string' ? str.replace(/[<>"'&]/g, '') : ''
+}
+
+function sanitizeUrl(str) {
+  if (typeof str !== 'string') return ''
+  const trimmed = str.trim()
+  // Only allow https:// and relative URLs starting with /
+  if (/^https:\/\//i.test(trimmed) || /^\//.test(trimmed)) return trimmed
+  return ''
+}
+
 export function usePageMeta({
   title,
   description,
@@ -24,18 +36,21 @@ export function usePageMeta({
   noIndex = false,
 }) {
   useEffect(() => {
+    const safeTitle = sanitizeText(title)
+    const safeDesc = sanitizeText(description)
+
     // ── title ──────────────────────────────────────────────────────────────
     const prevTitle = document.title
-    document.title = title
+    document.title = safeTitle
 
     // ── description ────────────────────────────────────────────────────────
     const metaDesc = document.querySelector('meta[name="description"]')
     const prevDesc = metaDesc?.getAttribute('content') ?? ''
-    metaDesc?.setAttribute('content', description)
+    metaDesc?.setAttribute('content', safeDesc)
 
     // ── canonical ──────────────────────────────────────────────────────────
-    const canonicalUrl = canonical
-      ?? `${BASE_URL}${window.location.pathname}`
+    const rawCanonical = canonical ?? `${BASE_URL}${window.location.pathname}`
+    const canonicalUrl = sanitizeUrl(rawCanonical) || `${BASE_URL}/`
 
     let canonicalEl = document.querySelector('link[rel="canonical"]')
     if (!canonicalEl) {
@@ -60,10 +75,10 @@ export function usePageMeta({
 
     // ── Open Graph ────────────────────────────────────────────────────────
     const resolvedOgImage = ogImage ?? getOgImage(section)
-    const resolvedOgImageAlt = ogImageAlt ?? title
+    const resolvedOgImageAlt = sanitizeText(ogImageAlt ?? title)
     const ogData = {
-      'og:title':       title,
-      'og:description': description,
+      'og:title':       safeTitle,
+      'og:description': safeDesc,
       'og:type':        ogType,
       'og:url':         canonicalUrl,
       'og:image':       resolvedOgImage,
@@ -86,8 +101,8 @@ export function usePageMeta({
     // ── Twitter Cards ─────────────────────────────────────────────────────
     const twitterData = {
       'twitter:card':        'summary_large_image',
-      'twitter:title':       title,
-      'twitter:description': description,
+      'twitter:title':       safeTitle,
+      'twitter:description': safeDesc,
       'twitter:image':       resolvedOgImage,
       'twitter:image:alt':   resolvedOgImageAlt,
     }
