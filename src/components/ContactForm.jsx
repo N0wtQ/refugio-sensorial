@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 
-const INITIAL = { nombre: '', email: '', pais: '', mensaje: '' }
+const INITIAL = { nombre: '', email: '', pais: '', mensaje: '', _trap: '' }
 
 function Field({ id, label, required, error, children }) {
   return (
@@ -58,6 +58,8 @@ export default function ContactForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    // Honeypot: bots fill hidden fields, humans don't
+    if (values._trap) { setStatus('success'); return }
     const errs = validate()
     if (Object.keys(errs).length) {
       setErrors(errs)
@@ -68,10 +70,11 @@ export default function ContactForm() {
     }
     setStatus('sending')
     try {
+      const { _trap, ...payload } = values
       const res = await fetch('https://formspree.io/f/mwvzvdbd', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(values),
+        body: JSON.stringify(payload),
       })
       setStatus(res.ok ? 'success' : 'error')
     } catch {
@@ -102,6 +105,20 @@ export default function ContactForm() {
       className="flex flex-col gap-5"
       aria-label="Formulario de contacto"
     >
+      {/* Honeypot: hidden from humans, catches bots that fill all fields */}
+      <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}>
+        <label htmlFor="trap_name">No rellenar</label>
+        <input
+          type="text"
+          id="trap_name"
+          name="_trap"
+          value={values._trap}
+          onChange={handleChange}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <Field id="nombre" label="Nombre" required error={errors.nombre}>
         <input
           type="text"

@@ -32,7 +32,11 @@ function loadFromStorage() {
 function saveToStorage(items) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
-  } catch {}
+  } catch (err) {
+    if (err instanceof DOMException && err.name === 'QuotaExceededError') {
+      window.dispatchEvent(new CustomEvent('storage:quota'))
+    }
+  }
 }
 
 /**
