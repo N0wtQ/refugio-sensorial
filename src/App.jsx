@@ -181,6 +181,17 @@ function Footer() {
         <div className="flex items-center gap-4">
           <span>Creadora: Almudena Bedoya</span>
           <span aria-hidden="true">·</span>
+          <a
+            href="https://www.instagram.com/refugio.sensorial.oficial"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram de Refugio Sensorial"
+            className="flex items-center gap-1 hover:text-text transition-colors duration-200"
+          >
+            <i className="fa-brands fa-instagram text-sm" aria-hidden="true" />
+            Instagram
+          </a>
+          <span aria-hidden="true">·</span>
           <Link
             to="/accesibilidad"
             className="hover:text-text transition-colors duration-200"
