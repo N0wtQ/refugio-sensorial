@@ -1,4 +1,4 @@
-﻿Recurso;Categoría;Perfiles ND;Plataforma;Precio;Subcategoría;Enlace;Notas;Precio;Subcategoría;Tipo;Valoración
+Recurso;Categoría;Perfiles ND;Plataforma;Precio;Subcategoría;Enlace;Notas;Precio;Subcategoría;Tipo;Valoración
 Tiimo;Gestión Ejecutiva;TCE, TDAH, TEA;Android, Web, iOS;Freemium;Tiempo;https://tiimoapp.com;Ayuda con la planificación diaria.;Freemium;Tiempo;APP;Excelente
 TimeTimer;Gestión Ejecutiva;TDAH, TEA;Android, Físico, iOS;Pago;Tiempo;https://www.timetimer.com;Representación visual del tiempo sin necesidad de leer reloj.;Pago;Tiempo;APP;Excelente
 Pomofocus;Gestión Ejecutiva;TDAH, TOD;Web;Gratis;Tiempo;https://pomofocus.io;Técnica Pomodoro personalizable para mantener el enfoque.;Gratis;Tiempo;WEB;Muy bueno
@@ -7,6 +7,7 @@ Routinery;Gestión Ejecutiva;TDAH, TEA;Android, iOS;Freemium;Tareas;https://www.
 Sweepy;Gestión Ejecutiva;TDAH, TEA;Android, iOS;Freemium;Tareas;https://sweepy.app;Convierte la limpieza en un juego con recompensas.;Freemium;Tareas;APP;Muy bueno
 Goblin.tools;Gestión Ejecutiva;AACC, TDA, TDAH, TEA;Web;Gratis;Tareas;https://goblin.tools;Desglosa tareas complejas en  os pequeños y manejables.;Gratis;Tareas;WEB;Excelente
 Structured;Gestión Ejecutiva;TDAH, TEA;Android, Mac, iOS;Freemium;Tareas;https://structured.app;Diario visual tipo línea de tiempo.;Freemium;Tareas;APP;Excelente
+Habitica;Gestión Ejecutiva;TDAH, TEA;Android, Web, iOS;Freemium;Tareas;https://habitica.com;Convierte hábitos, tareas diarias y pendientes en un juego de rol con recompensas.;Freemium;Tareas;APP;Muy bueno
 Obsidian;Gestión Ejecutiva;AACC, TDAH;Android, Linux, Mac, Windows, iOS;Gratis;Memoria;https://obsidian.md;Base de conocimientos local.;Gratis;Memoria;APP;Excelente
 Capacities;Gestión Ejecutiva;AACC, TDAH;Mac, Web, Windows;Freemium;Memoria;https://capacities.io;Almacén visual de objetos digitales.;Freemium;Memoria;APP;Muy bueno
 MyNoise;Regulación Sensorial;TDAH, TEA;Android, Web, iOS;Freemium;Auditivo;https://mynoise.net;Paisajes sonoros ajustables frecuencia por frecuencia.;Freemium;Auditivo;APP;Excelente
