@@ -143,7 +143,7 @@ export default function App() {
   }, [])
 
   return (
-    <BrowserRouter basename="/refugio-sensorial">
+    <BrowserRouter basename="/">
       <CanvasSilentBoundary>
         <Suspense fallback={null}>
           <CanvasBg />

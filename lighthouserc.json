@@ -2,11 +2,11 @@
   "ci": {
     "collect": {
       "url": [
-        "http://localhost:4173/refugio-sensorial/",
-        "http://localhost:4173/refugio-sensorial/kit",
-        "http://localhost:4173/refugio-sensorial/mapa",
-        "http://localhost:4173/refugio-sensorial/biblioteca",
-        "http://localhost:4173/refugio-sensorial/ayuda"
+        "http://localhost:4173/",
+        "http://localhost:4173/kit",
+        "http://localhost:4173/mapa",
+        "http://localhost:4173/biblioteca",
+        "http://localhost:4173/ayuda"
       ],
       "startServerCommand": "npm run preview",
       "startServerReadyPattern": "Local",
