@@ -4,3 +4,6 @@ dist/
 .env.local
 .DS_Store
 .claude/
+
+# Generated at build time by scripts/fetch-logos.mjs
+public/logos/
