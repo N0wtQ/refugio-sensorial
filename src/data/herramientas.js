@@ -1,4 +1,5 @@
-// Static data extracted from herramientas.csv
+// Runtime source of truth for the tools catalog (imported by the app).
+// Kept in sync with public/herramientas.csv, which is the human-editable origin.
 // Fields: nombre, categoria, perfiles, plataforma, precio, subcategoria, enlace, notas, tipo, valoracion
 export const herramientas = [
   { nombre:"Tiimo", categoria:"Gestión Ejecutiva", perfiles:"TCE, TDAH, TEA", plataforma:"Android, Web, iOS", precio:"Freemium", subcategoria:"Tiempo", enlace:"https://tiimoapp.com", notas:"Ayuda con la planificación diaria.", tipo:"APP", valoracion:"Excelente" },
