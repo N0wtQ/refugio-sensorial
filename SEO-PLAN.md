@@ -100,7 +100,8 @@ El sitio no tiene blog como tal; las piezas encajan como páginas dentro de `/en
 
 - ✅ `robots.txt` con sitemap del dominio propio; `Disallow: /assets/`.
 - ✅ `sitemap.xml` con las rutas indexables (masking añadida en esta iteración).
-- ✅ Dominio propio con HTTPS, `base: '/'`, redirect SPA 404 (nota: GitHub Pages devuelve 404→200 tras redirect; las rutas del sitemap son las que Google indexa directamente).
+- ✅ Dominio propio con HTTPS, `base: '/'`.
+- ✅ **Rutas indexables con HTTP 200** (`scripts/prerender-routes.mjs`): GitHub Pages solo sirve archivos reales, así que las rutas profundas de una SPA responden 404 (el `404.html` redirige en el navegador, pero Google no indexa un 404 — verificado con la Prueba de resultados enriquecidos). El build copia el shell a `<ruta>/index.html` para cada URL del sitemap: ahora responden 200 (Pages hace 301 `/ruta` → `/ruta/`). El fallback 404 sigue cubriendo rutas dinámicas no listadas (ciudades del mapa).
 - ✅ Code-splitting por rutas (manualChunks: three/leaflet/motion/router), imágenes lazy, logos como assets propios.
 - ✅ CSP estricta, SRI en Leaflet, accesibilidad WCAG 2.2 AA (declaración en `/accesibilidad`) — señales de calidad E-E-A-T.
 - ⚠️ Mejora pendiente (opcional): convertir `logo.png`/`logo-icon.png` (2 MB) a WebP ≤100 KB; hoy solo afectan a og:image, no al render.

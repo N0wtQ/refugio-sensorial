@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/prerender-routes.mjs",
     "preview": "vite preview",
     "a11y": "node scripts/a11y-test.js",
     "pa11y": "pa11y-ci --config .pa11yrc.json",
