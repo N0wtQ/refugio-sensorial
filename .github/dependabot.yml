@@ -10,6 +10,14 @@ updates:
     open-pull-requests-limit: 5
     labels:
       - dependencies
+    # Los bumps de versión mayor (React 19, react-leaflet 5, drei 10...)
+    # han roto el sitio en producción varias veces (incompatibilidades de
+    # peer deps entre React/ReactDOM/Leaflet/Three.js). Dependabot sigue
+    # abriendo PR de minor/patch (normalmente seguros); las de major se
+    # revisan e integran a mano, probadas localmente antes de mergear.
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: github-actions
     directory: /
