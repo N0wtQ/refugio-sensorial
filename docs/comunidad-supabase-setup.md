@@ -1,8 +1,9 @@
-# Configurar Supabase para "Comunidad"
+# Configurar Supabase para los espacios añadidos por usuarios
 
-Instrucciones para dejar funcionando la sección `/comunidad` (mapa mundial de
-espacios favoritos). Sin este setup, la página muestra un aviso de "próximamente"
-sin romper el resto del sitio.
+Instrucciones para activar la capa de espacios que cualquier usuario podrá
+compartir desde `/espacios`, superpuesta al mapa de sitios silenciosos
+curados. Sin este setup, esa capa simplemente no aparece — el resto de
+`/espacios` (el mapa curado, filtros, etc.) sigue funcionando igual.
 
 ## 1. Crear el proyecto
 
@@ -36,8 +37,8 @@ Actions → New repository secret**, crea:
 - `SUPABASE_ANON_KEY`
 
 El workflow (`.github/workflows/deploy.yml`) ya está preparado para inyectarlas en el
-build. Si no las configuras, el build sigue funcionando — la sección Comunidad
-simplemente queda inactiva.
+build. Si no las configuras, el build sigue funcionando — la capa de espacios de
+usuarios simplemente no aparece en `/espacios`.
 
 ## 4. Crear la tabla y las políticas de seguridad
 
@@ -61,12 +62,12 @@ defecto pide confirmar el correo antes de poder iniciar sesión).
 
 **Authentication → URL Configuration**, añade:
 - **Site URL:** `https://www.refugio-sensorial.com`
-- **Redirect URLs:** `https://www.refugio-sensorial.com/comunidad`, y
-  `http://localhost:5173/comunidad` para desarrollo local.
+- **Redirect URLs:** `https://www.refugio-sensorial.com/espacios`, y
+  `http://localhost:5173/espacios` para desarrollo local.
 
 ## 6. (Opcional) Activar "Continuar con Google"
 
-El botón ya está en el código; para que funcione:
+El botón ya está en el código (en `/espacios/acceso`); para que funcione:
 
 1. Sigue la [guía oficial de Supabase para Google OAuth](https://supabase.com/docs/guides/auth/social-login/auth-google)
    — crea un cliente OAuth en Google Cloud Console (requiere una cuenta de Google Cloud,
@@ -78,10 +79,11 @@ pulsarlo — el login con email/contraseña funciona igual sin este paso.
 
 ## Qué NO incluye esta fase
 
-Esta primera iteración es solo la **fundación**: autenticación + mapa en modo
-lectura + estructura de datos lista. Aún faltan (fase 2):
+Esta primera iteración es solo la **fundación**: autenticación + capa de solo
+lectura sobre el mapa de `/espacios` + estructura de datos lista. Aún faltan (fase 2):
 
-- Formulario para crear/editar espacios (con subida de imagen a Supabase Storage).
+- Formulario para crear/editar espacios (con subida de imagen a Supabase Storage),
+  accesible desde `/espacios`.
 - Panel "Mis espacios" para gestionar/borrar los propios.
 - Validación de que la ubicación no caiga en agua.
 
@@ -90,4 +92,4 @@ lectura + estructura de datos lista. Aún faltan (fase 2):
 - **Política de privacidad**: al registrar usuarios y guardar su email y las
   ubicaciones que compartan, el RGPD exige informarles qué datos se recogen y
   para qué. El sitio no tiene aún una página de privacidad — conviene añadir una
-  antes de anunciar esta sección públicamente.
+  antes de anunciar esta función públicamente.

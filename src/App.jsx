@@ -12,8 +12,7 @@ const GlobalSearch = lazy(() => import('./components/search/GlobalSearch'))
 const HerramientasLandingPage = lazy(() => import('./pages/herramientas/LandingPage'))
 const CiudadPage = lazy(() => import('./pages/espacios/CiudadPage'))
 const EntenderEstadoPage = lazy(() => import('./pages/EntenderEstadoPage'))
-const ComunidadPage = lazy(() => import('./pages/comunidad/ComunidadPage'))
-const AccesoPage = lazy(() => import('./pages/comunidad/AccesoPage'))
+const EspaciosAccesoPage = lazy(() => import('./pages/espacios/AccesoPage'))
 
 import Home from './pages/Home'
 import MapPage from './pages/MapPage'
@@ -96,8 +95,7 @@ function AppRoutes({ onOpenSearch }) {
         {/* Main routes */}
         <Route path="/"           element={<PageTransition><Home onOpenSearch={onOpenSearch} /></PageTransition>} />
         <Route path="/espacios"   element={<PageTransition><MapPage /></PageTransition>} />
-        <Route path="/comunidad"        element={<PageTransition><Suspense fallback={null}><ComunidadPage /></Suspense></PageTransition>} />
-        <Route path="/comunidad/acceso" element={<PageTransition><Suspense fallback={null}><AccesoPage /></Suspense></PageTransition>} />
+        <Route path="/espacios/acceso"  element={<PageTransition><Suspense fallback={null}><EspaciosAccesoPage /></Suspense></PageTransition>} />
         <Route path="/herramientas" element={<PageTransition><LibraryPage /></PageTransition>} />
         <Route path="/ayuda"      element={<PageTransition><AyudaPage /></PageTransition>} />
         <Route path="/accesibilidad" element={<PageTransition><AccesibilidadPage /></PageTransition>} />

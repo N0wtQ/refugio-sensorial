@@ -1,8 +1,29 @@
 import { useState, useMemo, useCallback } from 'react'
-import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from 'react-leaflet'
+import { MapContainer, TileLayer, CircleMarker, Marker, Popup, useMap } from 'react-leaflet'
 import { useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, Link } from 'react-router-dom'
+import L from 'leaflet'
 import { LUGARES, TIPOS } from '../data/lugares'
+import { useEspaciosComunidad } from '../hooks/useEspaciosComunidad'
+import { useAuth } from '../contexts/AuthContext'
+
+const CATEGORIA_COMUNIDAD_CONFIG = {
+  Sensorial:      { color: '#3A82CA', icon: 'fa-spa' },
+  Relax:          { color: '#48B0A1', icon: 'fa-couch' },
+  Aventura:       { color: '#FBB027', icon: 'fa-mountain' },
+  Cultural:       { color: '#816AB7', icon: 'fa-landmark' },
+  'Gastronómico': { color: '#E57B86', icon: 'fa-utensils' },
+  Otro:           { color: '#9CA3AF', icon: 'fa-location-dot' },
+}
+
+function comunidadMarkerIcon(color) {
+  return L.divIcon({
+    className: '',
+    html: `<span style="display:block;width:14px;height:14px;border-radius:9999px;background:${color};border:2px solid rgba(12,14,30,0.9);box-shadow:0 0 0 2px ${color}40"></span>`,
+    iconSize: [14, 14],
+    iconAnchor: [7, 7],
+  })
+}
 
 const TYPE_CONFIG = {
   supermercado:          { color: '#3A82CA', label: 'Hora silenciosa', icon: 'fa-cart-shopping' },
@@ -39,6 +60,8 @@ export default function SilentMap() {
   const [searchParams, setSearchParams] = useSearchParams()
   const filter = searchParams.get('tipo') ?? 'todos'
   const [search, setSearch] = useState(() => searchParams.get('q') ?? '')
+  const { espacios: espaciosComunidad } = useEspaciosComunidad()
+  const { user, configured, signOut } = useAuth()
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase().trim()
@@ -61,6 +84,36 @@ export default function SilentMap() {
 
   return (
     <div className="flex flex-col gap-4">
+      {/* Auth — añadir tus propios espacios */}
+      {configured && (
+        <div className="flex items-center justify-between gap-3 flex-wrap p-3 rounded-xl border border-acc/15 bg-acc/5">
+          <p className="text-xs text-muted leading-relaxed">
+            <i className="fa-solid fa-circle-info text-acc mr-1.5" aria-hidden="true" />
+            <strong className="text-text font-semibold">¿Conoces un espacio que falta?</strong>{' '}
+            Muy pronto podrás añadir tus propios espacios directamente desde aquí.
+          </p>
+          {user ? (
+            <div className="flex items-center gap-2 shrink-0">
+              <span className="text-xs text-faint truncate max-w-[160px]">{user.email}</span>
+              <button
+                onClick={signOut}
+                className="px-3 py-1.5 rounded-lg text-xs font-semibold text-muted border border-border hover:text-text hover:border-borderH transition-colors duration-200"
+              >
+                Cerrar sesión
+              </button>
+            </div>
+          ) : (
+            <Link
+              to="/espacios/acceso"
+              className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-pri/10 text-pri text-xs font-semibold border border-pri/25 hover:bg-pri/18 transition-colors duration-200"
+            >
+              <i className="fa-solid fa-user text-[10px]" aria-hidden="true" />
+              Iniciar sesión
+            </Link>
+          )}
+        </div>
+      )}
+
       {/* Search */}
       <div className="relative">
         <i className="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-faint text-sm pointer-events-none" aria-hidden="true" />
@@ -193,6 +246,41 @@ export default function SilentMap() {
               </Popup>
             </CircleMarker>
           ))}
+
+          {/* Espacios añadidos por la comunidad */}
+          {espaciosComunidad.map((e) => {
+            const cfg = CATEGORIA_COMUNIDAD_CONFIG[e.categoria] ?? CATEGORIA_COMUNIDAD_CONFIG.Otro
+            return (
+              <Marker key={e.id} position={[e.latitud, e.longitud]} icon={comunidadMarkerIcon(cfg.color)}>
+                <Popup maxWidth={280}>
+                  <div className="text-sm" style={{ minWidth: '220px', fontFamily: 'Inter, system-ui, sans-serif', padding: '14px 16px 12px' }}>
+                    <p className="text-xs font-bold uppercase tracking-wider mb-1.5" style={{ color: cfg.color }}>
+                      <i className={`fa-solid ${cfg.icon} mr-1.5`} aria-hidden="true" />
+                      {e.categoria}
+                    </p>
+                    <h3 style={{ fontWeight: 600, color: '#E5E7EB', fontSize: '15px', marginBottom: '4px', lineHeight: '1.3' }}>
+                      {e.nombre}
+                    </h3>
+                    {e.imagen_url && (
+                      <img
+                        src={e.imagen_url}
+                        alt=""
+                        style={{ width: '100%', maxHeight: '120px', objectFit: 'cover', borderRadius: '8px', marginBottom: '8px' }}
+                        loading="lazy"
+                      />
+                    )}
+                    <p style={{ color: '#D1D5DB', fontSize: '12px', lineHeight: '1.55', marginBottom: '8px' }}>
+                      {e.descripcion}
+                    </p>
+                    <p style={{ color: '#6B7280', fontSize: '11px' }}>
+                      <i className="fa-solid fa-users mr-1" aria-hidden="true" />
+                      {e.autor_nombre ? `Añadido por ${e.autor_nombre}` : 'Añadido por la comunidad'}
+                    </p>
+                  </div>
+                </Popup>
+              </Marker>
+            )
+          })}
         </MapContainer>
 
         {/* Results overlay */}

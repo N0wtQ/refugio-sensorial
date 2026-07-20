@@ -3,7 +3,7 @@ import { supabase } from '../lib/supabase'
 
 const AuthContext = createContext(null)
 
-const NOT_CONFIGURED = { message: 'La comunidad todavía no está activada en este sitio.' }
+const NOT_CONFIGURED = { message: 'Añadir espacios todavía no está activado en este sitio.' }
 
 /**
  * Provides the current Supabase user + auth actions to the whole app.
@@ -44,7 +44,7 @@ export function AuthProvider({ children }) {
     if (!supabase) return { error: NOT_CONFIGURED }
     return supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: `${window.location.origin}/comunidad` },
+      options: { redirectTo: `${window.location.origin}/espacios` },
     })
   }
 
