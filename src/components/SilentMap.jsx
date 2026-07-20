@@ -295,10 +295,23 @@ export default function SilentMap() {
               <Marker key={e.id} position={[e.latitud, e.longitud]} icon={comunidadMarkerIcon(cfg.color)}>
                 <Popup maxWidth={280}>
                   <div className="text-sm" style={{ minWidth: '220px', fontFamily: 'Inter, system-ui, sans-serif', padding: '14px 16px 12px' }}>
-                    <p className="text-xs font-bold uppercase tracking-wider mb-1.5" style={{ color: cfg.color }}>
-                      <i className={`fa-solid ${cfg.icon} mr-1.5`} aria-hidden="true" />
-                      {e.categoria}
-                    </p>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', marginBottom: '6px' }}>
+                      <p className="text-xs font-bold uppercase tracking-wider" style={{ color: cfg.color, margin: 0 }}>
+                        <i className={`fa-solid ${cfg.icon} mr-1.5`} aria-hidden="true" />
+                        {e.categoria}
+                      </p>
+                      <span
+                        title="Añadido por un visitante, no forma parte del catálogo verificado"
+                        style={{
+                          flexShrink: 0, fontSize: '10px', fontWeight: 700, color: '#0C0E1E',
+                          background: '#FBB027', borderRadius: '999px', padding: '2px 8px',
+                          letterSpacing: '0.02em', whiteSpace: 'nowrap',
+                        }}
+                      >
+                        <i className="fa-solid fa-users" style={{ fontSize: '9px', marginRight: '3px' }} aria-hidden="true" />
+                        Comunidad
+                      </span>
+                    </div>
                     <h3 style={{ fontWeight: 600, color: '#E5E7EB', fontSize: '15px', marginBottom: '4px', lineHeight: '1.3' }}>
                       {e.nombre}
                     </h3>

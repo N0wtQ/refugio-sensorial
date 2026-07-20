@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { crearEspacio, actualizarEspacio, borrarEspacio } from '../../lib/espaciosComunidadApi'
+import { esZonaMaritima } from '../../lib/geoValidacion'
 
 const CATEGORIAS = ['Sensorial', 'Relax', 'Aventura', 'Cultural', 'Gastronómico', 'Otro']
 
@@ -41,6 +42,12 @@ export default function AnadirEspacioPanel({ modo, posicion, onCancel, onSaved, 
     }
     setStatus('loading')
     setErrorMsg('')
+
+    if (await esZonaMaritima(posicion[0], posicion[1])) {
+      setStatus('error')
+      setErrorMsg('Ese punto cae en el mar o en una zona de agua. Elige una ubicación en tierra, arrastrando el marcador o volviendo a hacer clic en el mapa.')
+      return
+    }
 
     const payload = {
       nombre: values.nombre.trim(),
