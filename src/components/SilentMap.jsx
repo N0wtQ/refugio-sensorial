@@ -72,6 +72,7 @@ export default function SilentMap() {
   const [posicion, setPosicion] = useState(null)
 
   const filtered = useMemo(() => {
+    if (filter === 'comunidad') return []
     const q = search.toLowerCase().trim()
     return LUGARES.filter(l => {
       const matchType = filter === 'todos' || l.tipo === filter
@@ -82,6 +83,10 @@ export default function SilentMap() {
       return matchType && matchSearch
     })
   }, [filter, search])
+
+  const espaciosComunidadVisibles = filter === 'todos' || filter === 'comunidad'
+    ? espaciosComunidad
+    : []
 
   const handleTypeClick = useCallback((tipo) => {
     const next = new URLSearchParams(searchParams)
@@ -203,6 +208,18 @@ export default function SilentMap() {
             </button>
           )
         })}
+        <button
+          onClick={() => handleTypeClick('comunidad')}
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors duration-200 border"
+          style={filter === 'comunidad'
+            ? { backgroundColor: '#FBB02720', color: '#FBB027', borderColor: '#FBB02750' }
+            : { backgroundColor: 'rgba(19,21,43,1)', color: '#9CA3AF', borderColor: 'rgba(129,106,183,0.1)' }
+          }
+          aria-pressed={filter === 'comunidad'}
+        >
+          <i className="fa-solid fa-users text-[10px]" style={{ opacity: filter === 'comunidad' ? 1 : 0.7 }} aria-hidden="true" />
+          Comunidad ({espaciosComunidad.length})
+        </button>
       </div>
 
       {/* Map */}
@@ -286,7 +303,7 @@ export default function SilentMap() {
           ))}
 
           {/* Espacios añadidos por cualquier visitante */}
-          {espaciosComunidad
+          {espaciosComunidadVisibles
             .filter(e => !(modo?.tipo === 'editar' && modo.espacio.id === e.id)) // oculta el que se está editando — lo sustituye el marcador de picking
             .map((e) => {
             const cfg = CATEGORIA_COMUNIDAD_CONFIG[e.categoria] ?? CATEGORIA_COMUNIDAD_CONFIG.Otro
@@ -353,7 +370,10 @@ export default function SilentMap() {
           style={{ background: 'rgba(12,14,30,0.85)', backdropFilter: 'blur(8px)', zIndex: 1000 }}
           aria-live="polite"
         >
-          {filtered.length} espacio{filtered.length !== 1 ? 's' : ''} visibles
+          {(() => {
+            const total = filtered.length + espaciosComunidadVisibles.length
+            return `${total} espacio${total !== 1 ? 's' : ''} visibles`
+          })()}
         </div>
       </div>
     </div>

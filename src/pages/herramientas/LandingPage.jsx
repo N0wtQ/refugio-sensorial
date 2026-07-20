@@ -172,7 +172,7 @@ export default function HerramientasLandingPage() {
         </div>
       </div>
 
-      {/* Filter pills — other profiles/categories */}
+      {/* Filter pills — other profiles */}
       {perfil && (
         <nav aria-label="Otros perfiles" className="flex flex-wrap gap-2 mb-8">
           {PERFILES_CONFIG.filter(p => p.slug !== slug).map(p => (
@@ -184,21 +184,6 @@ export default function HerramientasLandingPage() {
             >
               <i className={`fa-solid ${p.icon} ${p.color} text-[10px]`} aria-hidden="true" />
               {p.label}
-            </Link>
-          ))}
-        </nav>
-      )}
-      {categoria && (
-        <nav aria-label="Otras categorías" className="flex flex-wrap gap-2 mb-8">
-          {CATEGORIAS_CONFIG.filter(c => c.slug !== slug).map(c => (
-            <Link
-              key={c.slug}
-              to={`/herramientas/categoria/${c.slug}`}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-surface text-xs text-faint
-                         hover:border-sec/30 hover:text-text transition-all duration-150"
-            >
-              <i className={`fa-solid ${c.icon} ${c.color} text-[10px]`} aria-hidden="true" />
-              {c.label}
             </Link>
           ))}
         </nav>
