@@ -45,9 +45,9 @@ sobre los 250 lugares actuales produce un `lugares.js` idéntico salvo dos
 líneas cosméticas (el comentario de cabecera, y `-5` en vez de `-5.0` —
 el mismo número exacto en punto flotante). Comprobado además con
 Playwright en cada ronda de cambios: tras añadir las ubicaciones
-internacionales, el mapa muestra "304 espacios visibles" (250 de España +
-54 internacionales con coordenada verificada), los filtros por tipo
-funcionan igual, cero errores en consola.
+internacionales, el mapa muestra "453 espacios visibles" (250 de España +
+203 internacionales con coordenada, Nivel 1 y Nivel 2 combinados), los
+filtros por tipo funcionan igual, cero errores en consola.
 
 **Vista por defecto del mapa:** ya no se centra automáticamente en la
 ubicación del visitante (se ha retirado esa función de geolocalización).
@@ -172,7 +172,47 @@ un lugar" es una decisión editorial, no algo que deba pasar solo con
 cada `git push`). El build de producción sigue leyendo `lugares.js` tal
 cual esté commiteado, igual que siempre.
 
-## Las 59 ubicaciones internacionales verificadas
+## Dos niveles de evidencia (`nivel_evidencia`)
+
+Además de `nivel_verificacion` (que mide cuán fiable es la FUENTE: oficial,
+prensa, o documentación pública), cada lugar tiene un `nivel_evidencia`
+que mide algo distinto — si existe o no una medida específica documentada
+para autismo/necesidades sensoriales:
+
+- **Nivel 1 — Verificado**: hay evidencia pública de una medida
+  concreta (sala sensorial, Certified Autism Center, KultureCity,
+  Hidden Disabilities Sunflower, horario de baja estimulación, mochilas
+  sensoriales, mapas sensoriales...). Los 250 lugares de España y las
+  ubicaciones de `seed-internacional.mjs` son Nivel 1.
+- **Nivel 2 — Entorno potencialmente adecuado**: el lugar es real y
+  verificado (existe, tiene coordenada cuando se ha podido confirmar),
+  pero no se ha encontrado ninguna medida específica para autismo — solo
+  características generales (jardín botánico, biblioteca grande, parque
+  amplio, museo tranquilo...) que pueden resultarle útiles a algunas
+  personas. **Nunca se describe como "autism-friendly"**: la propia
+  `descripcion` que ve cualquiera que haga clic en el mapa incluye
+  siempre la nota "Este lugar no dispone de medidas específicas para el
+  autismo verificadas, pero puede resultar adecuado por su entorno
+  tranquilo." — así el aviso llega al usuario sin tener que tocar el
+  frontend.
+
+Los lugares Nivel 2 vienen de `seed-nivel2-asia-africa.mjs` (100
+ubicaciones de Asia, Oriente Medio y África) y `seed-nivel2-latam.mjs`
+(78 ubicaciones de Bogotá, Medellín, Cali, Ciudad de México y otras
+ciudades mexicanas, Santiago, Buenos Aires, Lima, São Paulo y Río de
+Janeiro). Ninguno se descartó por falta de certificación — al contrario
+que en rondas anteriores de esta migración, aquí el criterio cambió
+explícitamente: "no descartes una ubicación únicamente porque no tenga
+una certificación o programa específico para el autismo... clasifícala
+en Nivel 2 en lugar de eliminarla."
+
+**Pendiente:** la lista de Latinoamérica que aportó el usuario incluía
+más ciudades y países (Centroamérica, Caribe, Ecuador, Bolivia, Paraguay,
+Uruguay, Venezuela, y ubicaciones adicionales de Colombia/Perú/
+Argentina/Brasil) que todavía no se han geocodificado — no se han
+descartado, solo falta completarlas en una siguiente siembra.
+
+## Las 59 ubicaciones internacionales verificadas (Nivel 1)
 
 `seed-internacional.mjs` añade a la base de datos 59 ubicaciones físicas
 verificadas fuera de España, cada una con su fuente citada. **54 de las

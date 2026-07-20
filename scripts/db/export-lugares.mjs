@@ -68,6 +68,7 @@ const lugaresJson = filas.map(f => ({
   url_oficial: f.url_oficial,
   fuente: f.fuente,
   nivel_verificacion: f.nivel_verificacion,
+  nivel_evidencia: f.nivel_evidencia,
   fecha_actualizacion: f.fecha_actualizacion,
   horario: f.horario,
 }))

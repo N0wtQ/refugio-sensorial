@@ -19,6 +19,11 @@ const COLUMNAS_NUEVAS = {
   certificacion: 'TEXT',
   codigo_iso: 'TEXT',
   url_oficial: 'TEXT',
+  // Todo lo que ya existía en la base de datos antes de este campo tenía
+  // evidencia específica de autismo/sensorial (Hora silenciosa, CAC,
+  // KultureCity, sala sensorial...) — Nivel 1 es el valor correcto para
+  // esas filas, no una migración "de paso".
+  nivel_evidencia: "TEXT DEFAULT 'Nivel 1 - Verificado'",
 }
 
 function migrarColumnasFaltantes(db) {
@@ -32,8 +37,19 @@ function migrarColumnasFaltantes(db) {
 
 export function openDb() {
   const db = new DatabaseSync(DB_PATH)
-  db.exec(readFileSync(SCHEMA_PATH, 'utf8'))
+  const schema = readFileSync(SCHEMA_PATH, 'utf8')
+  // En una base de datos existente sin las columnas nuevas, los CREATE
+  // INDEX de schema.sql sobre esas columnas fallan hasta que
+  // migrarColumnasFaltantes las añade — de ahí el try/catch y la segunda
+  // pasada (CREATE TABLE/INDEX ... IF NOT EXISTS hace que sea inofensivo
+  // repetirlo).
+  try {
+    db.exec(schema)
+  } catch {
+    // ignorado: se reintenta tras migrar columnas
+  }
   migrarColumnasFaltantes(db)
+  db.exec(schema)
   return db
 }
 

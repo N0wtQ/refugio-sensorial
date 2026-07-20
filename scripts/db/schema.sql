@@ -73,6 +73,22 @@ CREATE TABLE IF NOT EXISTS lugares (
       'Verificado - Prensa o medio reconocido',
       'Verificado - Documentación pública'
     )),
+
+  -- Nivel de evidencia sobre autismo/sensorial (distinto de
+  -- nivel_verificacion, que mide la fiabilidad de la FUENTE). Nivel 1:
+  -- hay evidencia pública de una medida específica para autismo/necesidades
+  -- sensoriales (sala sensorial, CAC, KultureCity, Sunflower, horario de
+  -- baja estimulación, mochilas sensoriales, mapas sensoriales...). Nivel
+  -- 2: no hay medida específica verificada, pero el lugar es real y por
+  -- sus características (jardín botánico, parque amplio, biblioteca
+  -- grande, museo poco concurrido...) puede resultar adecuado — nunca se
+  -- describe como "autism-friendly" ni con adaptaciones inventadas.
+  nivel_evidencia      TEXT NOT NULL DEFAULT 'Nivel 1 - Verificado'
+    CHECK (nivel_evidencia IN (
+      'Nivel 1 - Verificado',
+      'Nivel 2 - Entorno potencialmente adecuado'
+    )),
+
   fecha_actualizacion  TEXT NOT NULL DEFAULT (date('now')),
 
   -- Campo legacy que hoy muestra el popup del mapa (p. ej. "14:30–16:30").
@@ -90,3 +106,4 @@ CREATE INDEX IF NOT EXISTS idx_lugares_pais          ON lugares(pais);
 CREATE INDEX IF NOT EXISTS idx_lugares_ciudad        ON lugares(ciudad);
 CREATE INDEX IF NOT EXISTS idx_lugares_tipo_legacy   ON lugares(tipo_legacy);
 CREATE INDEX IF NOT EXISTS idx_lugares_verificacion  ON lugares(nivel_verificacion);
+CREATE INDEX IF NOT EXISTS idx_lugares_evidencia      ON lugares(nivel_evidencia);

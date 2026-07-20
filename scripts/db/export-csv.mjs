@@ -15,7 +15,7 @@ const COLUMNAS = [
   'id', 'nombre', 'tipo', 'dirección', 'ciudad', 'provincia', 'país',
   'código_iso', 'latitud', 'longitud', 'descripción', 'motivo_inclusión',
   'adaptaciones_sensoriales', 'certificación', 'nivel_verificación',
-  'web_oficial', 'url_oficial', 'fuente', 'fecha_verificación',
+  'nivel_evidencia', 'web_oficial', 'url_oficial', 'fuente', 'fecha_verificación',
 ]
 
 function csvField(value) {
@@ -33,8 +33,8 @@ const lineas = filas.map(f => [
   f.id, f.nombre, f.tipo ?? f.tipo_legacy, f.direccion, f.ciudad,
   f.provincia_region, f.pais, f.codigo_iso, f.latitud, f.longitud,
   f.descripcion, f.motivo_inclusion, f.adaptaciones_sensoriales,
-  f.certificacion, f.nivel_verificacion, f.web_oficial, f.url_oficial,
-  f.fuente, f.fecha_actualizacion,
+  f.certificacion, f.nivel_verificacion, f.nivel_evidencia, f.web_oficial,
+  f.url_oficial, f.fuente, f.fecha_actualizacion,
 ].map(csvField).join(','))
 
 const contenido = '﻿' + [COLUMNAS.join(','), ...lineas].join('\n') + '\n'
