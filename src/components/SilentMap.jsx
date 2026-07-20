@@ -1,11 +1,13 @@
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo, useCallback, useEffect } from 'react'
 import { MapContainer, TileLayer, CircleMarker, Marker, Popup, useMap } from 'react-leaflet'
-import { useEffect } from 'react'
-import { useSearchParams, Link } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import L from 'leaflet'
 import { LUGARES, TIPOS } from '../data/lugares'
 import { useEspaciosComunidad } from '../hooks/useEspaciosComunidad'
-import { useAuth } from '../contexts/AuthContext'
+import { useMisEspaciosLocal } from '../hooks/useMisEspaciosLocal'
+import LocationPickerLayer from './espacios/LocationPickerLayer'
+import AnadirEspacioPanel from './espacios/AnadirEspacioPanel'
+import MisEspaciosList from './espacios/MisEspaciosList'
 
 const CATEGORIA_COMUNIDAD_CONFIG = {
   Sensorial:      { color: '#3A82CA', icon: 'fa-spa' },
@@ -61,7 +63,11 @@ export default function SilentMap() {
   const filter = searchParams.get('tipo') ?? 'todos'
   const [search, setSearch] = useState(() => searchParams.get('q') ?? '')
   const { espacios: espaciosComunidad } = useEspaciosComunidad()
-  const { user, configured, signOut } = useAuth()
+  const { misEspacios, añadir: recordarLocal, quitar: olvidarLocal, tokenDe } = useMisEspaciosLocal()
+
+  // modo: null | { tipo: 'crear' } | { tipo: 'editar', espacio, token }
+  const [modo, setModo] = useState(null)
+  const [posicion, setPosicion] = useState(null)
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase().trim()
@@ -82,37 +88,59 @@ export default function SilentMap() {
     setSearchParams(next, { replace: true })
   }, [searchParams, setSearchParams])
 
+  const iniciarCreacion = () => { setModo({ tipo: 'crear' }); setPosicion(null) }
+  const iniciarEdicion = (espacio, token) => {
+    setModo({ tipo: 'editar', espacio, token })
+    setPosicion([espacio.latitud, espacio.longitud])
+  }
+  const cancelar = () => { setModo(null); setPosicion(null) }
+  const guardado = ({ id, token }) => {
+    recordarLocal(id, token)
+    setModo(null)
+    setPosicion(null)
+  }
+  const borrado = (id) => {
+    olvidarLocal(id)
+    setModo(null)
+    setPosicion(null)
+  }
+
   return (
     <div className="flex flex-col gap-4">
-      {/* Auth — añadir tus propios espacios */}
-      {configured && (
-        <div className="flex items-center justify-between gap-3 flex-wrap p-3 rounded-xl border border-acc/15 bg-acc/5">
-          <p className="text-xs text-muted leading-relaxed">
-            <i className="fa-solid fa-circle-info text-acc mr-1.5" aria-hidden="true" />
-            <strong className="text-text font-semibold">¿Conoces un espacio que falta?</strong>{' '}
-            Muy pronto podrás añadir tus propios espacios directamente desde aquí.
-          </p>
-          {user ? (
-            <div className="flex items-center gap-2 shrink-0">
-              <span className="text-xs text-faint truncate max-w-[160px]">{user.email}</span>
-              <button
-                onClick={signOut}
-                className="px-3 py-1.5 rounded-lg text-xs font-semibold text-muted border border-border hover:text-text hover:border-borderH transition-colors duration-200"
-              >
-                Cerrar sesión
-              </button>
-            </div>
-          ) : (
-            <Link
-              to="/espacios/acceso"
-              className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-pri/10 text-pri text-xs font-semibold border border-pri/25 hover:bg-pri/18 transition-colors duration-200"
-            >
-              <i className="fa-solid fa-user text-[10px]" aria-hidden="true" />
-              Iniciar sesión
-            </Link>
-          )}
-        </div>
+      {/* Añadir espacio — sin cuenta, publicación instantánea */}
+      <div className="flex items-center justify-between gap-3 flex-wrap p-3 rounded-xl border border-acc/15 bg-acc/5">
+        <p className="text-xs text-muted leading-relaxed">
+          <i className="fa-solid fa-circle-info text-acc mr-1.5" aria-hidden="true" />
+          <strong className="text-text font-semibold">¿Conoces un espacio que falta?</strong>{' '}
+          Añádelo tú mismo — sin registrarte, y podrás editarlo o borrarlo después desde este mismo dispositivo.
+        </p>
+        {!modo && (
+          <button
+            type="button"
+            onClick={iniciarCreacion}
+            className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-pri/10 text-pri text-xs font-semibold border border-pri/25 hover:bg-pri/18 transition-colors duration-200"
+          >
+            <i className="fa-solid fa-plus text-[10px]" aria-hidden="true" />
+            Añadir espacio
+          </button>
+        )}
+      </div>
+
+      {modo && (
+        <AnadirEspacioPanel
+          modo={modo}
+          posicion={posicion}
+          onCancel={cancelar}
+          onSaved={guardado}
+          onDeleted={borrado}
+        />
       )}
+
+      <MisEspaciosList
+        misEspacios={misEspacios}
+        espaciosComunidad={espaciosComunidad}
+        onEditar={iniciarEdicion}
+      />
 
       {/* Search */}
       <div className="relative">
@@ -179,6 +207,15 @@ export default function SilentMap() {
 
       {/* Map */}
       <div className="relative rounded-card overflow-hidden border border-border" style={{ height: '520px' }}>
+        {modo && (
+          <div
+            className="absolute top-3 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-lg text-xs font-semibold text-white pointer-events-none"
+            style={{ background: 'rgba(58,130,202,0.92)', zIndex: 1000 }}
+          >
+            <i className="fa-solid fa-hand-pointer mr-1.5" aria-hidden="true" />
+            Haz clic en el mapa para marcar la ubicación
+          </div>
+        )}
         <MapContainer
           center={[40.416, -3.703]}
           zoom={6}
@@ -247,9 +284,12 @@ export default function SilentMap() {
             </CircleMarker>
           ))}
 
-          {/* Espacios añadidos por la comunidad */}
-          {espaciosComunidad.map((e) => {
+          {/* Espacios añadidos por cualquier visitante */}
+          {espaciosComunidad
+            .filter(e => !(modo?.tipo === 'editar' && modo.espacio.id === e.id)) // oculta el que se está editando — lo sustituye el marcador de picking
+            .map((e) => {
             const cfg = CATEGORIA_COMUNIDAD_CONFIG[e.categoria] ?? CATEGORIA_COMUNIDAD_CONFIG.Otro
+            const miToken = tokenDe(e.id)
             return (
               <Marker key={e.id} position={[e.latitud, e.longitud]} icon={comunidadMarkerIcon(cfg.color)}>
                 <Popup maxWidth={280}>
@@ -272,15 +312,25 @@ export default function SilentMap() {
                     <p style={{ color: '#D1D5DB', fontSize: '12px', lineHeight: '1.55', marginBottom: '8px' }}>
                       {e.descripcion}
                     </p>
-                    <p style={{ color: '#6B7280', fontSize: '11px' }}>
+                    <p style={{ color: '#6B7280', fontSize: '11px', marginBottom: miToken ? '8px' : 0 }}>
                       <i className="fa-solid fa-users mr-1" aria-hidden="true" />
                       {e.autor_nombre ? `Añadido por ${e.autor_nombre}` : 'Añadido por la comunidad'}
                     </p>
+                    {miToken && (
+                      <button
+                        onClick={() => iniciarEdicion(e, miToken)}
+                        style={{ color: '#3A82CA', fontSize: '12px', fontWeight: 600, background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                      >
+                        <i className="fa-solid fa-pen" style={{ fontSize: '10px' }} aria-hidden="true" /> Editar este espacio
+                      </button>
+                    )}
                   </div>
                 </Popup>
               </Marker>
             )
           })}
+
+          <LocationPickerLayer active={!!modo} position={posicion} onPick={setPosicion} />
         </MapContainer>
 
         {/* Results overlay */}

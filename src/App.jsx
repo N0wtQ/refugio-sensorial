@@ -3,7 +3,6 @@ import { useEffect, useState, Component, lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import StorageToast from './components/ui/StorageToast'
-import { AuthProvider } from './contexts/AuthContext'
 
 const CanvasBg = lazy(() =>
   import('./components/CanvasBg').catch(() => ({ default: () => null }))
@@ -12,7 +11,6 @@ const GlobalSearch = lazy(() => import('./components/search/GlobalSearch'))
 const HerramientasLandingPage = lazy(() => import('./pages/herramientas/LandingPage'))
 const CiudadPage = lazy(() => import('./pages/espacios/CiudadPage'))
 const EntenderEstadoPage = lazy(() => import('./pages/EntenderEstadoPage'))
-const EspaciosAccesoPage = lazy(() => import('./pages/espacios/AccesoPage'))
 
 import Home from './pages/Home'
 import MapPage from './pages/MapPage'
@@ -95,7 +93,6 @@ function AppRoutes({ onOpenSearch }) {
         {/* Main routes */}
         <Route path="/"           element={<PageTransition><Home onOpenSearch={onOpenSearch} /></PageTransition>} />
         <Route path="/espacios"   element={<PageTransition><MapPage /></PageTransition>} />
-        <Route path="/espacios/acceso"  element={<PageTransition><Suspense fallback={null}><EspaciosAccesoPage /></Suspense></PageTransition>} />
         <Route path="/herramientas" element={<PageTransition><LibraryPage /></PageTransition>} />
         <Route path="/ayuda"      element={<PageTransition><AyudaPage /></PageTransition>} />
         <Route path="/accesibilidad" element={<PageTransition><AccesibilidadPage /></PageTransition>} />
@@ -147,7 +144,6 @@ export default function App() {
 
   return (
     <BrowserRouter basename="/">
-      <AuthProvider>
       <CanvasSilentBoundary>
         <Suspense fallback={null}>
           <CanvasBg />
@@ -175,7 +171,6 @@ export default function App() {
           <StorageToast />
         </AppErrorBoundary>
       </div>
-      </AuthProvider>
     </BrowserRouter>
   )
 }

@@ -1,5 +1,4 @@
 import { Suspense, lazy } from 'react'
-import { Link } from 'react-router-dom'
 import { usePageMeta } from '../hooks/usePageMeta'
 import Breadcrumb from '../components/ui/Breadcrumb'
 
@@ -31,17 +30,6 @@ export default function MapPage() {
           discapacidad invisible. Haz clic en cualquier marcador para ver los detalles.
         </p>
       </header>
-
-      {/* Info notice */}
-      <div className="flex items-start gap-3 p-4 rounded-xl bg-warm/5 border border-warm/15 mb-8" role="note">
-        <i className="fa-solid fa-circle-info text-warm mt-0.5 shrink-0" aria-hidden="true" />
-        <div className="text-sm text-muted leading-relaxed">
-          <strong className="text-text font-semibold">¿Conoces un espacio que falta?</strong>{' '}
-          Puedes sugerirlo en la sección{' '}
-          <Link to="/#contacto" className="text-pri hover:underline">Contáctanos</Link>.
-          Verificamos cada sugerencia antes de añadirla al mapa.
-        </div>
-      </div>
 
       {/* Map */}
       <Suspense
