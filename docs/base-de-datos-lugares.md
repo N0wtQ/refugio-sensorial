@@ -323,6 +323,28 @@ fecha_verificación
 Es un artefacto adicional para consulta/análisis externo — no lo lee el
 frontend ni el pipeline de build, igual que `lugares.json`.
 
+## Auditoría de enlaces (2026-07-20)
+
+Se verificaron las 439 URLs únicas de la base de datos (`web_oficial`,
+`url_oficial`, `fuente` de las 487 filas) con 18 agentes en paralelo, cada
+uno comprobando que la página responde, que no da 404/403/410/DNS/SSL, y
+que el contenido corresponde de verdad al lugar citado (no solo que la
+URL cargue).
+
+Resultado: 296 correctas sin cambios, 130 actualizadas a su URL vigente
+(dominios caídos, rutas reestructuradas, redirecciones, cambios de
+nombre de la institución), 8 corregidas por apuntar a una entidad
+distinta a la esperada, 3 sin web oficial localizable tras buscar, y 2
+irrecuperables. El motivo más frecuente con diferencia: `autismfriendlyclub.com`
+rediseñó su sitio y retiró toda la estructura `/sitios/...` que se había
+citado como fuente — en esos casos se sustituyó por la web oficial del
+propio negocio/lugar, nunca por otro directorio de terceros.
+
+Todas las correcciones se aplicaron tanto a `data/refugio-sensorial.db`
+como a los scripts de siembra (`seed-internacional.mjs`,
+`seed-nivel2-asia-africa.mjs`, `seed-nivel2-latam.mjs`), para que
+volver a ejecutarlos no revierta las URLs a las versiones rotas.
+
 ## Sistema redundante eliminado
 
 Una sesión anterior había construido una tabla equivalente en Supabase
