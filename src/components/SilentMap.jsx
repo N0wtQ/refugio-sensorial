@@ -1,5 +1,5 @@
-import { useState, useMemo, useCallback, useEffect } from 'react'
-import { MapContainer, TileLayer, CircleMarker, Marker, Popup, useMap } from 'react-leaflet'
+import { useState, useMemo, useCallback } from 'react'
+import { MapContainer, TileLayer, CircleMarker, Marker, Popup } from 'react-leaflet'
 import { useSearchParams } from 'react-router-dom'
 import L from 'leaflet'
 import { LUGARES, TIPOS } from '../data/lugares'
@@ -40,43 +40,19 @@ const TYPE_CONFIG = {
   restaurante_silencioso:{ color: '#10b981', label: 'Restaurante',      icon: 'fa-utensils' },
   sunflower:             { color: '#eab308', label: 'Sunflower',        icon: 'fa-sun' },
   coworking:             { color: '#a78bfa', label: 'Coworking',        icon: 'fa-laptop' },
+  estadio:               { color: '#f97316', label: 'Estadio',          icon: 'fa-futbol' },
+  parque_tematico:       { color: '#d946ef', label: 'Parque temático',  icon: 'fa-gopuram' },
+  zoologico_acuario:     { color: '#0ea5e9', label: 'Zoo / Acuario',    icon: 'fa-fish' },
 }
 
 function getColor(tipo) {
   return TYPE_CONFIG[tipo]?.color ?? '#9CA3AF'
 }
 
-// Re-centra el mapa cuando cambian lat/lng/zoom (p. ej. al resolver la
-// geolocalización del usuario, después de que el mapa ya se haya montado
-// con la vista por defecto).
-function MapController({ lat, lng, zoom }) {
-  const map = useMap()
-  useEffect(() => { map.setView([lat, lng], zoom) }, [lat, lng, zoom, map])
-  return null
-}
-
-const DEFAULT_VIEW = { lat: 40.416, lng: -3.703, zoom: 6 } // España — vista por defecto
-
-// Pide la ubicación del navegador una vez; si el usuario la concede, el
-// mapa se centra y hace zoom en su zona. Si la deniega, no está disponible
-// o tarda demasiado, se queda con la vista por defecto sin mostrar error
-// — es un comportamiento opcional y silencioso, no un fallo de la app.
-function useUserLocationView() {
-  const [view, setView] = useState(DEFAULT_VIEW)
-
-  useEffect(() => {
-    if (!('geolocation' in navigator)) return
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        setView({ lat: pos.coords.latitude, lng: pos.coords.longitude, zoom: 12 })
-      },
-      () => {}, // denegado / no disponible / timeout — se mantiene la vista por defecto
-      { timeout: 8000, maximumAge: 5 * 60 * 1000 }
-    )
-  }, [])
-
-  return view
-}
+// Vista por defecto: el mundo entero, para que los espacios de cualquier
+// país sean visibles sin necesidad de desplazar el mapa. Fija — ya no se
+// recentra según la ubicación del visitante.
+const DEFAULT_VIEW = { lat: 20, lng: -20, zoom: 2 }
 
 // Stats by type
 const STATS = TIPOS.reduce((acc, t) => {
@@ -88,7 +64,6 @@ export default function SilentMap() {
   const [searchParams, setSearchParams] = useSearchParams()
   const filter = searchParams.get('tipo') ?? 'todos'
   const [search, setSearch] = useState(() => searchParams.get('q') ?? '')
-  const userView = useUserLocationView()
   const { espacios: espaciosComunidad } = useEspaciosComunidad()
   const { misEspacios, añadir: recordarLocal, quitar: olvidarLocal, tokenDe } = useMisEspaciosLocal()
 
@@ -355,7 +330,6 @@ export default function SilentMap() {
           })}
 
           <LocationPickerLayer position={posicion} onPick={handleMapPick} />
-          <MapController lat={userView.lat} lng={userView.lng} zoom={userView.zoom} />
         </MapContainer>
 
         {/* Results overlay */}

@@ -1,14 +1,15 @@
 // Ubicaciones internacionales verificadas (fuera de los 250 lugares de
-// España ya presentes desde antes de la migración a SQLite). Ninguna
-// tiene coordenadas exactas del edificio confirmadas por una fuente: se
-// guardan como NULL — nunca se aproxima con el centro de la ciudad. Un
-// lugar sin coordenadas no se exporta al mapa hasta completarse con datos
-// reales (ver export-lugares.mjs), pero sí aparece en el CSV/JSON.
+// España ya presentes desde antes de la migración a SQLite). Solo se
+// guardan coordenadas cuando una fuente las confirma para el propio
+// edificio — nunca se aproxima con el centro de la ciudad. Un lugar sin
+// coordenadas no se exporta al mapa hasta completarse con datos reales
+// (ver export-lugares.mjs), pero sí aparece en el CSV/JSON.
 //
 // Cada entrada cita una fuente verificable (institución oficial del propio
 // lugar, IBCCES/KultureCity como organismo certificador, o prensa/medio
 // especializado reconocido). No se ha inventado ningún dato: si una fuente
-// no daba dirección, provincia o web oficial, ese campo queda en NULL.
+// no daba dirección, provincia, web oficial o coordenada exacta, ese campo
+// queda en NULL.
 //
 //   node scripts/db/seed-internacional.mjs
 
@@ -36,14 +37,17 @@ const insertar = db.prepare(`
     motivo_inclusion = excluded.motivo_inclusion,
     adaptaciones_sensoriales = excluded.adaptaciones_sensoriales,
     certificacion = excluded.certificacion,
+    direccion = excluded.direccion,
     codigo_iso = excluded.codigo_iso,
+    latitud = excluded.latitud,
+    longitud = excluded.longitud,
+    web_oficial = excluded.web_oficial,
     url_oficial = excluded.url_oficial,
     fuente = excluded.fuente
 `)
 
 const lugares = [
-  // ── Las 8 primeras (documentadas en una sesión anterior), ahora con los
-  // campos nuevos del esquema rellenados.
+  // ── Las 8 primeras (documentadas en una sesión anterior).
   {
     id: 'INTL-001', nombre: 'Peppa Pig Theme Park Dallas-Fort Worth',
     categoria: 'Ocio y turismo', tipo_legacy: 'parque_tematico', tipo: 'Parque temático',
@@ -51,6 +55,9 @@ const lugares = [
     motivo_inclusion: 'Certificación IBCCES Certified Autism Center (CAC) anunciada en comunicado oficial del parque.',
     adaptaciones_sensoriales: 'Personal formado en sensibilización sobre autismo, guía sensorial del parque, sala de calma.',
     certificacion: 'IBCCES Certified Autism Center (CAC)',
+    // Sin coordenada de edificio confirmada por una fuente — la dirección
+    // (8851 26th Blvd) es real, pero no se ha encontrado una coordenada
+    // publicada específicamente para el parque, solo del área general.
     direccion: '8851 26th Blvd', ciudad: 'North Richland Hills', provincia_region: 'TX', pais: 'Estados Unidos', codigo_iso: 'US',
     latitud: null, longitud: null,
     web_oficial: 'https://www.peppapigthemepark.com/dallas-ft-worth/',
@@ -65,8 +72,8 @@ const lugares = [
     motivo_inclusion: 'Certificación KultureCity Sensory Inclusive Venue, anunciada en comunicado oficial del aeropuerto.',
     adaptaciones_sensoriales: 'Dos salas sensoriales tras seguridad, mochilas sensoriales disponibles, personal formado.',
     certificacion: 'KultureCity Sensory Inclusive',
-    direccion: null, ciudad: 'Indianapolis', provincia_region: 'IN', pais: 'Estados Unidos', codigo_iso: 'US',
-    latitud: null, longitud: null,
+    direccion: '7800 Col. H. Weir Cook Memorial Dr', ciudad: 'Indianapolis', provincia_region: 'IN', pais: 'Estados Unidos', codigo_iso: 'US',
+    latitud: 39.7173, longitud: -86.2946, // punto de referencia oficial FAA (ARP)
     web_oficial: 'https://www.ind.com',
     url_oficial: 'https://www.ind.com/about/media/media-releases/indy-airport-is-now-a-certified-sensory-inclusive-venue',
     fuente: 'https://www.ind.com/about/media/media-releases/indy-airport-is-now-a-certified-sensory-inclusive-venue',
@@ -80,7 +87,7 @@ const lugares = [
     adaptaciones_sensoriales: 'Sala sensorial en Concourse A-west, mochilas sensoriales, señalización específica.',
     certificacion: 'KultureCity Sensory Inclusive',
     direccion: null, ciudad: 'Salt Lake City', provincia_region: 'UT', pais: 'Estados Unidos', codigo_iso: 'US',
-    latitud: null, longitud: null,
+    latitud: 40.7884, longitud: -111.9778, // punto de referencia oficial FAA (ARP)
     web_oficial: 'https://slcairport.com',
     url_oficial: 'https://slcairport.com/blog/2025/04/accessibility-at-slc-supporting-passengers-with-sensory-needs/',
     fuente: 'https://slcairport.com/blog/2025/04/accessibility-at-slc-supporting-passengers-with-sensory-needs/',
@@ -93,8 +100,8 @@ const lugares = [
     motivo_inclusion: 'Certificación KultureCity Sensory Inclusive anunciada en la web oficial del estadio.',
     adaptaciones_sensoriales: 'Sala sensorial, mochilas sensoriales en préstamo, personal formado.',
     certificacion: 'KultureCity Sensory Inclusive',
-    direccion: null, ciudad: 'Indianapolis', provincia_region: 'IN', pais: 'Estados Unidos', codigo_iso: 'US',
-    latitud: null, longitud: null,
+    direccion: '500 S Capitol Ave', ciudad: 'Indianapolis', provincia_region: 'IN', pais: 'Estados Unidos', codigo_iso: 'US',
+    latitud: 39.759991, longitud: -86.163712,
     web_oficial: 'https://www.lucasoilstadium.com',
     url_oficial: 'https://www.lucasoilstadium.com/lucas-oil-stadium-is-certified-sensory-inclusive/',
     fuente: 'https://www.lucasoilstadium.com/lucas-oil-stadium-is-certified-sensory-inclusive/',
@@ -107,8 +114,8 @@ const lugares = [
     motivo_inclusion: 'Certificación KultureCity Sensory Inclusive y sala sensorial anunciadas en la web oficial del estadio.',
     adaptaciones_sensoriales: 'Sala sensorial, mochilas sensoriales en préstamo, personal formado.',
     certificacion: 'KultureCity Sensory Inclusive',
-    direccion: null, ciudad: null, provincia_region: null, pais: 'Estados Unidos', codigo_iso: 'US',
-    latitud: null, longitud: null,
+    direccion: '1 Patriot Pl', ciudad: 'Foxborough', provincia_region: 'MA', pais: 'Estados Unidos', codigo_iso: 'US',
+    latitud: 42.090908, longitud: -71.264709,
     web_oficial: 'https://www.gillettestadium.com',
     url_oficial: 'https://www.gillettestadium.com/gillette-stadium-announces-addition-of-sensory-room-and-certification-as-sensory-inclusive-stadium/',
     fuente: 'https://www.gillettestadium.com/gillette-stadium-announces-addition-of-sensory-room-and-certification-as-sensory-inclusive-stadium/',
@@ -121,8 +128,8 @@ const lugares = [
     motivo_inclusion: 'Certificación KultureCity Sensory Inclusive anunciada en la web oficial del equipo/estadio.',
     adaptaciones_sensoriales: 'Sala sensorial, mochilas sensoriales en préstamo, personal formado.',
     certificacion: 'KultureCity Sensory Inclusive',
-    direccion: null, ciudad: 'Charlotte', provincia_region: 'NC', pais: 'Estados Unidos', codigo_iso: 'US',
-    latitud: null, longitud: null,
+    direccion: '800 S Mint St', ciudad: 'Charlotte', provincia_region: 'NC', pais: 'Estados Unidos', codigo_iso: 'US',
+    latitud: 35.225845, longitud: -80.853607,
     web_oficial: 'https://www.panthers.com',
     url_oficial: 'https://www.panthers.com/news/bank-of-america-stadium-certified-as-a-kulturecity-sensory-inclusive-venue',
     fuente: 'https://www.panthers.com/news/bank-of-america-stadium-certified-as-a-kulturecity-sensory-inclusive-venue',
@@ -136,8 +143,8 @@ const lugares = [
     adaptaciones_sensoriales: 'Personal formado en sensibilización sobre autismo (según certificación IBCCES CAC).',
     certificacion: 'IBCCES Certified Autism Center (CAC)',
     direccion: '12th Street, Al Bahyah', ciudad: 'Abu Dabi', provincia_region: null, pais: 'Emiratos Árabes Unidos', codigo_iso: 'AE',
-    latitud: null, longitud: null,
-    web_oficial: null,
+    latitud: 24.545707, longitud: 54.673690,
+    web_oficial: 'https://emiratesparkzooandresort.com',
     url_oficial: null,
     fuente: 'https://autismtravel.com/travel-directory/',
     nivel_verificacion: 'Verificado - Documentación pública',
@@ -150,14 +157,14 @@ const lugares = [
     adaptaciones_sensoriales: 'Personal formado en sensibilización sobre autismo (según certificación IBCCES CAC).',
     certificacion: 'IBCCES Certified Autism Center (CAC)',
     direccion: 'Level 2, The Dubai Mall, Downtown Dubai', ciudad: 'Dubái', provincia_region: null, pais: 'Emiratos Árabes Unidos', codigo_iso: 'AE',
-    latitud: null, longitud: null,
-    web_oficial: null,
+    latitud: 25.199514, longitud: 55.277397, // coordenada de The Dubai Mall, donde está integrado el acuario
+    web_oficial: 'https://thedubaiaquarium.com',
     url_oficial: null,
     fuente: 'https://autismtravel.com/travel-directory/',
     nivel_verificacion: 'Verificado - Documentación pública',
   },
 
-  // ── Nuevas ubicaciones (esta ronda de investigación).
+  // ── LEGOLAND, SeaWorld y otras ubicaciones investigadas después.
   {
     id: 'INTL-009', nombre: 'LEGOLAND California Resort',
     categoria: 'Ocio y turismo', tipo_legacy: 'parque_tematico', tipo: 'Parque temático',
@@ -166,7 +173,7 @@ const lugares = [
     adaptaciones_sensoriales: 'Guías sensoriales por atracción, sala sensorial en el DUPLO Family Care Center, hora sensory-friendly diaria.',
     certificacion: 'IBCCES Certified Autism Center (CAC)',
     direccion: '1 Legoland Dr', ciudad: 'Carlsbad', provincia_region: 'CA', pais: 'Estados Unidos', codigo_iso: 'US',
-    latitud: null, longitud: null,
+    latitud: 33.126475, longitud: -117.311376,
     web_oficial: 'https://www.legoland.com/california/',
     url_oficial: 'https://california-support.legoland.com/hc/en-us/articles/25007290318493-How-does-LEGOLAND-California-Resort-support-guests-with-autism',
     fuente: 'https://ibcces.org/blog/2023/02/06/legolandus/',
@@ -180,7 +187,7 @@ const lugares = [
     adaptaciones_sensoriales: 'Guías sensoriales por atracción, salas sensoriales en DUPLO Valley, primeros auxilios y Water Park.',
     certificacion: 'IBCCES Certified Autism Center (CAC)',
     direccion: '1 Legoland Way', ciudad: 'Winter Haven', provincia_region: 'FL', pais: 'Estados Unidos', codigo_iso: 'US',
-    latitud: null, longitud: null,
+    latitud: 27.987982, longitud: -81.691579,
     web_oficial: 'https://www.legoland.com/florida/',
     url_oficial: 'https://www.legoland.com/florida/plan-your-visit/know-before-you-go/accessibility-information/',
     fuente: 'https://ibcces.org/blog/2022/04/28/legoland-florida/',
@@ -194,7 +201,7 @@ const lugares = [
     adaptaciones_sensoriales: 'Guías sensoriales por atracción, sala sensorial, personal formado en sensibilización sobre autismo.',
     certificacion: 'IBCCES Certified Autism Center (CAC)',
     direccion: '1 Legoland Way', ciudad: 'Goshen', provincia_region: 'NY', pais: 'Estados Unidos', codigo_iso: 'US',
-    latitud: null, longitud: null,
+    latitud: 41.37687, longitud: -74.31438,
     web_oficial: 'https://www.legoland.com/new-york/',
     url_oficial: 'https://www.legoland.com/new-york/plan-your-visit/know-before-you-go/certified-autism-center/',
     fuente: 'https://www.legoland.com/new-york/plan-your-visit/know-before-you-go/certified-autism-center/',
@@ -207,6 +214,7 @@ const lugares = [
     motivo_inclusion: 'Certificación IBCCES CAC anunciada en el blog oficial de IBCCES.',
     adaptaciones_sensoriales: 'Guías sensoriales por atracción, personal formado en sensibilización sobre autismo.',
     certificacion: 'IBCCES Certified Autism Center (CAC)',
+    // Sin coordenada de edificio confirmada por una fuente todavía.
     direccion: null, ciudad: 'Chuncheon', provincia_region: 'Gangwon', pais: 'Corea del Sur', codigo_iso: 'KR',
     latitud: null, longitud: null,
     web_oficial: 'https://www.legoland.kr',
@@ -221,6 +229,7 @@ const lugares = [
     motivo_inclusion: 'Certificación IBCCES CAC anunciada en el blog oficial de IBCCES.',
     adaptaciones_sensoriales: 'Guías sensoriales por atracción, personal formado en sensibilización sobre autismo.',
     certificacion: 'IBCCES Certified Autism Center (CAC)',
+    // Sin coordenada de edificio confirmada por una fuente todavía.
     direccion: null, ciudad: 'Nagoya', provincia_region: 'Aichi', pais: 'Japón', codigo_iso: 'JP',
     latitud: null, longitud: null,
     web_oficial: 'https://www.legoland.jp',
@@ -236,7 +245,7 @@ const lugares = [
     adaptaciones_sensoriales: 'Guía sensorial del parque, personal formado en sensibilización sobre autismo, recursos de planificación previa a la visita.',
     certificacion: 'IBCCES Certified Autism Center (CAC)',
     direccion: '7007 Sea World Dr', ciudad: 'Orlando', provincia_region: 'FL', pais: 'Estados Unidos', codigo_iso: 'US',
-    latitud: null, longitud: null,
+    latitud: 28.411456, longitud: -81.461705,
     web_oficial: 'https://seaworld.com/orlando/',
     url_oficial: 'https://seaworld.com/orlando/blog/certified-autism-center-awareness-2020/',
     fuente: 'https://ibcces.org/blog/2019/04/02/seaworld-orlando-is-now-a-certified-autism-center/',
@@ -250,7 +259,7 @@ const lugares = [
     adaptaciones_sensoriales: 'Personal formado en sensibilización sobre autismo, recursos de planificación previa a la visita.',
     certificacion: 'IBCCES Certified Autism Center (CAC)',
     direccion: '5800 Water Play Way', ciudad: 'Orlando', provincia_region: 'FL', pais: 'Estados Unidos', codigo_iso: 'US',
-    latitud: null, longitud: null,
+    latitud: 28.41562, longitud: -81.45697,
     web_oficial: 'https://seaworld.com/orlando/aquatica/',
     url_oficial: 'https://seaworld.com/orlando/blog/florida-autism-friendly-water-park/',
     fuente: 'https://seaworld.com/orlando/blog/florida-autism-friendly-water-park/',
@@ -264,7 +273,7 @@ const lugares = [
     adaptaciones_sensoriales: 'Guías sensoriales, espacios de calma designados, personal formado en sensibilización sobre autismo.',
     certificacion: 'IBCCES Certified Autism Center (CAC)',
     direccion: '6000 Discovery Cove Way', ciudad: 'Orlando', provincia_region: 'FL', pais: 'Estados Unidos', codigo_iso: 'US',
-    latitud: null, longitud: null,
+    latitud: 28.4032, longitud: -81.4570,
     web_oficial: 'https://discoverycove.com/orlando/',
     url_oficial: 'https://discoverycove.com/orlando/help/guests-with-disabilities/certified-autism-center/',
     fuente: 'https://ibcces.org/blog/2023/03/08/discoverycove/',
@@ -277,6 +286,8 @@ const lugares = [
     motivo_inclusion: 'Certificación IBCCES CAC (renovación) documentada por Autism Travel, el portal de directorios de IBCCES.',
     adaptaciones_sensoriales: 'Personal formado en sensibilización sobre autismo.',
     certificacion: 'IBCCES Certified Autism Center (CAC)',
+    // Dirección real, pero sin coordenada de edificio confirmada por una
+    // fuente — solo estimaciones de terceros, descartadas.
     direccion: '13 Canal St', ciudad: 'Cumberland', provincia_region: 'MD', pais: 'Estados Unidos', codigo_iso: 'US',
     latitud: null, longitud: null,
     web_oficial: 'https://wmsr.com',
@@ -292,7 +303,7 @@ const lugares = [
     adaptaciones_sensoriales: 'Personal formado en sensibilización sobre autismo, recursos de planificación previa a la visita.',
     certificacion: 'IBCCES Certified Autism Center (CAC)',
     direccion: '288 Bremner Blvd', ciudad: 'Toronto', provincia_region: 'ON', pais: 'Canadá', codigo_iso: 'CA',
-    latitud: null, longitud: null,
+    latitud: 43.642403, longitud: -79.385971,
     web_oficial: 'https://www.ripleyaquariums.com/canada/',
     url_oficial: 'https://ibcces.org/blog/2024/04/16/ripleys-aquarium-of-canada-renewal/',
     fuente: 'https://ibcces.org/blog/2024/04/16/ripleys-aquarium-of-canada-renewal/',
@@ -306,7 +317,7 @@ const lugares = [
     adaptaciones_sensoriales: 'Mochilas sensoriales en préstamo, personal formado, según certificación KultureCity.',
     certificacion: 'KultureCity Sensory Inclusive',
     direccion: '60 Olympic Blvd', ciudad: 'Melbourne', provincia_region: 'Victoria', pais: 'Australia', codigo_iso: 'AU',
-    latitud: null, longitud: null,
+    latitud: -37.824986, longitud: 144.983261,
     web_oficial: 'https://aami-park.com.au',
     url_oficial: 'https://venue.kulturecity.org/venues/aami-park',
     fuente: 'https://venue.kulturecity.org/venues/aami-park',
@@ -320,7 +331,7 @@ const lugares = [
     adaptaciones_sensoriales: 'Sala sensorial dedicada.',
     certificacion: null,
     direccion: null, ciudad: 'Dublín', provincia_region: null, pais: 'Irlanda', codigo_iso: 'IE',
-    latitud: null, longitud: null,
+    latitud: 53.426448, longitud: -6.249910,
     web_oficial: 'https://www.dublinairport.com',
     url_oficial: 'https://www.dublinairport.com/accessibility/sensory-room',
     fuente: 'https://www.dublinairport.com/accessibility/sensory-room',
@@ -334,7 +345,7 @@ const lugares = [
     adaptaciones_sensoriales: 'Sala Sensorial.',
     certificacion: null,
     direccion: null, ciudad: 'Elche', provincia_region: 'Alicante', pais: 'España', codigo_iso: 'ES',
-    latitud: null, longitud: null,
+    latitud: 38.2822, longitud: -0.55816,
     web_oficial: 'https://www.aena.es',
     url_oficial: 'https://www.aena.es/es/prensa/el-aeropuerto-de-alicante-elche-miguel-hernandez-abre-la-sala-sensorial.html',
     fuente: 'https://www.aena.es/es/prensa/el-aeropuerto-de-alicante-elche-miguel-hernandez-abre-la-sala-sensorial.html',
@@ -348,7 +359,7 @@ const lugares = [
     adaptaciones_sensoriales: 'Sala Sensorial.',
     certificacion: null,
     direccion: null, ciudad: 'El Prat de Llobregat', provincia_region: 'Barcelona', pais: 'España', codigo_iso: 'ES',
-    latitud: null, longitud: null,
+    latitud: 41.2971, longitud: 2.0785,
     web_oficial: 'https://www.aena.es',
     url_oficial: null,
     fuente: 'https://tododisca.es/discapacidad/sala-sensorial-personas-autismo-solo-dos-aeropuertos-espana/',
@@ -362,7 +373,7 @@ const lugares = [
     adaptaciones_sensoriales: 'Sala de acomodación sensorial, auriculares antirruido en préstamo, cordón identificativo Sunflower.',
     certificacion: null,
     direccion: 'R. Marechal Hermes, 999', ciudad: 'Curitiba', provincia_region: 'Paraná', pais: 'Brasil', codigo_iso: 'BR',
-    latitud: null, longitud: null,
+    latitud: -25.410228, longitud: -49.266134,
     web_oficial: 'https://www.museuoscarniemeyer.org.br',
     url_oficial: 'https://www.museuoscarniemeyer.org.br/faq/acessibilidade',
     fuente: 'https://www.museuoscarniemeyer.org.br/faq/acessibilidade',
@@ -376,7 +387,7 @@ const lugares = [
     adaptaciones_sensoriales: 'Sala sensorial en área de embarque.',
     certificacion: null,
     direccion: null, ciudad: 'Rio de Janeiro', provincia_region: 'Rio de Janeiro', pais: 'Brasil', codigo_iso: 'BR',
-    latitud: null, longitud: null,
+    latitud: -22.81, longitud: -43.2506,
     web_oficial: 'https://www.riogaleao.com',
     url_oficial: null,
     fuente: 'https://aeroin.net/aeroporto-do-galeao-inaugura-sala-sensorial-para-passageiros-com-transtorno-do-espectro-autista/',
@@ -390,11 +401,201 @@ const lugares = [
     adaptaciones_sensoriales: 'Sala sensorial.',
     certificacion: null,
     direccion: null, ciudad: 'Panamá', provincia_region: null, pais: 'Panamá', codigo_iso: 'PA',
-    latitud: null, longitud: null,
+    latitud: 9.07136, longitud: -79.3835,
     web_oficial: 'https://www.tocumenpanama.aero',
     url_oficial: null,
     fuente: 'https://integrapanama.org/2025/07/28/sala-sensorial-aeropuerto-tocumen-autismo-panama/',
     nivel_verificacion: 'Verificado - Prensa o medio reconocido',
+  },
+
+  // ── Ubicaciones adicionales de EE. UU. (ronda de investigación más reciente).
+  {
+    id: 'INTL-026', nombre: 'Orlando International Airport (MCO)',
+    categoria: 'Transporte', tipo_legacy: 'aeropuerto', tipo: 'Aeropuerto',
+    descripcion: 'Aeropuerto certificado Certified Autism Center™ por IBCCES desde abril de 2024, con la sala sensorial "Annie\'s Space" en la Terminal A.',
+    motivo_inclusion: 'Certificación IBCCES CAC y sala sensorial "Annie\'s Space" documentadas en comunicados y páginas oficiales del aeropuerto.',
+    adaptaciones_sensoriales: 'Sala sensorial "Annie\'s Space" (Terminal A, Nivel 3, junto al food court, 7:00-21:00h), perros de terapia, personal formado.',
+    certificacion: 'IBCCES Certified Autism Center (CAC)',
+    direccion: null, ciudad: 'Orlando', provincia_region: 'FL', pais: 'Estados Unidos', codigo_iso: 'US',
+    latitud: 28.424618, longitud: -81.310753, // punto de referencia oficial FAA (ARP)
+    web_oficial: 'https://flymco.com',
+    url_oficial: 'https://flymco.com/accessibility/annies-space-sensory-room/',
+    fuente: 'https://flymco.com/media/press-releases/item/a-cozy-comfort-launches-at-mco-annies-space-sensory-room-welcomes-travelers/',
+    nivel_verificacion: 'Verificado - Fuente oficial',
+  },
+  {
+    id: 'INTL-027', nombre: 'Newark Liberty International Airport – Terminal A',
+    categoria: 'Transporte', tipo_legacy: 'aeropuerto', tipo: 'Aeropuerto',
+    descripcion: 'La Terminal A cuenta con dos salas sensoriales (antes y después del control de seguridad), diseñadas con el Anderson Center for Autism e integradas con el programa TSA Cares.',
+    motivo_inclusion: 'Dos salas sensoriales anunciadas en comunicado de prensa oficial de la Port Authority of NY & NJ.',
+    adaptaciones_sensoriales: 'Sala sensorial previa a seguridad (tema fluvial de Nueva Jersey) y sala sensorial posterior a seguridad (simulador de cabina de avión), programa TSA Cares.',
+    certificacion: 'Certificada por Anderson Center for Autism',
+    direccion: null, ciudad: 'Newark', provincia_region: 'NJ', pais: 'Estados Unidos', codigo_iso: 'US',
+    latitud: 40.689491, longitud: -74.174538, // coordenada del aeropuerto (no específica de Terminal A)
+    web_oficial: 'https://www.newarkairport.com',
+    url_oficial: 'https://www.newarkairport.com/explore-ewr/terminals/terminal-a/terminal-a-accessibility-features',
+    fuente: 'https://www.panynj.gov/port-authority/en/press-room/press-release-archives/2025-press-releases/newark-liberty-international-airport-s-terminal-a-debuts-second-.html',
+    nivel_verificacion: 'Verificado - Fuente oficial',
+  },
+  {
+    id: 'INTL-028', nombre: 'San José Mineta International Airport (SJC)',
+    categoria: 'Transporte', tipo_legacy: 'aeropuerto', tipo: 'Aeropuerto',
+    // "The Nest" está anunciada oficialmente pero, a fecha de esta
+    // siembra, todavía en construcción — se refleja así, sin dar a
+    // entender que ya está abierta.
+    descripcion: 'Aeropuerto que, en colaboración con Nutanix y el Children\'s Discovery Museum of San Jose, está construyendo la sala sensorial "The Nest by Nutanix" (apertura prevista invierno de 2026).',
+    motivo_inclusion: 'Anuncio oficial conjunto del aeropuerto, Nutanix y Children\'s Discovery Museum of San Jose.',
+    adaptaciones_sensoriales: 'Sala sensorial "The Nest by Nutanix", en construcción — apertura prevista invierno de 2026.',
+    certificacion: null,
+    direccion: '1701 Airport Blvd', ciudad: 'San José', provincia_region: 'CA', pais: 'Estados Unidos', codigo_iso: 'US',
+    latitud: 37.363949, longitud: -121.928940,
+    web_oficial: 'https://www.flysanjose.com',
+    url_oficial: 'https://www.flysanjose.com/news-release/sensory-room',
+    fuente: 'https://www.flysanjose.com/news-release/sensory-room',
+    nivel_verificacion: 'Verificado - Fuente oficial',
+  },
+  {
+    id: 'INTL-029', nombre: 'American Museum of Natural History',
+    categoria: 'Museos y cultura', tipo_legacy: 'cultura', tipo: 'Museo',
+    descripcion: 'Museo con sala sensorial permanente (Planta 1) y el programa "Discovery Squad" para familias autistas, desarrollado con el Seaver Autism Center (Icahn School of Medicine at Mount Sinai).',
+    motivo_inclusion: 'Sala sensorial y programas documentados en la página oficial de accesibilidad del museo.',
+    adaptaciones_sensoriales: 'Sala sensorial permanente (hasta 15 personas, sin reserva), mochilas sensoriales en préstamo, guía sensorial por planta, programa Discovery Squad.',
+    certificacion: null,
+    direccion: '200 Central Park West', ciudad: 'Nueva York', provincia_region: 'NY', pais: 'Estados Unidos', codigo_iso: 'US',
+    latitud: 40.781324, longitud: -73.973988,
+    web_oficial: 'https://www.amnh.org',
+    url_oficial: 'https://www.amnh.org/plan-your-visit/accessibility/sensory-resources-for-visitors',
+    fuente: 'https://www.amnh.org/plan-your-visit/accessibility/sensory-resources-for-visitors',
+    nivel_verificacion: 'Verificado - Fuente oficial',
+  },
+  {
+    id: 'INTL-030', nombre: 'Houston Museum of Natural Science',
+    categoria: 'Museos y cultura', tipo_legacy: 'cultura', tipo: 'Museo',
+    descripcion: 'Museo certificado Certified Autism Center™ por IBCCES desde febrero de 2020, con sala sensorial permanente.',
+    motivo_inclusion: 'Certificación IBCCES CAC anunciada oficialmente por el museo.',
+    adaptaciones_sensoriales: 'Sala sensorial permanente (Duncan Wing, planta baja), mochilas sensoriales en préstamo, eventos "Sensory Friendly" tres veces al año, app Access HMNS.',
+    certificacion: 'IBCCES Certified Autism Center (CAC)',
+    direccion: '5555 Hermann Park Dr', ciudad: 'Houston', provincia_region: 'TX', pais: 'Estados Unidos', codigo_iso: 'US',
+    latitud: 29.722013, longitud: -95.389633,
+    web_oficial: 'https://www.hmns.org',
+    url_oficial: 'https://www.hmns.org/visit/accessibility/',
+    fuente: 'https://blog.hmns.org/2020/02/houston-museum-of-natural-science-is-now-a-certified-autism-center/',
+    nivel_verificacion: 'Verificado - Fuente oficial',
+  },
+  {
+    id: 'INTL-031', nombre: 'Museum of the American Revolution',
+    categoria: 'Museos y cultura', tipo_legacy: 'cultura', tipo: 'Museo',
+    descripcion: 'Museo certificado Certified Autism Center™ por IBCCES desde 2019.',
+    motivo_inclusion: 'Certificación IBCCES CAC anunciada oficialmente por el museo.',
+    adaptaciones_sensoriales: 'Guía sensorial, auriculares antirruido en préstamo, sala tranquila con proyección de las películas del museo, "Relaxed Experience Mornings" trimestrales.',
+    certificacion: 'IBCCES Certified Autism Center (CAC)',
+    direccion: '101 S 3rd St', ciudad: 'Filadelfia', provincia_region: 'PA', pais: 'Estados Unidos', codigo_iso: 'US',
+    latitud: 39.948371, longitud: -75.145845,
+    web_oficial: 'https://www.amrevmuseum.org',
+    url_oficial: 'https://www.amrevmuseum.org/press-releases/museum-of-the-american-revolution-earns-the-certified-autism-center-designation',
+    fuente: 'https://www.amrevmuseum.org/press-releases/museum-of-the-american-revolution-earns-the-certified-autism-center-designation',
+    nivel_verificacion: 'Verificado - Fuente oficial',
+  },
+  {
+    id: 'INTL-032', nombre: 'Kennedy Space Center Visitor Complex',
+    categoria: 'Museos y cultura', tipo_legacy: 'cultura', tipo: 'Centro espacial / museo',
+    descripcion: 'Centro de visitantes certificado Certified Autism Center™ por IBCCES.',
+    motivo_inclusion: 'Certificación IBCCES CAC anunciada en la sala de prensa oficial del centro.',
+    adaptaciones_sensoriales: 'Guía sensorial actualizada, zonas designadas de baja estimulación sensorial, auriculares antirruido en préstamo, personal formado.',
+    certificacion: 'IBCCES Certified Autism Center (CAC)',
+    direccion: null, ciudad: 'Merritt Island', provincia_region: 'FL', pais: 'Estados Unidos', codigo_iso: 'US',
+    latitud: 28.515556, longitud: -80.681667, // coordenada publicada en la web oficial del centro
+    web_oficial: 'https://www.kennedyspacecenter.com',
+    url_oficial: 'https://www.kennedyspacecenter.com/info/plan-your-visit/accessibility-information/',
+    fuente: 'https://media.kennedyspacecenter.com/kscvc-is-now-an-certified-autism-center/',
+    nivel_verificacion: 'Verificado - Fuente oficial',
+  },
+  {
+    id: 'INTL-033', nombre: 'The Florida Aquarium',
+    categoria: 'Parques y naturaleza', tipo_legacy: 'zoologico_acuario', tipo: 'Acuario',
+    // No se ha podido confirmar una certificación IBCCES CAC para este
+    // acuario (a diferencia de lo indicado en la tabla de origen) — se
+    // documenta únicamente lo verificado en su propia web oficial.
+    descripcion: 'Acuario con el programa "A Day of Discovery", una experiencia adaptada para visitantes con diferencias sensoriales, desarrollado con el Center for Autism and Related Disabilities (C.A.R.D.) de la USF.',
+    motivo_inclusion: 'Programa de accesibilidad sensorial documentado en la página oficial de accesibilidad del acuario.',
+    adaptaciones_sensoriales: 'Programa "A Day of Discovery" (visita adaptada) en colaboración con USF C.A.R.D.',
+    certificacion: null,
+    direccion: '701 Channelside Dr', ciudad: 'Tampa', provincia_region: 'FL', pais: 'Estados Unidos', codigo_iso: 'US',
+    latitud: 27.9398, longitud: -82.4403,
+    web_oficial: 'https://www.flaquarium.org',
+    url_oficial: 'https://www.flaquarium.org/visit/visitor-information/accessibility/',
+    fuente: 'https://www.flaquarium.org/visit/visitor-information/accessibility/',
+    nivel_verificacion: 'Verificado - Fuente oficial',
+  },
+  {
+    id: 'INTL-034', nombre: 'Georgia Aquarium',
+    categoria: 'Parques y naturaleza', tipo_legacy: 'zoologico_acuario', tipo: 'Acuario',
+    descripcion: 'Primer acuario del mundo certificado Certified Autism Center™ por IBCCES, desde octubre de 2018.',
+    motivo_inclusion: 'Certificación IBCCES CAC anunciada oficialmente por el acuario.',
+    adaptaciones_sensoriales: 'Horas "Sensory Friendly" mensuales (último domingo, 8:00-10:00h, con pantallas apagadas e iluminación reducida), personal formado.',
+    certificacion: 'IBCCES Certified Autism Center (CAC)',
+    direccion: '225 Baker St NW', ciudad: 'Atlanta', provincia_region: 'GA', pais: 'Estados Unidos', codigo_iso: 'US',
+    latitud: 33.763382, longitud: -84.395110,
+    web_oficial: 'https://www.georgiaaquarium.org',
+    url_oficial: 'https://www.georgiaaquarium.org/resource-center/press-releases/georgia-aquarium-becomes-first-aquarium-designated-as-a-certified-autism-center/',
+    fuente: 'https://www.georgiaaquarium.org/resource-center/press-releases/georgia-aquarium-becomes-first-aquarium-designated-as-a-certified-autism-center/',
+    nivel_verificacion: 'Verificado - Fuente oficial',
+  },
+  {
+    id: 'INTL-035', nombre: "Ripley's Aquarium of the Smokies",
+    categoria: 'Parques y naturaleza', tipo_legacy: 'zoologico_acuario', tipo: 'Acuario',
+    descripcion: 'Acuario certificado Certified Autism Center™ por IBCCES desde 2019, primer destino de Tennessee con esta certificación.',
+    motivo_inclusion: 'Certificación IBCCES CAC documentada por IBCCES/Autism Travel.',
+    adaptaciones_sensoriales: '"Sensory Friendly Night" periódicas, "Autism Family Day" anual, personal formado en sensibilización sobre autismo.',
+    certificacion: 'IBCCES Certified Autism Center (CAC)',
+    direccion: '88 River Rd', ciudad: 'Gatlinburg', provincia_region: 'TN', pais: 'Estados Unidos', codigo_iso: 'US',
+    latitud: 35.7143, longitud: -83.513443,
+    web_oficial: 'https://www.ripleyaquariums.com/gatlinburg/',
+    url_oficial: 'https://autismtravel.com/2019/06/18/ripleys-aquarium-of-the-smokies/',
+    fuente: 'https://ibcces.org/blog/2019/06/18/ripleys-aquarium-of-the-smokies/',
+    nivel_verificacion: 'Verificado - Documentación pública',
+  },
+  {
+    id: 'INTL-036', nombre: "Children's Museum of Pittsburgh",
+    categoria: 'Museos y cultura', tipo_legacy: 'cultura', tipo: 'Museo infantil',
+    descripcion: 'Museo infantil con tardes "Sensory Friendly" mensuales y recursos sensoriales permanentes.',
+    motivo_inclusion: 'Programa "Sensory Friendly Afternoons" y recursos sensoriales documentados en la página oficial de accesibilidad del museo.',
+    adaptaciones_sensoriales: '"Sensory Friendly Afternoons" (segundo martes de cada mes, 13:00-17:00h, iluminación y sonido reducidos), kits sensoriales, varias zonas tranquilas designadas.',
+    certificacion: null,
+    direccion: "10 Children's Way", ciudad: 'Pittsburgh', provincia_region: 'PA', pais: 'Estados Unidos', codigo_iso: 'US',
+    latitud: 40.451562, longitud: -80.006819,
+    web_oficial: 'https://pittsburghkids.org',
+    url_oficial: 'https://pittsburghkids.org/visit-2/plan-your-visit/accessibility/',
+    fuente: 'https://pittsburghkids.org/visit-2/plan-your-visit/accessibility/',
+    nivel_verificacion: 'Verificado - Fuente oficial',
+  },
+  {
+    id: 'INTL-037', nombre: 'Denver Museum of Nature & Science',
+    categoria: 'Museos y cultura', tipo_legacy: 'cultura', tipo: 'Museo',
+    descripcion: 'Museo con recursos sensoriales permanentes y noches de baja estimulación sensorial, en colaboración con el programa "Opening Doors" de la Autism Society of Colorado.',
+    motivo_inclusion: 'Recursos y programa sensorial documentados en la página oficial de accesibilidad del museo.',
+    adaptaciones_sensoriales: 'Mochila SPARK (Sensory Processing and Autism Resource Kit) en préstamo, sesiones de cine "Sensory Friendly", noches de baja estimulación cuatro veces al año.',
+    certificacion: null,
+    direccion: '2001 Colorado Blvd', ciudad: 'Denver', provincia_region: 'CO', pais: 'Estados Unidos', codigo_iso: 'US',
+    latitud: 39.74754, longitud: -104.94286,
+    web_oficial: 'https://www.dmns.org',
+    url_oficial: 'https://www.dmns.org/visit/accessibility/',
+    fuente: 'https://www.dmns.org/visit/accessibility/',
+    nivel_verificacion: 'Verificado - Fuente oficial',
+  },
+  {
+    id: 'INTL-038', nombre: 'Cincinnati/Northern Kentucky International Airport (CVG)',
+    categoria: 'Transporte', tipo_legacy: 'aeropuerto', tipo: 'Aeropuerto',
+    descripcion: 'Aeropuerto con sala sensorial infantil en el Concourse A.',
+    motivo_inclusion: 'Sala sensorial documentada en la página oficial de accesibilidad del aeropuerto.',
+    adaptaciones_sensoriales: 'Sala sensorial infantil (Concourse A, junto a Over the Rhine Market), área de juegos infantil (Concourse B).',
+    certificacion: null,
+    direccion: '2939 Terminal Dr', ciudad: 'Hebron', provincia_region: 'KY', pais: 'Estados Unidos', codigo_iso: 'US',
+    latitud: 39.053276, longitud: -84.663017,
+    web_oficial: 'https://www.cvgairport.com',
+    url_oficial: 'https://www.cvgairport.com/accessibility/',
+    fuente: 'https://www.cvgairport.com/accessibility/',
+    nivel_verificacion: 'Verificado - Fuente oficial',
   },
 ]
 

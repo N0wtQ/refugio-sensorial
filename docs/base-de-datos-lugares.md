@@ -44,8 +44,16 @@ que merece su propia conversación — no se ha hecho aquí porque contradice
 sobre los 250 lugares actuales produce un `lugares.js` idéntico salvo dos
 líneas cosméticas (el comentario de cabecera, y `-5` en vez de `-5.0` —
 el mismo número exacto en punto flotante). Comprobado además con
-Playwright: el mapa sigue mostrando "250 espacios visibles", los filtros
-por tipo funcionan igual, cero errores en consola.
+Playwright en cada ronda de cambios: tras añadir las ubicaciones
+internacionales, el mapa muestra "284 espacios visibles" (250 de España +
+34 internacionales con coordenada verificada), los filtros por tipo
+funcionan igual, cero errores en consola.
+
+**Vista por defecto del mapa:** ya no se centra automáticamente en la
+ubicación del visitante (se ha retirado esa función de geolocalización).
+Al haber ahora lugares en varios continentes, el mapa se abre con una
+vista fija del mundo completo, para que todos los espacios sean visibles
+sin tener que desplazar el mapa manualmente.
 
 ## Arquitectura
 
@@ -164,53 +172,65 @@ un lugar" es una decisión editorial, no algo que deba pasar solo con
 cada `git push`). El build de producción sigue leyendo `lugares.js` tal
 cual esté commiteado, igual que siempre.
 
-## Las 25 ubicaciones internacionales verificadas
+## Las 38 ubicaciones internacionales verificadas
 
-`seed-internacional.mjs` añade a la base de datos (no al mapa todavía,
-por falta de coordenadas exactas del edificio) 25 ubicaciones físicas
-verificadas fuera de España, cada una con su fuente citada:
+`seed-internacional.mjs` añade a la base de datos 38 ubicaciones físicas
+verificadas fuera de España, cada una con su fuente citada. **34 de las
+38 tienen coordenada real del edificio** (confirmada por una fuente,
+nunca aproximada con el centro de la ciudad) y por tanto **sí aparecen ya
+en el mapa**, junto a los 250 lugares de España:
 
-- **Parques temáticos y de ocio (12):** Peppa Pig Theme Park Dallas-Fort
-  Worth, LEGOLAND California/Florida/New York/Korea/Japan, SeaWorld
+- **Parques temáticos y de ocio (13):** Peppa Pig Theme Park Dallas-Fort
+  Worth*, LEGOLAND California/Florida/New York/Korea*/Japan*, SeaWorld
   Orlando, Aquatica Orlando, Discovery Cove, Emirates Park Zoo and Resort
   (Abu Dabi), Dubai Aquarium & Underwater Zoo, Ripley's Aquarium of
   Canada — certificados IBCCES Certified Autism Center (CAC).
 - **Estadios (4):** Lucas Oil Stadium, Gillette Stadium, Bank of America
   Stadium, AAMI Park (Melbourne) — certificados KultureCity Sensory
   Inclusive.
-- **Aeropuertos (7):** Indianapolis, Salt Lake City, Dublín,
-  Alicante-Elche Miguel Hernández, Josep Tarradellas Barcelona-El Prat,
-  Tom Jobim/Galeão (Río de Janeiro), Tocumen (Panamá) — con salas
-  sensoriales documentadas oficialmente o por prensa especializada.
-- **Ferrocarril turístico (1):** Western Maryland Scenic Railroad —
+- **Aeropuertos (11):** Indianapolis, Salt Lake City, Orlando (MCO),
+  Newark Liberty (Terminal A), San José Mineta (SJC), Cincinnati/Northern
+  Kentucky (CVG), Dublín, Alicante-Elche Miguel Hernández, Josep
+  Tarradellas Barcelona-El Prat, Tom Jobim/Galeão (Río de Janeiro),
+  Tocumen (Panamá) — con salas sensoriales documentadas oficialmente o
+  por prensa especializada.
+- **Museos (7):** American Museum of Natural History, Houston Museum of
+  Natural Science, Museum of the American Revolution, Kennedy Space
+  Center Visitor Complex, Children's Museum of Pittsburgh, Denver Museum
+  of Nature & Science, Museu Oscar Niemeyer (Curitiba, Brasil).
+- **Acuarios (3):** The Florida Aquarium, Georgia Aquarium, Ripley's
+  Aquarium of the Smokies.
+- **Ferrocarril turístico (1):** Western Maryland Scenic Railroad* —
   IBCCES CAC.
-- **Museo (1):** Museu Oscar Niemeyer (Curitiba, Brasil) — sala de
-  acomodación sensorial documentada en su propia web oficial.
+
+`*` = todavía sin coordenada de edificio verificada (Peppa Pig, LEGOLAND
+Korea, LEGOLAND Japan, Western Maryland Scenic Railroad) — quedan en la
+base de datos y en el CSV/JSON, pero no se publican en el mapa hasta
+completarse con una fuente real.
 
 Cada entrada guarda, además de los campos base, `motivo_inclusion` (la
 evidencia concreta), `adaptaciones_sensoriales`, `certificacion` (si
 aplica) y `url_oficial` (la página exacta que documenta la certificación
-o la sala sensorial, no solo la web general del lugar).
+o la sala sensorial, no solo la web general del lugar). Cuando la
+evidencia disponible no confirmaba una certificación concreta (p. ej. The
+Florida Aquarium, o San José Mineta mientras su sala sensorial está en
+construcción), la ficha lo refleja con precisión en vez de asumirlo.
 
 **Limitación técnica que sigue vigente:** el acceso directo a directorios
 oficiales como `kulturecity.org` o `ibcces.org` (como listados
 estructurados navegables) sigue bloqueado desde este entorno de
 desarrollo (HTTP 403, verificado). Solo la búsqueda web funciona, y da
 fragmentos de texto y enlaces a artículos/comunicados individuales, no
-listados estructurados masivos con dirección y coordenadas exactas del
-edificio. Por eso el catálogo mundial tiene 25 ubicaciones verificadas
-fuera de España, no los 1.000+ que pedía el objetivo inicial — la calidad
-y la regla de "nunca inventar coordenadas ni datos" pesa más que la
-cantidad, tal como se pidió explícitamente. Ninguna de las 25 tiene
-coordenadas de edificio confirmadas por una fuente todavía, así que
-ninguna aparece hoy en el mapa — sí en `data/lugares.json` y
-`data/lugares.csv`, listas para completarse.
+listados estructurados masivos. Por eso el catálogo mundial tiene 38
+ubicaciones verificadas fuera de España, no los 1.000+ que pedía el
+objetivo inicial — la calidad y la regla de "nunca inventar coordenadas
+ni datos" pesa más que la cantidad, tal como se pidió explícitamente.
 
 ## Catálogo mundial en CSV (`data/lugares.csv`)
 
 `npm run db:csv` exporta **toda** la base de datos (los 250 lugares de
-España con coordenadas y las 25 ubicaciones internacionales sin
-coordenadas todavía) a un único CSV en UTF-8, con las columnas exactas:
+España y las 38 ubicaciones internacionales, con o sin coordenadas) a un
+único CSV en UTF-8, con las columnas exactas:
 
 ```
 id, nombre, tipo, dirección, ciudad, provincia, país, código_iso,
