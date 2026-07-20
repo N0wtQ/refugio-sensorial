@@ -46,10 +46,36 @@ function getColor(tipo) {
   return TYPE_CONFIG[tipo]?.color ?? '#9CA3AF'
 }
 
-function MapController({ center, zoom }) {
+// Re-centra el mapa cuando cambian lat/lng/zoom (p. ej. al resolver la
+// geolocalización del usuario, después de que el mapa ya se haya montado
+// con la vista por defecto).
+function MapController({ lat, lng, zoom }) {
   const map = useMap()
-  useEffect(() => { map.setView(center, zoom) }, [])
+  useEffect(() => { map.setView([lat, lng], zoom) }, [lat, lng, zoom, map])
   return null
+}
+
+const DEFAULT_VIEW = { lat: 40.416, lng: -3.703, zoom: 6 } // España — vista por defecto
+
+// Pide la ubicación del navegador una vez; si el usuario la concede, el
+// mapa se centra y hace zoom en su zona. Si la deniega, no está disponible
+// o tarda demasiado, se queda con la vista por defecto sin mostrar error
+// — es un comportamiento opcional y silencioso, no un fallo de la app.
+function useUserLocationView() {
+  const [view, setView] = useState(DEFAULT_VIEW)
+
+  useEffect(() => {
+    if (!('geolocation' in navigator)) return
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setView({ lat: pos.coords.latitude, lng: pos.coords.longitude, zoom: 12 })
+      },
+      () => {}, // denegado / no disponible / timeout — se mantiene la vista por defecto
+      { timeout: 8000, maximumAge: 5 * 60 * 1000 }
+    )
+  }, [])
+
+  return view
 }
 
 // Stats by type
@@ -62,6 +88,7 @@ export default function SilentMap() {
   const [searchParams, setSearchParams] = useSearchParams()
   const filter = searchParams.get('tipo') ?? 'todos'
   const [search, setSearch] = useState(() => searchParams.get('q') ?? '')
+  const userView = useUserLocationView()
   const { espacios: espaciosComunidad } = useEspaciosComunidad()
   const { misEspacios, añadir: recordarLocal, quitar: olvidarLocal, tokenDe } = useMisEspaciosLocal()
 
@@ -213,8 +240,8 @@ export default function SilentMap() {
           </div>
         )}
         <MapContainer
-          center={[40.416, -3.703]}
-          zoom={6}
+          center={[DEFAULT_VIEW.lat, DEFAULT_VIEW.lng]}
+          zoom={DEFAULT_VIEW.zoom}
           style={{ height: '100%', width: '100%' }}
           scrollWheelZoom={false}
           aria-label="Mapa interactivo de espacios silenciosos en el mundo"
@@ -328,6 +355,7 @@ export default function SilentMap() {
           })}
 
           <LocationPickerLayer position={posicion} onPick={handleMapPick} />
+          <MapController lat={userView.lat} lng={userView.lng} zoom={userView.zoom} />
         </MapContainer>
 
         {/* Results overlay */}
