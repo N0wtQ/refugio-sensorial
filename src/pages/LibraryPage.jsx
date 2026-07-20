@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import ResourceLibrary from '../components/ResourceLibrary'
 import { usePageMeta } from '../hooks/usePageMeta'
 import Breadcrumb from '../components/ui/Breadcrumb'
@@ -28,6 +29,26 @@ export default function LibraryPage() {
           Cada herramienta ha sido seleccionada y valorada por la comunidad.
         </p>
       </header>
+
+      {/* Subcategoría: directorio de tiendas de fidgets */}
+      <Link
+        to="/herramientas/tiendas-fidgets"
+        className="group flex items-center gap-4 p-4 mb-8 rounded-card border border-coral/20 bg-coral/5
+                   hover:border-coral/40 hover:bg-coral/10 transition-all duration-200"
+      >
+        <div className="w-11 h-11 rounded-xl bg-coral/15 flex items-center justify-center shrink-0">
+          <i className="fa-solid fa-cart-shopping text-coral text-base" aria-hidden="true" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-semibold text-text group-hover:text-coral transition-colors duration-200">
+            Dónde comprar fidgets sensoriales
+          </p>
+          <p className="text-xs text-muted mt-0.5">
+            Directorio verificado de fabricantes, tiendas especializadas y marketplaces en todo el mundo.
+          </p>
+        </div>
+        <i className="fa-solid fa-chevron-right text-faint group-hover:text-coral group-hover:translate-x-0.5 transition-all duration-200 shrink-0" aria-hidden="true" />
+      </Link>
 
       <ResourceLibrary />
     </div>

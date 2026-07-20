@@ -95,6 +95,14 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Herramientas: subcategoría directorio de tiendas -->
+  <url>
+    <loc>https://www.refugio-sensorial.com/herramientas/tiendas-fidgets/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Herramientas por perfil -->
   <url>
     <loc>https://www.refugio-sensorial.com/herramientas/autismo/</loc>
