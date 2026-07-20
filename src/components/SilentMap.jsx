@@ -88,7 +88,12 @@ export default function SilentMap() {
     setSearchParams(next, { replace: true })
   }, [searchParams, setSearchParams])
 
-  const iniciarCreacion = () => { setModo({ tipo: 'crear' }); setPosicion(null) }
+  // Clic en el mapa: si no hay nada abierto, empieza a crear un espacio ahí
+  // mismo; si ya se está creando/editando uno, simplemente lo reposiciona.
+  const handleMapPick = (latlng) => {
+    if (!modo) setModo({ tipo: 'crear' })
+    setPosicion(latlng)
+  }
   const iniciarEdicion = (espacio, token) => {
     setModo({ tipo: 'editar', espacio, token })
     setPosicion([espacio.latitud, espacio.longitud])
@@ -108,22 +113,13 @@ export default function SilentMap() {
   return (
     <div className="flex flex-col gap-4">
       {/* Añadir espacio — sin cuenta, publicación instantánea */}
-      <div className="flex items-center justify-between gap-3 flex-wrap p-3 rounded-xl border border-acc/15 bg-acc/5">
+      <div className="flex items-center gap-3 flex-wrap p-3 rounded-xl border border-acc/15 bg-acc/5">
         <p className="text-xs text-muted leading-relaxed">
           <i className="fa-solid fa-circle-info text-acc mr-1.5" aria-hidden="true" />
           <strong className="text-text font-semibold">¿Conoces un espacio que falta?</strong>{' '}
-          Añádelo tú mismo — sin registrarte, y podrás editarlo o borrarlo después desde este mismo dispositivo.
+          Haz clic en cualquier punto del mapa para añadirlo — sin registrarte, y podrás
+          editarlo o borrarlo después desde este mismo dispositivo.
         </p>
-        {!modo && (
-          <button
-            type="button"
-            onClick={iniciarCreacion}
-            className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-pri/10 text-pri text-xs font-semibold border border-pri/25 hover:bg-pri/18 transition-colors duration-200"
-          >
-            <i className="fa-solid fa-plus text-[10px]" aria-hidden="true" />
-            Añadir espacio
-          </button>
-        )}
       </div>
 
       {modo && (
@@ -212,8 +208,8 @@ export default function SilentMap() {
             className="absolute top-3 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-lg text-xs font-semibold text-white pointer-events-none"
             style={{ background: 'rgba(58,130,202,0.92)', zIndex: 1000 }}
           >
-            <i className="fa-solid fa-hand-pointer mr-1.5" aria-hidden="true" />
-            Haz clic en el mapa para marcar la ubicación
+            <i className="fa-solid fa-arrows-up-down-left-right mr-1.5" aria-hidden="true" />
+            Arrastra el marcador o vuelve a hacer clic para ajustar la ubicación
           </div>
         )}
         <MapContainer
@@ -233,6 +229,7 @@ export default function SilentMap() {
               key={lugar.id}
               center={[lugar.lat, lugar.lng]}
               radius={7}
+              bubblingMouseEvents={false}
               pathOptions={{
                 color: getColor(lugar.tipo),
                 fillColor: getColor(lugar.tipo),
@@ -330,7 +327,7 @@ export default function SilentMap() {
             )
           })}
 
-          <LocationPickerLayer active={!!modo} position={posicion} onPick={setPosicion} />
+          <LocationPickerLayer position={posicion} onPick={handleMapPick} />
         </MapContainer>
 
         {/* Results overlay */}

@@ -10,10 +10,15 @@ const pickIcon = L.divIcon({
 
 // Must render as a child of <MapContainer> — react-leaflet's map hooks only
 // work inside the map's own React tree.
-export default function LocationPickerLayer({ active, position, onPick }) {
+//
+// Any click on empty map area calls onPick — the parent decides what that
+// means (start adding a new space, or move the one being edited). Clicks on
+// existing markers never reach here: Leaflet markers stop click propagation
+// to the map by default.
+export default function LocationPickerLayer({ position, onPick }) {
   useMapEvents({
     click(e) {
-      if (active) onPick([e.latlng.lat, e.latlng.lng])
+      onPick([e.latlng.lat, e.latlng.lng])
     },
   })
 
@@ -22,13 +27,13 @@ export default function LocationPickerLayer({ active, position, onPick }) {
     <Marker
       position={position}
       icon={pickIcon}
-      draggable={active}
-      eventHandlers={active ? {
+      draggable
+      eventHandlers={{
         dragend: (e) => {
           const { lat, lng } = e.target.getLatLng()
           onPick([lat, lng])
         },
-      } : undefined}
+      }}
     />
   )
 }
