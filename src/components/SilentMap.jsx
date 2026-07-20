@@ -218,7 +218,7 @@ export default function SilentMap() {
           center={[DEFAULT_VIEW.lat, DEFAULT_VIEW.lng]}
           zoom={DEFAULT_VIEW.zoom}
           style={{ height: '100%', width: '100%' }}
-          scrollWheelZoom={false}
+          scrollWheelZoom={true}
           aria-label="Mapa interactivo de espacios silenciosos en el mundo"
         >
           <TileLayer
