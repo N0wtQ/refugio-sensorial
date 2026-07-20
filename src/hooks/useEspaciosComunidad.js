@@ -13,9 +13,15 @@ export function useEspaciosComunidad() {
 
   async function fetchEspacios() {
     if (!supabase) return
+    // Columnas explícitas, no select('*'): la base de datos solo concede
+    // SELECT sobre estas columnas a anon/authenticated (manage_token queda
+    // fuera a propósito — ver migración 0002). select('*') exige acceso a
+    // TODAS las columnas de la tabla, así que con un GRANT por columnas
+    // Postgres la rechaza entera con "permission denied for column
+    // manage_token" en vez de omitirla — la lista nunca cargaba por esto.
     const { data, error: fetchError } = await supabase
       .from('espacios_comunidad')
-      .select('*')
+      .select('id, nombre, descripcion, categoria, latitud, longitud, imagen_url, autor_nombre, created_at, updated_at')
       .order('created_at', { ascending: false })
     if (fetchError) setError(fetchError)
     else setEspacios(data ?? [])
