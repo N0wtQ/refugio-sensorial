@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { usePageMeta } from '../hooks/usePageMeta'
+import { useJsonLd } from '../hooks/useJsonLd'
+import { articleLd } from '../lib/seo'
 import Breadcrumb from '../components/ui/Breadcrumb'
 import TTSButton from '../components/ui/TTSButton'
 import { KITS, KitSelectorCard } from '../components/KitSensorial'
@@ -12,6 +14,11 @@ export default function KitBolsoPage() {
     title: 'Kit de bolso sensorial para personas autistas — Refugio Sensorial',
     description: '¿Qué llevar cuando sales? Elige el tamaño de tu kit sensorial y descubre qué meter para estar preparado ante cualquier situación.',
   })
+  useJsonLd(articleLd({
+    titulo: 'Kit de bolso sensorial para personas autistas: qué llevar al salir',
+    descripcion: 'Elige el tamaño de tu kit sensorial de bolso y descubre qué meter para estar preparado ante cualquier situación fuera de casa.',
+    ruta: '/entender-y-prepararse/kit-de-bolso',
+  }), 'article')
   const prefersReduced = useReducedMotion()
   const [selectedKit, setSelectedKit] = useState('grande')
   const activeKit = KITS.find(k => k.id === selectedKit)

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useSearchParams } from 'react-router-dom'
 import { herramientas, categorias, precios, perfiles } from '../data/herramientas'
 import { useReducedMotion } from '../hooks/useReducedMotion'
+import { logoSrc } from '../lib/logos'
 
 const TIPO_BADGE = {
   APP:   { label: 'App',       color: 'text-pri  bg-pri/10  border-pri/20' },
@@ -54,6 +55,8 @@ function ToolCard({ h, index, prefersReduced }) {
   const tipo  = TIPO_BADGE[h.tipo] ?? { label: h.tipo, color: 'text-muted bg-surface border-border' }
   const precio = PRECIO_COLOR[h.precio] ?? PRECIO_COLOR.Pago
   const icon  = CAT_ICON[h.categoria] ?? 'fa-toolbox'
+  // Logo fetched at build time (scripts/fetch-logos.mjs); category icon as fallback
+  const [logoFailed, setLogoFailed] = useState(false)
 
   return (
     <motion.a
@@ -72,8 +75,21 @@ function ToolCard({ h, index, prefersReduced }) {
     >
       {/* Top row: icon + name + type badge */}
       <div className="flex items-start gap-3">
-        <div className="shrink-0 w-9 h-9 rounded-xl bg-sec/10 border border-sec/15 flex items-center justify-center">
-          <i className={`fa-solid ${icon} text-sec text-sm`} aria-hidden="true" />
+        <div className="shrink-0 w-9 h-9 rounded-xl bg-sec/10 border border-sec/15 flex items-center justify-center overflow-hidden">
+          {!logoFailed ? (
+            <img
+              src={logoSrc(h.nombre)}
+              alt=""
+              width="24"
+              height="24"
+              loading="lazy"
+              className="w-6 h-6 object-contain rounded"
+              onError={() => setLogoFailed(true)}
+              aria-hidden="true"
+            />
+          ) : (
+            <i className={`fa-solid ${icon} text-sec text-sm`} aria-hidden="true" />
+          )}
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">

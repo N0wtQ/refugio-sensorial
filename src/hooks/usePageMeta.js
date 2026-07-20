@@ -11,7 +11,7 @@
 import { useEffect } from 'react'
 import { getOgImage } from '../lib/og/index'
 
-const BASE_URL = `https://n0wtq.github.io/refugio-sensorial`
+const BASE_URL = `https://www.refugio-sensorial.com`
 
 function sanitizeText(str) {
   return typeof str === 'string' ? str.replace(/[<>"'&]/g, '') : ''

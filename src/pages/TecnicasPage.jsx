@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { usePageMeta } from '../hooks/usePageMeta'
+import { useJsonLd } from '../hooks/useJsonLd'
+import { articleLd } from '../lib/seo'
 import Breadcrumb from '../components/ui/Breadcrumb'
 import TTSButton from '../components/ui/TTSButton'
 import { REGULACION } from '../components/KitSensorial'
@@ -11,6 +13,11 @@ export default function TecnicasPage() {
     title: 'Técnicas de regulación sensorial y emocional — 9 técnicas para el meltdown | Refugio Sensorial',
     description: '9 técnicas de regulación sensorial y emocional para aplicar en crisis autista: frío, respiración, grounding, movimiento, presión y más. Con audio explicativo.',
   })
+  useJsonLd(articleLd({
+    titulo: '9 técnicas de regulación sensorial y emocional para crisis autistas',
+    descripcion: '9 técnicas de regulación sensorial y emocional para aplicar en crisis autista: frío, respiración, grounding, movimiento, presión y más.',
+    ruta: '/entender-y-prepararse/tecnicas',
+  }), 'article')
   const prefersReduced = useReducedMotion()
 
   return (

@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { usePageMeta } from '../hooks/usePageMeta'
+import { useJsonLd } from '../hooks/useJsonLd'
+import { articleLd } from '../lib/seo'
 import Breadcrumb from '../components/ui/Breadcrumb'
 import { ESTADOS, EstadoCard } from '../components/KitSensorial'
 
@@ -10,6 +12,11 @@ export default function EstadosPage() {
     title: 'Meltdown, shutdown y burnout autista — Qué son y cómo diferenciarlos | Refugio Sensorial',
     description: 'Entiende qué son el meltdown, el shutdown y el burnout autista, por qué ocurren y cómo diferenciarlos. Señales, estrategias de ayuda e infografías descargables.',
   })
+  useJsonLd(articleLd({
+    titulo: 'Meltdown, shutdown y burnout autista: qué son y cómo diferenciarlos',
+    descripcion: 'Entiende qué son el meltdown, el shutdown y el burnout autista, por qué ocurren y cómo diferenciarlos. Señales, estrategias de ayuda e infografías descargables.',
+    ruta: '/entender-y-prepararse/estados',
+  }), 'article')
   const prefersReduced = useReducedMotion()
 
   return (

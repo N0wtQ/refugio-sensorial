@@ -8,6 +8,8 @@ import { useParams, Link, Navigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { usePageMeta } from '../hooks/usePageMeta'
+import { useJsonLd } from '../hooks/useJsonLd'
+import { articleLd } from '../lib/seo'
 import Breadcrumb from '../components/ui/Breadcrumb'
 import RelatedContent from '../components/ui/RelatedContent'
 import { ESTADOS } from '../components/KitSensorial'
@@ -84,6 +86,11 @@ export default function EntenderEstadoPage() {
     description: estado?.que ?? '',
     section: 'estados',
   })
+  useJsonLd(estado ? articleLd({
+    titulo: `${estado.titulo}: ${estado.subtitulo}`,
+    descripcion: estado.que,
+    ruta: `/entender-y-prepararse/estados/${slug}`,
+  }) : null, 'article')
 
   if (!estado) return <Navigate to="/entender-y-prepararse/estados" replace />
 

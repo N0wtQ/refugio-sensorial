@@ -7,7 +7,7 @@
 import { chromium } from 'playwright'
 import { checkA11y, injectAxe } from 'axe-playwright'
 
-const BASE = 'http://localhost:4173/refugio-sensorial'
+const BASE = 'http://localhost:4173'
 
 const ROUTES = [
   { path: '/',            name: 'Inicio' },
