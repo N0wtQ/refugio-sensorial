@@ -6297,7 +6297,7 @@
     "fuente": "https://www.ind.com/about/media/media-releases/indy-airport-is-now-a-certified-sensory-inclusive-venue",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-003",
@@ -6322,12 +6322,12 @@
     "fuente": "https://slcairport.com/blog/2025/04/accessibility-at-slc-supporting-passengers-with-sensory-needs/",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-004",
     "nombre": "Lucas Oil Stadium",
-    "categoria_id": 5,
+    "categoria_id": 9,
     "subcategoria": null,
     "tipo_legacy": "estadio",
     "tipo": "Estadio",
@@ -6347,12 +6347,12 @@
     "fuente": "https://www.lucasoilstadium.com/lucas-oil-stadium-is-certified-sensory-inclusive/",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-005",
     "nombre": "Gillette Stadium",
-    "categoria_id": 5,
+    "categoria_id": 9,
     "subcategoria": null,
     "tipo_legacy": "estadio",
     "tipo": "Estadio",
@@ -6361,7 +6361,7 @@
     "adaptaciones_sensoriales": "Sala sensorial, mochilas sensoriales en préstamo, personal formado.",
     "certificacion": "KultureCity Sensory Inclusive",
     "direccion": "1 Patriot Pl",
-    "ciudad": null,
+    "ciudad": "",
     "provincia_region": null,
     "pais": "Estados Unidos",
     "codigo_iso": "US",
@@ -6372,12 +6372,12 @@
     "fuente": "https://www.gillettestadium.com/gillette-stadium-announces-addition-of-sensory-room-and-certification-as-sensory-inclusive-stadium/",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-006",
     "nombre": "Bank of America Stadium",
-    "categoria_id": 5,
+    "categoria_id": 9,
     "subcategoria": null,
     "tipo_legacy": "estadio",
     "tipo": "Estadio",
@@ -6397,12 +6397,12 @@
     "fuente": "https://www.panthers.com/news/bank-of-america-stadium-certified-as-a-kulturecity-sensory-inclusive-venue",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-007",
     "nombre": "Emirates Park Zoo and Resort",
-    "categoria_id": 2,
+    "categoria_id": 9,
     "subcategoria": null,
     "tipo_legacy": "zoologico_acuario",
     "tipo": "Zoológico",
@@ -6422,12 +6422,12 @@
     "fuente": "https://autismtravel.com/travel-directory/",
     "nivel_verificacion": "Verificado - Documentación pública",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-008",
     "nombre": "Dubai Aquarium & Underwater Zoo",
-    "categoria_id": 2,
+    "categoria_id": 9,
     "subcategoria": null,
     "tipo_legacy": "zoologico_acuario",
     "tipo": "Acuario",
@@ -6447,12 +6447,12 @@
     "fuente": "https://autismtravel.com/travel-directory/",
     "nivel_verificacion": "Verificado - Documentación pública",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-009",
     "nombre": "LEGOLAND California Resort",
-    "categoria_id": 5,
+    "categoria_id": 9,
     "subcategoria": null,
     "tipo_legacy": "parque_tematico",
     "tipo": "Parque temático",
@@ -6472,12 +6472,12 @@
     "fuente": "https://ibcces.org/blog/2023/02/06/legolandus/",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-010",
     "nombre": "LEGOLAND Florida Resort",
-    "categoria_id": 5,
+    "categoria_id": 9,
     "subcategoria": null,
     "tipo_legacy": "parque_tematico",
     "tipo": "Parque temático",
@@ -6497,12 +6497,12 @@
     "fuente": "https://ibcces.org/blog/2022/04/28/legoland-florida/",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-011",
     "nombre": "LEGOLAND New York Resort",
-    "categoria_id": 5,
+    "categoria_id": 9,
     "subcategoria": null,
     "tipo_legacy": "parque_tematico",
     "tipo": "Parque temático",
@@ -6522,7 +6522,7 @@
     "fuente": "https://www.legoland.com/new-york/plan-your-visit/know-before-you-go/certified-autism-center/",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-012",
@@ -6577,7 +6577,7 @@
   {
     "id": "INTL-014",
     "nombre": "SeaWorld Orlando",
-    "categoria_id": 2,
+    "categoria_id": 9,
     "subcategoria": null,
     "tipo_legacy": "zoologico_acuario",
     "tipo": "Parque temático / zoológico marino",
@@ -6597,12 +6597,12 @@
     "fuente": "https://ibcces.org/blog/2019/04/02/seaworld-orlando-is-now-a-certified-autism-center/",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-015",
     "nombre": "Aquatica Orlando",
-    "categoria_id": 5,
+    "categoria_id": 9,
     "subcategoria": null,
     "tipo_legacy": "parque_tematico",
     "tipo": "Parque acuático",
@@ -6622,12 +6622,12 @@
     "fuente": "https://seaworld.com/orlando/blog/florida-autism-friendly-water-park/",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-016",
     "nombre": "Discovery Cove",
-    "categoria_id": 5,
+    "categoria_id": 9,
     "subcategoria": null,
     "tipo_legacy": "parque_tematico",
     "tipo": "Resort de día todo incluido",
@@ -6647,7 +6647,7 @@
     "fuente": "https://ibcces.org/blog/2023/03/08/discoverycove/",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-017",
@@ -6677,7 +6677,7 @@
   {
     "id": "INTL-018",
     "nombre": "Ripley's Aquarium of Canada",
-    "categoria_id": 2,
+    "categoria_id": 9,
     "subcategoria": null,
     "tipo_legacy": "zoologico_acuario",
     "tipo": "Acuario",
@@ -6697,12 +6697,12 @@
     "fuente": "https://ibcces.org/blog/2024/04/16/ripleys-aquarium-of-canada-renewal/",
     "nivel_verificacion": "Verificado - Documentación pública",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-019",
     "nombre": "AAMI Park",
-    "categoria_id": 5,
+    "categoria_id": 9,
     "subcategoria": null,
     "tipo_legacy": "estadio",
     "tipo": "Estadio",
@@ -6722,7 +6722,7 @@
     "fuente": "https://venue.kulturecity.org/venues/aami-park",
     "nivel_verificacion": "Verificado - Documentación pública",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-020",
@@ -6747,7 +6747,7 @@
     "fuente": "https://www.dublinairport.com/accessibility/sensory-room",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-021",
@@ -6772,7 +6772,7 @@
     "fuente": "https://www.aena.es/es/prensa/el-aeropuerto-de-alicante-elche-miguel-hernandez-abre-la-sala-sensorial.html",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-022",
@@ -6797,7 +6797,7 @@
     "fuente": "https://tododisca.es/discapacidad/sala-sensorial-personas-autismo-solo-dos-aeropuertos-espana/",
     "nivel_verificacion": "Verificado - Prensa o medio reconocido",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-023",
@@ -6822,7 +6822,7 @@
     "fuente": "https://www.museuoscarniemeyer.org.br/faq/acessibilidade",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-024",
@@ -6847,7 +6847,7 @@
     "fuente": "https://aeroin.net/aeroporto-do-galeao-inaugura-sala-sensorial-para-passageiros-com-transtorno-do-espectro-autista/",
     "nivel_verificacion": "Verificado - Prensa o medio reconocido",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-025",
@@ -6872,7 +6872,7 @@
     "fuente": "https://integrapanama.org/2025/07/28/sala-sensorial-aeropuerto-tocumen-autismo-panama/",
     "nivel_verificacion": "Verificado - Prensa o medio reconocido",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-026",
@@ -6897,7 +6897,7 @@
     "fuente": "https://flymco.com/media/press-releases/item/a-cozy-comfort-launches-at-mco-annies-space-sensory-room-welcomes-travelers/",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-027",
@@ -6922,7 +6922,7 @@
     "fuente": "https://www.panynj.gov/port-authority/en/press-room/press-release-archives/2025-press-releases/newark-liberty-international-airport-s-terminal-a-debuts-second-.html",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-028",
@@ -6947,7 +6947,7 @@
     "fuente": "https://www.flysanjose.com/news-release/sensory-room",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-029",
@@ -6972,7 +6972,7 @@
     "fuente": "https://www.amnh.org/plan-your-visit/accessibility/sensory-resources-for-visitors",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-030",
@@ -6997,7 +6997,7 @@
     "fuente": "https://blog.hmns.org/2020/02/houston-museum-of-natural-science-is-now-a-certified-autism-center/",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-031",
@@ -7022,7 +7022,7 @@
     "fuente": "https://www.amrevmuseum.org/press-releases/museum-of-the-american-revolution-earns-the-certified-autism-center-designation",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-032",
@@ -7047,12 +7047,12 @@
     "fuente": "https://media.kennedyspacecenter.com/kscvc-is-now-an-certified-autism-center/",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-033",
     "nombre": "The Florida Aquarium",
-    "categoria_id": 2,
+    "categoria_id": 9,
     "subcategoria": null,
     "tipo_legacy": "zoologico_acuario",
     "tipo": "Acuario",
@@ -7072,12 +7072,12 @@
     "fuente": "https://www.flaquarium.org/visit/visitor-information/accessibility/",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-034",
     "nombre": "Georgia Aquarium",
-    "categoria_id": 2,
+    "categoria_id": 9,
     "subcategoria": null,
     "tipo_legacy": "zoologico_acuario",
     "tipo": "Acuario",
@@ -7097,12 +7097,12 @@
     "fuente": "https://www.georgiaaquarium.org/resource-center/press-releases/georgia-aquarium-becomes-first-aquarium-designated-as-a-certified-autism-center/",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-035",
     "nombre": "Ripley's Aquarium of the Smokies",
-    "categoria_id": 2,
+    "categoria_id": 9,
     "subcategoria": null,
     "tipo_legacy": "zoologico_acuario",
     "tipo": "Acuario",
@@ -7122,7 +7122,7 @@
     "fuente": "https://ibcces.org/blog/2019/06/18/ripleys-aquarium-of-the-smokies/",
     "nivel_verificacion": "Verificado - Documentación pública",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-036",
@@ -7147,7 +7147,7 @@
     "fuente": "https://pittsburghkids.org/visit-2/plan-your-visit/accessibility/",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-037",
@@ -7172,7 +7172,7 @@
     "fuente": "https://www.dmns.org/visit/accessibility/",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
-    "horario": null
+    "horario": ""
   },
   {
     "id": "INTL-038",
@@ -7195,6 +7195,381 @@
     "web_oficial": "https://www.cvgairport.com",
     "url_oficial": "https://www.cvgairport.com/accessibility/",
     "fuente": "https://www.cvgairport.com/accessibility/",
+    "nivel_verificacion": "Verificado - Fuente oficial",
+    "fecha_actualizacion": "2026-07-20",
+    "horario": ""
+  },
+  {
+    "id": "INTL-039",
+    "nombre": "Morgan's Wonderland",
+    "categoria_id": 5,
+    "subcategoria": null,
+    "tipo_legacy": "parque_tematico",
+    "tipo": "Parque temático inclusivo",
+    "descripcion": "Primer parque temático \"ultra-accesible\" del mundo, diseñado desde su origen (2010) para ser disfrutado por personas con cualquier discapacidad física, cognitiva o sensorial.",
+    "motivo_inclusion": "Diseño y programa de accesibilidad íntegra documentados en la página oficial del parque; entrada gratuita para personas con necesidades especiales.",
+    "adaptaciones_sensoriales": "Todo el parque diseñado para accesibilidad sensorial, cognitiva y física; entrada gratuita para visitantes con necesidades especiales.",
+    "certificacion": null,
+    "direccion": "5223 David Edwards Dr",
+    "ciudad": "San Antonio",
+    "provincia_region": "TX",
+    "pais": "Estados Unidos",
+    "codigo_iso": "US",
+    "latitud": 29.539166,
+    "longitud": -98.39278,
+    "web_oficial": "https://morganswonderland.org",
+    "url_oficial": "https://morganswonderland.org/",
+    "fuente": "https://morganswonderland.org/",
+    "nivel_verificacion": "Verificado - Fuente oficial",
+    "fecha_actualizacion": "2026-07-20",
+    "horario": null
+  },
+  {
+    "id": "INTL-040",
+    "nombre": "Morgan's Inspiration Island",
+    "categoria_id": 5,
+    "subcategoria": null,
+    "tipo_legacy": "parque_tematico",
+    "tipo": "Parque acuático inclusivo",
+    "descripcion": "Primer parque acuático \"ultra-accesible\" del mundo, dentro del complejo de Morgan's Wonderland, con sillas acuáticas y adaptaciones para cualquier discapacidad.",
+    "motivo_inclusion": "Diseño y programa de accesibilidad íntegra documentados en la página oficial del parque; entrada gratuita para personas con necesidades especiales.",
+    "adaptaciones_sensoriales": "Todo el parque diseñado para accesibilidad sensorial, cognitiva y física; sillas acuáticas (PneuChairs) en préstamo; entrada gratuita para visitantes con necesidades especiales.",
+    "certificacion": null,
+    "direccion": "5223 David Edwards Dr",
+    "ciudad": "San Antonio",
+    "provincia_region": "TX",
+    "pais": "Estados Unidos",
+    "codigo_iso": "US",
+    "latitud": 29.539166,
+    "longitud": -98.39278,
+    "web_oficial": "https://morganswonderland.org/park/morgans-inspiration-island/",
+    "url_oficial": "https://morganswonderland.org/park/morgans-inspiration-island/",
+    "fuente": "https://morganswonderland.org/park/morgans-inspiration-island/",
+    "nivel_verificacion": "Verificado - Fuente oficial",
+    "fecha_actualizacion": "2026-07-20",
+    "horario": null
+  },
+  {
+    "id": "INTL-041",
+    "nombre": "Sesame Place Philadelphia",
+    "categoria_id": 5,
+    "subcategoria": null,
+    "tipo_legacy": "parque_tematico",
+    "tipo": "Parque temático",
+    "descripcion": "Primer parque temático del mundo certificado como Certified Autism Center™ por IBCCES, desde 2018.",
+    "motivo_inclusion": "Certificación IBCCES CAC (renovada en 2026) documentada por IBCCES y Autism Travel.",
+    "adaptaciones_sensoriales": "Guía sensorial por atracción, personal formado en sensibilización sobre autismo, espacios tranquilos designados.",
+    "certificacion": "IBCCES Certified Autism Center (CAC)",
+    "direccion": "100 Sesame Rd",
+    "ciudad": "Langhorne",
+    "provincia_region": "PA",
+    "pais": "Estados Unidos",
+    "codigo_iso": "US",
+    "latitud": 40.184184,
+    "longitud": -74.872487,
+    "web_oficial": "https://sesameplace.com/philadelphia/",
+    "url_oficial": "https://sesameplace.com/philadelphia/help/accessibility-guide/",
+    "fuente": "https://ibcces.org/blog/2026/04/21/sesameplace-philadelphia-cac/",
+    "nivel_verificacion": "Verificado - Fuente oficial",
+    "fecha_actualizacion": "2026-07-20",
+    "horario": null
+  },
+  {
+    "id": "INTL-042",
+    "nombre": "Peppa Pig Theme Park Florida",
+    "categoria_id": 5,
+    "subcategoria": null,
+    "tipo_legacy": "parque_tematico",
+    "tipo": "Parque temático",
+    "descripcion": "Parque temático infantil certificado como Certified Autism Center™ por IBCCES, junto a LEGOLAND Florida Resort.",
+    "motivo_inclusion": "Certificación IBCCES CAC anunciada en el blog oficial de IBCCES antes de la apertura del parque.",
+    "adaptaciones_sensoriales": "Guía sensorial por atracción (revisión detallada de IBCCES), personal formado en sensibilización sobre autismo.",
+    "certificacion": "IBCCES Certified Autism Center (CAC)",
+    "direccion": "1 Legoland Way",
+    "ciudad": "Winter Haven",
+    "provincia_region": "FL",
+    "pais": "Estados Unidos",
+    "codigo_iso": "US",
+    "latitud": 27.987982,
+    "longitud": -81.691579,
+    "web_oficial": "https://peppapigthemepark.com/florida/",
+    "url_oficial": "https://peppapigthemepark.com/florida/help/accessibility/",
+    "fuente": "https://ibcces.org/blog/2021/11/16/peppa-pig-theme-park-reveals-new-accessible-ride-vehicle-and-will-open-as-a-certified-autism-center/",
+    "nivel_verificacion": "Verificado - Fuente oficial",
+    "fecha_actualizacion": "2026-07-20",
+    "horario": null
+  },
+  {
+    "id": "INTL-043",
+    "nombre": "Dorney Park & Wildwater Kingdom",
+    "categoria_id": 5,
+    "subcategoria": null,
+    "tipo_legacy": "parque_tematico",
+    "tipo": "Parque temático",
+    "descripcion": "Parque temático y acuático certificado como Certified Autism Center™ por IBCCES desde 2019.",
+    "motivo_inclusion": "Certificación IBCCES CAC anunciada oficialmente y cubierta por prensa regional.",
+    "adaptaciones_sensoriales": "Sala sensorial y tranquila, programa de \"boarding pass\", espacios exteriores tranquilos.",
+    "certificacion": "IBCCES Certified Autism Center (CAC)",
+    "direccion": "4000 Dorney Park Rd",
+    "ciudad": "Allentown",
+    "provincia_region": "PA",
+    "pais": "Estados Unidos",
+    "codigo_iso": "US",
+    "latitud": 40.578419,
+    "longitud": -75.533218,
+    "web_oficial": "https://www.dorneypark.com",
+    "url_oficial": "https://www.dorneypark.com/accessibility",
+    "fuente": "https://www.wfmz.com/news/area/lehighvalley/dorney-park-officially-a-certified-autism-center/article_9101412a-e5e0-11e9-80fb-17b10e983d2b.html",
+    "nivel_verificacion": "Verificado - Prensa o medio reconocido",
+    "fecha_actualizacion": "2026-07-20",
+    "horario": null
+  },
+  {
+    "id": "INTL-044",
+    "nombre": "Kennywood",
+    "categoria_id": 5,
+    "subcategoria": null,
+    "tipo_legacy": "parque_tematico",
+    "tipo": "Parque temático",
+    "descripcion": "Parque temático certificado como Certified Autism Center™ por IBCCES desde 2019.",
+    "motivo_inclusion": "Certificación IBCCES CAC anunciada en el blog oficial de IBCCES.",
+    "adaptaciones_sensoriales": "Mochilas sensoriales (tapones para los oídos, fidget, libros para colorear), identificación de zonas de baja afluencia.",
+    "certificacion": "IBCCES Certified Autism Center (CAC)",
+    "direccion": "4800 Kennywood Blvd",
+    "ciudad": "West Mifflin",
+    "provincia_region": "PA",
+    "pais": "Estados Unidos",
+    "codigo_iso": "US",
+    "latitud": 40.38762,
+    "longitud": -79.86398,
+    "web_oficial": "https://www.kennywood.com",
+    "url_oficial": "https://www.kennywood.com/plan-your-visit/accessibility",
+    "fuente": "https://ibcces.org/blog/2019/04/17/kennywood-becomes-certified-autism-center/",
+    "nivel_verificacion": "Verificado - Fuente oficial",
+    "fecha_actualizacion": "2026-07-20",
+    "horario": null
+  },
+  {
+    "id": "INTL-045",
+    "nombre": "Story Land",
+    "categoria_id": 5,
+    "subcategoria": null,
+    "tipo_legacy": "parque_tematico",
+    "tipo": "Parque temático",
+    "descripcion": "Primer parque temático de New Hampshire certificado como Certified Autism Center™ por IBCCES, desde 2019.",
+    "motivo_inclusion": "Certificación IBCCES CAC documentada por Autism Travel/Accessibility Certified y prensa especializada del sector.",
+    "adaptaciones_sensoriales": "Sala de calma, zona de comedor tranquila, \"Sensory Sensitive Weekends\" con música y megafonía reducidas.",
+    "certificacion": "IBCCES Certified Autism Center (CAC)",
+    "direccion": "850 NH Route 16",
+    "ciudad": "Glen",
+    "provincia_region": "NH",
+    "pais": "Estados Unidos",
+    "codigo_iso": "US",
+    "latitud": 44.115837,
+    "longitud": -71.182494,
+    "web_oficial": "https://www.storylandnh.com",
+    "url_oficial": "https://www.storylandnh.com",
+    "fuente": "https://certifiedautismcenter.com/2019/07/11/story-land/",
+    "nivel_verificacion": "Verificado - Documentación pública",
+    "fecha_actualizacion": "2026-07-20",
+    "horario": null
+  },
+  {
+    "id": "INTL-046",
+    "nombre": "Six Flags Over Texas",
+    "categoria_id": 5,
+    "subcategoria": null,
+    "tipo_legacy": "parque_tematico",
+    "tipo": "Parque temático",
+    "descripcion": "Parque temático certificado como Certified Autism Center™ por IBCCES, como parte de la certificación de los 26 parques de Six Flags en 2020.",
+    "motivo_inclusion": "Certificación IBCCES CAC de toda la cadena Six Flags, documentada por IBCCES y Autism Travel.",
+    "adaptaciones_sensoriales": "Guía sensorial por atracción, \"Attraction Access Pass\", personal formado en sensibilización sobre autismo.",
+    "certificacion": "IBCCES Certified Autism Center (CAC)",
+    "direccion": "2201 Road To Six Flags",
+    "ciudad": "Arlington",
+    "provincia_region": "TX",
+    "pais": "Estados Unidos",
+    "codigo_iso": "US",
+    "latitud": 32.755047,
+    "longitud": -97.070389,
+    "web_oficial": "https://www.sixflags.com/overtexas",
+    "url_oficial": "https://www.sixflags.com/overtexas/plan-your-visit/accessibility",
+    "fuente": "https://autismtravel.com/2020/02/06/six-flags/",
+    "nivel_verificacion": "Verificado - Fuente oficial",
+    "fecha_actualizacion": "2026-07-20",
+    "horario": null
+  },
+  {
+    "id": "INTL-047",
+    "nombre": "Six Flags Fiesta Texas",
+    "categoria_id": 5,
+    "subcategoria": null,
+    "tipo_legacy": "parque_tematico",
+    "tipo": "Parque temático",
+    "descripcion": "Parque temático certificado como Certified Autism Center™ por IBCCES, como parte de la certificación de los 26 parques de Six Flags en 2020.",
+    "motivo_inclusion": "Certificación IBCCES CAC de toda la cadena Six Flags, documentada por IBCCES y Autism Travel.",
+    "adaptaciones_sensoriales": "Guía sensorial por atracción, \"Attraction Access Pass\", personal formado en sensibilización sobre autismo.",
+    "certificacion": "IBCCES Certified Autism Center (CAC)",
+    "direccion": "17000 IH-10 West",
+    "ciudad": "San Antonio",
+    "provincia_region": "TX",
+    "pais": "Estados Unidos",
+    "codigo_iso": "US",
+    "latitud": 29.599377,
+    "longitud": -98.608986,
+    "web_oficial": "https://www.sixflags.com/fiestatexas",
+    "url_oficial": "https://www.sixflags.com/fiestatexas/plan-your-visit/accessibility",
+    "fuente": "https://autismtravel.com/2020/02/06/six-flags/",
+    "nivel_verificacion": "Verificado - Fuente oficial",
+    "fecha_actualizacion": "2026-07-20",
+    "horario": null
+  },
+  {
+    "id": "INTL-048",
+    "nombre": "San Diego Zoo",
+    "categoria_id": 2,
+    "subcategoria": null,
+    "tipo_legacy": "zoologico_acuario",
+    "tipo": "Zoológico",
+    "descripcion": "Zoológico certificado como recinto Sensory Inclusive por KultureCity, en Balboa Park.",
+    "motivo_inclusion": "Certificación KultureCity Sensory Inclusive documentada en el blog oficial de San Diego Zoo Wildlife Alliance.",
+    "adaptaciones_sensoriales": "Mochilas sensoriales en préstamo (auriculares antirruido, fidgets, mapa de zonas tranquilas), \"social story\" previa a la visita.",
+    "certificacion": "KultureCity Sensory Inclusive",
+    "direccion": "2920 Zoo Dr",
+    "ciudad": "San Diego",
+    "provincia_region": "CA",
+    "pais": "Estados Unidos",
+    "codigo_iso": "US",
+    "latitud": 32.7347,
+    "longitud": -117.1509,
+    "web_oficial": "https://zoo.sandiegozoo.org",
+    "url_oficial": "https://zoo.sandiegozoo.org/visit/guests-with-disabilities",
+    "fuente": "https://blogs.sandiegozoo.org/2021/11/04/the-quiet-place-sdzwa-teams-with-kulturecity/",
+    "nivel_verificacion": "Verificado - Fuente oficial",
+    "fecha_actualizacion": "2026-07-20",
+    "horario": null
+  },
+  {
+    "id": "INTL-049",
+    "nombre": "San Diego Zoo Safari Park",
+    "categoria_id": 2,
+    "subcategoria": null,
+    "tipo_legacy": "zoologico_acuario",
+    "tipo": "Zoológico",
+    "descripcion": "Parque safari certificado como recinto Sensory Inclusive por KultureCity.",
+    "motivo_inclusion": "Certificación KultureCity Sensory Inclusive documentada en el blog oficial de San Diego Zoo Wildlife Alliance.",
+    "adaptaciones_sensoriales": "Mochilas sensoriales en préstamo, Easy Access Pass para el tranvía Africa Tram, \"social story\" previa a la visita.",
+    "certificacion": "KultureCity Sensory Inclusive",
+    "direccion": "15500 San Pasqual Valley Rd",
+    "ciudad": "Escondido",
+    "provincia_region": "CA",
+    "pais": "Estados Unidos",
+    "codigo_iso": "US",
+    "latitud": 33.097446,
+    "longitud": -116.995723,
+    "web_oficial": "https://sdzsafaripark.org",
+    "url_oficial": "https://zoo.sandiegozoo.org/visit/guests-with-disabilities",
+    "fuente": "https://blogs.sandiegozoo.org/2021/11/04/the-quiet-place-sdzwa-teams-with-kulturecity/",
+    "nivel_verificacion": "Verificado - Fuente oficial",
+    "fecha_actualizacion": "2026-07-20",
+    "horario": null
+  },
+  {
+    "id": "INTL-050",
+    "nombre": "Elmwood Park Zoo",
+    "categoria_id": 2,
+    "subcategoria": null,
+    "tipo_legacy": "zoologico_acuario",
+    "tipo": "Zoológico",
+    "descripcion": "Primer zoológico del mundo certificado como Certified Autism Center™ por IBCCES, desde mayo de 2018.",
+    "motivo_inclusion": "Certificación IBCCES CAC (renovada en 2024) documentada en la página oficial del zoológico.",
+    "adaptaciones_sensoriales": "Guía sensorial del recinto, personal formado en sensibilización sobre autismo.",
+    "certificacion": "IBCCES Certified Autism Center (CAC)",
+    "direccion": "1661 Harding Blvd",
+    "ciudad": "Norristown",
+    "provincia_region": "PA",
+    "pais": "Estados Unidos",
+    "codigo_iso": "US",
+    "latitud": null,
+    "longitud": null,
+    "web_oficial": "https://elmwoodparkzoo.org",
+    "url_oficial": "https://www.elmwoodparkzoo.org/elmwood-park-zoos-autism-certification/",
+    "fuente": "https://ibcces.org/blog/2024/05/15/elmwood-park-zoo-renewal/",
+    "nivel_verificacion": "Verificado - Fuente oficial",
+    "fecha_actualizacion": "2026-07-20",
+    "horario": null
+  },
+  {
+    "id": "INTL-051",
+    "nombre": "Santa Barbara Zoo",
+    "categoria_id": 2,
+    "subcategoria": null,
+    "tipo_legacy": "zoologico_acuario",
+    "tipo": "Zoológico",
+    "descripcion": "Primer zoológico de la costa oeste de EE. UU. certificado como Certified Autism Center™ por IBCCES, desde 2018.",
+    "motivo_inclusion": "Certificación IBCCES CAC (renovada en 2026) documentada por IBCCES y prensa local.",
+    "adaptaciones_sensoriales": "Personal formado en sensibilización sobre autismo, recursos de planificación previa a la visita.",
+    "certificacion": "IBCCES Certified Autism Center (CAC)",
+    "direccion": "500 Ninos Dr",
+    "ciudad": "Santa Barbara",
+    "provincia_region": "CA",
+    "pais": "Estados Unidos",
+    "codigo_iso": "US",
+    "latitud": 34.420405,
+    "longitud": -119.667095,
+    "web_oficial": "https://www.sbzoo.org",
+    "url_oficial": "https://www.sbzoo.org/visit/accessibility/",
+    "fuente": "https://ibcces.org/blog/2026/04/07/santa-barbara-zoo-recertify/",
+    "nivel_verificacion": "Verificado - Fuente oficial",
+    "fecha_actualizacion": "2026-07-20",
+    "horario": null
+  },
+  {
+    "id": "INTL-052",
+    "nombre": "National Aquarium",
+    "categoria_id": 2,
+    "subcategoria": null,
+    "tipo_legacy": "zoologico_acuario",
+    "tipo": "Acuario",
+    "descripcion": "Acuario certificado como recinto Sensory Inclusive por KultureCity, en el Inner Harbor de Baltimore.",
+    "motivo_inclusion": "Certificación KultureCity Sensory Inclusive documentada en el directorio oficial de KultureCity y en la web oficial del acuario.",
+    "adaptaciones_sensoriales": "\"Guest Relations Room\" (sala tranquila, planta 1), mochilas sensoriales, guía social previa a la visita.",
+    "certificacion": "KultureCity Sensory Inclusive",
+    "direccion": "501 E Pratt St",
+    "ciudad": "Baltimore",
+    "provincia_region": "MD",
+    "pais": "Estados Unidos",
+    "codigo_iso": "US",
+    "latitud": 39.285037,
+    "longitud": -76.608236,
+    "web_oficial": "https://aqua.org",
+    "url_oficial": "https://aqua.org/visit/accessibility",
+    "fuente": "https://venue.kulturecity.org/venues/national-aquarium",
+    "nivel_verificacion": "Verificado - Fuente oficial",
+    "fecha_actualizacion": "2026-07-20",
+    "horario": null
+  },
+  {
+    "id": "INTL-053",
+    "nombre": "Shedd Aquarium",
+    "categoria_id": 2,
+    "subcategoria": null,
+    "tipo_legacy": "zoologico_acuario",
+    "tipo": "Acuario",
+    "descripcion": "Acuario certificado como recinto Sensory Inclusive por KultureCity.",
+    "motivo_inclusion": "Certificación KultureCity documentada en un comunicado de prensa oficial del acuario.",
+    "adaptaciones_sensoriales": "Mochilas sensoriales en préstamo, Sala Tranquila, eventos \"Calm Waters\", app sensorial gratuita (con Infiniteach).",
+    "certificacion": "KultureCity Sensory Inclusive",
+    "direccion": "1200 S DuSable Lake Shore Dr",
+    "ciudad": "Chicago",
+    "provincia_region": "IL",
+    "pais": "Estados Unidos",
+    "codigo_iso": "US",
+    "latitud": 41.867579,
+    "longitud": -87.613607,
+    "web_oficial": "https://www.sheddaquarium.org",
+    "url_oficial": "https://www.sheddaquarium.org/plan-a-visit/accessibility",
+    "fuente": "https://www.sheddaquarium.org/about-shedd/press-releases/kulture-city-certification",
     "nivel_verificacion": "Verificado - Fuente oficial",
     "fecha_actualizacion": "2026-07-20",
     "horario": null

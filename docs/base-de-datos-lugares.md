@@ -45,8 +45,8 @@ sobre los 250 lugares actuales produce un `lugares.js` idéntico salvo dos
 líneas cosméticas (el comentario de cabecera, y `-5` en vez de `-5.0` —
 el mismo número exacto en punto flotante). Comprobado además con
 Playwright en cada ronda de cambios: tras añadir las ubicaciones
-internacionales, el mapa muestra "284 espacios visibles" (250 de España +
-34 internacionales con coordenada verificada), los filtros por tipo
+internacionales, el mapa muestra "298 espacios visibles" (250 de España +
+48 internacionales con coordenada verificada), los filtros por tipo
 funcionan igual, cero errores en consola.
 
 **Vista por defecto del mapa:** ya no se centra automáticamente en la
@@ -172,13 +172,27 @@ un lugar" es una decisión editorial, no algo que deba pasar solo con
 cada `git push`). El build de producción sigue leyendo `lugares.js` tal
 cual esté commiteado, igual que siempre.
 
-## Las 38 ubicaciones internacionales verificadas
+## Las 53 ubicaciones internacionales verificadas
 
-`seed-internacional.mjs` añade a la base de datos 38 ubicaciones físicas
-verificadas fuera de España, cada una con su fuente citada. **34 de las
-38 tienen coordenada real del edificio** (confirmada por una fuente,
+`seed-internacional.mjs` añade a la base de datos 53 ubicaciones físicas
+verificadas fuera de España, cada una con su fuente citada. **48 de las
+53 tienen coordenada real del edificio** (confirmada por una fuente,
 nunca aproximada con el centro de la ciudad) y por tanto **sí aparecen ya
-en el mapa**, junto a los 250 lugares de España:
+en el mapa**, junto a los 250 lugares de España (298 en total):
+
+**Tercera ronda (parques inclusivos, temáticos, zoos y acuarios):**
+Morgan's Wonderland y Morgan's Inspiration Island (San Antonio, primeros
+parque temático y acuático "ultra-accesibles" del mundo), Sesame Place
+Philadelphia, Peppa Pig Theme Park Florida, Dorney Park, Kennywood, Story
+Land, Six Flags Over Texas y Six Flags Fiesta Texas (todos IBCCES CAC),
+San Diego Zoo, San Diego Zoo Safari Park, National Aquarium (Baltimore) y
+Shedd Aquarium (Chicago) (KultureCity Sensory Inclusive), Elmwood Park
+Zoo (primer zoo del mundo con CAC) y Santa Barbara Zoo. Se investigaron y
+**descartaron** por falta de evidencia verificable: Busch Gardens Tampa
+Bay, SeaWorld San Diego (la certificación real es de Sesame Place San
+Diego, un parque distinto en el mismo complejo), Hersheypark (la
+certificación es de Hershey's Chocolate World, un recinto separado),
+Dutch Wonderland y Moody Gardens.
 
 - **Parques temáticos y de ocio (13):** Peppa Pig Theme Park Dallas-Fort
   Worth*, LEGOLAND California/Florida/New York/Korea*/Japan*, SeaWorld
@@ -221,15 +235,19 @@ oficiales como `kulturecity.org` o `ibcces.org` (como listados
 estructurados navegables) sigue bloqueado desde este entorno de
 desarrollo (HTTP 403, verificado). Solo la búsqueda web funciona, y da
 fragmentos de texto y enlaces a artículos/comunicados individuales, no
-listados estructurados masivos. Por eso el catálogo mundial tiene 38
+listados estructurados masivos. Por eso el catálogo mundial tiene 53
 ubicaciones verificadas fuera de España, no los 1.000+ que pedía el
 objetivo inicial — la calidad y la regla de "nunca inventar coordenadas
 ni datos" pesa más que la cantidad, tal como se pidió explícitamente.
+Una tercera parte de las direcciones que se propusieron para ampliar el
+catálogo no pudieron confirmarse con una fuente real y se descartaron
+(ver arriba) — es la misma regla aplicada de forma consistente, venga la
+propuesta de una búsqueda propia o de una lista aportada por el usuario.
 
 ## Catálogo mundial en CSV (`data/lugares.csv`)
 
 `npm run db:csv` exporta **toda** la base de datos (los 250 lugares de
-España y las 38 ubicaciones internacionales, con o sin coordenadas) a un
+España y las 53 ubicaciones internacionales, con o sin coordenadas) a un
 único CSV en UTF-8, con las columnas exactas:
 
 ```
