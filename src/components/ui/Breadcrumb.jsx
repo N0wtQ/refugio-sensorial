@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useJsonLd } from '../../hooks/useJsonLd'
 
-const SITE_URL = 'https://n0wtq.github.io/refugio-sensorial'
+const SITE_URL = 'https://www.refugio-sensorial.com'
 
 export default function Breadcrumb({ items }) {
   useJsonLd({

@@ -3,6 +3,7 @@ import { useEffect, useState, Component, lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import StorageToast from './components/ui/StorageToast'
+import { AuthProvider } from './contexts/AuthContext'
 
 const CanvasBg = lazy(() =>
   import('./components/CanvasBg').catch(() => ({ default: () => null }))
@@ -11,6 +12,8 @@ const GlobalSearch = lazy(() => import('./components/search/GlobalSearch'))
 const HerramientasLandingPage = lazy(() => import('./pages/herramientas/LandingPage'))
 const CiudadPage = lazy(() => import('./pages/espacios/CiudadPage'))
 const EntenderEstadoPage = lazy(() => import('./pages/EntenderEstadoPage'))
+const ComunidadPage = lazy(() => import('./pages/comunidad/ComunidadPage'))
+const AccesoPage = lazy(() => import('./pages/comunidad/AccesoPage'))
 
 import Home from './pages/Home'
 import MapPage from './pages/MapPage'
@@ -93,6 +96,8 @@ function AppRoutes({ onOpenSearch }) {
         {/* Main routes */}
         <Route path="/"           element={<PageTransition><Home onOpenSearch={onOpenSearch} /></PageTransition>} />
         <Route path="/espacios"   element={<PageTransition><MapPage /></PageTransition>} />
+        <Route path="/comunidad"        element={<PageTransition><Suspense fallback={null}><ComunidadPage /></Suspense></PageTransition>} />
+        <Route path="/comunidad/acceso" element={<PageTransition><Suspense fallback={null}><AccesoPage /></Suspense></PageTransition>} />
         <Route path="/herramientas" element={<PageTransition><LibraryPage /></PageTransition>} />
         <Route path="/ayuda"      element={<PageTransition><AyudaPage /></PageTransition>} />
         <Route path="/accesibilidad" element={<PageTransition><AccesibilidadPage /></PageTransition>} />
@@ -143,7 +148,8 @@ export default function App() {
   }, [])
 
   return (
-    <BrowserRouter basename="/refugio-sensorial">
+    <BrowserRouter basename="/">
+      <AuthProvider>
       <CanvasSilentBoundary>
         <Suspense fallback={null}>
           <CanvasBg />
@@ -171,6 +177,7 @@ export default function App() {
           <StorageToast />
         </AppErrorBoundary>
       </div>
+      </AuthProvider>
     </BrowserRouter>
   )
 }
@@ -192,6 +199,17 @@ function Footer() {
           >
             <i className="fa-brands fa-instagram text-sm" aria-hidden="true" />
             Instagram
+          </a>
+          <span aria-hidden="true">·</span>
+          <a
+            href="https://whatsapp.com/channel/0029Vb7weJlDZ4Le5l3tMK3F"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Canal de WhatsApp de Refugio Sensorial"
+            className="flex items-center gap-1 hover:text-text transition-colors duration-200"
+          >
+            <i className="fa-brands fa-whatsapp text-sm" aria-hidden="true" />
+            WhatsApp
           </a>
           <span aria-hidden="true">·</span>
           <Link

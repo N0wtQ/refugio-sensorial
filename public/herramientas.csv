@@ -1,4 +1,4 @@
-﻿Recurso;Categoría;Perfiles ND;Plataforma;Precio;Subcategoría;Enlace;Notas;Precio;Subcategoría;Tipo;Valoración
+Recurso;Categoría;Perfiles ND;Plataforma;Precio;Subcategoría;Enlace;Notas;Precio;Subcategoría;Tipo;Valoración
 Tiimo;Gestión Ejecutiva;TCE, TDAH, TEA;Android, Web, iOS;Freemium;Tiempo;https://tiimoapp.com;Ayuda con la planificación diaria.;Freemium;Tiempo;APP;Excelente
 TimeTimer;Gestión Ejecutiva;TDAH, TEA;Android, Físico, iOS;Pago;Tiempo;https://www.timetimer.com;Representación visual del tiempo sin necesidad de leer reloj.;Pago;Tiempo;APP;Excelente
 Pomofocus;Gestión Ejecutiva;TDAH, TOD;Web;Gratis;Tiempo;https://pomofocus.io;Técnica Pomodoro personalizable para mantener el enfoque.;Gratis;Tiempo;WEB;Muy bueno
@@ -7,6 +7,7 @@ Routinery;Gestión Ejecutiva;TDAH, TEA;Android, iOS;Freemium;Tareas;https://www.
 Sweepy;Gestión Ejecutiva;TDAH, TEA;Android, iOS;Freemium;Tareas;https://sweepy.app;Convierte la limpieza en un juego con recompensas.;Freemium;Tareas;APP;Muy bueno
 Goblin.tools;Gestión Ejecutiva;AACC, TDA, TDAH, TEA;Web;Gratis;Tareas;https://goblin.tools;Desglosa tareas complejas en  os pequeños y manejables.;Gratis;Tareas;WEB;Excelente
 Structured;Gestión Ejecutiva;TDAH, TEA;Android, Mac, iOS;Freemium;Tareas;https://structured.app;Diario visual tipo línea de tiempo.;Freemium;Tareas;APP;Excelente
+Habitica;Gestión Ejecutiva;TDAH, TEA;Android, Web, iOS;Freemium;Tareas;https://habitica.com;Convierte hábitos, tareas diarias y pendientes en un juego de rol con recompensas.;Freemium;Tareas;APP;Muy bueno
 Obsidian;Gestión Ejecutiva;AACC, TDAH;Android, Linux, Mac, Windows, iOS;Gratis;Memoria;https://obsidian.md;Base de conocimientos local.;Gratis;Memoria;APP;Excelente
 Capacities;Gestión Ejecutiva;AACC, TDAH;Mac, Web, Windows;Freemium;Memoria;https://capacities.io;Almacén visual de objetos digitales.;Freemium;Memoria;APP;Muy bueno
 MyNoise;Regulación Sensorial;TDAH, TEA;Android, Web, iOS;Freemium;Auditivo;https://mynoise.net;Paisajes sonoros ajustables frecuencia por frecuencia.;Freemium;Auditivo;APP;Excelente
@@ -21,6 +22,7 @@ Notion;Regulación Sensorial;AACC, TDAH;Android, Mac, Web, Windows, iOS;Freemium
 Mise En Place;Regulación Sensorial;TEA, TOC;iOS;Pago;Organización Física;https://miseenplace.app; Organización de cocina y recetas para crear orden.;Pago;Organización Física;APP;Muy bueno
 How We Feel;Salud Emocional;AACC, TEA;Android, iOS;Gratis;Autorregulación;https://www.howwefeel.org; Diario emocional creado por Yale para identificar y etiquetar emociones.;Gratis;Autorregulación;APP;Excelente
 Finch;Salud Emocional;AACC, TDAH;Android, iOS;Freemium;Autorregulación;https://play.google.com/store/apps/details?id=com.finch.finch&hl=es; Autocuidado gamificado con mascota virtual que crece cuando te cuidas.;Freemium;Autorregulación;APP;Excelente
+Catzy;Salud Emocional;TDAH, TEA;Android, Web, iOS;Freemium;Autorregulación;https://catzy.nieruotec.com;Mascota virtual que cuidas completando tareas: recordatorios, respiración, sonidos de naturaleza y modo TDAH.;Freemium;Autorregulación;APP;Muy bueno
 Rootd;Salud Emocional;TEA, TOC;Android, iOS;Freemium;Autorregulación;https://play.google.com/store/apps/details?id=com.rootd&hl=es_419; Gestión de ataques de pánico con guías  o a  o.;Freemium;Autorregulación;APP;Muy bueno
 Woebot;Salud Emocional;TDAH;Android, iOS;Gratis;Autorregulación;https://play.google.com/store/apps/details?id=com.woebot&hl=es; Terapia conversacional basada en CBT para reestructurar pensamientos.;Gratis;Autorregulación;APP;Muy bueno
 Smiling Mind;Salud Emocional;TDAH;Android, Web, iOS;Gratis;Mindfulness;https://play.google.com/store/apps/details?id=com.smilingmind.app&hl=es; Meditación gratuita y estructurada con programas por edad.;Gratis;Mindfulness;APP;Excelente
@@ -46,6 +48,7 @@ Voice Dream Scanner;Accesibilidad Cognitiva;DIS, TDAH;Android, iOS;Pago;Lectura;
 Petit Bambu;Salud Emocional;TDAH, TEA;Android, Mac, Web, iOS;Freemium;Mindfulness;https://play.google.com/store/apps/details?id=com.petitbambou&hl=es; Meditación y mindfulness con sesiones guiadas para estrés y  iedad.;Freemium;Mindfulness;APP;Excelente
 Grammarly;Accesibilidad Cognitiva;DIS, TDAH;Chrome, Mac, Web, Windows;Freemium;Escritura;https://www.grammarly.com; Corrección de texto y tono para evitar errores y malentendidos.;Freemium;Escritura;APP;Muy bueno
 Otter.ai;Accesibilidad Cognitiva;TDAH, TEA;Android, Web, iOS;Freemium;Escritura;https://play.google.com/store/apps/details?id=com.aisense.otter&hl=es; Tr cripción automática de reuniones.;Freemium;Escritura;APP;Muy bueno
+Omi AI;Accesibilidad Cognitiva;TDAH, TEA;Android, Mac, Web, iOS;Freemium;Escritura;https://play.google.com/store/apps/details?id=com.friend.ios;Graba, transcribe y resume reuniones y conversaciones automáticamente con tareas pendientes.;Freemium;Escritura;APP;Muy bueno
 LanguageTool;Accesibilidad Cognitiva;DIS, TEA;Chrome, Web;Freemium;Escritura;https://languagetool.org; Corrector ortográfico open source multiidioma.;Freemium;Escritura;EXT;Muy bueno
 Forest;Accesibilidad Cognitiva;TDAH;Android, Chrome, iOS;Pago;Enfoque;https://www.forestapp.cc; Concentración gamificada;Pago;Enfoque;APP;Excelente
 LeechBlock;Accesibilidad Cognitiva;TDAH;Web;Gratis;Enfoque;https://chromewebstore.google.com/detail/leechblock-ng/blaaajhemilngeeffpbfkdjjoefldkok?hl=es&gl=AR; Bloqueo de páginas web para evitar distracciones.;Gratis;Enfoque;EXT;Muy bueno

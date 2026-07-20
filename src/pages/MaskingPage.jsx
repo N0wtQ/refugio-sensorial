@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { usePageMeta } from '../hooks/usePageMeta'
+import { useJsonLd } from '../hooks/useJsonLd'
+import { articleLd } from '../lib/seo'
 import Breadcrumb from '../components/ui/Breadcrumb'
 import TTSButton from '../components/ui/TTSButton'
 
@@ -278,6 +280,11 @@ export default function MaskingPage() {
     title: 'Masking autista: qué es, por qué ocurre y cómo reducirlo — Refugio Sensorial',
     description: 'Qué es el masking o camuflaje autista, por qué ocurre, ejemplos cotidianos, consecuencias y estrategias para reducirlo de forma gradual y segura.',
   })
+  useJsonLd(articleLd({
+    titulo: 'Masking autista: qué es, por qué ocurre y cómo reducirlo',
+    descripcion: 'Qué es el masking o camuflaje autista, por qué ocurre, ejemplos cotidianos, consecuencias y estrategias para reducirlo de forma gradual y segura.',
+    ruta: '/entender-y-prepararse/masking',
+  }), 'article')
   const prefersReduced = useReducedMotion()
   const [openMito, setOpenMito] = useState(null)
 

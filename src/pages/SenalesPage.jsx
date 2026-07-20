@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import TTSButton from '../components/ui/TTSButton'
 import { usePageMeta } from '../hooks/usePageMeta'
+import { useJsonLd } from '../hooks/useJsonLd'
+import { articleLd } from '../lib/seo'
 import Breadcrumb from '../components/ui/Breadcrumb'
 
 const SENALES = [
@@ -148,6 +150,11 @@ export default function SenalesPage() {
     title: 'Señales previas al meltdown autista — Cómo reconocerlas | Refugio Sensorial',
     description: 'Aprende a detectar las señales corporales, cognitivas, emocionales y conductuales antes de una crisis autista. Actúa antes de llegar al límite.',
   })
+  useJsonLd(articleLd({
+    titulo: 'Señales previas al meltdown autista: cómo reconocerlas',
+    descripcion: 'Aprende a detectar las señales corporales, cognitivas, emocionales y conductuales antes de una crisis autista. Actúa antes de llegar al límite.',
+    ruta: '/entender-y-prepararse/senales',
+  }), 'article')
   const prefersReduced = useReducedMotion()
 
   return (
