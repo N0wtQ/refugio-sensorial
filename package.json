@@ -11,7 +11,8 @@
     "pa11y": "pa11y-ci --config .pa11yrc.json",
     "a11y:ci": "npm run build && npm run preview & sleep 3 && npm run a11y; kill %1",
     "db:import": "node scripts/db/import-lugares.mjs",
-    "db:export": "node scripts/db/export-lugares.mjs"
+    "db:export": "node scripts/db/export-lugares.mjs",
+    "db:csv": "node scripts/db/export-csv.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

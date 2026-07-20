@@ -7,9 +7,33 @@ import { fileURLToPath } from 'node:url'
 export const DB_PATH = fileURLToPath(new URL('../../data/refugio-sensorial.db', import.meta.url))
 const SCHEMA_PATH = fileURLToPath(new URL('./schema.sql', import.meta.url))
 
+// Columnas añadidas a `lugares` después de su creación inicial. Se
+// aplican con ALTER TABLE solo si faltan — así una base de datos ya
+// existente (creada con un esquema anterior) se pone al día sin perder
+// filas, y una base de datos nueva (que ya nace con estas columnas en
+// el CREATE TABLE de schema.sql) simplemente no tiene nada que migrar.
+const COLUMNAS_NUEVAS = {
+  tipo: 'TEXT',
+  motivo_inclusion: 'TEXT',
+  adaptaciones_sensoriales: 'TEXT',
+  certificacion: 'TEXT',
+  codigo_iso: 'TEXT',
+  url_oficial: 'TEXT',
+}
+
+function migrarColumnasFaltantes(db) {
+  const existentes = new Set(db.prepare('PRAGMA table_info(lugares)').all().map(c => c.name))
+  for (const [columna, tipo] of Object.entries(COLUMNAS_NUEVAS)) {
+    if (!existentes.has(columna)) {
+      db.exec(`ALTER TABLE lugares ADD COLUMN ${columna} ${tipo}`)
+    }
+  }
+}
+
 export function openDb() {
   const db = new DatabaseSync(DB_PATH)
   db.exec(readFileSync(SCHEMA_PATH, 'utf8'))
+  migrarColumnasFaltantes(db)
   return db
 }
 

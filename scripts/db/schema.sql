@@ -41,11 +41,21 @@ CREATE TABLE IF NOT EXISTS lugares (
   -- directamente, esta columna se podrá retirar.
   tipo_legacy          TEXT NOT NULL,
 
+  -- Tipo concreto de lugar (Museo, Aeropuerto, Zoológico...) — más
+  -- granular que categoria_id, para catálogo/CSV. Distinto de
+  -- tipo_legacy (que es específicamente el valor que usa hoy el mapa).
+  tipo                 TEXT,
+
   descripcion          TEXT,
+  motivo_inclusion     TEXT,             -- por qué cualifica (evidencia concreta, no opinión)
+  adaptaciones_sensoriales TEXT,         -- lista libre: "Sala sensorial, horario tranquilo..."
+  certificacion        TEXT,             -- p. ej. "KultureCity Sensory Inclusive", "IBCCES CAC"
+
   direccion            TEXT,
   ciudad               TEXT,
   provincia_region     TEXT,
   pais                 TEXT NOT NULL DEFAULT 'España',
+  codigo_iso           TEXT,             -- ISO 3166-1 alfa-2, p. ej. 'ES', 'US'
   -- NULL cuando no se conoce la coordenada exacta del edificio y no se
   -- quiere aproximar con el centro de la ciudad (norma explícita del
   -- proyecto). Un lugar sin coordenadas no se exporta al mapa hasta
@@ -53,8 +63,9 @@ CREATE TABLE IF NOT EXISTS lugares (
   latitud              REAL,
   longitud             REAL,
 
-  web_oficial          TEXT,
-  fuente               TEXT,             -- URL de la fuente que verifica el dato
+  web_oficial          TEXT,             -- página principal del lugar
+  url_oficial          TEXT,             -- página oficial concreta sobre su accesibilidad/certificación
+  fuente               TEXT,             -- URL de la fuente que verifica el dato (puede ser un tercero fiable)
 
   nivel_verificacion   TEXT NOT NULL DEFAULT 'Verificado - Documentación pública'
     CHECK (nivel_verificacion IN (
@@ -67,6 +78,12 @@ CREATE TABLE IF NOT EXISTS lugares (
   -- Campo legacy que hoy muestra el popup del mapa (p. ej. "14:30–16:30").
   horario              TEXT
 );
+
+-- Migración idempotente para bases de datos creadas antes de que
+-- existieran estas columnas (ALTER TABLE ADD COLUMN no admite
+-- IF NOT EXISTS en SQLite; lib.mjs comprueba con PRAGMA table_info
+-- antes de ejecutar esto, así que fallar aquí en una BD nueva es
+-- inofensivo — la tabla ya se creó con todas las columnas arriba).
 
 CREATE INDEX IF NOT EXISTS idx_lugares_categoria    ON lugares(categoria_id);
 CREATE INDEX IF NOT EXISTS idx_lugares_pais          ON lugares(pais);

@@ -9,10 +9,14 @@ como se pidió.
 ```
 data/refugio-sensorial.db  (SQLite, fuente única de verdad)
         │
-        │  scripts/db/export-lugares.mjs
-        ▼
-src/data/lugares.js   ← el frontend sigue leyendo exactamente esto, sin cambios
-data/lugares.json     ← artefacto adicional, JSON con todos los campos
+        ├─  scripts/db/export-lugares.mjs
+        │       ▼
+        │   src/data/lugares.js   ← el frontend sigue leyendo exactamente esto, sin cambios
+        │   data/lugares.json     ← artefacto adicional, JSON con todos los campos
+        │
+        └─  scripts/db/export-csv.mjs
+                ▼
+            data/lugares.csv      ← catálogo mundial en CSV, todos los campos
 ```
 
 ## Qué se ha hecho y por qué
@@ -72,6 +76,23 @@ oficial, fuente, nivel de verificación, fecha de actualización), más:
   exportador pueda regenerar `lugares.js` sin tocar el frontend. Cuando
   haya una segunda fase de rediseño de la interfaz que use `categoria_id`
   directamente, esta columna se podrá retirar.
+- `tipo` — tipo concreto de lugar en lenguaje natural para el catálogo/CSV
+  (p. ej. "Museo", "Aeropuerto", "Parque temático"). Distinto de
+  `tipo_legacy`, que es específicamente el valor interno del mapa.
+- `motivo_inclusion` — por qué cualifica el lugar: evidencia concreta
+  (certificación, sala sensorial documentada oficialmente...), nunca una
+  opinión ("parece tranquilo" no es un motivo válido).
+- `adaptaciones_sensoriales` — lista libre de las adaptaciones descritas
+  por la fuente (sala sensorial, horario tranquilo, mochilas sensoriales
+  en préstamo...).
+- `certificacion` — nombre del programa si lo tiene (p. ej. "IBCCES
+  Certified Autism Center (CAC)", "KultureCity Sensory Inclusive"); `NULL`
+  si el lugar cualifica por otra vía (p. ej. una sala sensorial oficial
+  sin programa de certificación asociado).
+- `codigo_iso` — código ISO 3166-1 alfa-2 del país (`ES`, `US`, `BR`...).
+- `url_oficial` — la página oficial concreta que documenta la
+  certificación/accesibilidad (distinta de `web_oficial`, que es la
+  página principal del lugar).
 - `nivel_verificacion` — uno de tres valores fijos ("Verificado - Fuente
   oficial" / "... Prensa o medio reconocido" / "... Documentación
   pública"), con `CHECK` en la base de datos.
@@ -91,12 +112,14 @@ primera versión — se pidió explícitamente evitarlo.
 
 | Script | Qué hace |
 |---|---|
-| `lib.mjs` | Conexión compartida + aplica `schema.sql` al abrir |
+| `lib.mjs` | Conexión compartida + aplica `schema.sql` al abrir + migra columnas nuevas si faltan |
 | `import-lugares.mjs` | `lugares.js` → SQLite. Idempotente (`ON CONFLICT... DO UPDATE`), no duplica si se re-ejecuta |
 | `export-lugares.mjs` | SQLite → `lugares.js` (solo con coordenadas) + `lugares.json` (todos) |
-| `seed-internacional.mjs` | Siembra puntual de las primeras 8 ubicaciones internacionales verificadas (ver abajo) |
+| `export-csv.mjs` | SQLite → `data/lugares.csv` (todos, columnas exactas del catálogo mundial) |
+| `seed-internacional.mjs` | Siembra de las ubicaciones internacionales verificadas (ver abajo) |
 
-`npm run db:import` y `npm run db:export` son atajos a los dos primeros.
+`npm run db:import`, `npm run db:export` y `npm run db:csv` son atajos a
+los tres scripts anteriores.
 
 ## Cómo añadir un lugar nuevo
 
@@ -112,9 +135,9 @@ primera versión — se pidió explícitamente evitarlo.
    en `NULL` — no se publicará en el mapa hasta tenerlas, pero queda
    guardado y listo para completarse.
 4. Ejecuta `npm run db:export` para regenerar `lugares.js` y
-   `lugares.json`.
+   `lugares.json`, y `npm run db:csv` para regenerar `data/lugares.csv`.
 5. Revisa el diff de `src/data/lugares.js` — debe ser mínimo si no has
-   tocado los 250 lugares existentes.
+   tocado los lugares con coordenadas ya existentes.
 
 ## Cómo actualizar la base de datos SQLite
 
@@ -128,10 +151,11 @@ git (como cualquier otro archivo del repo). Para modificarla:
 Tras cualquier cambio, ejecuta `npm run db:export` y haz commit tanto del
 `.db` como de los archivos regenerados.
 
-## Cómo regenerar los JSON/lugares.js automáticamente
+## Cómo regenerar los JSON/lugares.js/CSV automáticamente
 
 ```
-npm run db:export
+npm run db:export   # lugares.js + lugares.json
+npm run db:csv       # lugares.csv
 ```
 
 Esto NO se ejecuta en el CI/deploy (`deploy.yml` no lo llama) — es
@@ -140,37 +164,77 @@ un lugar" es una decisión editorial, no algo que deba pasar solo con
 cada `git push`). El build de producción sigue leyendo `lugares.js` tal
 cual esté commiteado, igual que siempre.
 
-## Las 8 primeras ubicaciones internacionales
+## Las 25 ubicaciones internacionales verificadas
 
 `seed-internacional.mjs` añade a la base de datos (no al mapa todavía,
-por falta de coordenadas verificadas) las 8 ubicaciones que ya se habían
-documentado y citado con fuente oficial: tres aeropuertos/estadios y un
-parque temático certificados KultureCity/IBCCES en EE. UU., y un
-zoológico y un acuario certificados IBCCES en Emiratos Árabes Unidos.
+por falta de coordenadas exactas del edificio) 25 ubicaciones físicas
+verificadas fuera de España, cada una con su fuente citada:
+
+- **Parques temáticos y de ocio (12):** Peppa Pig Theme Park Dallas-Fort
+  Worth, LEGOLAND California/Florida/New York/Korea/Japan, SeaWorld
+  Orlando, Aquatica Orlando, Discovery Cove, Emirates Park Zoo and Resort
+  (Abu Dabi), Dubai Aquarium & Underwater Zoo, Ripley's Aquarium of
+  Canada — certificados IBCCES Certified Autism Center (CAC).
+- **Estadios (4):** Lucas Oil Stadium, Gillette Stadium, Bank of America
+  Stadium, AAMI Park (Melbourne) — certificados KultureCity Sensory
+  Inclusive.
+- **Aeropuertos (7):** Indianapolis, Salt Lake City, Dublín,
+  Alicante-Elche Miguel Hernández, Josep Tarradellas Barcelona-El Prat,
+  Tom Jobim/Galeão (Río de Janeiro), Tocumen (Panamá) — con salas
+  sensoriales documentadas oficialmente o por prensa especializada.
+- **Ferrocarril turístico (1):** Western Maryland Scenic Railroad —
+  IBCCES CAC.
+- **Museo (1):** Museu Oscar Niemeyer (Curitiba, Brasil) — sala de
+  acomodación sensorial documentada en su propia web oficial.
+
+Cada entrada guarda, además de los campos base, `motivo_inclusion` (la
+evidencia concreta), `adaptaciones_sensoriales`, `certificacion` (si
+aplica) y `url_oficial` (la página exacta que documenta la certificación
+o la sala sensorial, no solo la web general del lugar).
 
 **Limitación técnica que sigue vigente:** el acceso directo a directorios
-oficiales como `kulturecity.org` o `ibcces.org` sigue bloqueado desde este
-entorno de desarrollo (HTTP 403, verificado). Solo la búsqueda web
-funciona, y da fragmentos de texto, no listados estructurados con
-dirección y coordenadas exactas del edificio. Por eso hay 8 ubicaciones,
-no cientos — la calidad y la regla de "nunca inventar coordenadas" pesa
-más que la cantidad, tal como se pidió.
+oficiales como `kulturecity.org` o `ibcces.org` (como listados
+estructurados navegables) sigue bloqueado desde este entorno de
+desarrollo (HTTP 403, verificado). Solo la búsqueda web funciona, y da
+fragmentos de texto y enlaces a artículos/comunicados individuales, no
+listados estructurados masivos con dirección y coordenadas exactas del
+edificio. Por eso el catálogo mundial tiene 25 ubicaciones verificadas
+fuera de España, no los 1.000+ que pedía el objetivo inicial — la calidad
+y la regla de "nunca inventar coordenadas ni datos" pesa más que la
+cantidad, tal como se pidió explícitamente. Ninguna de las 25 tiene
+coordenadas de edificio confirmadas por una fuente todavía, así que
+ninguna aparece hoy en el mapa — sí en `data/lugares.json` y
+`data/lugares.csv`, listas para completarse.
 
-## ⚠️ Ya existe un sistema paralelo — hay que decidir qué hacer con él
+## Catálogo mundial en CSV (`data/lugares.csv`)
 
-En una sesión anterior se construyó `supabase/migrations/0003_ubicaciones_verificadas.sql`
-(ver `docs/ubicaciones-verificadas.md`): una tabla en Supabase (Postgres,
-un servicio externo) pensada para el mismo objetivo — ubicaciones
-verificadas globalmente. Con esta nueva arquitectura SQLite, **ese
-sistema de Supabase queda redundante**: hace lo mismo, pero depende de un
-servicio externo, mientras que SQLite cumple "sin backend, sin coste" de
-forma literal.
+`npm run db:csv` exporta **toda** la base de datos (los 250 lugares de
+España con coordenadas y las 25 ubicaciones internacionales sin
+coordenadas todavía) a un único CSV en UTF-8, con las columnas exactas:
 
-No he tocado ni borrado nada de Supabase — sigue ahí, sin usarse desde el
-frontend. Recomendación: si te convence esta arquitectura SQLite,
-`ubicaciones_verificadas` en Supabase se puede abandonar sin más (nunca
-llegó a tener datos de producción reales más allá de las mismas 8 de
-prueba). Dímelo y lo limpio en la próxima sesión.
+```
+id, nombre, tipo, dirección, ciudad, provincia, país, código_iso,
+latitud, longitud, descripción, motivo_inclusión, adaptaciones_sensoriales,
+certificación, nivel_verificación, web_oficial, url_oficial, fuente,
+fecha_verificación
+```
+
+Es un artefacto adicional para consulta/análisis externo — no lo lee el
+frontend ni el pipeline de build, igual que `lugares.json`.
+
+## Sistema redundante eliminado
+
+Una sesión anterior había construido una tabla equivalente en Supabase
+(`ubicaciones_verificadas`, Postgres, un servicio externo) para el mismo
+objetivo. Quedó redundante en cuanto existió la base SQLite — misma
+función, pero dependiendo de un servicio externo en vez de cumplir "sin
+backend, sin coste" de forma literal. Se ha eliminado por completo:
+`scripts/import-ubicaciones.mjs`, `data/ubicaciones-seed.json`,
+`docs/ubicaciones-verificadas.md` y la migración `0003` (nunca llegó a
+tener datos de producción reales, solo las mismas 8 ubicaciones de
+prueba que ahora viven en SQLite). Se añadió `supabase/migrations/0004_eliminar_ubicaciones_verificadas.sql`
+por si alguna vez se llegó a ejecutar `0003` en un proyecto Supabase real
+— es seguro ejecutarla tanto si se aplicó como si no.
 
 *(Esto es distinto de `espacios_comunidad`, la tabla de Supabase que sí
 está en uso — el "Añadir espacio" con clic directo en el mapa que
