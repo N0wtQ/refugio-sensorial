@@ -820,6 +820,101 @@ const lugares = [
     fuente: 'https://www.sheddaquarium.org/about-shedd/press-releases/kulture-city-certification',
     nivel_verificacion: 'Verificado - Fuente oficial',
   },
+
+  // ── Cuarta ronda: aeropuertos de Brasil con sala multisensorial
+  // confirmada como operativa, dentro del "Programa de Acolhimento ao
+  // Passageiro com TEA" del Ministério de Portos e Aeroportos (meta de
+  // 20 salas en aeropuertos brasileños para 2026). De la lista de 15
+  // aeropuertos brasileños propuesta, solo estos 6 tienen la sala
+  // confirmada como YA operativa por una fuente concreta — el resto
+  // (Campo Grande, Viracopos, Brasília, Guarulhos, Afonso Pena,
+  // Fortaleza, Salvador, Belo Horizonte/Confins) no se incluyen: son
+  // parte del plan de expansión a futuro, no salas ya inauguradas
+  // confirmadas.
+  {
+    id: 'INTL-054', nombre: 'Aeroporto Internacional do Recife/Guararapes',
+    categoria: 'Transporte', tipo_legacy: 'aeropuerto', tipo: 'Aeropuerto',
+    descripcion: 'Aeropuerto con sala multisensorial para pasajeros con trastorno del espectro autista (TEA), inaugurada por el Gobierno Federal de Brasil en abril de 2025.',
+    motivo_inclusion: 'Sala multisensorial inaugurada oficialmente por el Ministério de Portos e Aeroportos, documentada en fuente gubernamental.',
+    adaptaciones_sensoriales: 'Sala multisensorial 24h (área de embarque norte, frente a la puerta B12): iluminación tenue, proyecciones, piscina de bolas, cojines especiales.',
+    certificacion: null,
+    direccion: null, ciudad: 'Recife', provincia_region: 'Pernambuco', pais: 'Brasil', codigo_iso: 'BR',
+    latitud: -8.1275, longitud: -34.923,
+    web_oficial: 'https://www.aenabrasil.com.br',
+    url_oficial: 'https://www.gov.br/portos-e-aeroportos/pt-br/assuntos/noticias/2025/04/governo-federal-inaugura-sala-multissensorial-dedicada-a-pessoas-com-tea-no-aeroporto-internacional-de-recife-pe',
+    fuente: 'https://www.gov.br/portos-e-aeroportos/pt-br/assuntos/noticias/2025/04/governo-federal-inaugura-sala-multissensorial-dedicada-a-pessoas-com-tea-no-aeroporto-internacional-de-recife-pe',
+    nivel_verificacion: 'Verificado - Fuente oficial',
+  },
+  {
+    id: 'INTL-055', nombre: 'Aeroporto Santos Dumont',
+    categoria: 'Transporte', tipo_legacy: 'aeropuerto', tipo: 'Aeropuerto',
+    descripcion: 'Aeropuerto con sala multisensorial para pasajeros con trastorno del espectro autista (TEA), inaugurada en junio de 2023.',
+    motivo_inclusion: 'Sala multisensorial cubierta por CNN Brasil, entre los primeros aeropuertos brasileños con esta sala operativa.',
+    adaptaciones_sensoriales: 'Sala multisensorial en el área de embarque: iluminación especial, paneles de actividades, columna de burbujas, aislamiento acústico.',
+    certificacion: null,
+    direccion: 'Praça Senador Salgado Filho, s/n', ciudad: 'Rio de Janeiro', provincia_region: 'Rio de Janeiro', pais: 'Brasil', codigo_iso: 'BR',
+    latitud: -22.9063, longitud: -43.1578,
+    web_oficial: 'https://www.infraero.gov.br',
+    url_oficial: 'https://www.cnnbrasil.com.br/nacional/aeroportos-de-congonhas-e-santos-dumont-ganham-salas-multissensoriais-para-autistas/',
+    fuente: 'https://www.cnnbrasil.com.br/nacional/aeroportos-de-congonhas-e-santos-dumont-ganham-salas-multissensoriais-para-autistas/',
+    nivel_verificacion: 'Verificado - Prensa o medio reconocido',
+  },
+  {
+    id: 'INTL-056', nombre: 'Aeroporto de Congonhas',
+    categoria: 'Transporte', tipo_legacy: 'aeropuerto', tipo: 'Aeropuerto',
+    descripcion: 'Aeropuerto con sala multisensorial para pasajeros con TEA y otras neurodivergencias, reinaugurada en mayo de 2025 en una nueva ubicación junto a la puerta 12.',
+    motivo_inclusion: 'Reinauguración de la sala multisensorial cubierta por prensa especializada, operada por Aena Brasil en colaboración con Neurobrinq.',
+    adaptaciones_sensoriales: 'Sala multisensorial: iluminación especial, paneles interactivos, columna de burbujas, piscina de bolas iluminada, proyector con efectos visuales.',
+    certificacion: null,
+    direccion: 'Av. Washington Luís, s/n', ciudad: 'São Paulo', provincia_region: 'São Paulo', pais: 'Brasil', codigo_iso: 'BR',
+    latitud: -23.6233, longitud: -46.6525,
+    web_oficial: 'https://www.aenabrasil.com.br',
+    url_oficial: 'https://passageirodeprimeira.com/aeroporto-de-congonhas-reinaugura-espaco-para-neurodivergentes/',
+    fuente: 'https://passageirodeprimeira.com/aeroporto-de-congonhas-reinaugura-espaco-para-neurodivergentes/',
+    nivel_verificacion: 'Verificado - Prensa o medio reconocido',
+  },
+  {
+    id: 'INTL-057', nombre: 'Aeroporto Internacional de Florianópolis/Hercílio Luz',
+    categoria: 'Transporte', tipo_legacy: 'aeropuerto', tipo: 'Aeropuerto',
+    descripcion: 'Uno de los dos primeros aeropuertos de Brasil (junto con Vitória) en instalar una sala sensorial para pasajeros autistas y neurodivergentes, dentro del proyecto "Aeroporto para Todos".',
+    motivo_inclusion: 'Sala sensorial pionera documentada por prensa especializada en aviación accesible.',
+    adaptaciones_sensoriales: 'Sala sensorial en el área de embarque doméstico, adaptable a necesidades específicas (p. ej. apagar la iluminación azul), sin necesidad de documentación médica.',
+    certificacion: null,
+    direccion: 'Av. Dep. Diomício Freitas, 3393', ciudad: 'Florianópolis', provincia_region: 'Santa Catarina', pais: 'Brasil', codigo_iso: 'BR',
+    latitud: -27.6703, longitud: -48.5525,
+    web_oficial: 'https://www.aeroportoflorianopolis.com',
+    url_oficial: 'https://aviacaoacessivel.com/salas-multissensoriais/',
+    fuente: 'https://aviacaoacessivel.com/salas-multissensoriais/',
+    nivel_verificacion: 'Verificado - Documentación pública',
+  },
+  {
+    id: 'INTL-058', nombre: 'Aeroporto de Vitória/Eurico de Aguiar Salles',
+    categoria: 'Transporte', tipo_legacy: 'aeropuerto', tipo: 'Aeropuerto',
+    descripcion: 'Uno de los dos primeros aeropuertos de Brasil (junto con Florianópolis) en instalar una sala sensorial para pasajeros autistas y neurodivergentes.',
+    motivo_inclusion: 'Sala sensorial pionera documentada por prensa especializada en aviación accesible.',
+    adaptaciones_sensoriales: 'Sala sensorial en el área de embarque, adaptable a necesidades específicas.',
+    certificacion: null,
+    direccion: 'Av. Fernando Ferrari, 3800', ciudad: 'Vitória', provincia_region: 'Espírito Santo', pais: 'Brasil', codigo_iso: 'BR',
+    latitud: -20.258, longitud: -40.285,
+    web_oficial: 'https://vix-airport.com',
+    url_oficial: 'https://aviacaoacessivel.com/salas-multissensoriais/',
+    fuente: 'https://aviacaoacessivel.com/salas-multissensoriais/',
+    nivel_verificacion: 'Verificado - Documentación pública',
+  },
+  {
+    id: 'INTL-059', nombre: 'Aeroporto Internacional Governador Aluízio Alves (Natal)',
+    categoria: 'Transporte', tipo_legacy: 'aeropuerto', tipo: 'Aeropuerto',
+    descripcion: 'Aeropuerto con sala multisensorial operativa para pasajeros con TEA y otras neurodivergencias.',
+    motivo_inclusion: 'Listado entre los aeropuertos brasileños con sala multisensorial ya operativa, según prensa especializada en aviación accesible.',
+    adaptaciones_sensoriales: 'Sala multisensorial.',
+    certificacion: null,
+    direccion: 'Av. Ruy Pereira dos Santos, 3100', ciudad: 'São Gonçalo do Amarante', provincia_region: 'Rio Grande do Norte', pais: 'Brasil', codigo_iso: 'BR',
+    latitud: -5.75929, longitud: -35.36837,
+    web_oficial: 'https://www.natal-airport.com.br',
+    url_oficial: 'https://aviacaoacessivel.com/salas-multissensoriais/',
+    fuente: 'https://aviacaoacessivel.com/salas-multissensoriais/',
+    nivel_verificacion: 'Verificado - Documentación pública',
+  },
 ]
 
 let n = 0

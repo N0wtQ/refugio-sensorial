@@ -45,8 +45,8 @@ sobre los 250 lugares actuales produce un `lugares.js` idéntico salvo dos
 líneas cosméticas (el comentario de cabecera, y `-5` en vez de `-5.0` —
 el mismo número exacto en punto flotante). Comprobado además con
 Playwright en cada ronda de cambios: tras añadir las ubicaciones
-internacionales, el mapa muestra "298 espacios visibles" (250 de España +
-48 internacionales con coordenada verificada), los filtros por tipo
+internacionales, el mapa muestra "304 espacios visibles" (250 de España +
+54 internacionales con coordenada verificada), los filtros por tipo
 funcionan igual, cero errores en consola.
 
 **Vista por defecto del mapa:** ya no se centra automáticamente en la
@@ -172,13 +172,36 @@ un lugar" es una decisión editorial, no algo que deba pasar solo con
 cada `git push`). El build de producción sigue leyendo `lugares.js` tal
 cual esté commiteado, igual que siempre.
 
-## Las 53 ubicaciones internacionales verificadas
+## Las 59 ubicaciones internacionales verificadas
 
-`seed-internacional.mjs` añade a la base de datos 53 ubicaciones físicas
-verificadas fuera de España, cada una con su fuente citada. **48 de las
-53 tienen coordenada real del edificio** (confirmada por una fuente,
+`seed-internacional.mjs` añade a la base de datos 59 ubicaciones físicas
+verificadas fuera de España, cada una con su fuente citada. **54 de las
+59 tienen coordenada real del edificio** (confirmada por una fuente,
 nunca aproximada con el centro de la ciudad) y por tanto **sí aparecen ya
-en el mapa**, junto a los 250 lugares de España (298 en total):
+en el mapa**, junto a los 250 lugares de España (304 en total):
+
+**Cuarta ronda (aeropuertos de Brasil):** 6 aeropuertos con sala
+multisensorial confirmada como ya operativa, dentro del "Programa de
+Acolhimento ao Passageiro com TEA" del Ministério de Portos e Aeroportos
+de Brasil (meta: 20 salas en aeropuertos brasileños para 2026) —
+Recife/Guararapes, Santos Dumont (Río de Janeiro), Congonhas (São
+Paulo), Florianópolis/Hercílio Luz, Vitória/Eurico de Aguiar Salles y
+Natal. De una lista de 15 aeropuertos brasileños propuesta por el
+usuario, se **descartaron 9** (Campo Grande, Viracopos, Brasília,
+Guarulhos, Afonso Pena, Fortaleza, Salvador, Belo Horizonte/Confins, y
+Galeão ya estaba incluido) por no encontrarse confirmación de que la
+sala ya esté operativa — son parte del plan de expansión a futuro, no
+salas ya inauguradas.
+
+**Sobre otras ~200 ubicaciones propuestas por el usuario (museos,
+zoológicos, jardines botánicos, bibliotecas y parques urbanos en toda
+Latinoamérica):** se descartaron en bloque. Sus descripciones eran
+genéricas ("con programas de accesibilidad e inclusión", "espacios
+tranquilos") sin nombrar una certificación, sala sensorial concreta o
+programa específico para autismo — el mismo criterio de "evidencia
+concreta, no una impresión" que se ha aplicado durante toda esta
+migración, se aplicó también a las listas que aportó el usuario, no solo
+a las que salieron de la búsqueda propia.
 
 **Tercera ronda (parques inclusivos, temáticos, zoos y acuarios):**
 Morgan's Wonderland y Morgan's Inspiration Island (San Antonio, primeros
@@ -235,19 +258,19 @@ oficiales como `kulturecity.org` o `ibcces.org` (como listados
 estructurados navegables) sigue bloqueado desde este entorno de
 desarrollo (HTTP 403, verificado). Solo la búsqueda web funciona, y da
 fragmentos de texto y enlaces a artículos/comunicados individuales, no
-listados estructurados masivos. Por eso el catálogo mundial tiene 53
+listados estructurados masivos. Por eso el catálogo mundial tiene 59
 ubicaciones verificadas fuera de España, no los 1.000+ que pedía el
 objetivo inicial — la calidad y la regla de "nunca inventar coordenadas
 ni datos" pesa más que la cantidad, tal como se pidió explícitamente.
-Una tercera parte de las direcciones que se propusieron para ampliar el
-catálogo no pudieron confirmarse con una fuente real y se descartaron
-(ver arriba) — es la misma regla aplicada de forma consistente, venga la
+De las listas de candidatos que fue aportando el usuario, una parte
+importante no pudo confirmarse con una fuente real y se descartó (ver
+arriba) — es la misma regla aplicada de forma consistente, venga la
 propuesta de una búsqueda propia o de una lista aportada por el usuario.
 
 ## Catálogo mundial en CSV (`data/lugares.csv`)
 
 `npm run db:csv` exporta **toda** la base de datos (los 250 lugares de
-España y las 53 ubicaciones internacionales, con o sin coordenadas) a un
+España y las 59 ubicaciones internacionales, con o sin coordenadas) a un
 único CSV en UTF-8, con las columnas exactas:
 
 ```
