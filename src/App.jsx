@@ -9,7 +9,6 @@ const CanvasBg = lazy(() =>
 )
 const GlobalSearch = lazy(() => import('./components/search/GlobalSearch'))
 const HerramientasLandingPage = lazy(() => import('./pages/herramientas/LandingPage'))
-const TiendasFidgetsPage = lazy(() => import('./pages/herramientas/TiendasFidgetsPage'))
 const CiudadPage = lazy(() => import('./pages/espacios/CiudadPage'))
 const EntenderEstadoPage = lazy(() => import('./pages/EntenderEstadoPage'))
 
@@ -107,10 +106,6 @@ function AppRoutes({ onOpenSearch }) {
         <Route path="/entender-y-prepararse/kit-de-bolso" element={<PageTransition><KitBolsoPage /></PageTransition>} />
         <Route path="/entender-y-prepararse/masking"     element={<PageTransition><MaskingPage /></PageTransition>} />
         <Route path="/entender-y-prepararse/guias"        element={<PageTransition><RecursosPage /></PageTransition>} />
-
-        {/* Subcategoría: directorio de tiendas de fidgets — antes de la ruta
-            dinámica :slug, para que no la intercepte como perfil/categoría */}
-        <Route path="/herramientas/tiendas-fidgets" element={<PageTransition><Suspense fallback={null}><TiendasFidgetsPage /></Suspense></PageTransition>} />
 
         {/* Dynamic herramientas landings */}
         <Route path="/herramientas/:slug"           element={<PageTransition><Suspense fallback={null}><HerramientasLandingPage /></Suspense></PageTransition>} />

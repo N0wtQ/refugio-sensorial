@@ -14,6 +14,7 @@ const TIPO_BADGE = {
   COM:   { label: 'Comunidad', color: 'text-sec  bg-sec/10  border-sec/20' },
   TIENDA:{ label: 'Tienda',    color: 'text-warm bg-warm/10 border-warm/20' },
   JUEGO: { label: 'Juego',     color: 'text-green bg-green/10 border-green/20' },
+  MARKETPLACE: { label: 'Marketplace', color: 'text-coral bg-coral/10 border-coral/20' },
 }
 
 const PRECIO_COLOR = {
@@ -37,6 +38,7 @@ const CAT_ICON = {
   'Ejercicio Movimiento':  'fa-person-running',
   'Alimentación':          'fa-apple-whole',
   'Vida Independiente':    'fa-house',
+  'Dónde comprar fidgets sensoriales': 'fa-cart-shopping',
 }
 
 function StarRating({ label }) {
@@ -122,7 +124,7 @@ function ToolCard({ h, index, prefersReduced }) {
           <span className={`text-[10px] font-semibold px-2 py-0.5 rounded border ${precio.text} ${precio.bg} ${precio.border}`}>
             {h.precio}
           </span>
-          <StarRating label={h.valoracion} />
+          {h.valoracion && <StarRating label={h.valoracion} />}
         </div>
         {/* Visual "open" cue — reinforces that the whole card is clickable */}
         <span className="flex items-center gap-1 text-[11px] font-semibold text-pri opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200">

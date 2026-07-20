@@ -216,6 +216,18 @@ export const CATEGORIAS_CONFIG = [
       description: 'Apps de bienestar emocional para TEA y TDAH: meditación, diario emocional, mindfulness y autocuidado.',
     },
   },
+  {
+    slug: 'tiendas-fidgets',
+    label: 'Dónde comprar fidgets sensoriales',
+    cats: ['Dónde comprar fidgets sensoriales'],
+    desc: 'Directorio verificado de fabricantes, tiendas especializadas, grandes comercios y marketplaces donde comprar fidgets y productos de regulación sensorial en España, Europa, América y más.',
+    icon: 'fa-cart-shopping',
+    color: 'text-warm',
+    seo: {
+      title: 'Dónde comprar fidgets sensoriales — Directorio de tiendas | Refugio Sensorial',
+      description: 'Directorio verificado de tiendas para comprar fidgets y productos de regulación sensorial: fabricantes, tiendas especializadas, grandes comercios y marketplaces de todo el mundo.',
+    },
+  },
 ]
 
 // ─── CITY CONFIG ──────────────────────────────────────────────────────────────

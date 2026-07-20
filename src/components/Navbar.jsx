@@ -5,7 +5,26 @@ import { motion, AnimatePresence } from 'framer-motion'
 const links = [
   { to: '/', label: 'Inicio' },
   { to: '/espacios', label: 'Mapa' },
-  { to: '/herramientas', label: 'Herramientas' },
+  {
+    label: 'Herramientas',
+    basePath: '/herramientas',
+    children: [
+      {
+        to: '/herramientas',
+        label: 'Toda la biblioteca',
+        icon: 'fa-toolbox',
+        color: 'text-sec',
+        desc: 'Más de 80 apps y recursos digitales filtrables por perfil',
+      },
+      {
+        to: '/herramientas/categoria/tiendas-fidgets',
+        label: 'Dónde comprar fidgets sensoriales',
+        icon: 'fa-cart-shopping',
+        color: 'text-warm',
+        desc: 'Fabricantes, tiendas especializadas y marketplaces verificados',
+      },
+    ],
+  },
   {
     label: 'Entender y prepararse',
     basePath: '/entender-y-prepararse',

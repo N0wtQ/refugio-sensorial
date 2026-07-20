@@ -6,13 +6,14 @@
  * Falls back to 404 for unknown slugs.
  */
 
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 import { usePageMeta } from '../../hooks/usePageMeta'
 import Breadcrumb from '../../components/ui/Breadcrumb'
 import FavoriteButton from '../../components/ui/FavoriteButton'
+import { logoSrc } from '../../lib/logos'
 import {
   PERFILES_CONFIG,
   CATEGORIAS_CONFIG,
@@ -32,24 +33,46 @@ const TIPO_BADGE = {
   EXT:    'text-acc  bg-acc/10  border-acc/20',
   HARD:   'text-warm bg-warm/10 border-warm/20',
   TIENDA: 'text-coral bg-coral/10 border-coral/20',
+  MARKETPLACE: 'text-coral bg-coral/10 border-coral/20',
 }
 
-function ToolCard({ h, index }) {
+// The whole card is a link when the tool has a destination URL — click anywhere to open it
+function ToolCard({ h, index, categoryIcon }) {
   const prefersReduced = useReducedMotion()
+  const [logoFailed, setLogoFailed] = useState(false)
+  const Wrapper = h.enlace ? motion.a : motion.div
+  const linkProps = h.enlace ? { href: h.enlace, target: '_blank', rel: 'noopener noreferrer' } : {}
+
   return (
-    <motion.div
+    <Wrapper
+      {...linkProps}
       initial={prefersReduced ? {} : { opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-20px' }}
       transition={{ duration: prefersReduced ? 0 : 0.35, delay: prefersReduced ? 0 : (index % 6) * 0.05 }}
       className="group flex flex-col gap-3 p-4 rounded-card border border-border bg-surface
                  hover:border-sec/30 hover:bg-surfaceH hover:-translate-y-0.5 hover:shadow-md hover:shadow-black/20
-                 transition-all duration-200"
+                 transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2
+                 focus-visible:ring-pri focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+      aria-label={h.enlace ? `${h.nombre} — ${h.notas} (se abre en nueva pestaña)` : undefined}
     >
       <div className="flex items-start justify-between gap-2">
         <div className="flex items-start gap-2.5 min-w-0">
-          <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 bg-sec/10">
-            <i className="fa-solid fa-toolbox text-sec text-sm" aria-hidden="true" />
+          <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 bg-sec/10 border border-sec/15 overflow-hidden">
+            {!logoFailed ? (
+              <img
+                src={logoSrc(h.nombre)}
+                alt=""
+                width="24"
+                height="24"
+                loading="lazy"
+                className="w-6 h-6 object-contain rounded"
+                onError={() => setLogoFailed(true)}
+                aria-hidden="true"
+              />
+            ) : (
+              <i className={`fa-solid ${categoryIcon ?? 'fa-toolbox'} text-sec text-sm`} aria-hidden="true" />
+            )}
           </div>
           <div className="min-w-0">
             <p className="text-sm font-semibold text-text leading-snug group-hover:text-sec transition-colors duration-200">
@@ -81,19 +104,13 @@ function ToolCard({ h, index }) {
           )}
         </div>
         {h.enlace && (
-          <a
-            href={h.enlace}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Abrir ${h.nombre} (se abre en nueva pestaña)`}
-            className="text-[10px] text-faint hover:text-sec transition-colors duration-150 flex items-center gap-1"
-            onClick={e => e.stopPropagation()}
-          >
-            Abrir <i className="fa-solid fa-arrow-up-right-from-square text-[9px]" aria-hidden="true" />
-          </a>
+          <span className="text-[11px] font-semibold text-pri opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 flex items-center gap-1">
+            Abrir
+            <i className="fa-solid fa-arrow-up-right-from-square text-[9px]" aria-hidden="true" />
+          </span>
         )}
       </div>
-    </motion.div>
+    </Wrapper>
   )
 }
 
@@ -194,7 +211,7 @@ export default function HerramientasLandingPage() {
           aria-label={`${herramientas.length} herramientas para ${config.label}`}
         >
           {herramientas.map((h, i) => (
-            <ToolCard key={h.nombre} h={h} index={i} />
+            <ToolCard key={h.nombre} h={h} index={i} categoryIcon={config.icon} />
           ))}
         </div>
       ) : (
