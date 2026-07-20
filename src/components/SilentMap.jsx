@@ -217,7 +217,7 @@ export default function SilentMap() {
           zoom={6}
           style={{ height: '100%', width: '100%' }}
           scrollWheelZoom={false}
-          aria-label="Mapa interactivo de espacios silenciosos en España"
+          aria-label="Mapa interactivo de espacios silenciosos en el mundo"
         >
           <TileLayer
             url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"

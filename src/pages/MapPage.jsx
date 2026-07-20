@@ -6,14 +6,14 @@ const SilentMap = lazy(() => import('../components/SilentMap'))
 
 export default function MapPage() {
   usePageMeta({
-    title: 'Espacios silenciosos y accesibles para personas autistas — Refugio Sensorial',
-    description: 'Encuentra y comparte sitios silenciosos, accesibles y seguros para personas autistas y con hipersensibilidad sensorial en España.',
+    title: 'Mapa de espacios silenciosos y accesibles — Refugio Sensorial',
+    description: 'Encuentra y comparte sitios silenciosos, accesibles y seguros para personas autistas y con hipersensibilidad sensorial, en España y en cualquier parte del mundo.',
   })
   return (
     <div className="max-w-5xl mx-auto px-4 pb-20 pt-8">
       <Breadcrumb items={[
         { href: '/', label: 'Inicio' },
-        { label: 'Espacios' },
+        { label: 'Mapa' },
       ]} />
 
       {/* Header */}
@@ -23,11 +23,12 @@ export default function MapPage() {
           Mapa interactivo
         </div>
         <h1 className="text-3xl sm:text-4xl font-bold text-text leading-tight mb-3">
-          Espacios silenciosos en España
+          Espacios silenciosos en el mundo
         </h1>
         <p className="text-muted text-base leading-relaxed max-w-2xl">
           Lugares verificados con hora silenciosa, accesibilidad sensorial y distintivo de
-          discapacidad invisible. Haz clic en cualquier marcador para ver los detalles.
+          discapacidad invisible — hoy sobre todo en España, y cada vez en más países gracias
+          a las aportaciones de la comunidad.
         </p>
       </header>
 

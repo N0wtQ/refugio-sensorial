@@ -117,7 +117,7 @@ export default function CiudadPage() {
 
   const breadcrumbItems = [
     { href: '/',        label: 'Inicio' },
-    { href: '/espacios', label: 'Espacios' },
+    { href: '/espacios', label: 'Mapa' },
     {                    label: displayName ?? ciudadSlug },
   ]
 
