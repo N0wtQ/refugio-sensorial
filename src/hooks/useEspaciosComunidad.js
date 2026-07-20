@@ -11,36 +11,42 @@ export function useEspaciosComunidad() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
+  async function fetchEspacios() {
+    if (!supabase) return
+    const { data, error: fetchError } = await supabase
+      .from('espacios_comunidad')
+      .select('*')
+      .order('created_at', { ascending: false })
+    if (fetchError) setError(fetchError)
+    else setEspacios(data ?? [])
+    setLoading(false)
+  }
+
   useEffect(() => {
     if (!supabase) {
       setLoading(false)
       return
     }
-    let active = true
-
-    async function fetchEspacios() {
-      const { data, error: fetchError } = await supabase
-        .from('espacios_comunidad')
-        .select('*')
-        .order('created_at', { ascending: false })
-      if (!active) return
-      if (fetchError) setError(fetchError)
-      else setEspacios(data ?? [])
-      setLoading(false)
-    }
 
     fetchEspacios()
 
+    // Realtime mantiene la lista al día para lo que añaden OTROS
+    // visitantes mientras la página está abierta. Requiere que la tabla
+    // esté añadida a la publicación `supabase_realtime` en el proyecto
+    // (Database → Replication) — si no lo está, este canal simplemente no
+    // emite nada, sin error. Por eso el propio "guardado"/"borrado" del
+    // formulario NO depende de esto: llama a refetch() directamente (ver
+    // más abajo), así que añadir/editar/borrar tu propio espacio siempre
+    // se refleja al instante, esté o no activado el Realtime.
     const channel = supabase
       .channel('espacios_comunidad_changes')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'espacios_comunidad' }, fetchEspacios)
       .subscribe()
 
     return () => {
-      active = false
       supabase.removeChannel(channel)
     }
   }, [])
 
-  return { espacios, loading, error }
+  return { espacios, loading, error, refetch: fetchEspacios }
 }

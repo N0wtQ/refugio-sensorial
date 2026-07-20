@@ -64,7 +64,7 @@ export default function SilentMap() {
   const [searchParams, setSearchParams] = useSearchParams()
   const filter = searchParams.get('tipo') ?? 'todos'
   const [search, setSearch] = useState(() => searchParams.get('q') ?? '')
-  const { espacios: espaciosComunidad } = useEspaciosComunidad()
+  const { espacios: espaciosComunidad, refetch: refetchEspaciosComunidad } = useEspaciosComunidad()
   const { misEspacios, añadir: recordarLocal, quitar: olvidarLocal, tokenDe } = useMisEspaciosLocal()
 
   // modo: null | { tipo: 'crear' } | { tipo: 'editar', espacio, token }
@@ -105,11 +105,13 @@ export default function SilentMap() {
     recordarLocal(id, token)
     setModo(null)
     setPosicion(null)
+    refetchEspaciosComunidad()
   }
   const borrado = (id) => {
     olvidarLocal(id)
     setModo(null)
     setPosicion(null)
+    refetchEspaciosComunidad()
   }
 
   return (
