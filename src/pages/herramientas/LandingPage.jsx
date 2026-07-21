@@ -6,9 +6,9 @@
  * Falls back to 404 for unknown slugs.
  */
 
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect, useRef } from 'react'
 import { useParams, useSearchParams, Link, Navigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 import { usePageMeta } from '../../hooks/usePageMeta'
 import Breadcrumb from '../../components/ui/Breadcrumb'
@@ -114,6 +114,99 @@ function ToolCard({ h, index, categoryIcon }) {
   )
 }
 
+// ── Dropdown de país — solo en el directorio de fidgets ──────────────────────
+function PaisDropdown({ value, options }) {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [open, setOpen] = useState(false)
+  const ref = useRef(null)
+  const triggerRef = useRef(null)
+
+  useEffect(() => {
+    const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false) }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Escape') {
+      setOpen(false)
+      triggerRef.current?.focus()
+    }
+  }
+
+  const selectPais = (pais) => {
+    const next = new URLSearchParams(searchParams)
+    if (pais === 'todos') next.delete('pais'); else next.set('pais', pais)
+    setSearchParams(next, { replace: true })
+    setOpen(false)
+  }
+
+  const isFiltered = value !== 'todos'
+  const current = options.find(([pais]) => pais === value)
+  const label = isFiltered && current ? `${value} (${current[1]})` : 'Todos los países'
+
+  return (
+    <div ref={ref} className="relative" onKeyDown={handleKeyDown}>
+      <button
+        ref={triggerRef}
+        type="button"
+        onClick={() => setOpen(o => !o)}
+        aria-expanded={open}
+        aria-haspopup="listbox"
+        className={`flex items-center gap-2 pl-3 pr-2.5 py-1.5 rounded-lg text-xs font-semibold border transition-colors duration-200 ${
+          isFiltered
+            ? 'bg-sec/15 text-sec border-sec/30'
+            : 'bg-surface text-muted border-border hover:text-text'
+        }`}
+      >
+        <i className="fa-solid fa-earth-americas text-[11px]" aria-hidden="true" />
+        {label}
+        <i className={`fa-solid fa-chevron-down text-[10px] transition-transform duration-150 ${open ? 'rotate-180' : ''}`} aria-hidden="true" />
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -4, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -4, scale: 0.97 }}
+            transition={{ duration: 0.13 }}
+            className="absolute top-full left-0 mt-1.5 w-56 max-h-72 overflow-y-auto rounded-xl border border-border bg-[#0C0E1E] shadow-xl shadow-black/40 z-50 py-1"
+            role="listbox"
+            aria-label="Filtrar por país"
+          >
+            <button
+              role="option"
+              aria-selected={!isFiltered}
+              onClick={() => selectPais('todos')}
+              className={`w-full flex items-center justify-between px-4 py-2 text-xs transition-colors duration-150 hover:bg-white/5 ${
+                !isFiltered ? 'text-text font-semibold' : 'text-muted'
+              }`}
+            >
+              Todos los países
+            </button>
+            <div className="h-px bg-border/50 mx-3 my-0.5" aria-hidden="true" />
+            {options.map(([pais, count]) => (
+              <button
+                key={pais}
+                role="option"
+                aria-selected={value === pais}
+                onClick={() => selectPais(pais)}
+                className={`w-full flex items-center justify-between px-4 py-2 text-xs transition-colors duration-150 hover:bg-white/5 ${
+                  value === pais ? 'text-sec font-semibold' : 'text-muted'
+                }`}
+              >
+                {pais}
+                <span className="text-faint tabular-nums">{count}</span>
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
 export default function HerramientasLandingPage() {
   const { slug } = useParams()
   const [searchParams, setSearchParams] = useSearchParams()
@@ -147,14 +240,33 @@ export default function HerramientasLandingPage() {
     return [...counts.entries()].sort((a, b) => a[0].localeCompare(b[0]))
   }, [slug, todasLasTiendas])
 
+  // Filtro por país — igual de restringido: solo se etiquetan tiendas cuyo
+  // país aparece ya documentado (fabricante estadounidense, tienda española...);
+  // las que no se han podido verificar en vivo (Lautie, ONO Roller, Kaiko,
+  // ADHS Store, Cuboss, Fidget Toys Plus...) se quedan sin país y solo
+  // aparecen con el filtro "Todos los países".
+  const paisesDisponibles = useMemo(() => {
+    if (slug !== 'tiendas-fidgets') return []
+    const counts = new Map()
+    for (const h of todasLasTiendas) {
+      if (!h.pais) continue
+      counts.set(h.pais, (counts.get(h.pais) ?? 0) + 1)
+    }
+    return [...counts.entries()].sort((a, b) => a[0].localeCompare(b[0]))
+  }, [slug, todasLasTiendas])
+
   const productoFilter = searchParams.get('producto') ?? 'todos'
+  const paisFilter     = searchParams.get('pais') ?? 'todos'
 
   const herramientas = useMemo(() => {
-    if (slug !== 'tiendas-fidgets' || productoFilter === 'todos') return todasLasTiendas
-    return todasLasTiendas.filter(h =>
-      h.productos?.split(',').map(s => s.trim()).includes(productoFilter)
-    )
-  }, [todasLasTiendas, slug, productoFilter])
+    if (slug !== 'tiendas-fidgets') return todasLasTiendas
+    return todasLasTiendas.filter(h => {
+      const matchProducto = productoFilter === 'todos' ||
+        h.productos?.split(',').map(s => s.trim()).includes(productoFilter)
+      const matchPais = paisFilter === 'todos' || h.pais === paisFilter
+      return matchProducto && matchPais
+    })
+  }, [todasLasTiendas, slug, productoFilter, paisFilter])
 
   const handleProductoClick = (producto) => {
     const next = new URLSearchParams(searchParams)
@@ -222,6 +334,16 @@ export default function HerramientasLandingPage() {
             </Link>
           ))}
         </nav>
+      )}
+
+      {/* Filtro por país — solo en el directorio de fidgets */}
+      {paisesDisponibles.length > 0 && (
+        <div className="mb-6">
+          <p className="text-xs font-semibold text-faint uppercase tracking-wider mb-2.5">
+            Filtrar por país
+          </p>
+          <PaisDropdown value={paisFilter} options={paisesDisponibles} />
+        </div>
       )}
 
       {/* Filtro por tipo de producto — solo en el directorio de fidgets */}
