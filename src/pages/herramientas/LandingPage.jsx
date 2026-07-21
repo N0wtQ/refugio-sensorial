@@ -7,7 +7,7 @@
  */
 
 import { useMemo, useState } from 'react'
-import { useParams, Link, Navigate } from 'react-router-dom'
+import { useParams, useSearchParams, Link, Navigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 import { usePageMeta } from '../../hooks/usePageMeta'
@@ -116,17 +116,52 @@ function ToolCard({ h, index, categoryIcon }) {
 
 export default function HerramientasLandingPage() {
   const { slug } = useParams()
+  const [searchParams, setSearchParams] = useSearchParams()
   const prefersReduced = useReducedMotion()
 
   const perfil   = useMemo(() => PERFILES_CONFIG.find(p => p.slug === slug),    [slug])
   const categoria = useMemo(() => CATEGORIAS_CONFIG.find(c => c.slug === slug), [slug])
   const config    = perfil ?? categoria
 
-  const herramientas = useMemo(() => {
+  const todasLasTiendas = useMemo(() => {
     if (perfil)    return getToolsByProfile(slug)
     if (categoria) return getToolsByCategory(slug)
     return []
   }, [slug, perfil, categoria])
+
+  // Filtro por tipo de producto (Squishies, Spinners, Putty...) — solo tiene
+  // sentido en el directorio de tiendas de fidgets, ya que es el único donde
+  // las herramientas llevan el campo "productos". Muchas tiendas de catálogo
+  // amplio (Therapy Shoppe, marketplaces...) no lo llevan porque no hay forma
+  // de verificar en este entorno qué venden exactamente — esas solo aparecen
+  // con el filtro "Todos".
+  const productosDisponibles = useMemo(() => {
+    if (slug !== 'tiendas-fidgets') return []
+    const counts = new Map()
+    for (const h of todasLasTiendas) {
+      if (!h.productos) continue
+      for (const p of h.productos.split(',').map(s => s.trim()).filter(Boolean)) {
+        counts.set(p, (counts.get(p) ?? 0) + 1)
+      }
+    }
+    return [...counts.entries()].sort((a, b) => a[0].localeCompare(b[0]))
+  }, [slug, todasLasTiendas])
+
+  const productoFilter = searchParams.get('producto') ?? 'todos'
+
+  const herramientas = useMemo(() => {
+    if (slug !== 'tiendas-fidgets' || productoFilter === 'todos') return todasLasTiendas
+    return todasLasTiendas.filter(h =>
+      h.productos?.split(',').map(s => s.trim()).includes(productoFilter)
+    )
+  }, [todasLasTiendas, slug, productoFilter])
+
+  const handleProductoClick = (producto) => {
+    const next = new URLSearchParams(searchParams)
+    if (searchParams.get('producto') === producto) next.delete('producto')
+    else next.set('producto', producto)
+    setSearchParams(next, { replace: true })
+  }
 
   usePageMeta({
     title:       config?.seo?.title ?? `Herramientas · ${slug} — Refugio Sensorial`,
@@ -187,6 +222,50 @@ export default function HerramientasLandingPage() {
             </Link>
           ))}
         </nav>
+      )}
+
+      {/* Filtro por tipo de producto — solo en el directorio de fidgets */}
+      {productosDisponibles.length > 0 && (
+        <div className="mb-8">
+          <p className="text-xs font-semibold text-faint uppercase tracking-wider mb-2.5">
+            Filtrar por tipo de producto
+          </p>
+          <div className="flex flex-wrap gap-2" role="group" aria-label="Filtrar por tipo de producto">
+            <button
+              onClick={() => {
+                const next = new URLSearchParams(searchParams)
+                next.delete('producto')
+                setSearchParams(next, { replace: true })
+              }}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors duration-200 ${
+                productoFilter === 'todos'
+                  ? 'bg-sec/15 text-sec border-sec/30'
+                  : 'bg-surface text-muted border-border hover:text-text hover:border-border/80'
+              }`}
+              aria-pressed={productoFilter === 'todos'}
+            >
+              Todos ({todasLasTiendas.length})
+            </button>
+            {productosDisponibles.map(([producto, count]) => (
+              <button
+                key={producto}
+                onClick={() => handleProductoClick(producto)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors duration-200 ${
+                  productoFilter === producto
+                    ? 'bg-sec/15 text-sec border-sec/30 ring-1 ring-sec/40 ring-inset'
+                    : 'bg-surface text-muted border-border hover:text-text hover:border-border/80'
+                }`}
+                aria-pressed={productoFilter === producto}
+              >
+                {producto} ({count})
+              </button>
+            ))}
+          </div>
+          <p className="text-[11px] text-faint mt-2.5">
+            Solo se etiquetan aquí las tiendas con un producto principal claro. Las tiendas
+            con catálogo amplio (terapia ocupacional, marketplaces...) aparecen en "Todos".
+          </p>
+        </div>
       )}
 
       {/* Grid */}
