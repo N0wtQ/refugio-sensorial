@@ -262,8 +262,11 @@ export default function HerramientasLandingPage() {
             ))}
           </div>
           <p className="text-[11px] text-faint mt-2.5">
-            Solo se etiquetan aquí las tiendas con un producto principal claro. Las tiendas
-            con catálogo amplio (terapia ocupacional, marketplaces...) aparecen en "Todos".
+            Los fabricantes se etiquetan por su producto principal, y los grandes
+            marketplaces (Amazon, Etsy, eBay, AliExpress, Temu, Mercado Libre) aparecen en
+            todas las categorías porque su catálogo cubre prácticamente cualquier tipo de
+            fidget. Las tiendas especializadas de catálogo variado (terapia ocupacional,
+            Faire...) solo aparecen en "Todos" al no poder verificar aquí su stock exacto.
           </p>
         </div>
       )}
