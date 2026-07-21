@@ -220,7 +220,7 @@ export const CATEGORIAS_CONFIG = [
     slug: 'tiendas-fidgets',
     label: 'Dónde comprar fidgets sensoriales',
     cats: ['Dónde comprar fidgets sensoriales'],
-    desc: 'Directorio verificado de fabricantes, tiendas especializadas, grandes comercios y marketplaces donde comprar fidgets y productos de regulación sensorial en España, Europa, América y más.',
+    desc: 'Tiendas verificadas de todo el mundo para comprar fidgets y productos de regulación sensorial.',
     icon: 'fa-cart-shopping',
     color: 'text-warm',
     seo: {

@@ -257,6 +257,10 @@ export default function HerramientasLandingPage() {
 
   const productoFilter = searchParams.get('producto') ?? 'todos'
   const paisFilter     = searchParams.get('pais') ?? 'todos'
+  const hayFiltroActivo = productoFilter !== 'todos' || paisFilter !== 'todos'
+  // Los filtros empiezan plegados para no saturar la vista inicial — salvo que
+  // ya venga un filtro activo por la URL (p. ej. un enlace compartido).
+  const [filtrosAbiertos, setFiltrosAbiertos] = useState(() => hayFiltroActivo)
 
   const herramientas = useMemo(() => {
     if (slug !== 'tiendas-fidgets') return todasLasTiendas
@@ -336,60 +340,86 @@ export default function HerramientasLandingPage() {
         </nav>
       )}
 
-      {/* Filtro por país — solo en el directorio de fidgets */}
-      {paisesDisponibles.length > 0 && (
-        <div className="mb-6">
-          <p className="text-xs font-semibold text-faint uppercase tracking-wider mb-2.5">
-            Filtrar por país
-          </p>
-          <PaisDropdown value={paisFilter} options={paisesDisponibles} />
-        </div>
-      )}
-
-      {/* Filtro por tipo de producto — solo en el directorio de fidgets */}
-      {productosDisponibles.length > 0 && (
+      {/* Filtros — plegados por defecto para no saturar la vista */}
+      {(paisesDisponibles.length > 0 || productosDisponibles.length > 0) && (
         <div className="mb-8">
-          <p className="text-xs font-semibold text-faint uppercase tracking-wider mb-2.5">
-            Filtrar por tipo de producto
-          </p>
-          <div className="flex flex-wrap gap-2" role="group" aria-label="Filtrar por tipo de producto">
-            <button
-              onClick={() => {
-                const next = new URLSearchParams(searchParams)
-                next.delete('producto')
-                setSearchParams(next, { replace: true })
-              }}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors duration-200 ${
-                productoFilter === 'todos'
-                  ? 'bg-sec/15 text-sec border-sec/30'
-                  : 'bg-surface text-muted border-border hover:text-text hover:border-border/80'
-              }`}
-              aria-pressed={productoFilter === 'todos'}
-            >
-              Todos ({todasLasTiendas.length})
-            </button>
-            {productosDisponibles.map(([producto, count]) => (
-              <button
-                key={producto}
-                onClick={() => handleProductoClick(producto)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors duration-200 ${
-                  productoFilter === producto
-                    ? 'bg-sec/15 text-sec border-sec/30 ring-1 ring-sec/40 ring-inset'
-                    : 'bg-surface text-muted border-border hover:text-text hover:border-border/80'
-                }`}
-                aria-pressed={productoFilter === producto}
+          <button
+            type="button"
+            onClick={() => setFiltrosAbiertos(o => !o)}
+            aria-expanded={filtrosAbiertos}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors duration-200 ${
+              hayFiltroActivo
+                ? 'bg-sec/15 text-sec border-sec/30'
+                : 'bg-surface text-muted border-border hover:text-text'
+            }`}
+          >
+            <i className="fa-solid fa-sliders text-[11px]" aria-hidden="true" />
+            Filtros
+            {hayFiltroActivo && <span className="w-1.5 h-1.5 rounded-full bg-sec" aria-hidden="true" />}
+            <i className={`fa-solid fa-chevron-down text-[10px] transition-transform duration-150 ${filtrosAbiertos ? 'rotate-180' : ''}`} aria-hidden="true" />
+          </button>
+
+          <AnimatePresence initial={false}>
+            {filtrosAbiertos && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.2, ease: 'easeInOut' }}
+                className="overflow-hidden"
               >
-                {producto} ({count})
-              </button>
-            ))}
-          </div>
-          <p className="text-[11px] text-faint mt-2.5">
-            Los fabricantes se etiquetan por su producto principal, y los grandes
-            marketplaces (Amazon, Etsy, eBay, AliExpress, Temu, Mercado Libre) aparecen en
-            todas las categorías porque su catálogo cubre prácticamente cualquier tipo de
-            fidget. Las tiendas especializadas de catálogo variado (terapia ocupacional,
-            Faire...) solo aparecen en "Todos" al no poder verificar aquí su stock exacto.
-          </p>
+                <div className="flex flex-col gap-4 mt-4">
+                  {paisesDisponibles.length > 0 && (
+                    <div>
+                      <p className="text-xs font-semibold text-faint uppercase tracking-wider mb-2">
+                        País
+                      </p>
+                      <PaisDropdown value={paisFilter} options={paisesDisponibles} />
+                    </div>
+                  )}
+
+                  {productosDisponibles.length > 0 && (
+                    <div>
+                      <p className="text-xs font-semibold text-faint uppercase tracking-wider mb-2">
+                        Tipo de producto
+                      </p>
+                      <div className="flex flex-wrap gap-2" role="group" aria-label="Filtrar por tipo de producto">
+                        <button
+                          onClick={() => {
+                            const next = new URLSearchParams(searchParams)
+                            next.delete('producto')
+                            setSearchParams(next, { replace: true })
+                          }}
+                          className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors duration-200 ${
+                            productoFilter === 'todos'
+                              ? 'bg-sec/15 text-sec border-sec/30'
+                              : 'bg-surface text-muted border-border hover:text-text hover:border-border/80'
+                          }`}
+                          aria-pressed={productoFilter === 'todos'}
+                        >
+                          Todos ({todasLasTiendas.length})
+                        </button>
+                        {productosDisponibles.map(([producto, count]) => (
+                          <button
+                            key={producto}
+                            onClick={() => handleProductoClick(producto)}
+                            className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors duration-200 ${
+                              productoFilter === producto
+                                ? 'bg-sec/15 text-sec border-sec/30 ring-1 ring-sec/40 ring-inset'
+                                : 'bg-surface text-muted border-border hover:text-text hover:border-border/80'
+                            }`}
+                            aria-pressed={productoFilter === producto}
+                          >
+                            {producto} ({count})
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       )}
 
