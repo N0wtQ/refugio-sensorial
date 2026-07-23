@@ -116,7 +116,7 @@ function ResourceCard({ card, index, prefersReduced }) {
     touchAction:        'pan-y',
   }
 
-  const cardClass = `group flex flex-col p-7 rounded-card overflow-hidden
+  const cardClass = `group flex flex-col h-full p-7 rounded-card overflow-hidden
                      transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/25
                      focus-visible:ring-2 focus-visible:ring-pri focus-visible:ring-offset-2 focus-visible:ring-offset-bg`
 
@@ -154,6 +154,7 @@ function ResourceCard({ card, index, prefersReduced }) {
 
   return (
     <motion.div
+      className="h-full"
       initial={prefersReduced ? {} : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
