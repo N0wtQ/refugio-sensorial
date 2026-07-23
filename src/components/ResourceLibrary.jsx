@@ -1,9 +1,18 @@
 import { useState, useMemo, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSearchParams } from 'react-router-dom'
-import { herramientas, categorias, precios, perfiles } from '../data/herramientas'
+import { herramientas as todasLasHerramientas, categorias as todasLasCategorias, precios, perfiles } from '../data/herramientas'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { logoSrc } from '../lib/logos'
+
+// El directorio "Dónde comprar fidgets sensoriales" vive en su propia página
+// (/herramientas/categoria/tiendas-fidgets) porque no encaja en este grid:
+// son tiendas físicas/online, siempre "Pago" — el filtro de Precio
+// (Gratis/Freemium/Pago) no tiene sentido para ellas y solo lleva a
+// combinaciones sin resultados (p. ej. esa categoría + "Gratis").
+const CATEGORIA_TIENDAS_FIDGETS = 'Dónde comprar fidgets sensoriales'
+const herramientas = todasLasHerramientas.filter(h => h.categoria !== CATEGORIA_TIENDAS_FIDGETS)
+const categorias   = todasLasCategorias.filter(c => c !== CATEGORIA_TIENDAS_FIDGETS)
 
 const TIPO_BADGE = {
   APP:   { label: 'App',       color: 'text-pri  bg-pri/10  border-pri/20' },
