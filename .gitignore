@@ -7,3 +7,9 @@ dist/
 
 # Generated at build time by scripts/fetch-logos.mjs
 public/logos/
+
+# Not tracked on purpose: CI runs `npm install` (not `npm ci`) and
+# regenerates this fresh every build from package.json. A committed lock
+# previously drifted out of sync and shipped a broken dependency version
+# (see be65923).
+package-lock.json
