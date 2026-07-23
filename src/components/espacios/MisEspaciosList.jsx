@@ -1,7 +1,10 @@
+import { useTranslation } from 'react-i18next'
+
 // Lists the community spaces THIS browser created (tracked in localStorage
 // via useMisEspaciosLocal), cross-referenced against the live data so names
 // stay in sync. Lets the owner jump into edit mode for one of their spots.
 export default function MisEspaciosList({ misEspacios, espaciosComunidad, onEditar }) {
+  const { t } = useTranslation('espacios')
   if (misEspacios.length === 0) return null
 
   const items = misEspacios
@@ -12,7 +15,7 @@ export default function MisEspaciosList({ misEspacios, espaciosComunidad, onEdit
 
   return (
     <div className="p-3 rounded-xl border border-border bg-surface">
-      <p className="text-xs font-semibold text-muted mb-2">Tus espacios en este dispositivo</p>
+      <p className="text-xs font-semibold text-muted mb-2">{t('misEspacios.heading')}</p>
       <ul className="flex flex-wrap gap-2">
         {items.map(({ espacio, token }) => (
           <li key={espacio.id}>

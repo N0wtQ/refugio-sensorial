@@ -1,0 +1,48 @@
+{
+  "search": {
+    "placeholder": "Search a tool, neurodivergent profile, or need...",
+    "ariaLabel": "Search tools",
+    "clearAriaLabel": "Clear search"
+  },
+  "filters": {
+    "categoryGroupAriaLabel": "Filter by category",
+    "all": "All",
+    "profileLabel": "Profile:",
+    "priceLabel": "Price:",
+    "allShort": "All"
+  },
+  "profileDropdown": {
+    "allProfiles": "All profiles",
+    "ariaLabel": "Filter by neurodivergent profile"
+  },
+  "results": {
+    "full": "<0>{{count}}</0> tools in the library",
+    "filtered_one": "<0>{{count}}</0> result",
+    "filtered_other": "<0>{{count}}</0> results"
+  },
+  "empty": {
+    "title": "No results",
+    "hint": "Try different words or remove a filter.",
+    "cta": "See all tools"
+  },
+  "card": {
+    "open": "Open",
+    "opensInNewTab": "opens in a new tab"
+  },
+  "precio": {
+    "Gratis": "Free",
+    "Freemium": "Freemium",
+    "Pago": "Paid"
+  },
+  "tipo": {
+    "APP": "App",
+    "WEB": "Web",
+    "EXT": "Extension",
+    "HARD": "Physical",
+    "SOFT": "Software",
+    "COM": "Community",
+    "TIENDA": "Store",
+    "JUEGO": "Game",
+    "MARKETPLACE": "Marketplace"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "formAriaLabel": "Formulario de contacto",
+  "requiredSuffix": "(obligatorio)",
+  "honeypotLabel": "No rellenar",
+  "fields": {
+    "nombre": { "label": "Nombre", "placeholder": "Tu nombre" },
+    "email": { "label": "Correo electrónico", "placeholder": "tu@correo.com" },
+    "pais": { "label": "País", "placeholder": "España" },
+    "mensaje": { "label": "Mensaje", "placeholder": "Escribe tu mensaje aquí..." }
+  },
+  "errors": {
+    "nombre": "Por favor, escribe tu nombre.",
+    "emailRequired": "Por favor, escribe tu dirección de correo electrónico.",
+    "emailInvalid": "El correo electrónico no tiene un formato válido (ejemplo: tu@correo.com).",
+    "pais": "Por favor, indica tu país.",
+    "mensajeRequired": "Por favor, escribe tu mensaje.",
+    "mensajeTooShort": "El mensaje debe tener al menos 10 caracteres."
+  },
+  "submit": {
+    "idle": "Enviar mensaje",
+    "sending": "Enviando...",
+    "sendingAriaLabel": "Enviando mensaje, por favor espera",
+    "idleAriaLabel": "Enviar mensaje"
+  },
+  "success": {
+    "title": "Mensaje enviado",
+    "text": "Gracias por escribir. Leo todos los mensajes y respondo en cuanto puedo."
+  },
+  "error": {
+    "text": "Hubo un problema al enviar. Por favor, inténtalo de nuevo o escríbeme directamente por"
+  }
+}

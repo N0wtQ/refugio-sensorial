@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation, Link } from 'react-router-dom'
 import { useEffect, useState, Component, lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
+import { useTranslation, withTranslation } from 'react-i18next'
 import Navbar from './components/Navbar'
 import StorageToast from './components/ui/StorageToast'
 
@@ -27,21 +28,24 @@ import KitBolsoPage from './pages/KitBolsoPage'
 import MaskingPage from './pages/MaskingPage'
 import { useReducedMotion } from './hooks/useReducedMotion'
 
-// Global error boundary — catches any React crash and shows a calm fallback
-class AppErrorBoundary extends Component {
+// Global error boundary — catches any React crash and shows a calm fallback.
+// Class component, so translations come in via the withTranslation() HOC
+// rather than the useTranslation() hook.
+class AppErrorBoundaryBase extends Component {
   constructor(props) { super(props); this.state = { error: null } }
   static getDerivedStateFromError(error) { return { error } }
   render() {
     if (this.state.error) {
+      const { t } = this.props
       return (
         <div className="min-h-dvh flex items-center justify-center p-8 text-center">
           <div>
-            <p className="text-muted text-sm mb-4">Algo salió mal al cargar esta página.</p>
+            <p className="text-muted text-sm mb-4">{t('errorBoundary.message')}</p>
             <button
               onClick={() => window.location.reload()}
               className="px-5 py-2.5 rounded-xl bg-pri/10 text-pri text-sm font-semibold border border-pri/25"
             >
-              Recargar página
+              {t('errorBoundary.reload')}
             </button>
           </div>
         </div>
@@ -50,6 +54,7 @@ class AppErrorBoundary extends Component {
     return this.props.children
   }
 }
+const AppErrorBoundary = withTranslation('common')(AppErrorBoundaryBase)
 
 // Silent error boundary for CanvasBg — on any crash just disappears, app keeps running
 class CanvasSilentBoundary extends Component {
@@ -128,6 +133,7 @@ function AppRoutes({ onOpenSearch }) {
 }
 
 export default function App() {
+  const { t } = useTranslation('common')
   const [searchOpen, setSearchOpen] = useState(false)
 
   // Global Ctrl/Cmd+K to open search
@@ -155,7 +161,7 @@ export default function App() {
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-[#0C0E1E] focus:text-text focus:border-2 focus:border-pri focus:rounded-lg focus:text-sm focus:font-semibold focus:shadow-xl"
         >
-          Saltar al contenido principal
+          {t('app.skipToContent')}
         </a>
         <AppErrorBoundary>
           <Navbar onOpenSearch={() => setSearchOpen(true)} />
@@ -176,18 +182,19 @@ export default function App() {
 }
 
 function Footer() {
+  const { t } = useTranslation('common')
   return (
     <footer className="border-t border-border">
       <div className="max-w-5xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-faint">
-        <p>Refugio Sensorial · Hecho con cuidado para personas neurodivergentes</p>
+        <p>{t('footer.tagline')}</p>
         <div className="flex items-center gap-4">
-          <span>Creadora: Almudena Bedoya</span>
+          <span>{t('footer.creator')}</span>
           <span aria-hidden="true">·</span>
           <a
             href="https://www.instagram.com/refugio.sensorial.oficial"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Instagram de Refugio Sensorial"
+            aria-label={t('footer.instagramAriaLabel')}
             className="flex items-center gap-1 hover:text-text transition-colors duration-200"
           >
             <i className="fa-brands fa-instagram text-sm" aria-hidden="true" />
@@ -198,7 +205,7 @@ function Footer() {
             href="https://whatsapp.com/channel/0029Vb7weJlDZ4Le5l3tMK3F"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Canal de WhatsApp de Refugio Sensorial"
+            aria-label={t('footer.whatsappAriaLabel')}
             className="flex items-center gap-1 hover:text-text transition-colors duration-200"
           >
             <i className="fa-brands fa-whatsapp text-sm" aria-hidden="true" />
@@ -209,14 +216,14 @@ function Footer() {
             to="/accesibilidad"
             className="hover:text-text transition-colors duration-200"
           >
-            Accesibilidad
+            {t('footer.accessibility')}
           </Link>
           <span aria-hidden="true">·</span>
           <Link
             to="/ayuda"
             className="text-coral hover:text-coral/75 transition-colors duration-200 font-medium"
           >
-            Necesito ayuda
+            {t('footer.help')}
           </Link>
         </div>
       </div>

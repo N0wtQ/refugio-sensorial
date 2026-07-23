@@ -1,6 +1,7 @@
 import { useState, useMemo, useCallback } from 'react'
 import { MapContainer, TileLayer, CircleMarker, Marker, Popup } from 'react-leaflet'
 import { useSearchParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import L from 'leaflet'
 import { LUGARES, TIPOS } from '../data/lugares'
 import { useEspaciosComunidad } from '../hooks/useEspaciosComunidad'
@@ -27,22 +28,24 @@ function comunidadMarkerIcon(color) {
   })
 }
 
+// Labels come from espacios.tipos.* (t('tipos.supermercado') etc.) — this
+// dict only carries color + icon, which aren't language-dependent.
 const TYPE_CONFIG = {
-  supermercado:          { color: '#3A82CA', label: 'Hora silenciosa', icon: 'fa-cart-shopping' },
-  biblioteca:            { color: '#816AB7', label: 'Biblioteca',       icon: 'fa-book' },
-  sala_estudio:          { color: '#9CC156', label: 'Sala de estudio',  icon: 'fa-graduation-cap' },
-  espacio_natural:       { color: '#48B0A1', label: 'Espacio natural',  icon: 'fa-tree' },
-  centro_civico:         { color: '#FBB027', label: 'Centro cívico',    icon: 'fa-building' },
-  centro_comercial:      { color: '#ec4899', label: 'Centro comercial', icon: 'fa-bag-shopping' },
-  aeropuerto:            { color: '#ef4444', label: 'Aeropuerto',       icon: 'fa-plane' },
-  cultura:               { color: '#E57B86', label: 'Cultura / Museo',  icon: 'fa-landmark' },
-  hotel:                 { color: '#06b6d4', label: 'Hotel',            icon: 'fa-hotel' },
-  restaurante_silencioso:{ color: '#10b981', label: 'Restaurante',      icon: 'fa-utensils' },
-  sunflower:             { color: '#eab308', label: 'Sunflower',        icon: 'fa-sun' },
-  coworking:             { color: '#a78bfa', label: 'Coworking',        icon: 'fa-laptop' },
-  estadio:               { color: '#f97316', label: 'Estadio',          icon: 'fa-futbol' },
-  parque_tematico:       { color: '#d946ef', label: 'Parque temático',  icon: 'fa-gopuram' },
-  zoologico_acuario:     { color: '#0ea5e9', label: 'Zoo / Acuario',    icon: 'fa-fish' },
+  supermercado:          { color: '#3A82CA', icon: 'fa-cart-shopping' },
+  biblioteca:            { color: '#816AB7', icon: 'fa-book' },
+  sala_estudio:          { color: '#9CC156', icon: 'fa-graduation-cap' },
+  espacio_natural:       { color: '#48B0A1', icon: 'fa-tree' },
+  centro_civico:         { color: '#FBB027', icon: 'fa-building' },
+  centro_comercial:      { color: '#ec4899', icon: 'fa-bag-shopping' },
+  aeropuerto:            { color: '#ef4444', icon: 'fa-plane' },
+  cultura:               { color: '#E57B86', icon: 'fa-landmark' },
+  hotel:                 { color: '#06b6d4', icon: 'fa-hotel' },
+  restaurante_silencioso:{ color: '#10b981', icon: 'fa-utensils' },
+  sunflower:             { color: '#eab308', icon: 'fa-sun' },
+  coworking:             { color: '#a78bfa', icon: 'fa-laptop' },
+  estadio:               { color: '#f97316', icon: 'fa-futbol' },
+  parque_tematico:       { color: '#d946ef', icon: 'fa-gopuram' },
+  zoologico_acuario:     { color: '#0ea5e9', icon: 'fa-fish' },
 }
 
 function getColor(tipo) {
@@ -61,6 +64,7 @@ const STATS = TIPOS.reduce((acc, t) => {
 }, {})
 
 export default function SilentMap() {
+  const { t } = useTranslation('espacios')
   const [searchParams, setSearchParams] = useSearchParams()
   const filter = searchParams.get('tipo') ?? 'todos'
   const [search, setSearch] = useState(() => searchParams.get('q') ?? '')
@@ -125,9 +129,8 @@ export default function SilentMap() {
       <div className="flex items-center gap-3 flex-wrap p-3 rounded-xl border border-acc/15 bg-acc/5">
         <p className="text-xs text-muted leading-relaxed">
           <i className="fa-solid fa-circle-info text-acc mr-1.5" aria-hidden="true" />
-          <strong className="text-text font-semibold">¿Conoces un espacio que falta?</strong>{' '}
-          Haz clic en cualquier punto del mapa para añadirlo — sin registrarte, y podrás
-          editarlo o borrarlo después desde este mismo dispositivo.
+          <strong className="text-text font-semibold">{t('addBanner.questionBold')}</strong>{' '}
+          {t('addBanner.text')}
         </p>
       </div>
 
@@ -160,14 +163,14 @@ export default function SilentMap() {
           if (val) next.set('q', val); else next.delete('q')
           setSearchParams(next, { replace: true })
         }}
-          placeholder="Buscar por ciudad, nombre o tipo de espacio..."
+          placeholder={t('search.placeholder')}
           className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-surface border border-border text-text text-sm placeholder:text-faint outline-none focus:border-pri/50 focus:ring-1 focus:ring-pri/30 transition-colors duration-200"
-          aria-label="Buscar espacios silenciosos"
+          aria-label={t('search.ariaLabel')}
         />
       </div>
 
       {/* Type filters */}
-      <div className="flex flex-wrap gap-2" role="group" aria-label="Filtrar por tipo de espacio">
+      <div className="flex flex-wrap gap-2" role="group" aria-label={t('filters.groupAriaLabel')}>
         <button
           onClick={() => {
             const next = new URLSearchParams(searchParams)
@@ -181,7 +184,7 @@ export default function SilentMap() {
           }`}
           aria-pressed={filter === 'todos'}
         >
-          Todos ({LUGARES.length})
+          {t('filters.all')} ({LUGARES.length})
         </button>
         {TIPOS.map(tipo => {
           const cfg = TYPE_CONFIG[tipo]
@@ -204,7 +207,7 @@ export default function SilentMap() {
                 style={{ backgroundColor: cfg.color, opacity: active ? 1 : 0.5 }}
                 aria-hidden="true"
               />
-              {cfg.label} ({count})
+              {t(`tipos.${tipo}`)} ({count})
             </button>
           )
         })}
@@ -218,7 +221,7 @@ export default function SilentMap() {
           aria-pressed={filter === 'comunidad'}
         >
           <i className="fa-solid fa-users text-[10px]" style={{ opacity: filter === 'comunidad' ? 1 : 0.7 }} aria-hidden="true" />
-          Comunidad ({espaciosComunidad.length})
+          {t('filters.comunidad')} ({espaciosComunidad.length})
         </button>
       </div>
 
@@ -230,7 +233,7 @@ export default function SilentMap() {
             style={{ background: 'rgba(58,130,202,0.92)', zIndex: 1000 }}
           >
             <i className="fa-solid fa-arrows-up-down-left-right mr-1.5" aria-hidden="true" />
-            Arrastra el marcador o vuelve a hacer clic para ajustar la ubicación
+            {t('dragHint')}
           </div>
         )}
         <MapContainer
@@ -238,7 +241,7 @@ export default function SilentMap() {
           zoom={DEFAULT_VIEW.zoom}
           style={{ height: '100%', width: '100%' }}
           scrollWheelZoom={true}
-          aria-label="Mapa interactivo de espacios silenciosos en el mundo"
+          aria-label={t('mapAriaLabel')}
         >
           <TileLayer
             url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
@@ -266,7 +269,7 @@ export default function SilentMap() {
                     style={{ color: getColor(lugar.tipo) }}
                   >
                     <i className={`fa-solid ${TYPE_CONFIG[lugar.tipo]?.icon ?? 'fa-location-dot'} mr-1.5`} aria-hidden="true" />
-                    {TYPE_CONFIG[lugar.tipo]?.label ?? lugar.tipo}
+                    {TYPE_CONFIG[lugar.tipo] ? t(`tipos.${lugar.tipo}`) : lugar.tipo}
                   </p>
                   <h3 style={{ fontWeight: 600, color: '#E5E7EB', fontSize: '15px', marginBottom: '4px', lineHeight: '1.3' }}>
                     {lugar.nombre}
@@ -291,10 +294,10 @@ export default function SilentMap() {
                       href={lugar.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={`Ver fuente: ${lugar.nombre} (se abre en nueva pestaña)`}
+                      aria-label={`${t('popup.verFuente')}: ${lugar.nombre} (${t('popup.opensInNewTab')})`}
                       style={{ color: '#3A82CA', fontSize: '12px', fontWeight: 600, textDecoration: 'none' }}
                     >
-                      Ver fuente <i className="fa-solid fa-arrow-up-right-from-square" style={{ fontSize: '10px' }} aria-hidden="true" />
+                      {t('popup.verFuente')} <i className="fa-solid fa-arrow-up-right-from-square" style={{ fontSize: '10px' }} aria-hidden="true" />
                     </a>
                   )}
                 </div>
@@ -318,7 +321,7 @@ export default function SilentMap() {
                         {e.categoria}
                       </p>
                       <span
-                        title="Añadido por un visitante, no forma parte del catálogo verificado"
+                        title={t('popup.comunidadTitle')}
                         style={{
                           flexShrink: 0, fontSize: '10px', fontWeight: 700, color: '#0C0E1E',
                           background: '#FBB027', borderRadius: '999px', padding: '2px 8px',
@@ -326,7 +329,7 @@ export default function SilentMap() {
                         }}
                       >
                         <i className="fa-solid fa-users" style={{ fontSize: '9px', marginRight: '3px' }} aria-hidden="true" />
-                        Comunidad
+                        {t('popup.comunidadBadge')}
                       </span>
                     </div>
                     <h3 style={{ fontWeight: 600, color: '#E5E7EB', fontSize: '15px', marginBottom: '4px', lineHeight: '1.3' }}>
@@ -345,14 +348,14 @@ export default function SilentMap() {
                     </p>
                     <p style={{ color: '#6B7280', fontSize: '11px', marginBottom: miToken ? '8px' : 0 }}>
                       <i className="fa-solid fa-users mr-1" aria-hidden="true" />
-                      {e.autor_nombre ? `Añadido por ${e.autor_nombre}` : 'Añadido por la comunidad'}
+                      {e.autor_nombre ? t('popup.addedByName', { nombre: e.autor_nombre }) : t('popup.addedByComunidad')}
                     </p>
                     {miToken && (
                       <button
                         onClick={() => iniciarEdicion(e, miToken)}
                         style={{ color: '#3A82CA', fontSize: '12px', fontWeight: 600, background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
                       >
-                        <i className="fa-solid fa-pen" style={{ fontSize: '10px' }} aria-hidden="true" /> Editar este espacio
+                        <i className="fa-solid fa-pen" style={{ fontSize: '10px' }} aria-hidden="true" /> {t('popup.editar')}
                       </button>
                     )}
                   </div>
@@ -370,10 +373,7 @@ export default function SilentMap() {
           style={{ background: 'rgba(12,14,30,0.85)', backdropFilter: 'blur(8px)', zIndex: 1000 }}
           aria-live="polite"
         >
-          {(() => {
-            const total = filtered.length + espaciosComunidadVisibles.length
-            return `${total} espacio${total !== 1 ? 's' : ''} visibles`
-          })()}
+          {t('results.visible', { count: filtered.length + espaciosComunidadVisibles.length })}
         </div>
       </div>
     </div>

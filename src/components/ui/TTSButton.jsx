@@ -1,8 +1,10 @@
+import { useTranslation } from 'react-i18next'
 import { useTTS } from '../../hooks/useTTS'
 
 // iconOnly → pequeño botón icono para headers con espacio limitado
 // ariaLabel → texto adicional de contexto: "Escuchar en voz alta: [ariaLabel]"
 export default function TTSButton({ text, className = '', iconOnly = false, ariaLabel = '' }) {
+  const { t } = useTranslation('common')
   const { speak, stop, speaking, supported } = useTTS()
   if (!supported) return null
 
@@ -10,7 +12,7 @@ export default function TTSButton({ text, className = '', iconOnly = false, aria
     ? 'bg-acc/15 text-acc border-acc/35'
     : 'bg-transparent text-faint border-border/60 hover:text-muted hover:border-border'
 
-  const baseLabel = speaking ? 'Detener lectura en voz alta' : 'Escuchar en voz alta'
+  const baseLabel = speaking ? t('tts.stopAriaLabel') : t('tts.listenAriaLabel')
   const fullLabel = ariaLabel ? `${baseLabel}: ${ariaLabel}` : baseLabel
 
   if (iconOnly) {
@@ -21,7 +23,7 @@ export default function TTSButton({ text, className = '', iconOnly = false, aria
         className={`shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-200 border ${activeClass} ${className}`}
         aria-label={fullLabel}
         aria-pressed={speaking}
-        title={speaking ? 'Detener' : 'Escuchar'}
+        title={speaking ? t('tts.stop') : t('tts.listen')}
       >
         <i className={`fa-solid ${speaking ? 'fa-stop' : 'fa-volume-high'} text-[10px]`} aria-hidden="true" />
       </button>
@@ -37,7 +39,7 @@ export default function TTSButton({ text, className = '', iconOnly = false, aria
       aria-pressed={speaking}
     >
       <i className={`fa-solid ${speaking ? 'fa-stop' : 'fa-volume-high'} text-[9px]`} aria-hidden="true" />
-      {speaking ? 'Detener' : 'Escuchar'}
+      {speaking ? t('tts.stop') : t('tts.listen')}
     </button>
   )
 }

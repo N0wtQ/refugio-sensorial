@@ -1,0 +1,50 @@
+{
+  "addBanner": {
+    "questionBold": "¿Conoces un espacio que falta?",
+    "text": "Haz clic en cualquier punto del mapa para añadirlo — sin registrarte, y podrás editarlo o borrarlo después desde este mismo dispositivo."
+  },
+  "search": {
+    "placeholder": "Buscar por ciudad, nombre o tipo de espacio...",
+    "ariaLabel": "Buscar espacios silenciosos"
+  },
+  "filters": {
+    "groupAriaLabel": "Filtrar por tipo de espacio",
+    "all": "Todos",
+    "comunidad": "Comunidad"
+  },
+  "dragHint": "Arrastra el marcador o vuelve a hacer clic para ajustar la ubicación",
+  "mapAriaLabel": "Mapa interactivo de espacios silenciosos en el mundo",
+  "results": {
+    "visible_one": "{{count}} espacio visible",
+    "visible_other": "{{count}} espacios visibles"
+  },
+  "popup": {
+    "verFuente": "Ver fuente",
+    "opensInNewTab": "se abre en nueva pestaña",
+    "comunidadTitle": "Añadido por un visitante, no forma parte del catálogo verificado",
+    "comunidadBadge": "Comunidad",
+    "addedByName": "Añadido por {{nombre}}",
+    "addedByComunidad": "Añadido por la comunidad",
+    "editar": "Editar este espacio"
+  },
+  "misEspacios": {
+    "heading": "Tus espacios en este dispositivo"
+  },
+  "tipos": {
+    "supermercado": "Hora silenciosa",
+    "biblioteca": "Biblioteca",
+    "sala_estudio": "Sala de estudio",
+    "espacio_natural": "Espacio natural",
+    "centro_civico": "Centro cívico",
+    "centro_comercial": "Centro comercial",
+    "aeropuerto": "Aeropuerto",
+    "cultura": "Cultura / Museo",
+    "hotel": "Hotel",
+    "restaurante_silencioso": "Restaurante",
+    "sunflower": "Sunflower",
+    "coworking": "Coworking",
+    "estadio": "Estadio",
+    "parque_tematico": "Parque temático",
+    "zoologico_acuario": "Zoo / Acuario"
+  }
+}

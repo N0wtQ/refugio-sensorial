@@ -1,0 +1,32 @@
+{
+  "formAriaLabel": "Contact form",
+  "requiredSuffix": "(required)",
+  "honeypotLabel": "Leave this blank",
+  "fields": {
+    "nombre": { "label": "Name", "placeholder": "Your name" },
+    "email": { "label": "Email", "placeholder": "you@email.com" },
+    "pais": { "label": "Country", "placeholder": "Spain" },
+    "mensaje": { "label": "Message", "placeholder": "Write your message here..." }
+  },
+  "errors": {
+    "nombre": "Please enter your name.",
+    "emailRequired": "Please enter your email address.",
+    "emailInvalid": "That email doesn't look right (example: you@email.com).",
+    "pais": "Please enter your country.",
+    "mensajeRequired": "Please write your message.",
+    "mensajeTooShort": "The message must be at least 10 characters long."
+  },
+  "submit": {
+    "idle": "Send message",
+    "sending": "Sending...",
+    "sendingAriaLabel": "Sending message, please wait",
+    "idleAriaLabel": "Send message"
+  },
+  "success": {
+    "title": "Message sent",
+    "text": "Thanks for writing. I read every message and reply as soon as I can."
+  },
+  "error": {
+    "text": "There was a problem sending it. Please try again, or message me directly on"
+  }
+}

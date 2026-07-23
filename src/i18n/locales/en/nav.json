@@ -1,0 +1,58 @@
+{
+  "ariaLabel": "Main navigation",
+  "mobileAriaLabel": "Mobile menu",
+  "logoAriaLabel": "Refugio Sensorial — home",
+  "menu": {
+    "open": "Open menu",
+    "close": "Close menu",
+    "expandSection": "Expand section",
+    "collapseSection": "Collapse section"
+  },
+  "search": {
+    "ariaLabel": "Search Refugio Sensorial (Ctrl+K)",
+    "mobileAriaLabel": "Search",
+    "title": "Search (Ctrl+K)"
+  },
+  "links": {
+    "home": "Home",
+    "map": "Map",
+    "herramientas": {
+      "label": "Tools",
+      "library": {
+        "label": "Full library",
+        "desc": "80+ apps and digital resources, filterable by profile"
+      },
+      "stores": {
+        "label": "Where to buy sensory fidgets",
+        "desc": "Verified manufacturers, specialty stores, and marketplaces"
+      }
+    },
+    "entender": {
+      "label": "Understand & prepare",
+      "estados": {
+        "label": "Meltdown, shutdown & burnout",
+        "desc": "What they are, why they happen, and how to tell them apart"
+      },
+      "senales": {
+        "label": "Warning signs",
+        "desc": "Physical, cognitive, and behavioral signs"
+      },
+      "tecnicas": {
+        "label": "Regulation techniques",
+        "desc": "9 techniques to regulate your nervous system"
+      },
+      "kitBolso": {
+        "label": "Go-bag kit",
+        "desc": "What to bring when you leave the house"
+      },
+      "masking": {
+        "label": "Masking",
+        "desc": "Autistic camouflaging: what it is and how to reduce it"
+      },
+      "guias": {
+        "label": "Guides & resources",
+        "desc": "Verified PDFs and articles about autism"
+      }
+    }
+  }
+}

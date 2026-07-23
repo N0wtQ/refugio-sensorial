@@ -9,6 +9,7 @@
  */
 
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { getOgImage } from '../lib/og/index'
 
 const BASE_URL = `https://www.refugio-sensorial.com`
@@ -35,6 +36,7 @@ export function usePageMeta({
   section,
   noIndex = false,
 }) {
+  const { i18n } = useTranslation()
   useEffect(() => {
     const safeTitle = sanitizeText(title)
     const safeDesc = sanitizeText(description)
@@ -83,7 +85,7 @@ export function usePageMeta({
       'og:url':         canonicalUrl,
       'og:image':       resolvedOgImage,
       'og:image:alt':   resolvedOgImageAlt,
-      'og:locale':      'es_ES',
+      'og:locale':      i18n.language?.startsWith('en') ? 'en_US' : 'es_ES',
       'og:site_name':   'Refugio Sensorial',
     }
     const prevOg = {}
@@ -130,5 +132,5 @@ export function usePageMeta({
         document.querySelector(`meta[name="${name}"]`)?.setAttribute('content', prev)
       }
     }
-  }, [title, description, canonical, ogImage, ogImageAlt, ogType, section, noIndex])
+  }, [title, description, canonical, ogImage, ogImageAlt, ogType, section, noIndex, i18n.language])
 }

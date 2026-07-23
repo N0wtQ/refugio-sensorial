@@ -1,0 +1,41 @@
+{
+  "app": {
+    "name": "Refugio Sensorial",
+    "skipToContent": "Skip to main content"
+  },
+  "actions": {
+    "close": "Close",
+    "clear": "Clear",
+    "reload": "Reload page"
+  },
+  "crisisCta": {
+    "label": "I need help now",
+    "navAriaLabel": "I need help now — access crisis support resources",
+    "drawerAriaLabel": "I need help now — access crisis support resources"
+  },
+  "footer": {
+    "tagline": "Refugio Sensorial · Made with care for neurodivergent people",
+    "creator": "Creator: Almudena Bedoya",
+    "instagramAriaLabel": "Refugio Sensorial's Instagram",
+    "whatsappAriaLabel": "Refugio Sensorial's WhatsApp channel",
+    "accessibility": "Accessibility",
+    "help": "I need help"
+  },
+  "errorBoundary": {
+    "message": "Something went wrong loading this page.",
+    "reload": "Reload page"
+  },
+  "tts": {
+    "listen": "Listen",
+    "stop": "Stop",
+    "listenAriaLabel": "Listen aloud",
+    "stopAriaLabel": "Stop reading aloud"
+  },
+  "languageSwitcher": {
+    "es": "ES",
+    "en": "EN",
+    "ariaLabel": "Change language",
+    "switchToEs": "Cambiar a español",
+    "switchToEn": "Switch to English"
+  }
+}

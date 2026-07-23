@@ -1,79 +1,85 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
+import LanguageSwitcher from './ui/LanguageSwitcher'
 
-const links = [
-  { to: '/', label: 'Inicio' },
-  { to: '/espacios', label: 'Mapa' },
-  {
-    label: 'Herramientas',
-    basePath: '/herramientas',
-    children: [
-      {
-        to: '/herramientas',
-        label: 'Toda la biblioteca',
-        icon: 'fa-toolbox',
-        color: 'text-sec',
-        desc: 'Más de 80 apps y recursos digitales filtrables por perfil',
-      },
-      {
-        to: '/herramientas/categoria/tiendas-fidgets',
-        label: 'Dónde comprar fidgets sensoriales',
-        icon: 'fa-cart-shopping',
-        color: 'text-warm',
-        desc: 'Fabricantes, tiendas especializadas y marketplaces verificados',
-      },
-    ],
-  },
-  {
-    label: 'Entender y prepararse',
-    basePath: '/entender-y-prepararse',
-    children: [
-      {
-        to: '/entender-y-prepararse/estados',
-        label: 'Meltdown, shutdown y burnout',
-        icon: 'fa-brain',
-        color: 'text-coral',
-        desc: 'Qué son, por qué ocurren y cómo diferenciarlos',
-      },
-      {
-        to: '/entender-y-prepararse/senales',
-        label: 'Señales de aviso',
-        icon: 'fa-triangle-exclamation',
-        color: 'text-sec',
-        desc: 'Señales corporales, cognitivas y conductuales',
-      },
-      {
-        to: '/entender-y-prepararse/tecnicas',
-        label: 'Técnicas de regulación',
-        icon: 'fa-heart-pulse',
-        color: 'text-acc',
-        desc: '9 técnicas para regular el sistema nervioso',
-      },
-      {
-        to: '/entender-y-prepararse/kit-de-bolso',
-        label: 'Kit de bolso',
-        icon: 'fa-kit-medical',
-        color: 'text-pri',
-        desc: 'Qué llevar cuando sales de casa',
-      },
-      {
-        to: '/entender-y-prepararse/masking',
-        label: 'Masking',
-        icon: 'fa-masks-theater',
-        color: 'text-pri',
-        desc: 'Camuflaje autista: qué es y cómo reducirlo',
-      },
-      {
-        to: '/entender-y-prepararse/guias',
-        label: 'Guías y recursos',
-        icon: 'fa-folder-open',
-        color: 'text-sec',
-        desc: 'PDFs y artículos sobre autismo verificados',
-      },
-    ],
-  },
-]
+// t must be the 'nav' namespace translator — labels/descs come from
+// src/i18n/locales/{es,en}/nav.json, routes/icons/colors are not translatable.
+function buildLinks(t) {
+  return [
+    { to: '/', label: t('links.home') },
+    { to: '/espacios', label: t('links.map') },
+    {
+      label: t('links.herramientas.label'),
+      basePath: '/herramientas',
+      children: [
+        {
+          to: '/herramientas',
+          label: t('links.herramientas.library.label'),
+          icon: 'fa-toolbox',
+          color: 'text-sec',
+          desc: t('links.herramientas.library.desc'),
+        },
+        {
+          to: '/herramientas/categoria/tiendas-fidgets',
+          label: t('links.herramientas.stores.label'),
+          icon: 'fa-cart-shopping',
+          color: 'text-warm',
+          desc: t('links.herramientas.stores.desc'),
+        },
+      ],
+    },
+    {
+      label: t('links.entender.label'),
+      basePath: '/entender-y-prepararse',
+      children: [
+        {
+          to: '/entender-y-prepararse/estados',
+          label: t('links.entender.estados.label'),
+          icon: 'fa-brain',
+          color: 'text-coral',
+          desc: t('links.entender.estados.desc'),
+        },
+        {
+          to: '/entender-y-prepararse/senales',
+          label: t('links.entender.senales.label'),
+          icon: 'fa-triangle-exclamation',
+          color: 'text-sec',
+          desc: t('links.entender.senales.desc'),
+        },
+        {
+          to: '/entender-y-prepararse/tecnicas',
+          label: t('links.entender.tecnicas.label'),
+          icon: 'fa-heart-pulse',
+          color: 'text-acc',
+          desc: t('links.entender.tecnicas.desc'),
+        },
+        {
+          to: '/entender-y-prepararse/kit-de-bolso',
+          label: t('links.entender.kitBolso.label'),
+          icon: 'fa-kit-medical',
+          color: 'text-pri',
+          desc: t('links.entender.kitBolso.desc'),
+        },
+        {
+          to: '/entender-y-prepararse/masking',
+          label: t('links.entender.masking.label'),
+          icon: 'fa-masks-theater',
+          color: 'text-pri',
+          desc: t('links.entender.masking.desc'),
+        },
+        {
+          to: '/entender-y-prepararse/guias',
+          label: t('links.entender.guias.label'),
+          icon: 'fa-folder-open',
+          color: 'text-sec',
+          desc: t('links.entender.guias.desc'),
+        },
+      ],
+    },
+  ]
+}
 
 // ── Desktop dropdown ───────────────────────────────────────────────────────────
 
@@ -175,6 +181,9 @@ function DesktopDropdown({ link, pathname }) {
 export default function Navbar({ onOpenSearch }) {
   const { pathname } = useLocation()
   const navigate = useNavigate()
+  const { t } = useTranslation('nav')
+  const { t: tc } = useTranslation('common')
+  const links = buildLinks(t)
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [expandedMobile, setExpandedMobile] = useState(null)
@@ -212,12 +221,12 @@ export default function Navbar({ onOpenSearch }) {
     >
       <div className="max-w-5xl mx-auto px-5 flex items-center justify-between h-[72px] gap-4">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2.5 shrink-0" aria-label="Refugio Sensorial — inicio">
+        <Link to="/" className="flex items-center gap-2.5 shrink-0" aria-label={t('logoAriaLabel')}>
           <img src={`${import.meta.env.BASE_URL}logo-icon.svg`} alt="" className="h-10 w-auto" aria-hidden="true" />
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-1" aria-label="Navegación principal">
+        <nav className="hidden md:flex items-center gap-1" aria-label={t('ariaLabel')}>
           {links.map((link) => {
             if (link.children) {
               return <DesktopDropdown key={link.label} link={link} pathname={pathname} />
@@ -242,19 +251,20 @@ export default function Navbar({ onOpenSearch }) {
           <button
             type="button"
             onClick={onOpenSearch}
-            aria-label="Buscar en Refugio Sensorial (Ctrl+K)"
-            title="Buscar (Ctrl+K)"
+            aria-label={t('search.ariaLabel')}
+            title={t('search.title')}
             className="ml-1 p-2 rounded-lg text-faint hover:text-text hover:bg-white/5 transition-colors duration-200"
           >
             <i className="fa-solid fa-magnifying-glass text-sm" aria-hidden="true" />
           </button>
+          <LanguageSwitcher className="ml-1" />
           <Link
             to="/ayuda"
             className="ml-1 flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-semibold text-coral border border-coral/25 bg-coral/5 hover:bg-coral/12 hover:border-coral/40 transition-all duration-200"
-            aria-label="Necesito ayuda ahora — acceso a recursos de apoyo en crisis"
+            aria-label={tc('crisisCta.navAriaLabel')}
           >
             <i className="fa-solid fa-heart-pulse text-xs" aria-hidden="true" />
-            Necesito ayuda ahora
+            {tc('crisisCta.label')}
           </Link>
         </nav>
 
@@ -263,7 +273,7 @@ export default function Navbar({ onOpenSearch }) {
           <button
             type="button"
             onClick={onOpenSearch}
-            aria-label="Buscar"
+            aria-label={t('search.mobileAriaLabel')}
             className="p-2 rounded-lg text-faint hover:text-text hover:bg-white/5 transition-colors duration-200"
           >
             <i className="fa-solid fa-magnifying-glass text-sm" aria-hidden="true" />
@@ -273,7 +283,7 @@ export default function Navbar({ onOpenSearch }) {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
-            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-label={menuOpen ? t('menu.close') : t('menu.open')}
             className="p-2 rounded-lg text-muted hover:text-text hover:bg-white/5 transition-colors duration-200"
           >
             <i className={`fa-solid ${menuOpen ? 'fa-xmark' : 'fa-bars'} text-base`} aria-hidden="true" />
@@ -291,7 +301,7 @@ export default function Navbar({ onOpenSearch }) {
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.18 }}
             className="md:hidden border-t border-border bg-bg/98 backdrop-blur-md px-5 pb-4 pt-3 flex flex-col gap-0.5"
-            aria-label="Menú móvil"
+            aria-label={t('mobileAriaLabel')}
             onKeyDown={(e) => {
               if (e.key === 'Escape') {
                 setMenuOpen(false)
@@ -299,14 +309,17 @@ export default function Navbar({ onOpenSearch }) {
               }
             }}
           >
+            {/* Language switcher — top of the mobile drawer */}
+            <LanguageSwitcher className="self-stretch justify-center mb-2" />
+
             {/* Crisis CTA — always first in mobile drawer */}
             <Link
               to="/ayuda"
               className="flex items-center gap-2 px-3 py-3 rounded-xl bg-coral/8 border border-coral/25 text-coral text-sm font-semibold mb-2"
-              aria-label="Necesito ayuda ahora — acceder a recursos de apoyo en crisis"
+              aria-label={tc('crisisCta.drawerAriaLabel')}
             >
               <i className="fa-solid fa-heart-pulse text-sm" aria-hidden="true" />
-              Necesito ayuda ahora
+              {tc('crisisCta.label')}
               <i className="fa-solid fa-arrow-right text-xs ml-auto" aria-hidden="true" />
             </Link>
 
@@ -329,7 +342,7 @@ export default function Navbar({ onOpenSearch }) {
                         type="button"
                         onClick={() => setExpandedMobile(isExpanded ? null : link.label)}
                         aria-expanded={isExpanded}
-                        aria-label={isExpanded ? 'Contraer sección' : 'Expandir sección'}
+                        aria-label={isExpanded ? t('menu.collapseSection') : t('menu.expandSection')}
                         className="px-3 py-2.5 text-muted hover:text-text transition-colors duration-200"
                       >
                         <i

@@ -1,6 +1,7 @@
 import { useState, useMemo, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSearchParams } from 'react-router-dom'
+import { useTranslation, Trans } from 'react-i18next'
 import { herramientas as todasLasHerramientas, categorias as todasLasCategorias, precios, perfiles } from '../data/herramientas'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { logoSrc } from '../lib/logos'
@@ -14,16 +15,18 @@ const CATEGORIA_TIENDAS_FIDGETS = 'Dónde comprar fidgets sensoriales'
 const herramientas = todasLasHerramientas.filter(h => h.categoria !== CATEGORIA_TIENDAS_FIDGETS)
 const categorias   = todasLasCategorias.filter(c => c !== CATEGORIA_TIENDAS_FIDGETS)
 
+// Labels come from catalog.tipo.* (t('tipo.APP') etc.) — this dict only
+// carries color, which isn't language-dependent.
 const TIPO_BADGE = {
-  APP:   { label: 'App',       color: 'text-pri  bg-pri/10  border-pri/20' },
-  WEB:   { label: 'Web',       color: 'text-acc  bg-acc/10  border-acc/20' },
-  EXT:   { label: 'Extensión', color: 'text-sec  bg-sec/10  border-sec/20' },
-  HARD:  { label: 'Físico',    color: 'text-warm bg-warm/10 border-warm/20' },
-  SOFT:  { label: 'Software',  color: 'text-green bg-green/10 border-green/20' },
-  COM:   { label: 'Comunidad', color: 'text-sec  bg-sec/10  border-sec/20' },
-  TIENDA:{ label: 'Tienda',    color: 'text-warm bg-warm/10 border-warm/20' },
-  JUEGO: { label: 'Juego',     color: 'text-green bg-green/10 border-green/20' },
-  MARKETPLACE: { label: 'Marketplace', color: 'text-coral bg-coral/10 border-coral/20' },
+  APP:   { color: 'text-pri  bg-pri/10  border-pri/20' },
+  WEB:   { color: 'text-acc  bg-acc/10  border-acc/20' },
+  EXT:   { color: 'text-sec  bg-sec/10  border-sec/20' },
+  HARD:  { color: 'text-warm bg-warm/10 border-warm/20' },
+  SOFT:  { color: 'text-green bg-green/10 border-green/20' },
+  COM:   { color: 'text-sec  bg-sec/10  border-sec/20' },
+  TIENDA:{ color: 'text-warm bg-warm/10 border-warm/20' },
+  JUEGO: { color: 'text-green bg-green/10 border-green/20' },
+  MARKETPLACE: { color: 'text-coral bg-coral/10 border-coral/20' },
 }
 
 const PRECIO_COLOR = {
@@ -63,8 +66,11 @@ function StarRating({ label }) {
 
 // The entire card is an <a> — click anywhere to open the tool
 function ToolCard({ h, index, prefersReduced }) {
-  const tipo  = TIPO_BADGE[h.tipo] ?? { label: h.tipo, color: 'text-muted bg-surface border-border' }
+  const { t } = useTranslation('catalog')
+  const tipoColor = TIPO_BADGE[h.tipo]?.color ?? 'text-muted bg-surface border-border'
+  const tipoLabel = t(`tipo.${h.tipo}`, { defaultValue: h.tipo })
   const precio = PRECIO_COLOR[h.precio] ?? PRECIO_COLOR.Pago
+  const precioLabel = t(`precio.${h.precio}`, { defaultValue: h.precio })
   const icon  = CAT_ICON[h.categoria] ?? 'fa-toolbox'
   // Logo fetched at build time (scripts/fetch-logos.mjs); category icon as fallback
   const [logoFailed, setLogoFailed] = useState(false)
@@ -82,7 +88,7 @@ function ToolCard({ h, index, prefersReduced }) {
                  hover:border-sec/40 hover:bg-surfaceH hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20
                  transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2
                  focus-visible:ring-pri focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-      aria-label={`${h.nombre} — ${h.notas} (se abre en nueva pestaña)`}
+      aria-label={`${h.nombre} — ${h.notas} (${t('card.opensInNewTab')})`}
     >
       {/* Top row: icon + name + type badge */}
       <div className="flex items-start gap-3">
@@ -107,8 +113,8 @@ function ToolCard({ h, index, prefersReduced }) {
             <h3 className="font-semibold text-text text-sm leading-snug group-hover:text-pri transition-colors duration-200">
               {h.nombre}
             </h3>
-            <span className={`shrink-0 text-[10px] font-semibold px-2 py-0.5 rounded-md border ${tipo.color}`}>
-              {tipo.label}
+            <span className={`shrink-0 text-[10px] font-semibold px-2 py-0.5 rounded-md border ${tipoColor}`}>
+              {tipoLabel}
             </span>
           </div>
           <p className="text-[11px] text-faint font-medium mt-0.5">{h.categoria} · {h.subcategoria}</p>
@@ -131,13 +137,13 @@ function ToolCard({ h, index, prefersReduced }) {
       <div className="flex items-center justify-between pt-2 border-t border-border/40">
         <div className="flex items-center gap-2">
           <span className={`text-[10px] font-semibold px-2 py-0.5 rounded border ${precio.text} ${precio.bg} ${precio.border}`}>
-            {h.precio}
+            {precioLabel}
           </span>
           {h.valoracion && <StarRating label={h.valoracion} />}
         </div>
         {/* Visual "open" cue — reinforces that the whole card is clickable */}
         <span className="flex items-center gap-1 text-[11px] font-semibold text-pri opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200">
-          Abrir
+          {t('card.open')}
           <i className="fa-solid fa-arrow-up-right-from-square text-[9px]" aria-hidden="true" />
         </span>
       </div>
@@ -148,6 +154,7 @@ function ToolCard({ h, index, prefersReduced }) {
 // ── Perfil dropdown ───────────────────────────────────────────────────────────
 
 function PerfilDropdown({ value, onChange }) {
+  const { t } = useTranslation('catalog')
   const [open, setOpen] = useState(false)
   const ref = useRef(null)
   const triggerRef = useRef(null)
@@ -190,7 +197,7 @@ function PerfilDropdown({ value, onChange }) {
   }
 
   const isFiltered = value !== 'todos'
-  const label = isFiltered ? `${value} (${PERFIL_COUNTS[value]})` : 'Todos'
+  const label = isFiltered ? `${value} (${PERFIL_COUNTS[value]})` : t('filters.allShort')
 
   return (
     <div ref={ref} className="relative" onKeyDown={handleKeyDown}>
@@ -219,7 +226,7 @@ function PerfilDropdown({ value, onChange }) {
             transition={{ duration: 0.13 }}
             className="absolute top-full left-0 mt-1.5 w-48 rounded-xl border border-border bg-[#0C0E1E] shadow-xl shadow-black/40 overflow-hidden z-50 py-1"
             role="listbox"
-            aria-label="Filtrar por perfil neurodivergente"
+            aria-label={t('profileDropdown.ariaLabel')}
           >
             <button
               role="option"
@@ -229,7 +236,7 @@ function PerfilDropdown({ value, onChange }) {
                 !isFiltered ? 'text-text font-semibold' : 'text-muted'
               }`}
             >
-              Todos los perfiles
+              {t('profileDropdown.allProfiles')}
               <span className="text-faint tabular-nums">{herramientas.length}</span>
             </button>
             <div className="h-px bg-border/50 mx-3 my-0.5" aria-hidden="true" />
@@ -266,6 +273,7 @@ const PERFIL_COUNTS = perfiles.reduce((acc, p) => {
 }, {})
 
 export default function ResourceLibrary() {
+  const { t } = useTranslation('catalog')
   const prefersReduced = useReducedMotion()
   const [searchParams, setSearchParams] = useSearchParams()
   const [search, setSearch] = useState(() => searchParams.get('q') ?? '')
@@ -307,9 +315,9 @@ export default function ResourceLibrary() {
             if (val) next.set('q', val); else next.delete('q')
             setSearchParams(next, { replace: true })
           }}
-          placeholder="Buscar herramienta, perfil neurodivergente o necesidad..."
+          placeholder={t('search.placeholder')}
           className="w-full pl-10 pr-10 py-3 rounded-xl bg-surface border border-border text-text text-sm placeholder:text-faint outline-none focus:border-pri/50 focus:ring-1 focus:ring-pri/30 transition-colors duration-200"
-          aria-label="Buscar herramientas"
+          aria-label={t('search.ariaLabel')}
         />
         {search && (
           <button
@@ -320,7 +328,7 @@ export default function ResourceLibrary() {
               setSearchParams(next, { replace: true })
             }}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-faint hover:text-text transition-colors"
-            aria-label="Borrar búsqueda"
+            aria-label={t('search.clearAriaLabel')}
           >
             <i className="fa-solid fa-xmark text-sm" aria-hidden="true" />
           </button>
@@ -328,7 +336,7 @@ export default function ResourceLibrary() {
       </div>
 
       {/* ── Category chips ── */}
-      <div className="flex flex-wrap gap-2" role="group" aria-label="Filtrar por categoría">
+      <div className="flex flex-wrap gap-2" role="group" aria-label={t('filters.categoryGroupAriaLabel')}>
         <button
           onClick={() => {
             const next = new URLSearchParams(searchParams)
@@ -342,7 +350,7 @@ export default function ResourceLibrary() {
           }`}
           aria-pressed={catFilter === 'todas'}
         >
-          Todas ({herramientas.length})
+          {t('filters.all')} ({herramientas.length})
         </button>
         {categorias.map(cat => (
           <button
@@ -368,14 +376,19 @@ export default function ResourceLibrary() {
       {/* ── Perfil dropdown + Price filter + result count ── */}
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <p className="text-xs text-faint" aria-live="polite" aria-atomic="true">
-          {results.length === herramientas.length
-            ? <><strong className="text-muted">{results.length}</strong> herramientas en la biblioteca</>
-            : <><strong className="text-text">{results.length}</strong> resultado{results.length !== 1 ? 's' : ''}</>
-          }
+          {results.length === herramientas.length ? (
+            <Trans i18nKey="catalog:results.full" count={results.length}>
+              <strong className="text-muted">{{ count: results.length }}</strong> herramientas en la biblioteca
+            </Trans>
+          ) : (
+            <Trans i18nKey="catalog:results.filtered" count={results.length}>
+              <strong className="text-text">{{ count: results.length }}</strong> resultados
+            </Trans>
+          )}
         </p>
         <div className="flex items-center gap-3 flex-wrap justify-end">
           <div className="flex items-center gap-2">
-            <span className="text-xs text-faint">Perfil:</span>
+            <span className="text-xs text-faint">{t('filters.profileLabel')}</span>
             <PerfilDropdown value={perfilFilter} onChange={p => {
               const next = new URLSearchParams(searchParams)
               if (p === 'todos') next.delete('perfil'); else next.set('perfil', p)
@@ -383,7 +396,7 @@ export default function ResourceLibrary() {
             }} />
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-faint">Precio:</span>
+            <span className="text-xs text-faint">{t('filters.priceLabel')}</span>
             {['todos', 'Gratis', 'Freemium', 'Pago'].map(p => (
               <button
                 key={p}
@@ -399,7 +412,7 @@ export default function ResourceLibrary() {
                 }`}
                 aria-pressed={precioFilter === p}
               >
-                {p === 'todos' ? 'Todos' : p}
+                {p === 'todos' ? t('filters.allShort') : t(`precio.${p}`)}
               </button>
             ))}
           </div>
@@ -416,13 +429,13 @@ export default function ResourceLibrary() {
       ) : (
         <div className="text-center py-16 rounded-card border border-border bg-surface">
           <i className="fa-solid fa-magnifying-glass text-3xl text-faint mb-4 block" aria-hidden="true" />
-          <p className="text-muted text-sm font-medium mb-1">Sin resultados</p>
-          <p className="text-faint text-xs mb-5">Prueba con otras palabras o quita algún filtro.</p>
+          <p className="text-muted text-sm font-medium mb-1">{t('empty.title')}</p>
+          <p className="text-faint text-xs mb-5">{t('empty.hint')}</p>
           <button
             onClick={resetFilters}
             className="px-4 py-2 rounded-lg bg-pri/10 text-pri text-xs font-semibold border border-pri/25 hover:bg-pri/18 transition-colors duration-200"
           >
-            Ver todas las herramientas
+            {t('empty.cta')}
           </button>
         </div>
       )}

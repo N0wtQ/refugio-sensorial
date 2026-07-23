@@ -1,0 +1,48 @@
+{
+  "search": {
+    "placeholder": "Buscar herramienta, perfil neurodivergente o necesidad...",
+    "ariaLabel": "Buscar herramientas",
+    "clearAriaLabel": "Borrar búsqueda"
+  },
+  "filters": {
+    "categoryGroupAriaLabel": "Filtrar por categoría",
+    "all": "Todas",
+    "profileLabel": "Perfil:",
+    "priceLabel": "Precio:",
+    "allShort": "Todos"
+  },
+  "profileDropdown": {
+    "allProfiles": "Todos los perfiles",
+    "ariaLabel": "Filtrar por perfil neurodivergente"
+  },
+  "results": {
+    "full": "<0>{{count}}</0> herramientas en la biblioteca",
+    "filtered_one": "<0>{{count}}</0> resultado",
+    "filtered_other": "<0>{{count}}</0> resultados"
+  },
+  "empty": {
+    "title": "Sin resultados",
+    "hint": "Prueba con otras palabras o quita algún filtro.",
+    "cta": "Ver todas las herramientas"
+  },
+  "card": {
+    "open": "Abrir",
+    "opensInNewTab": "se abre en nueva pestaña"
+  },
+  "precio": {
+    "Gratis": "Gratis",
+    "Freemium": "Freemium",
+    "Pago": "Pago"
+  },
+  "tipo": {
+    "APP": "App",
+    "WEB": "Web",
+    "EXT": "Extensión",
+    "HARD": "Físico",
+    "SOFT": "Software",
+    "COM": "Comunidad",
+    "TIENDA": "Tienda",
+    "JUEGO": "Juego",
+    "MARKETPLACE": "Marketplace"
+  }
+}

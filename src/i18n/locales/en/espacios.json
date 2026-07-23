@@ -1,0 +1,50 @@
+{
+  "addBanner": {
+    "questionBold": "Know a space that's missing?",
+    "text": "Click anywhere on the map to add it — no sign-up needed, and you can edit or delete it later from this same device."
+  },
+  "search": {
+    "placeholder": "Search by city, name, or type of space...",
+    "ariaLabel": "Search quiet spaces"
+  },
+  "filters": {
+    "groupAriaLabel": "Filter by type of space",
+    "all": "All",
+    "comunidad": "Community"
+  },
+  "dragHint": "Drag the marker or click again to adjust the location",
+  "mapAriaLabel": "Interactive map of quiet spaces around the world",
+  "results": {
+    "visible_one": "{{count}} space visible",
+    "visible_other": "{{count}} spaces visible"
+  },
+  "popup": {
+    "verFuente": "See source",
+    "opensInNewTab": "opens in a new tab",
+    "comunidadTitle": "Added by a visitor, not part of the verified catalog",
+    "comunidadBadge": "Community",
+    "addedByName": "Added by {{nombre}}",
+    "addedByComunidad": "Added by the community",
+    "editar": "Edit this space"
+  },
+  "misEspacios": {
+    "heading": "Your spaces on this device"
+  },
+  "tipos": {
+    "supermercado": "Quiet hour",
+    "biblioteca": "Library",
+    "sala_estudio": "Study room",
+    "espacio_natural": "Natural space",
+    "centro_civico": "Civic center",
+    "centro_comercial": "Shopping mall",
+    "aeropuerto": "Airport",
+    "cultura": "Culture / Museum",
+    "hotel": "Hotel",
+    "restaurante_silencioso": "Restaurant",
+    "sunflower": "Sunflower",
+    "coworking": "Coworking",
+    "estadio": "Stadium",
+    "parque_tematico": "Theme park",
+    "zoologico_acuario": "Zoo / Aquarium"
+  }
+}
