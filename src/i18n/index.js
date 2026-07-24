@@ -9,6 +9,11 @@ import espaciosEs from './locales/es/espacios.json'
 import contactEs from './locales/es/contact.json'
 import landingEs from './locales/es/landing.json'
 import pagesEs from './locales/es/pages.json'
+import kitSensorialEs from './locales/es/kitSensorial.json'
+import senalesEs from './locales/es/senales.json'
+import maskingEs from './locales/es/masking.json'
+import ayudaEs from './locales/es/ayuda.json'
+import recursosEs from './locales/es/recursos.json'
 
 import commonEn from './locales/en/common.json'
 import navEn from './locales/en/nav.json'
@@ -17,6 +22,11 @@ import espaciosEn from './locales/en/espacios.json'
 import contactEn from './locales/en/contact.json'
 import landingEn from './locales/en/landing.json'
 import pagesEn from './locales/en/pages.json'
+import kitSensorialEn from './locales/en/kitSensorial.json'
+import senalesEn from './locales/en/senales.json'
+import maskingEn from './locales/en/masking.json'
+import ayudaEn from './locales/en/ayuda.json'
+import recursosEn from './locales/en/recursos.json'
 
 // Resources are imported statically (no i18next-http-backend) so init() is
 // synchronous — no flash of untranslated content on first paint, and no need
@@ -26,8 +36,8 @@ i18n
   .use(initReactI18next)
   .init({
     resources: {
-      es: { common: commonEs, nav: navEs, catalog: catalogEs, espacios: espaciosEs, contact: contactEs, landing: landingEs, pages: pagesEs },
-      en: { common: commonEn, nav: navEn, catalog: catalogEn, espacios: espaciosEn, contact: contactEn, landing: landingEn, pages: pagesEn },
+      es: { common: commonEs, nav: navEs, catalog: catalogEs, espacios: espaciosEs, contact: contactEs, landing: landingEs, pages: pagesEs, kitSensorial: kitSensorialEs, senales: senalesEs, masking: maskingEs, ayuda: ayudaEs, recursos: recursosEs },
+      en: { common: commonEn, nav: navEn, catalog: catalogEn, espacios: espaciosEn, contact: contactEn, landing: landingEn, pages: pagesEn, kitSensorial: kitSensorialEn, senales: senalesEn, masking: maskingEn, ayuda: ayudaEn, recursos: recursosEn },
     },
     fallbackLng: 'es',
     supportedLngs: ['es', 'en'],

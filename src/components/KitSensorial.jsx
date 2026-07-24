@@ -1,9 +1,17 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { GlowCard } from '@/components/ui/spotlight-card'
 import TTSButton from '@/components/ui/TTSButton'
+
+// ESTADOS/REGULACION/KITS below keep their original Spanish text as the
+// canonical data (some fields — estado.id, REGULACION[].titulo, kit.id —
+// are also used as lookup keys elsewhere, e.g. content-graph's
+// ESTADO_RELATIONS). Display text is resolved through t() using those same
+// keys, in the 'kitSensorial' namespace, so the underlying data never needs
+// to change per language.
 
 // ── MELTDOWN / SHUTDOWN / BURNOUT ─────────────────────────────────────────────
 
@@ -65,8 +73,16 @@ export const ESTADOS = [
 ]
 
 export function EstadoCard({ estado, prefersReduced, index }) {
+  const { t } = useTranslation('kitSensorial')
   const [open, setOpen] = useState(false)
   const BASE = import.meta.env.BASE_URL
+
+  const titulo = t(`estados.${estado.id}.titulo`)
+  const subtitulo = t(`estados.${estado.id}.subtitulo`)
+  const que = t(`estados.${estado.id}.que`)
+  const signos = t(`estados.${estado.id}.signos`, { returnObjects: true })
+  const ayuda = t(`estados.${estado.id}.ayuda`, { returnObjects: true })
+  const tts = t(`estados.${estado.id}.tts`)
 
   return (
     <motion.div
@@ -86,7 +102,7 @@ export function EstadoCard({ estado, prefersReduced, index }) {
         onClick={() => setOpen(!open)}
         aria-expanded={open}
         aria-controls={`estado-${estado.id}-detalles`}
-        aria-label={`${open ? 'Cerrar' : 'Abrir'} detalles de ${estado.titulo}`}
+        aria-label={t(`estadoCard.${open ? 'closeAriaLabel' : 'openAriaLabel'}`, { titulo })}
         className="relative w-full flex items-center gap-4 px-6 pt-6 pb-3 text-left"
       >
         <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-lg shrink-0 ${estado.iconBg} ${estado.iconColor}`}>
@@ -94,12 +110,12 @@ export function EstadoCard({ estado, prefersReduced, index }) {
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap mb-0.5">
-            <h3 className="text-lg font-bold text-text">{estado.titulo}</h3>
+            <h3 className="text-lg font-bold text-text">{titulo}</h3>
             <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-lg border ${estado.badgeBg}`}>
-              {estado.subtitulo}
+              {subtitulo}
             </span>
           </div>
-          <p className={`text-sm text-muted pr-6 ${open ? '' : 'line-clamp-2'}`}>{estado.que}</p>
+          <p className={`text-sm text-muted pr-6 ${open ? '' : 'line-clamp-2'}`}>{que}</p>
         </div>
         <i
           className={`fa-solid fa-chevron-down text-xs text-muted transition-transform duration-200 shrink-0 ${open ? 'rotate-180' : ''}`}
@@ -115,12 +131,12 @@ export function EstadoCard({ estado, prefersReduced, index }) {
             window.open(`${BASE}infografias/${estado.infografia}`, '_blank', 'noopener,noreferrer')
           }}
           className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-semibold border transition-colors duration-200 ${estado.badgeBg} hover:opacity-80`}
-          aria-label={`Ver infografía de ${estado.titulo} (se abre en nueva pestaña)`}
+          aria-label={t('estadoCard.verInfografiaAriaLabel', { titulo })}
         >
           <i className="fa-solid fa-image text-[9px]" aria-hidden="true" />
-          Ver infografía
+          {t('estadoCard.verInfografia')}
         </button>
-        <TTSButton text={estado.tts} />
+        <TTSButton text={tts} />
       </div>
 
       <AnimatePresence initial={false}>
@@ -137,10 +153,10 @@ export function EstadoCard({ estado, prefersReduced, index }) {
               <div>
                 <p className={`text-xs font-semibold uppercase tracking-wider ${estado.iconColor} mb-2.5`}>
                   <i className="fa-solid fa-triangle-exclamation mr-1.5" aria-hidden="true" />
-                  Señales
+                  {t('estadoCard.senales')}
                 </p>
                 <ul className="space-y-1.5">
-                  {estado.signos.map(s => (
+                  {signos.map(s => (
                     <li key={s} className="flex items-start gap-2 text-sm text-muted">
                       <i className={`fa-solid fa-circle text-[5px] mt-2 shrink-0 ${estado.iconColor}`} aria-hidden="true" />
                       {s}
@@ -151,10 +167,10 @@ export function EstadoCard({ estado, prefersReduced, index }) {
               <div>
                 <p className={`text-xs font-semibold uppercase tracking-wider ${estado.iconColor} mb-2.5`}>
                   <i className="fa-solid fa-hands-holding-heart mr-1.5" aria-hidden="true" />
-                  Qué ayuda
+                  {t('estadoCard.queAyuda')}
                 </p>
                 <ul className="space-y-1.5">
-                  {estado.ayuda.map(a => (
+                  {ayuda.map(a => (
                     <li key={a} className="flex items-start gap-2 text-sm text-muted">
                       <i className={`fa-solid fa-check text-[10px] mt-1 shrink-0 ${estado.iconColor}`} aria-hidden="true" />
                       {a}
@@ -319,13 +335,17 @@ export const KITS = [
 ]
 
 export function KitSelectorCard({ kit, selected, onClick }) {
+  const { t } = useTranslation('kitSensorial')
   const dotCount = kit.id === 'pequeno' ? 1 : kit.id === 'grande' ? 2 : 3
+  const label = t(`kits.${kit.id}.label`)
+  const sublabel = t(`kits.${kit.id}.sublabel`)
+  const shortLabel = t(`kits.${kit.id}.shortLabel`)
 
   return (
     <button
       onClick={onClick}
       aria-pressed={selected}
-      aria-label={`${kit.label} — ${kit.sublabel}`}
+      aria-label={`${label} — ${sublabel}`}
       className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pri focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded-2xl"
     >
       <GlowCard
@@ -347,7 +367,7 @@ export function KitSelectorCard({ kit, selected, onClick }) {
           ))}
         </div>
         <span className={`text-xs font-semibold transition-colors duration-200 ${selected ? kit.color : 'text-muted'}`}>
-          {kit.shortLabel}
+          {shortLabel}
         </span>
       </GlowCard>
     </button>
@@ -356,34 +376,38 @@ export function KitSelectorCard({ kit, selected, onClick }) {
 
 // ── NAV CARDS ─────────────────────────────────────────────────────────────────
 
-const NAV_CARDS = [
-  {
-    to: '/entender-y-prepararse/senales',
-    icon: 'fa-triangle-exclamation',
-    color: 'text-coral',
-    bg: 'bg-coral/10',
-    borderColor: 'border-coral/25',
-    bgCard: 'bg-coral/5',
-    glowColor: 'rgba(229,123,134,0.07)',
-    titulo: 'Señales previas a la crisis',
-    desc: 'Aprende a reconocer las señales de que tu sistema nervioso está llegando al límite antes de que ocurra.',
-  },
-  {
-    to: '/entender-y-prepararse/guias',
-    icon: 'fa-folder-open',
-    color: 'text-pri',
-    bg: 'bg-pri/10',
-    borderColor: 'border-pri/25',
-    bgCard: 'bg-pri/5',
-    glowColor: 'rgba(58,130,202,0.07)',
-    titulo: 'Recursos y documentos',
-    desc: 'Guías, PDFs y artículos sobre autismo y neurodiversidad para leer, descargar y llevar encima.',
-  },
-]
+function useNavCards(t) {
+  return [
+    {
+      to: '/entender-y-prepararse/senales',
+      icon: 'fa-triangle-exclamation',
+      color: 'text-coral',
+      bg: 'bg-coral/10',
+      borderColor: 'border-coral/25',
+      bgCard: 'bg-coral/5',
+      glowColor: 'rgba(229,123,134,0.07)',
+      titulo: t('navCards.senales.titulo'),
+      desc: t('navCards.senales.desc'),
+    },
+    {
+      to: '/entender-y-prepararse/guias',
+      icon: 'fa-folder-open',
+      color: 'text-pri',
+      bg: 'bg-pri/10',
+      borderColor: 'border-pri/25',
+      bgCard: 'bg-pri/5',
+      glowColor: 'rgba(58,130,202,0.07)',
+      titulo: t('navCards.guias.titulo'),
+      desc: t('navCards.guias.desc'),
+    },
+  ]
+}
 
 // ── MAIN COMPONENT ────────────────────────────────────────────────────────────
 
 export default function KitSensorial() {
+  const { t } = useTranslation('kitSensorial')
+  const NAV_CARDS = useNavCards(t)
   const prefersReduced = useReducedMotion()
   const [selectedKit, setSelectedKit] = useState('grande')
   const [estadoAbierto, setEstadoAbierto] = useState(null)
@@ -406,8 +430,8 @@ export default function KitSensorial() {
               <i className="fa-solid fa-brain" aria-hidden="true" />
             </div>
             <div>
-              <h2 id="estados-heading" className="text-xl font-bold text-text leading-tight">¿Qué me está pasando?</h2>
-              <p className="text-sm text-muted">Meltdown, Shutdown y Burnout — qué son y cómo diferenciarlos</p>
+              <h2 id="estados-heading" className="text-xl font-bold text-text leading-tight">{t('sections.estados.heading')}</h2>
+              <p className="text-sm text-muted">{t('sections.estados.sub')}</p>
             </div>
           </div>
         </motion.div>
@@ -438,8 +462,8 @@ export default function KitSensorial() {
               <i className="fa-solid fa-heart-pulse" aria-hidden="true" />
             </div>
             <div>
-              <h2 id="regulacion-heading" className="text-xl font-bold text-text leading-tight">Cómo regularme</h2>
-              <p className="text-sm text-muted">Técnicas de regulación sensorial y emocional</p>
+              <h2 id="regulacion-heading" className="text-xl font-bold text-text leading-tight">{t('sections.regulacion.heading')}</h2>
+              <p className="text-sm text-muted">{t('sections.regulacion.sub')}</p>
             </div>
           </div>
         </motion.div>
@@ -459,11 +483,11 @@ export default function KitSensorial() {
                   <i className={`fa-solid ${item.icon}`} aria-hidden="true" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-text mb-0.5">{item.titulo}</p>
-                  <p className="text-xs text-muted leading-relaxed">{item.desc}</p>
+                  <p className="text-sm font-semibold text-text mb-0.5">{t(`regulacion.${item.titulo}.titulo`)}</p>
+                  <p className="text-xs text-muted leading-relaxed">{t(`regulacion.${item.titulo}.desc`)}</p>
                 </div>
               </div>
-              <TTSButton text={item.tts} className="self-end" />
+              <TTSButton text={t(`regulacion.${item.titulo}.tts`)} className="self-end" />
             </motion.div>
           ))}
         </div>
@@ -483,14 +507,14 @@ export default function KitSensorial() {
               <i className="fa-solid fa-kit-medical" aria-hidden="true" />
             </div>
             <div>
-              <h2 id="kit-heading" className="text-xl font-bold text-text leading-tight">Mi kit de bolso</h2>
-              <p className="text-sm text-muted">Elige el tamaño y ve qué meter</p>
+              <h2 id="kit-heading" className="text-xl font-bold text-text leading-tight">{t('sections.kit.heading')}</h2>
+              <p className="text-sm text-muted">{t('sections.kit.sub')}</p>
             </div>
           </div>
         </motion.div>
 
         {/* Size selector — GlowCards */}
-        <div className="flex justify-center gap-6 mb-8" role="group" aria-label="Tamaño del bolso">
+        <div className="flex justify-center gap-6 mb-8" role="group" aria-label={t('sizeGroupAriaLabel')}>
           {KITS.map(kit => (
             <KitSelectorCard
               key={kit.id}
@@ -519,29 +543,29 @@ export default function KitSensorial() {
             <div className="relative">
               <div className="flex items-center justify-between gap-3 mb-5">
                 <div>
-                  <h3 className={`text-base font-bold ${activeKit.color}`}>{activeKit.label}</h3>
-                  <p className="text-xs text-muted mt-0.5">{activeKit.sublabel}</p>
+                  <h3 className={`text-base font-bold ${activeKit.color}`}>{t(`kits.${activeKit.id}.label`)}</h3>
+                  <p className="text-xs text-muted mt-0.5">{t(`kits.${activeKit.id}.sublabel`)}</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <TTSButton
                     iconOnly
-                    text={activeKit.tts}
+                    text={t(`kits.${activeKit.id}.tts`)}
                   />
                   <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg border ${activeKit.badgeBg}`}>
-                    {activeKit.items.length} objetos
+                    {t('itemsCount', { count: activeKit.items.length })}
                   </span>
                 </div>
               </div>
 
               <ul className="grid sm:grid-cols-2 gap-2.5 list-none p-0 m-0">
-                {activeKit.items.map(item => (
+                {activeKit.items.map((item, idx) => (
                   <li key={item.label} className="flex items-start gap-3">
                     <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs shrink-0 ${activeKit.bgColor} ${activeKit.color} border ${activeKit.borderColor}`}>
                       <i className={`fa-solid ${item.icon}`} aria-hidden="true" />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-sm font-medium text-text leading-snug">{item.label}</p>
-                      <p className="text-xs text-muted">{item.nota}</p>
+                      <p className="text-sm font-medium text-text leading-snug">{t(`kits.${activeKit.id}.items.${idx}.label`)}</p>
+                      <p className="text-xs text-muted">{t(`kits.${activeKit.id}.items.${idx}.nota`)}</p>
                     </div>
                   </li>
                 ))}
@@ -561,7 +585,7 @@ export default function KitSensorial() {
           className="mb-5"
         >
           <h2 id="explorar-heading" className="text-base font-semibold text-muted uppercase tracking-wider">
-            Explorar más
+            {t('sections.explorarMas')}
           </h2>
         </motion.div>
 

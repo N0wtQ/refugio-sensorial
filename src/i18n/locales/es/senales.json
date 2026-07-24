@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "title": "Señales previas al meltdown autista — Cómo reconocerlas | Refugio Sensorial",
+    "description": "Aprende a detectar las señales corporales, cognitivas, emocionales y conductuales antes de una crisis autista. Actúa antes de llegar al límite."
+  },
+  "articleTitulo": "Señales previas al meltdown autista: cómo reconocerlas",
+  "breadcrumb": "Señales de aviso",
+  "heading": "Señales de aviso",
+  "sub": "Cómo reconocer que se acerca una crisis antes de llegar al límite",
+  "continueAriaLabel": "Continúa aprendiendo",
+  "secciones": {
+    "corporales": {
+      "titulo": "Señales corporales",
+      "subtitulo": "Tu cuerpo avisa primero",
+      "tts": "Tu cuerpo empieza a avisarte antes de que llegues al límite. Presta atención a la tensión muscular en hombros, mandíbula o manos. A la sensación de presión en la cabeza. A si el estómago se revuelve o el corazón se acelera. Al aumento de la sensibilidad: cuando las cosas que normalmente toleras de repente te molestan mucho más. Son señales de que el sistema nervioso está cargando, y cuanto antes las detectes, más fácil es parar a tiempo.",
+      "items": [
+        "Tensión muscular en hombros, mandíbula o manos",
+        "Dolor de cabeza o sensación de presión",
+        "Malestar estomacal o náuseas",
+        "Aumento de la sensibilidad a la luz, el sonido o el tacto",
+        "Calor o frío repentino sin causa aparente",
+        "Corazón acelerado o pecho tenso"
+      ]
+    },
+    "cognitivas": {
+      "titulo": "Señales cognitivas",
+      "subtitulo": "El cerebro llega a su límite",
+      "tts": "El cerebro también emite señales de alarma antes de saturarse. Si de repente te cuesta concentrarte, procesas más despacio de lo normal, no puedes tomar decisiones simples o notas que los pensamientos se repiten en bucle... eso no es que estés fallando. Es que el sistema cognitivo está llegando a su capacidad máxima. Detectarlo y parar antes es mucho más fácil que recuperarse después de una crisis.",
+      "items": [
+        "Dificultad para concentrarse o mantener el hilo",
+        "Procesamiento más lento de lo habitual",
+        "Dificultad para tomar decisiones pequeñas",
+        "Pensamientos que se repiten en bucle",
+        "Sensación de niebla mental",
+        "Dificultad para hablar o expresarse con fluidez"
+      ]
+    },
+    "emocionales": {
+      "titulo": "Señales emocionales",
+      "subtitulo": "Las emociones se desregulan",
+      "tts": "Cuando las emociones empiezan a desregularse antes de una crisis, suele notarse como irritabilidad que no tiene sentido, ansiedad flotante o la sensación de que todo es demasiado. Si cosas que normalmente puedes gestionar te parecen imposibles, o tienes cambios emocionales rápidos que no entiendes, el sistema nervioso probablemente ya está sobrecargado aunque no lo parezca desde fuera.",
+      "items": [
+        "Irritabilidad desproporcionada ante cosas pequeñas",
+        "Ansiedad o inquietud sin causa clara",
+        "Sensación de agobio o de que todo es demasiado",
+        "Cambios emocionales rápidos o difíciles de gestionar",
+        "Sensación de que todo cuesta más de lo habitual",
+        "Dificultad para regular emociones con las estrategias habituales"
+      ]
+    },
+    "conductuales": {
+      "titulo": "Señales conductuales",
+      "subtitulo": "El comportamiento cambia",
+      "tts": "El comportamiento también cambia antes de una crisis. Quizá estimulas más de lo habitual porque el cuerpo busca regularse solo. O sientes que necesitas alejarte de la gente. O que hablar se hace difícil. Puede que los cambios pequeños te cuesten más que de costumbre, o que la rutina que normalmente sigues sin pensar ahora se sienta imposible. Estos son indicadores de que la carga está alta y que toca reducirla.",
+      "items": [
+        "Aumento del stimming o necesidad urgente de moverse",
+        "Retirada social o necesidad de aislarse",
+        "Reducción de la capacidad de hablar o comunicarse",
+        "Mayor rigidez o dificultad con los cambios",
+        "Dificultad para seguir rutinas habituales",
+        "Evitación de actividades que normalmente son manejables"
+      ]
+    }
+  },
+  "acciones": {
+    "titulo": "Qué hacer cuando las detectas",
+    "subtitulo": "Actúa antes de llegar al límite",
+    "tts": "Si detectas estas señales, no esperes a llegar al límite. El momento de actuar es ahora, cuando todavía tienes recursos para hacerlo. Reduce los estímulos, sal del entorno si puedes, usa una técnica de regulación. Si estás con alguien de confianza, díselo. Cancela o pospón lo que puedas, sin generar más estrés. Y sobre todo: no te exijas seguir funcionando como si nada. Detectar la señal y parar a tiempo no es rendirse, es cuidarte.",
+    "items": [
+      "Sal del entorno o reduce los estímulos que puedas",
+      "Usa una técnica de regulación ahora, no cuando llegues al límite",
+      "Avisa a alguien de confianza si estás acompañado",
+      "Cancela o pospón lo que puedas sin generar más estrés",
+      "No te exijas seguir funcionando con normalidad",
+      "Ve al Kit Sensorial para técnicas de regulación rápida"
+    ]
+  },
+  "links": {
+    "tecnicas": { "label": "Técnicas de regulación", "desc": "9 técnicas para aplicar cuando las detectas" },
+    "kitBolso": { "label": "Kit de bolso", "desc": "Qué llevar preparado para salir de casa" }
+  }
+}

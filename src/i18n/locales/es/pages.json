@@ -223,6 +223,49 @@
     "contactText": "Si encuentras alguna barrera de accesibilidad o algo que no funciona bien con tu tecnología de apoyo, cuéntanoslo. Tu feedback es fundamental para mejorar.",
     "contactCta": "Contactar"
   },
+  "entenderEstado": {
+    "metaTitle": "{{titulo}} — {{subtitulo}} | Refugio Sensorial",
+    "metaTitleFallback": "Estado · {{slug}} — Refugio Sensorial",
+    "sections": {
+      "senales": "Señales de alerta",
+      "queAyuda": "Qué ayuda",
+      "queEvitar": "Qué evitar",
+      "duracion": "Duración y recuperación",
+      "descripcionCrisis": "Descripción para momentos difíciles",
+      "recursosRelacionados": "Recursos relacionados",
+      "otrosEstados": "Otros estados"
+    },
+    "ctaTecnicas": "Técnicas de regulación",
+    "ctaAyuda": "Necesito ayuda ahora",
+    "evitar": {
+      "meltdown": [
+        "Hablar mucho o dar instrucciones complejas",
+        "Tocar a la persona sin su permiso explícito",
+        "Pedir que se calme o que pare (no puede)",
+        "Intentar razonar o explicar durante la crisis",
+        "Públicamente llamar la atención sobre lo que ocurre"
+      ],
+      "shutdown": [
+        "Forzar el contacto visual o la respuesta verbal",
+        "Interpretar el silencio como enfado o rechazo",
+        "Bombardear con preguntas o decisiones",
+        "Encender luces brillantes o subir el volumen",
+        "Exigir que \"vuelva\" de golpe sin tiempo de recuperación"
+      ],
+      "burnout": [
+        "Añadir más responsabilidades o compromisos",
+        "Comparar con cómo era antes o cuánto podía hacer",
+        "Sugerir que \"solo necesita salir más\" o socializar",
+        "Ignorar las señales de agotamiento esperando que pase solo",
+        "Presionar para retomar rutinas normales antes de tiempo"
+      ]
+    },
+    "duracion": {
+      "meltdown": "Minutos a horas. El sistema nervioso necesita tiempo para desregularse y volver a la línea base.",
+      "shutdown": "Horas a días. La recuperación es gradual — forzar el ritmo lo alarga.",
+      "burnout": "Semanas o meses. El burnout requiere reducción sostenida de la carga, no solo un día de descanso."
+    }
+  },
   "notFound": {
     "meta": {
       "title": "Página no encontrada — Refugio Sensorial",

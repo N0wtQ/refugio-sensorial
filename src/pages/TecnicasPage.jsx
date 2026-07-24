@@ -10,7 +10,7 @@ import TTSButton from '../components/ui/TTSButton'
 import { REGULACION } from '../components/KitSensorial'
 
 export default function TecnicasPage() {
-  const { t } = useTranslation('pages')
+  const { t } = useTranslation(['pages', 'kitSensorial'])
   usePageMeta({
     title: t('tecnicas.meta.title'),
     description: t('tecnicas.meta.description'),
@@ -62,11 +62,11 @@ export default function TecnicasPage() {
                 <i className={`fa-solid ${item.icon}`} aria-hidden="true" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-text mb-0.5">{item.titulo}</p>
-                <p className="text-xs text-muted leading-relaxed">{item.desc}</p>
+                <p className="text-sm font-semibold text-text mb-0.5">{t(`kitSensorial:regulacion.${item.titulo}.titulo`)}</p>
+                <p className="text-xs text-muted leading-relaxed">{t(`kitSensorial:regulacion.${item.titulo}.desc`)}</p>
               </div>
             </div>
-            <TTSButton text={item.tts} className="self-end" />
+            <TTSButton text={t(`kitSensorial:regulacion.${item.titulo}.tts`)} className="self-end" />
           </motion.div>
         ))}
       </div>

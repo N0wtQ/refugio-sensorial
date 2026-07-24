@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "title": "Guías y recursos sobre autismo y neurodivergencia — Refugio Sensorial",
+    "description": "Documentos PDF y artículos sobre meltdown, burnout autista, regulación emocional y educación. Recursos descargables para personas TEA, TDAH y sus familias."
+  },
+  "breadcrumb": "Guías y recursos",
+  "heading": "Guías y recursos",
+  "sub": "Guías, PDFs y artículos sobre autismo y neurodiversidad",
+  "searchPlaceholder": "Buscar por título, descripción o categoría...",
+  "searchAriaLabel": "Buscar recursos",
+  "clearSearchAriaLabel": "Borrar búsqueda",
+  "catFilterAriaLabel": "Filtrar por categoría",
+  "todas": "Todas",
+  "documentosLabel": "documentos",
+  "resultadoLabel_one": "resultado",
+  "resultadoLabel_other": "resultados",
+  "emptyState": {
+    "title": "Sin resultados",
+    "sub": "Prueba con otras palabras o quita el filtro de categoría.",
+    "cta": "Ver todos los recursos"
+  },
+  "continueAriaLabel": "Continúa aprendiendo",
+  "links": {
+    "estados": { "label": "Meltdown, shutdown y burnout", "desc": "Entiende los estados y cómo diferenciarlos" },
+    "tecnicas": { "label": "Técnicas de regulación", "desc": "9 técnicas para aplicar cuando lo necesitas" }
+  },
+  "ttsPorPdf": {
+    "1": "Este artículo del doctor Guillermo Zurita explica desde un enfoque de neurodiversidad qué son el meltdown, el shutdown y el burnout autista, por qué ocurren y cómo diferenciarlos entre sí. Está en formato de artículo web y puedes leerlo directamente online.",
+    "2": "Esta tarjeta de crisis de Pempox es para llevar siempre encima. Si en algún momento no puedes hablar, puedes mostrarla para que la otra persona sepa qué te pasa y cómo ayudarte. Hay que imprimirla, cortarla y plastificarla para que dure.",
+    "3": "Esta guía de Autismo Madrid tiene setenta páginas sobre regulación emocional en el autismo. Explica las causas de las conductas desafiantes, cómo identificarlas y qué estrategias de intervención usar. Es útil tanto para la propia persona autista como para quien la acompaña.",
+    "4": "Esta guía de la Universidad Autónoma de Chile está pensada para la comunidad universitaria. Responde al qué hago cuando pasa esto en situaciones académicas y de convivencia con estudiantes autistas. Tiene un enfoque práctico e interdisciplinario.",
+    "5": "Este documento de doscientas diez páginas cubre la educación de personas adultas con autismo. Incluye modelos teóricos, orientaciones pedagógicas y estrategias para la transición a la vida adulta. Es una guía completa para familias, profesores y terapeutas.",
+    "6": "Este artículo de Mujeres y Autismo da estrategias prácticas para recuperarse del burnout siendo autista: cómo descansar de verdad, reducir el enmascaramiento, encontrar apoyos y crear ritmos sostenibles.",
+    "7": "Esta guía del IACS está pensada para personas con TDAH. Explica qué es el trastorno, cómo se diagnostica, qué tratamientos existen y da orientaciones concretas para el día a día. Es un documento oficial del Sistema Nacional de Salud.",
+    "8": "Esta guía breve de la Universidad Complutense explica cómo se observa la dislexia en el aula: en la lectura, la escritura y la comunicación oral. Incluye recomendaciones prácticas para docentes y adaptaciones para exámenes y trabajos.",
+    "9": "Este manual de la Fundación FIPP explica el Trastorno Obsesivo Compulsivo desde dentro: qué tipos de obsesiones y compulsiones existen, cómo registrarlas y qué técnicas cognitivo-conductuales ayudan a manejarlas, como posponer el ritual o cambiar el modo de obsesionarse.",
+    "10": "Esta infografía de la Asociación Dislexia Burgos recoge las señales de discalculia agrupadas por áreas: señales tempranas, estimación, numeración y conteo, cálculo mental, resolución de problemas, vida cotidiana y dificultades visoespaciales. Está basada en la lista de cotejo de la Universidad de Valladolid.",
+    "11": "Esta guía sobre masking autista explica qué es el enmascaramiento, por qué aparece, ejemplos cotidianos y consecuencias. Incluye un checklist para identificarlo y estrategias para reducirlo de forma gradual y segura."
+  }
+}

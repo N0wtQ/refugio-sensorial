@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { useJsonLd } from '../hooks/useJsonLd'
@@ -8,186 +9,18 @@ import { articleLd } from '../lib/seo'
 import Breadcrumb from '../components/ui/Breadcrumb'
 import TTSButton from '../components/ui/TTSButton'
 
-const RAZONES = [
-  {
-    icon: 'fa-people-group',
-    titulo: 'Encajar socialmente',
-    desc: 'Desde pequeños aprendemos que comportarse de cierta forma hace que los demás nos acepten. El masking nace de ese aprendizaje repetido.',
-  },
-  {
-    icon: 'fa-heart-crack',
-    titulo: 'Evitar el rechazo',
-    desc: 'Cada vez que una forma de ser «diferente» recibió una respuesta negativa, el cerebro registró: cambia esto para que no te rechacen.',
-  },
-  {
-    icon: 'fa-user-slash',
-    titulo: 'Bullying y presión social',
-    desc: 'Experiencias de acoso o ridiculización en el pasado dejan una huella que lleva a suprimir comportamientos propios para evitar que se repitan.',
-  },
-  {
-    icon: 'fa-briefcase',
-    titulo: 'Entornos laborales',
-    desc: 'El lugar de trabajo puede exigir una actuación constante: vocabulario, tono, expresiones y ritmos que no son los propios.',
-  },
-  {
-    icon: 'fa-house-user',
-    titulo: 'Dinámica familiar',
-    desc: 'Crecer en un entorno que no entendía o aceptaba la neurodivergencia lleva a aprender a actuar normal desde muy pequeño.',
-  },
-  {
-    icon: 'fa-clock-rotate-left',
-    titulo: 'Diagnóstico tardío o ausente',
-    desc: 'Años sin saber que eres autista significan años aprendiendo a imitar sin tener herramientas para gestionarlo.',
-  },
+// Presentational metadata only — titulo/desc/tts/mito/realidad come from the
+// 'masking' i18n namespace as parallel arrays, matched here by index.
+const RAZONES_ICONS = ['fa-people-group', 'fa-heart-crack', 'fa-user-slash', 'fa-briefcase', 'fa-house-user', 'fa-clock-rotate-left']
+const EJEMPLOS_ICONS = ['fa-eye', 'fa-face-smile', 'fa-comment-dots', 'fa-hand', 'fa-face-meh', 'fa-star']
+const CONSECUENCIAS_META = [
+  { icon: 'fa-battery-empty', color: 'text-coral', bg: 'bg-coral/10', border: 'border-coral/25', glow: 'rgba(229,123,134,0.07)' },
+  { icon: 'fa-heart-crack', color: 'text-sec', bg: 'bg-sec/10', border: 'border-sec/25', glow: 'rgba(129,106,183,0.07)' },
+  { icon: 'fa-fire-flame-curved', color: 'text-coral', bg: 'bg-coral/10', border: 'border-coral/25', glow: 'rgba(229,123,134,0.07)' },
+  { icon: 'fa-cloud-rain', color: 'text-pri', bg: 'bg-pri/10', border: 'border-pri/25', glow: 'rgba(58,130,202,0.07)' },
+  { icon: 'fa-user-question', color: 'text-acc', bg: 'bg-acc/10', border: 'border-acc/25', glow: 'rgba(72,176,161,0.07)' },
 ]
-
-const EJEMPLOS = [
-  {
-    icon: 'fa-eye',
-    titulo: 'Forzar el contacto visual',
-    desc: 'Mirar a los ojos aunque sea incómodo o doloroso, porque así se hace en las conversaciones.',
-  },
-  {
-    icon: 'fa-face-smile',
-    titulo: 'Copiar expresiones',
-    desc: 'Imitar la cara, el tono y los gestos de los demás para parecer empático o entusiasmado aunque no se sienta así.',
-  },
-  {
-    icon: 'fa-comment-dots',
-    titulo: 'Ensayar conversaciones',
-    desc: 'Preparar mentalmente qué decir, cómo responder y qué cara poner antes de cualquier interacción social.',
-  },
-  {
-    icon: 'fa-hand',
-    titulo: 'Reprimir el stimming',
-    desc: 'Parar de balancearse, taparse los oídos o mover las manos en público aunque eso dificulte la regulación.',
-  },
-  {
-    icon: 'fa-face-meh',
-    titulo: 'Fingir que estás bien',
-    desc: 'Responder «estoy bien» cuando en realidad estás al límite, para no incomodar a los demás.',
-  },
-  {
-    icon: 'fa-star',
-    titulo: 'Ocultar intereses',
-    desc: 'No mencionar los temas que te apasionan por miedo a parecer raro o diferente.',
-  },
-]
-
-const CONSECUENCIAS = [
-  {
-    icon: 'fa-battery-empty',
-    color: 'text-coral',
-    bg: 'bg-coral/10',
-    border: 'border-coral/25',
-    glow: 'rgba(229,123,134,0.07)',
-    titulo: 'Agotamiento extremo',
-    desc: 'Mantener una actuación constante consume una cantidad enorme de energía cognitiva. Al final del día puede quedar nada.',
-    tts: 'Mantener una actuación constante consume una cantidad enorme de energía cognitiva. Al final del día, de la semana o del año puede quedar nada. El masking no es gratis: tiene un coste directo sobre el sistema nervioso.',
-  },
-  {
-    icon: 'fa-heart-crack',
-    color: 'text-sec',
-    bg: 'bg-sec/10',
-    border: 'border-sec/25',
-    glow: 'rgba(129,106,183,0.07)',
-    titulo: 'Ansiedad crónica',
-    desc: 'Estar permanentemente pendiente de cómo te comportas, cómo suenas y cómo te ven genera un estado de alerta constante.',
-    tts: 'Estar permanentemente pendiente de cómo te comportas, cómo suenas y cómo te ven los demás genera un estado de alerta constante. Con el tiempo, ese nivel de vigilancia se convierte en ansiedad crónica.',
-  },
-  {
-    icon: 'fa-fire-flame-curved',
-    color: 'text-coral',
-    bg: 'bg-coral/10',
-    border: 'border-coral/25',
-    glow: 'rgba(229,123,134,0.07)',
-    titulo: 'Burnout autista',
-    desc: 'El masking sostenido es uno de los principales factores que llevan al burnout autista: un colapso profundo y difícil de recuperar.',
-    tts: 'El masking sostenido durante mucho tiempo es uno de los principales factores que llevan al burnout autista: un colapso profundo que puede durar meses o años y que es difícil de recuperar.',
-  },
-  {
-    icon: 'fa-cloud-rain',
-    color: 'text-pri',
-    bg: 'bg-pri/10',
-    border: 'border-pri/25',
-    glow: 'rgba(58,130,202,0.07)',
-    titulo: 'Depresión',
-    desc: 'No poder ser uno mismo durante años puede llevar a una sensación de vacío y, eventualmente, a depresión clínica.',
-    tts: 'No poder ser uno mismo durante años puede llevar a una sensación de vacío, de no saber quién eres realmente, y eventualmente a depresión clínica.',
-  },
-  {
-    icon: 'fa-user-question',
-    color: 'text-acc',
-    bg: 'bg-acc/10',
-    border: 'border-acc/25',
-    glow: 'rgba(72,176,161,0.07)',
-    titulo: 'Pérdida de identidad',
-    desc: 'Después de años de masking intenso, muchas personas no saben cómo son «de verdad» fuera del personaje.',
-    tts: 'Después de años de masking intenso, muchas personas sienten que no saben cómo son de verdad o qué les gusta fuera del personaje que han construido para el mundo.',
-  },
-]
-
-const CHECKLIST = [
-  'Al llegar a casa tras interacciones sociales te sientes completamente agotado',
-  'En público actúas de forma muy diferente a como eres en privado',
-  'Tienes que pensar activamente cómo comportarte en la mayoría de situaciones sociales',
-  'Suprimes comportamientos que te ayudan a regularte (stimming, movimiento, quietud...)',
-  'Finges emociones que no sientes o escondes las que sí tienes',
-  'Después de tiempo con gente necesitas largo tiempo a solas para recuperarte',
-  'No sabes muy bien cómo eres «tú de verdad» fuera de los contextos sociales',
-  'Sientes alivio cuando estás solo porque puedes quitarte la máscara',
-]
-
-const ESTRATEGIAS = [
-  {
-    icon: 'fa-seedling',
-    titulo: 'Empieza en entornos seguros',
-    desc: 'Practica siendo más tú mismo con una persona de confianza antes de hacerlo en grupos más grandes. Un entorno seguro es el primer paso.',
-  },
-  {
-    icon: 'fa-battery-half',
-    titulo: 'Gestiona tu energía',
-    desc: 'Identifica qué situaciones requieren más masking y reduce las que puedas. No todas las interacciones merecen el mismo coste energético.',
-  },
-  {
-    icon: 'fa-hand-holding-heart',
-    titulo: 'Permítete el stimming en privado',
-    desc: 'Cuando estés solo, permite los comportamientos que necesitas para regularte. No tienes que suprimirlos cuando no hay nadie mirando.',
-  },
-  {
-    icon: 'fa-circle-info',
-    titulo: 'Comunica tus necesidades',
-    desc: 'Con personas de confianza, practica pedir lo que necesitas directamente en lugar de intentar adivinar qué esperan de ti.',
-  },
-  {
-    icon: 'fa-person-walking',
-    titulo: 'Reducción gradual',
-    desc: 'No es necesario ni recomendable dejar de enmascarar de golpe. Cada pequeño paso hacia ser más auténtico cuenta.',
-  },
-]
-
-const MITOS = [
-  {
-    mito: 'Todo el mundo hace masking',
-    realidad: 'La intensidad es completamente diferente. Ajustar el tono en una entrevista no es lo mismo que construir un personaje completo para sobrevivir en cada interacción.',
-  },
-  {
-    mito: 'Es fácil de parar cuando quieres',
-    realidad: 'Para muchas personas autistas el masking es automático después de años de práctica. Reducirlo requiere trabajo activo y un entorno que lo permita.',
-  },
-  {
-    mito: 'Si haces masking, no eres «tan autista»',
-    realidad: 'El masking puede ocultar completamente las señales de autismo, lo que lleva a diagnósticos tardíos o erróneos. No tiene nada que ver con la intensidad del autismo.',
-  },
-  {
-    mito: 'Basta con decidir dejarlo',
-    realidad: 'El masking es una respuesta aprendida de supervivencia. Reducirlo de golpe sin un entorno seguro puede ser perjudicial.',
-  },
-  {
-    mito: 'Te lo inventas para excusarte',
-    realidad: 'El masking es un fenómeno documentado e investigado. El agotamiento que genera es real y mesurable, aunque desde fuera no se vea.',
-  },
-]
+const ESTRATEGIAS_ICONS = ['fa-seedling', 'fa-battery-half', 'fa-hand-holding-heart', 'fa-circle-info', 'fa-person-walking']
 
 // ── Sub-components ─────────────────────────────────────────────────────────────
 
@@ -276,13 +109,14 @@ function AccordionItem({ item, prefersReduced, isOpen, onToggle }) {
 // ── Page ───────────────────────────────────────────────────────────────────────
 
 export default function MaskingPage() {
+  const { t } = useTranslation(['masking', 'pages'])
   usePageMeta({
-    title: 'Masking autista: qué es, por qué ocurre y cómo reducirlo — Refugio Sensorial',
-    description: 'Qué es el masking o camuflaje autista, por qué ocurre, ejemplos cotidianos, consecuencias y estrategias para reducirlo de forma gradual y segura.',
+    title: t('masking:meta.title'),
+    description: t('masking:meta.description'),
   })
   useJsonLd(articleLd({
-    titulo: 'Masking autista: qué es, por qué ocurre y cómo reducirlo',
-    descripcion: 'Qué es el masking o camuflaje autista, por qué ocurre, ejemplos cotidianos, consecuencias y estrategias para reducirlo de forma gradual y segura.',
+    titulo: t('masking:articleTitulo'),
+    descripcion: t('masking:meta.description'),
     ruta: '/entender-y-prepararse/masking',
   }), 'article')
   const prefersReduced = useReducedMotion()
@@ -290,12 +124,19 @@ export default function MaskingPage() {
 
   const toggleMito = (index) => setOpenMito(prev => prev === index ? null : index)
 
+  const RAZONES = t('masking:razones', { returnObjects: true }).map((item, i) => ({ ...item, icon: RAZONES_ICONS[i] }))
+  const EJEMPLOS = t('masking:ejemplos', { returnObjects: true }).map((item, i) => ({ ...item, icon: EJEMPLOS_ICONS[i] }))
+  const CONSECUENCIAS = t('masking:consecuencias', { returnObjects: true }).map((item, i) => ({ ...item, ...CONSECUENCIAS_META[i] }))
+  const CHECKLIST = t('masking:checklist.items', { returnObjects: true })
+  const ESTRATEGIAS = t('masking:estrategias', { returnObjects: true }).map((item, i) => ({ ...item, icon: ESTRATEGIAS_ICONS[i] }))
+  const MITOS = t('masking:mitos', { returnObjects: true })
+
   return (
     <div className="max-w-3xl mx-auto px-4 pb-20 pt-8">
       <Breadcrumb items={[
-        { href: '/', label: 'Inicio' },
-        { href: '/entender-y-prepararse', label: 'Entender y prepararse' },
-        { label: 'Masking' },
+        { href: '/', label: t('pages:breadcrumbHome') },
+        { href: '/entender-y-prepararse', label: t('pages:entenderPrepararse.breadcrumb') },
+        { label: t('masking:breadcrumb') },
       ]} />
 
       {/* Header */}
@@ -310,8 +151,8 @@ export default function MaskingPage() {
             <i className="fa-solid fa-masks-theater" aria-hidden="true" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-text leading-tight">Masking autista</h1>
-            <p className="text-sm text-muted">El camuflaje que agota sin que nadie lo vea</p>
+            <h1 className="text-2xl font-bold text-text leading-tight">{t('masking:heading')}</h1>
+            <p className="text-sm text-muted">{t('masking:sub')}</p>
           </div>
         </div>
       </motion.div>
@@ -332,15 +173,15 @@ export default function MaskingPage() {
           />
           <div className="relative flex items-start justify-between gap-3">
             <div className="flex-1 min-w-0">
-              <h2 id="que-es-heading" className="text-base font-bold text-text mb-2">¿Qué es el masking?</h2>
+              <h2 id="que-es-heading" className="text-base font-bold text-text mb-2">{t('masking:queEs.heading')}</h2>
               <p className="text-sm text-muted leading-relaxed mb-2">
-                El masking —también llamado camuflaje autista— es el proceso de suprimir, ocultar o modificar comportamientos, formas de comunicarse y necesidades propias para adaptarse a las expectativas sociales del entorno.
+                {t('masking:queEs.p1')}
               </p>
               <p className="text-sm text-muted leading-relaxed">
-                No es una decisión consciente la mayoría de las veces. Es una respuesta aprendida, muchas veces desde la infancia, a entornos que no aceptaban o comprendían la neurodivergencia.
+                {t('masking:queEs.p2')}
               </p>
             </div>
-            <TTSButton text="El masking o camuflaje autista es el proceso de suprimir, ocultar o modificar comportamientos propios para adaptarse a las expectativas sociales del entorno. No es una decisión consciente la mayoría de las veces. Es una respuesta aprendida, muchas veces desde la infancia, a entornos que no aceptaban o comprendían la neurodivergencia." />
+            <TTSButton text={t('masking:queEs.tts')} />
           </div>
         </motion.div>
       </section>
@@ -354,7 +195,7 @@ export default function MaskingPage() {
           transition={{ duration: prefersReduced ? 0 : 0.4 }}
           className="mb-3"
         >
-          <h2 id="razones-heading" className="text-base font-bold text-text">¿Por qué ocurre?</h2>
+          <h2 id="razones-heading" className="text-base font-bold text-text">{t('masking:razonesHeading')}</h2>
         </motion.div>
         <div className="grid sm:grid-cols-2 gap-2.5">
           {RAZONES.map((item, i) => (
@@ -372,7 +213,7 @@ export default function MaskingPage() {
           transition={{ duration: prefersReduced ? 0 : 0.4 }}
           className="mb-3"
         >
-          <h2 id="ejemplos-heading" className="text-base font-bold text-text">Ejemplos cotidianos</h2>
+          <h2 id="ejemplos-heading" className="text-base font-bold text-text">{t('masking:ejemplosHeading')}</h2>
         </motion.div>
         <div className="grid sm:grid-cols-2 gap-2.5">
           {EJEMPLOS.map((item, i) => (
@@ -390,7 +231,7 @@ export default function MaskingPage() {
           transition={{ duration: prefersReduced ? 0 : 0.4 }}
           className="mb-3"
         >
-          <h2 id="consecuencias-heading" className="text-base font-bold text-text">¿Cómo te afecta?</h2>
+          <h2 id="consecuencias-heading" className="text-base font-bold text-text">{t('masking:consecuenciasHeading')}</h2>
         </motion.div>
         <div className="space-y-2.5">
           {CONSECUENCIAS.map((item, i) => (
@@ -420,11 +261,11 @@ export default function MaskingPage() {
                   <i className="fa-solid fa-list-check text-sm" aria-hidden="true" />
                 </div>
                 <div>
-                  <h2 id="checklist-heading" className="text-base font-bold text-text leading-tight">¿Lo estoy haciendo?</h2>
-                  <p className="text-xs text-muted">Señales de que el masking forma parte de tu día a día</p>
+                  <h2 id="checklist-heading" className="text-base font-bold text-text leading-tight">{t('masking:checklist.heading')}</h2>
+                  <p className="text-xs text-muted">{t('masking:checklist.sub')}</p>
                 </div>
               </div>
-              <TTSButton text="Checklist de masking autista. Si reconoces varias de estas situaciones, es posible que el masking forme parte de tu día a día. Recuerda: identificarlo no es para etiquetarte, sino para entenderte mejor y poder cuidarte. Al llegar a casa tras interacciones sociales te sientes completamente agotado. En público actúas de forma muy diferente a como eres en privado. Tienes que pensar activamente cómo comportarte en la mayoría de situaciones sociales. Suprimes comportamientos que te ayudan a regularte. Finges emociones que no sientes o escondes las que sí tienes. Después de tiempo con gente necesitas largo tiempo a solas para recuperarte. No sabes muy bien cómo eres de verdad fuera de los contextos sociales. Sientes alivio cuando estás solo porque puedes quitarte la máscara." />
+              <TTSButton text={t('masking:checklist.tts')} />
             </div>
             <ul className="grid sm:grid-cols-2 gap-x-4 gap-y-2">
               {CHECKLIST.map((item) => (
@@ -435,7 +276,7 @@ export default function MaskingPage() {
               ))}
             </ul>
             <p className="mt-4 text-xs text-faint leading-relaxed">
-              Identificar el masking no es para etiquetarte, sino para entenderte mejor y poder cuidarte.
+              {t('masking:checklist.footer')}
             </p>
           </div>
         </motion.div>
@@ -450,7 +291,7 @@ export default function MaskingPage() {
           transition={{ duration: prefersReduced ? 0 : 0.4 }}
           className="mb-3"
         >
-          <h2 id="estrategias-heading" className="text-base font-bold text-text">Cómo reducirlo gradualmente</h2>
+          <h2 id="estrategias-heading" className="text-base font-bold text-text">{t('masking:estrategiasHeading')}</h2>
         </motion.div>
         <div className="space-y-2.5">
           {ESTRATEGIAS.map((item, i) => (
@@ -483,7 +324,7 @@ export default function MaskingPage() {
           transition={{ duration: prefersReduced ? 0 : 0.4 }}
           className="mb-3"
         >
-          <h2 id="mitos-heading" className="text-base font-bold text-text">Mitos y realidades</h2>
+          <h2 id="mitos-heading" className="text-base font-bold text-text">{t('masking:mitosHeading')}</h2>
         </motion.div>
         <div className="space-y-2">
           {MITOS.map((item, i) => (
@@ -506,7 +347,7 @@ export default function MaskingPage() {
       </section>
 
       {/* Nav links */}
-      <nav aria-label="Continúa aprendiendo" className="grid sm:grid-cols-2 gap-3">
+      <nav aria-label={t('masking:continueAriaLabel')} className="grid sm:grid-cols-2 gap-3">
         {[
           {
             to: '/entender-y-prepararse/estados',
@@ -515,8 +356,8 @@ export default function MaskingPage() {
             bg: 'bg-coral/10',
             border: 'border-coral/25',
             bgCard: 'bg-coral/5',
-            label: 'Meltdown, shutdown y burnout',
-            desc: 'Qué son, cómo diferenciarlos y cómo gestionarlos',
+            label: t('masking:links.estados.label'),
+            desc: t('masking:links.estados.desc'),
           },
           {
             to: '/entender-y-prepararse/guias',
@@ -525,8 +366,8 @@ export default function MaskingPage() {
             bg: 'bg-pri/10',
             border: 'border-pri/25',
             bgCard: 'bg-pri/5',
-            label: 'Guía: Masking Autista',
-            desc: 'Descarga la guía práctica con checklist y ejercicios',
+            label: t('masking:links.guia.label'),
+            desc: t('masking:links.guia.desc'),
           },
         ].map(link => (
           <Link

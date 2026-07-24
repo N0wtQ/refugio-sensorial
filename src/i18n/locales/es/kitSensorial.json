@@ -1,0 +1,188 @@
+{
+  "estados": {
+    "meltdown": {
+      "titulo": "Meltdown",
+      "subtitulo": "Crisis de sobrecarga",
+      "que": "Una respuesta involuntaria ante una sobrecarga sensorial, emocional o cognitiva que supera el límite del sistema nervioso. No es un berrinche ni un acto voluntario: el cerebro literalmente se desborda.",
+      "signos": [
+        "Llanto o gritos incontrolables",
+        "Golpear, morder o auto-lesionarse levemente (estimulación de urgencia)",
+        "Huir del lugar",
+        "Incapacidad para hablar o responder",
+        "Rigidez o temblores en el cuerpo"
+      ],
+      "ayuda": [
+        "Reducir estímulos: luces, sonido, personas",
+        "No hablar ni tocar salvo que la persona lo pida",
+        "Ofrecer un espacio seguro y tranquilo",
+        "Esperar sin juzgar hasta que el sistema nervioso se regule",
+        "Después, no pedir explicaciones inmediatas"
+      ],
+      "tts": "Si estás en un meltdown ahora mismo, lo que te pasa no es algo que hagas a propósito. Es tu sistema nervioso llegando al límite después de demasiada carga. Puede haber llanto, gritos, necesidad de moverte o de huir. Todo eso es una respuesta involuntaria, no un fallo tuyo. Lo que más ayuda en este momento es reducir lo que entra: apaga luces, baja el sonido, aléjate de las personas si puedes. No necesitas explicar nada ahora. Primero regularte, después hablar."
+    },
+    "shutdown": {
+      "titulo": "Shutdown",
+      "subtitulo": "Apagado interno",
+      "que": "Una respuesta de cierre ante la sobrecarga: el sistema nervioso \"se apaga\" para protegerse. A diferencia del meltdown, el shutdown es hacia adentro — silencio, inmovilidad, desconexión.",
+      "signos": [
+        "Silencio repentino y retirada social",
+        "Mirada fija o perdida",
+        "Movimientos lentos o \"congelados\"",
+        "Incapacidad para hablar (mutismo temporal)",
+        "Sensación de estar \"dentro de un cristal\""
+      ],
+      "ayuda": [
+        "Presencia calmada sin exigir respuesta",
+        "No interpretar el silencio como indiferencia",
+        "Ofrecer mantas, auriculares u objetos de confort",
+        "Permitir tiempo sin estimulación",
+        "Cuando pase, preguntar con amabilidad qué necesita"
+      ],
+      "tts": "En un shutdown tu sistema nervioso se cierra para protegerse de la sobrecarga. No es que no quieras responder, es que no puedes. Quedarse en silencio, inmóvil o desconectado no es indiferencia, es supervivencia. No te exijas salir de ahí de golpe. Lo que ayuda es un entorno tranquilo, sin preguntas ni demandas, con algo de confort cerca si lo aceptas: una manta, auriculares, oscuridad. Tu sistema nervioso irá volviendo a su propio ritmo."
+    },
+    "burnout": {
+      "titulo": "Burnout autista",
+      "subtitulo": "Agotamiento acumulado",
+      "que": "Un estado de agotamiento profundo causado por el esfuerzo sostenido de enmascarar, adaptarse a un mundo neurotípico y manejar una carga sensorial y social que supera los recursos disponibles. Puede durar semanas o meses.",
+      "signos": [
+        "Pérdida de habilidades que antes eran automáticas",
+        "Aumento de la sensibilidad sensorial",
+        "Dificultad extrema para procesar y comunicarse",
+        "Aislamiento y retirada de actividades",
+        "Agotamiento que no mejora con el descanso habitual"
+      ],
+      "ayuda": [
+        "Reducir drásticamente las demandas y el masking",
+        "Priorizar el descanso verdadero (no solo físico)",
+        "Revisar y eliminar compromisos no esenciales",
+        "Buscar apoyo profesional especializado en autismo",
+        "Permitirse funcionar a un ritmo más lento sin culpa"
+      ],
+      "tts": "El burnout autista es el resultado de haber dado demasiado durante demasiado tiempo, intentando encajar en un mundo que no está pensado para ti. No es flojera ni depresión, aunque puede parecerse. Puede que notes que cosas que antes hacías sin pensar ahora te cuestan muchísimo. Eso es normal en el burnout. Lo más importante ahora es reducir lo que puedas: compromisos, exigencias, el esfuerzo de enmascararte. Date permiso para funcionar más despacio. Busca apoyo si puedes, preferiblemente de alguien que entienda el autismo. Recuperarse lleva tiempo, y eso está bien."
+    }
+  },
+  "estadoCard": {
+    "openAriaLabel": "Abrir detalles de {{titulo}}",
+    "closeAriaLabel": "Cerrar detalles de {{titulo}}",
+    "verInfografia": "Ver infografía",
+    "verInfografiaAriaLabel": "Ver infografía de {{titulo}} (se abre en nueva pestaña)",
+    "senales": "Señales",
+    "queAyuda": "Qué ayuda"
+  },
+  "regulacion": {
+    "Frío": {
+      "titulo": "Frío",
+      "desc": "Agua fría en muñecas y cara, hielo en manos o frente. Activa el reflejo de buceo y desacelera el sistema nervioso.",
+      "tts": "Si te sientes desbordado, el frío puede ayudarte a regularte muy rápido. Pon agua fría en las muñecas y la cara, o sostén un cubito de hielo en la mano. Notarás el efecto en pocos segundos: el frío activa el reflejo de buceo y le dice al sistema nervioso que frene."
+    },
+    "Respiración": {
+      "titulo": "Respiración",
+      "desc": "Exhala el doble de lo que inhales. 4 seg. entrar, 8 salir. Activa el nervio vago y regula el ritmo cardíaco.",
+      "tts": "Exhala el doble de lo que inhalas. Cuatro segundos metiendo el aire, ocho soltándolo. Esa exhalación larga activa el nervio vago y regula el ritmo cardíaco. Si cuatro y ocho te parece mucho, empieza con dos y cuatro. Lo importante es que la salida sea lenta."
+    },
+    "Movimiento": {
+      "titulo": "Movimiento",
+      "desc": "Saltar, apretar una pelota, apretar los puños, estirarse. El movimiento propioceptivo calma el sistema nervioso.",
+      "tts": "Cuando el cuerpo está saturado, moverse ayuda a liberar tensión. Salta, aprieta una pelota, aprieta los puños o estírate. Este tipo de movimiento manda señales al sistema nervioso de que todo está bajo control y lo ayuda a calmarse."
+    },
+    "Sonido": {
+      "titulo": "Sonido",
+      "desc": "Tapones, auriculares con cancelación de ruido o sonidos de fondo (lluvia, blanco). Reduce carga sensorial auditiva.",
+      "tts": "Si el entorno es demasiado ruidoso, cúbrete los oídos. Usa tapones o auriculares con cancelación de ruido. También puedes poner sonidos de fondo como lluvia o ruido blanco. Reducir la carga auditiva libera recursos que tu sistema nervioso puede usar para regularse."
+    },
+    "Oscuridad": {
+      "titulo": "Oscuridad",
+      "desc": "Cubrirse los ojos, gafas de sol o un cuarto oscuro. Elimina la sobrecarga visual y da sensación de refugio.",
+      "tts": "La oscuridad puede ser un refugio cuando la sobrecarga es visual. Cúbrete los ojos, ponte las gafas de sol o busca un cuarto oscuro. Eliminar la estimulación visual le da al cerebro el respiro que necesita."
+    },
+    "Presión": {
+      "titulo": "Presión",
+      "desc": "Manta con peso, chaqueta apretada o simplemente abrazar las rodillas. La presión profunda regula el sistema nervioso.",
+      "tts": "La presión profunda es muy calmante para el sistema nervioso. Usa una manta con peso, ponte una chaqueta apretada o simplemente abraza tus propias rodillas. Notarás que la activación baja y el cuerpo empieza a relajarse."
+    },
+    "Sabor intenso": {
+      "titulo": "Sabor intenso",
+      "desc": "Caramelo ácido, chicle, hielo. La estimulación oral fuerte atrae la atención del sistema nervioso a una sola cosa.",
+      "tts": "Un sabor muy intenso puede anclar la atención del sistema nervioso en una sola cosa y cortar el bucle de saturación. Come un caramelo ácido, mastica chicle o sostén hielo en la boca. Cuanto más intenso el sabor, más efectivo el anclaje."
+    },
+    "Grounding 5-4-3": {
+      "titulo": "Grounding 5-4-3",
+      "desc": "Nombra 5 cosas que ves, 4 que tocas, 3 que oyes, 2 que hueles, 1 que saboreas. Ancla en el presente.",
+      "tts": "Si estás en tu cabeza y necesitas volver al presente, nombra cinco cosas que ves ahora mismo, cuatro que puedes tocar, tres que oyes, dos que hueles y una que saboreas. No tienes que decirlo en voz alta, basta con notarlas. Cada sentido que activas reduce la activación del sistema nervioso."
+    },
+    "Salida": {
+      "titulo": "Salida",
+      "desc": "Cambiar de entorno — salir a un pasillo, baño o al aire libre. A veces el único regulador es romper el estímulo.",
+      "tts": "A veces el único regulador posible es cambiar de entorno. Si puedes, sal del espacio donde estás: un pasillo, el baño, el exterior. Alejarse del estímulo rompe el ciclo de sobrecarga y le da al sistema nervioso un punto de partida más limpio."
+    }
+  },
+  "kits": {
+    "pequeno": {
+      "label": "Bolso pequeño",
+      "shortLabel": "Pequeño",
+      "sublabel": "Lo esencial de emergencia",
+      "tts": "Bolso pequeño para emergencias. Lo que necesitas llevar: auriculares o tapones para bloquear el ruido, gafas de sol para la luz intensa, caramelos ácidos para regulación oral, un objeto textural para las manos, tu tarjeta de crisis con tu información y necesidades, y el móvil cargado.",
+      "items": [
+        { "label": "Auriculares o tapones", "nota": "Bloqueadores de ruido" },
+        { "label": "Gafas de sol", "nota": "Para luz intensa" },
+        { "label": "Caramelos ácidos", "nota": "Regulación oral" },
+        { "label": "Objeto textural", "nota": "Stim para las manos" },
+        { "label": "Tarjeta de crisis", "nota": "Con tu info y necesidades" },
+        { "label": "Móvil cargado", "nota": "Con apps de apoyo" }
+      ]
+    },
+    "grande": {
+      "label": "Bolso grande",
+      "shortLabel": "Grande",
+      "sublabel": "Para salidas largas",
+      "tts": "Bolso grande para salidas largas. Lleva auriculares con cancelación activa de ruido, gafas de sol, snacks sensoriales como caramelos o chicle, un fidget toy para las manos, tu tarjeta de crisis, el móvil con cargador portátil, agua fría para regulación por frío, una máscara de ojos por si necesitas oscuridad de emergencia, tu medicación si la tomas habitualmente, y algo de distracción como un libro o dispositivo.",
+      "items": [
+        { "label": "Auriculares NC", "nota": "Cancelación activa de ruido" },
+        { "label": "Gafas de sol", "nota": "Filtro de luz" },
+        { "label": "Snacks sensoriales", "nota": "Caramelos, chicle, crujientes" },
+        { "label": "Fidget toy", "nota": "Spinner, cubo antiestrés" },
+        { "label": "Tarjeta de crisis", "nota": "AAC o texto simple" },
+        { "label": "Móvil + powerbank", "nota": "Apps de apoyo y carga extra" },
+        { "label": "Agua fría", "nota": "Regulación por frío" },
+        { "label": "Máscara de ojos", "nota": "Para oscuridad de emergencia" },
+        { "label": "Medicación", "nota": "Si la tomas habitualmente" },
+        { "label": "Distracción", "nota": "Libro, puzzle, dispositivo" }
+      ]
+    },
+    "enorme": {
+      "label": "Mochila grande",
+      "shortLabel": "Mochila",
+      "sublabel": "Días difíciles o viajes",
+      "tts": "Mochila grande para días difíciles o viajes. Lleva los mejores auriculares con cancelación de ruido que tengas, gafas de sol polarizadas, un surtido sensorial con distintos sabores y texturas, varios fidgets de diferentes tipos y pesos, tus tarjetas de apoyo para crisis o comunicación, el móvil con un powerbank de alta capacidad, agua fría y snacks para hidratación y regulación, una mantita pequeña para peso o confort táctil, máscara de ojos para oscuridad de emergencia, tu medicación con dosis extra si el médico lo aprueba, algo de entretenimiento como una consola, libro o tablet, tu perfume o aroma favorito para estimulación olfativa, tapones de repuesto por si fallan los auriculares, y ropa cómoda de recambio por si el tejido actual se vuelve intolerable.",
+      "items": [
+        { "label": "Auriculares NC premium", "nota": "La herramienta más importante" },
+        { "label": "Gafas de sol oscuras", "nota": "Polarizadas si es posible" },
+        { "label": "Surtido sensorial", "nota": "Varios sabores y texturas" },
+        { "label": "Set de fidgets", "nota": "Diferentes texturas y pesos" },
+        { "label": "Tarjetas de apoyo", "nota": "Crisis, necesidades, AAC" },
+        { "label": "Móvil + powerbank", "nota": "Powerbank de alta capacidad" },
+        { "label": "Agua fría + snacks", "nota": "Hidratación y regulación oral" },
+        { "label": "Mantita pequeña", "nota": "Peso o confort táctil" },
+        { "label": "Máscara de ojos", "nota": "Oscuridad de emergencia" },
+        { "label": "Medicación", "nota": "Con dosis extra si el médico aprueba" },
+        { "label": "Distracción", "nota": "Nintendo Switch, libro, tablet" },
+        { "label": "Estimulación olfativa", "nota": "Perfume favorito, lavanda" },
+        { "label": "Tapones extra", "nota": "Por si fallan los auriculares" },
+        { "label": "Ropa cómoda extra", "nota": "Por si el tejido se vuelve intolerable" }
+      ]
+    }
+  },
+  "sizeGroupAriaLabel": "Tamaño del bolso",
+  "itemsCount_one": "{{count}} objeto",
+  "itemsCount_other": "{{count}} objetos",
+  "sections": {
+    "estados": { "heading": "¿Qué me está pasando?", "sub": "Meltdown, Shutdown y Burnout — qué son y cómo diferenciarlos" },
+    "regulacion": { "heading": "Cómo regularme", "sub": "Técnicas de regulación sensorial y emocional" },
+    "kit": { "heading": "Mi kit de bolso", "sub": "Elige el tamaño y ve qué meter" },
+    "explorarMas": "Explorar más"
+  },
+  "navCards": {
+    "senales": { "titulo": "Señales previas a la crisis", "desc": "Aprende a reconocer las señales de que tu sistema nervioso está llegando al límite antes de que ocurra." },
+    "guias": { "titulo": "Recursos y documentos", "desc": "Guías, PDFs y artículos sobre autismo y neurodiversidad para leer, descargar y llevar encima." }
+  }
+}

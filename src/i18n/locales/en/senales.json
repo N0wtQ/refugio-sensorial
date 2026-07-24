@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "title": "Early warning signs of autistic meltdown — How to recognize them | Refugio Sensorial",
+    "description": "Learn to spot the bodily, cognitive, emotional, and behavioral signs before an autistic crisis. Act before you hit the limit."
+  },
+  "articleTitulo": "Early warning signs of autistic meltdown: how to recognize them",
+  "breadcrumb": "Warning signs",
+  "heading": "Warning signs",
+  "sub": "How to recognize a crisis is approaching before you hit the limit",
+  "continueAriaLabel": "Keep learning",
+  "secciones": {
+    "corporales": {
+      "titulo": "Bodily signs",
+      "subtitulo": "Your body warns you first",
+      "tts": "Your body starts warning you before you hit the limit. Pay attention to muscle tension in your shoulders, jaw, or hands. To pressure in your head. To your stomach churning or your heart racing. To increased sensitivity: when things you normally tolerate suddenly bother you a lot more. These are signs your nervous system is loading up, and the sooner you catch them, the easier it is to stop in time.",
+      "items": [
+        "Muscle tension in shoulders, jaw, or hands",
+        "Headache or a feeling of pressure",
+        "Stomach discomfort or nausea",
+        "Increased sensitivity to light, sound, or touch",
+        "Sudden heat or cold with no clear cause",
+        "Racing heart or tight chest"
+      ]
+    },
+    "cognitivas": {
+      "titulo": "Cognitive signs",
+      "subtitulo": "Your brain hits its limit",
+      "tts": "Your brain also sends warning signals before it gets overloaded. If you suddenly struggle to concentrate, process more slowly than usual, can't make simple decisions, or notice thoughts looping... that's not you failing. It's your cognitive system reaching its maximum capacity. Catching it and stopping early is much easier than recovering after a crisis.",
+      "items": [
+        "Difficulty concentrating or following a train of thought",
+        "Slower processing than usual",
+        "Difficulty making small decisions",
+        "Thoughts that loop repeatedly",
+        "A feeling of mental fog",
+        "Difficulty speaking or expressing yourself fluently"
+      ]
+    },
+    "emocionales": {
+      "titulo": "Emotional signs",
+      "subtitulo": "Emotions start to dysregulate",
+      "tts": "When emotions start to dysregulate before a crisis, it usually shows up as irritability that doesn't quite make sense, floating anxiety, or a feeling that everything is too much. If things you can normally handle suddenly feel impossible, or you have quick emotional shifts you don't understand, your nervous system is probably already overloaded even if it doesn't look that way from the outside.",
+      "items": [
+        "Disproportionate irritability over small things",
+        "Anxiety or restlessness with no clear cause",
+        "A feeling of overwhelm or that everything is too much",
+        "Quick emotional shifts that are hard to manage",
+        "A sense that everything takes more effort than usual",
+        "Difficulty regulating emotions with your usual strategies"
+      ]
+    },
+    "conductuales": {
+      "titulo": "Behavioral signs",
+      "subtitulo": "Behavior starts to change",
+      "tts": "Behavior also changes before a crisis. Maybe you're stimming more than usual because your body is trying to self-regulate. Or you feel you need to get away from people. Or talking becomes hard. Small changes might cost you more than usual, or a routine you normally follow without thinking now feels impossible. These are signs that your load is high and it's time to reduce it.",
+      "items": [
+        "Increased stimming or an urgent need to move",
+        "Social withdrawal or a need to isolate",
+        "Reduced ability to speak or communicate",
+        "More rigidity or difficulty with changes",
+        "Difficulty following usual routines",
+        "Avoiding activities that are normally manageable"
+      ]
+    }
+  },
+  "acciones": {
+    "titulo": "What to do when you notice them",
+    "subtitulo": "Act before you hit the limit",
+    "tts": "If you notice these signs, don't wait until you hit the limit. The time to act is now, while you still have resources to do it. Reduce stimuli, leave the environment if you can, use a regulation technique. If you're with someone you trust, tell them. Cancel or postpone what you can, without creating more stress. And above all: don't push yourself to keep functioning as if nothing's happening. Noticing the sign and stopping in time isn't giving up, it's taking care of yourself.",
+    "items": [
+      "Leave the environment or reduce whatever stimuli you can",
+      "Use a regulation technique now, not once you hit the limit",
+      "Let someone you trust know if you're with company",
+      "Cancel or postpone what you can without creating more stress",
+      "Don't push yourself to keep functioning normally",
+      "Go to the Sensory Kit for quick regulation techniques"
+    ]
+  },
+  "links": {
+    "tecnicas": { "label": "Regulation techniques", "desc": "9 techniques to use when you notice the signs" },
+    "kitBolso": { "label": "Go-bag kit", "desc": "What to pack before heading out" }
+  }
+}

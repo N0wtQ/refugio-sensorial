@@ -6,6 +6,7 @@
 import { useMemo } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { useJsonLd } from '../hooks/useJsonLd'
@@ -17,38 +18,6 @@ import {
   SLUG_TO_ESTADO_ID,
   getRelatedForEstado,
 } from '../lib/content-graph/index'
-
-// Supplementary "qué evitar" data not present in the base ESTADOS array
-const EVITAR = {
-  meltdown: [
-    'Hablar mucho o dar instrucciones complejas',
-    'Tocar a la persona sin su permiso explícito',
-    'Pedir que se calme o que pare (no puede)',
-    'Intentar razonar o explicar durante la crisis',
-    'Públicamente llamar la atención sobre lo que ocurre',
-  ],
-  shutdown: [
-    'Forzar el contacto visual o la respuesta verbal',
-    'Interpretar el silencio como enfado o rechazo',
-    'Bombardear con preguntas o decisiones',
-    'Encender luces brillantes o subir el volumen',
-    'Exigir que "vuelva" de golpe sin tiempo de recuperación',
-  ],
-  burnout: [
-    'Añadir más responsabilidades o compromisos',
-    'Comparar con cómo era antes o cuánto podía hacer',
-    'Sugerir que "solo necesita salir más" o socializar',
-    'Ignorar las señales de agotamiento esperando que pase solo',
-    'Presionar para retomar rutinas normales antes de tiempo',
-  ],
-}
-
-// Duration / recovery text
-const DURACION = {
-  meltdown: 'Minutos a horas. El sistema nervioso necesita tiempo para desregularse y volver a la línea base.',
-  shutdown:  'Horas a días. La recuperación es gradual — forzar el ritmo lo alarga.',
-  burnout:   'Semanas o meses. El burnout requiere reducción sostenida de la carga, no solo un día de descanso.',
-}
 
 function List({ items, icon, iconColor }) {
   return (
@@ -74,21 +43,31 @@ function Section({ title, children, className = '' }) {
 
 export default function EntenderEstadoPage() {
   const { slug } = useParams()
+  const { t } = useTranslation(['pages', 'kitSensorial', 'nav'])
   const prefersReduced = useReducedMotion()
 
   const estadoId = SLUG_TO_ESTADO_ID[slug]
   const estado = useMemo(() => ESTADOS.find(e => e.id === estadoId), [estadoId])
 
+  const titulo = estado ? t(`kitSensorial:estados.${estadoId}.titulo`) : ''
+  const subtitulo = estado ? t(`kitSensorial:estados.${estadoId}.subtitulo`) : ''
+  const que = estado ? t(`kitSensorial:estados.${estadoId}.que`) : ''
+  const signos = estado ? t(`kitSensorial:estados.${estadoId}.signos`, { returnObjects: true }) : []
+  const ayuda = estado ? t(`kitSensorial:estados.${estadoId}.ayuda`, { returnObjects: true }) : []
+  const tts = estado ? t(`kitSensorial:estados.${estadoId}.tts`) : ''
+  const evitar = estado ? t(`pages:entenderEstado.evitar.${estadoId}`, { returnObjects: true, defaultValue: [] }) : []
+  const duracion = estado ? t(`pages:entenderEstado.duracion.${estadoId}`, { defaultValue: '' }) : ''
+
   usePageMeta({
     title: estado
-      ? `${estado.titulo} — ${estado.subtitulo} | Refugio Sensorial`
-      : `Estado · ${slug} — Refugio Sensorial`,
-    description: estado?.que ?? '',
+      ? t('pages:entenderEstado.metaTitle', { titulo, subtitulo })
+      : t('pages:entenderEstado.metaTitleFallback', { slug }),
+    description: que,
     section: 'estados',
   })
   useJsonLd(estado ? articleLd({
-    titulo: `${estado.titulo}: ${estado.subtitulo}`,
-    descripcion: estado.que,
+    titulo: `${titulo}: ${subtitulo}`,
+    descripcion: que,
     ruta: `/entender-y-prepararse/estados/${slug}`,
   }) : null, 'article')
 
@@ -98,10 +77,10 @@ export default function EntenderEstadoPage() {
   const otrosEstados = ESTADOS.filter(e => e.id !== estadoId)
 
   const breadcrumbItems = [
-    { href: '/',                              label: 'Inicio' },
-    { href: '/entender-y-prepararse',         label: 'Entender y prepararse' },
-    { href: '/entender-y-prepararse/estados', label: 'Estados' },
-    {                                          label: estado.titulo },
+    { href: '/',                              label: t('pages:breadcrumbHome') },
+    { href: '/entender-y-prepararse',         label: t('pages:entenderPrepararse.breadcrumb') },
+    { href: '/entender-y-prepararse/estados', label: t('pages:estados.breadcrumb') },
+    {                                          label: titulo },
   ]
 
   return (
@@ -126,53 +105,53 @@ export default function EntenderEstadoPage() {
           </div>
           <div>
             <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${estado.badgeBg} uppercase tracking-wider`}>
-              {estado.subtitulo}
+              {subtitulo}
             </span>
-            <h1 className="text-2xl font-bold text-text mt-1 mb-2">{estado.titulo}</h1>
-            <p className="text-sm text-muted leading-relaxed">{estado.que}</p>
+            <h1 className="text-2xl font-bold text-text mt-1 mb-2">{titulo}</h1>
+            <p className="text-sm text-muted leading-relaxed">{que}</p>
           </div>
         </div>
       </motion.div>
 
       <div className="space-y-8">
         {/* Señales */}
-        <Section title="Señales de alerta">
+        <Section title={t('pages:entenderEstado.sections.senales')}>
           <div className={`p-4 rounded-xl border ${estado.borderColor} bg-surface`}>
-            <List items={estado.signos} icon="fa-circle-dot" iconColor={`text-${estado.color}`} />
+            <List items={signos} icon="fa-circle-dot" iconColor={`text-${estado.color}`} />
           </div>
         </Section>
 
         {/* Qué ayuda */}
-        <Section title="Qué ayuda">
+        <Section title={t('pages:entenderEstado.sections.queAyuda')}>
           <div className="p-4 rounded-xl border border-acc/20 bg-acc/5">
-            <List items={estado.ayuda} icon="fa-check" iconColor="text-acc" />
+            <List items={ayuda} icon="fa-check" iconColor="text-acc" />
           </div>
         </Section>
 
         {/* Qué evitar */}
-        {EVITAR[estadoId] && (
-          <Section title="Qué evitar">
+        {evitar.length > 0 && (
+          <Section title={t('pages:entenderEstado.sections.queEvitar')}>
             <div className="p-4 rounded-xl border border-coral/20 bg-coral/5">
-              <List items={EVITAR[estadoId]} icon="fa-xmark" iconColor="text-coral" />
+              <List items={evitar} icon="fa-xmark" iconColor="text-coral" />
             </div>
           </Section>
         )}
 
         {/* Duración */}
-        {DURACION[estadoId] && (
-          <Section title="Duración y recuperación">
+        {duracion && (
+          <Section title={t('pages:entenderEstado.sections.duracion')}>
             <div className="p-4 rounded-xl border border-border bg-surface flex items-start gap-3">
               <i className="fa-regular fa-clock text-faint text-sm mt-0.5 shrink-0" aria-hidden="true" />
-              <p className="text-sm text-muted leading-relaxed">{DURACION[estadoId]}</p>
+              <p className="text-sm text-muted leading-relaxed">{duracion}</p>
             </div>
           </Section>
         )}
 
         {/* Audio description */}
-        {estado.tts && (
-          <Section title="Descripción para momentos difíciles">
+        {tts && (
+          <Section title={t('pages:entenderEstado.sections.descripcionCrisis')}>
             <div className={`p-4 rounded-xl border ${estado.borderColor} bg-surface`}>
-              <p className="text-sm text-muted leading-relaxed italic">"{estado.tts}"</p>
+              <p className="text-sm text-muted leading-relaxed italic">"{tts}"</p>
             </div>
           </Section>
         )}
@@ -181,13 +160,13 @@ export default function EntenderEstadoPage() {
         {relatedItems.length > 0 && (
           <RelatedContent
             items={relatedItems}
-            title="Recursos relacionados"
+            title={t('pages:entenderEstado.sections.recursosRelacionados')}
           />
         )}
 
         {/* Other estados */}
         <section>
-          <h2 className="text-xs font-semibold text-muted uppercase tracking-wider mb-3">Otros estados</h2>
+          <h2 className="text-xs font-semibold text-muted uppercase tracking-wider mb-3">{t('pages:entenderEstado.sections.otrosEstados')}</h2>
           <div className="grid sm:grid-cols-2 gap-3">
             {otrosEstados.map(e => (
               <Link
@@ -201,8 +180,8 @@ export default function EntenderEstadoPage() {
                   <i className={`fa-solid ${e.icon} ${e.iconColor} text-sm`} aria-hidden="true" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-text group-hover:text-pri transition-colors duration-200">{e.titulo}</p>
-                  <p className="text-xs text-muted">{e.subtitulo}</p>
+                  <p className="text-sm font-semibold text-text group-hover:text-pri transition-colors duration-200">{t(`kitSensorial:estados.${e.id}.titulo`)}</p>
+                  <p className="text-xs text-muted">{t(`kitSensorial:estados.${e.id}.subtitulo`)}</p>
                 </div>
                 <i className="fa-solid fa-chevron-right text-faint text-[10px] ml-auto" aria-hidden="true" />
               </Link>
@@ -218,7 +197,7 @@ export default function EntenderEstadoPage() {
                        text-sm font-semibold text-muted hover:border-acc/30 hover:text-text transition-all duration-200"
           >
             <i className="fa-solid fa-heart-pulse text-acc text-xs" aria-hidden="true" />
-            Técnicas de regulación
+            {t('pages:entenderEstado.ctaTecnicas')}
           </Link>
           <Link
             to="/ayuda"
@@ -226,7 +205,7 @@ export default function EntenderEstadoPage() {
                        text-sm font-semibold text-coral hover:bg-coral/20 transition-all duration-200"
           >
             <i className="fa-solid fa-circle-exclamation text-xs" aria-hidden="true" />
-            Necesito ayuda ahora
+            {t('pages:entenderEstado.ctaAyuda')}
           </Link>
         </div>
       </div>

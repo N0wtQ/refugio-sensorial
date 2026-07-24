@@ -11,7 +11,7 @@ import TTSButton from '../components/ui/TTSButton'
 import { KITS, KitSelectorCard } from '../components/KitSensorial'
 
 export default function KitBolsoPage() {
-  const { t } = useTranslation('pages')
+  const { t } = useTranslation(['pages', 'kitSensorial'])
   usePageMeta({
     title: t('kitBolso.meta.title'),
     description: t('kitBolso.meta.description'),
@@ -78,26 +78,26 @@ export default function KitBolsoPage() {
           <div className="relative">
             <div className="flex items-center justify-between gap-3 mb-5">
               <div>
-                <h2 className={`text-base font-bold ${activeKit.color}`}>{activeKit.label}</h2>
-                <p className="text-xs text-muted mt-0.5">{activeKit.sublabel}</p>
+                <h2 className={`text-base font-bold ${activeKit.color}`}>{t(`kitSensorial:kits.${activeKit.id}.label`)}</h2>
+                <p className="text-xs text-muted mt-0.5">{t(`kitSensorial:kits.${activeKit.id}.sublabel`)}</p>
               </div>
               <div className="flex items-center gap-2">
-                <TTSButton iconOnly text={activeKit.tts} />
+                <TTSButton iconOnly text={t(`kitSensorial:kits.${activeKit.id}.tts`)} />
                 <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg border ${activeKit.badgeBg}`}>
-                  {t('kitBolso.itemsCount', { count: activeKit.items.length })}
+                  {t('kitSensorial:itemsCount', { count: activeKit.items.length })}
                 </span>
               </div>
             </div>
 
             <ul className="grid sm:grid-cols-2 gap-2.5 list-none p-0 m-0">
-              {activeKit.items.map(item => (
+              {activeKit.items.map((item, idx) => (
                 <li key={item.label} className="flex items-start gap-3">
                   <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs shrink-0 ${activeKit.bgColor} ${activeKit.color} border ${activeKit.borderColor}`}>
                     <i className={`fa-solid ${item.icon}`} aria-hidden="true" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-sm font-medium text-text leading-snug">{item.label}</p>
-                    <p className="text-xs text-muted">{item.nota}</p>
+                    <p className="text-sm font-medium text-text leading-snug">{t(`kitSensorial:kits.${activeKit.id}.items.${idx}.label`)}</p>
+                    <p className="text-xs text-muted">{t(`kitSensorial:kits.${activeKit.id}.items.${idx}.nota`)}</p>
                   </div>
                 </li>
               ))}

@@ -223,6 +223,49 @@
     "contactText": "If you run into an accessibility barrier or something that doesn't work well with your assistive technology, let us know. Your feedback is essential to improving.",
     "contactCta": "Contact us"
   },
+  "entenderEstado": {
+    "metaTitle": "{{titulo}} — {{subtitulo}} | Refugio Sensorial",
+    "metaTitleFallback": "State · {{slug}} — Refugio Sensorial",
+    "sections": {
+      "senales": "Warning signs",
+      "queAyuda": "What helps",
+      "queEvitar": "What to avoid",
+      "duracion": "Duration and recovery",
+      "descripcionCrisis": "Description for hard moments",
+      "recursosRelacionados": "Related resources",
+      "otrosEstados": "Other states"
+    },
+    "ctaTecnicas": "Regulation techniques",
+    "ctaAyuda": "I need help now",
+    "evitar": {
+      "meltdown": [
+        "Talking a lot or giving complex instructions",
+        "Touching the person without their explicit permission",
+        "Asking them to calm down or stop (they can't)",
+        "Trying to reason or explain during the crisis",
+        "Publicly drawing attention to what's happening"
+      ],
+      "shutdown": [
+        "Forcing eye contact or a verbal response",
+        "Reading the silence as anger or rejection",
+        "Bombarding them with questions or decisions",
+        "Turning on bright lights or raising the volume",
+        "Demanding they \"snap out of it\" with no recovery time"
+      ],
+      "burnout": [
+        "Adding more responsibilities or commitments",
+        "Comparing to how they used to be or how much they could do",
+        "Suggesting they \"just need to go out more\" or socialize",
+        "Ignoring the signs of exhaustion and hoping it passes on its own",
+        "Pushing to resume normal routines too soon"
+      ]
+    },
+    "duracion": {
+      "meltdown": "Minutes to hours. The nervous system needs time to de-escalate and return to baseline.",
+      "shutdown": "Hours to days. Recovery is gradual — forcing the pace only makes it longer.",
+      "burnout": "Weeks or months. Burnout requires a sustained reduction in load, not just one day of rest."
+    }
+  },
   "notFound": {
     "meta": {
       "title": "Page not found — Refugio Sensorial",

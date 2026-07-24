@@ -1,0 +1,86 @@
+{
+  "meta": {
+    "title": "Necesito ayuda ahora — Técnicas de crisis para personas neurodivergentes | Refugio Sensorial",
+    "description": "Técnicas de regulación inmediata para crisis autista: respiración 4-7-8, grounding 5-4-3, agua fría. Contactos de apoyo y recursos de emergencia para TEA y TDAH."
+  },
+  "breadcrumbAriaLabel": "Ruta de navegación",
+  "breadcrumbHome": "Inicio",
+  "breadcrumbCurrent": "Necesito ayuda ahora",
+  "header": {
+    "heading": "Estás en un lugar seguro",
+    "sub": "Aquí encontrarás técnicas de regulación y recursos de apoyo. Ve a tu ritmo, no hay prisa."
+  },
+  "urgentes": {
+    "heading": "Apoyo inmediato",
+    "items": [
+      { "nombre": "Teléfono de la Esperanza", "desc": "Apoyo emocional 24h — crisis, ansiedad, momentos difíciles.", "accion": "Llamar al 717 003 717" },
+      { "nombre": "Emergencias generales", "desc": "Si tú o alguien está en peligro inmediato.", "accion": "Llamar al 112" }
+    ]
+  },
+  "tecnicas": {
+    "heading": "Técnicas de regulación",
+    "breathing": {
+      "titulo": "Respiración 4-7-8",
+      "tts": "La respiración cuatro siete ocho te ayuda a calmarte ahora mismo. Inhala contando hasta cuatro, mantén el aire contando hasta siete, y suéltalo muy despacio contando hasta ocho. Cuando exhalas más de lo que inhalas le dices a tu cuerpo que estás a salvo. Puedes repetir el ciclo dos o tres veces.",
+      "phaseInhala": "Inhala",
+      "phaseManten": "Mantén",
+      "phaseExhala": "Exhala",
+      "pulsaLine1": "Pulsa para",
+      "pulsaLine2": "comenzar",
+      "cycles_one": "{{count}} ciclo completado",
+      "cycles_other": "{{count}} ciclos completados",
+      "detener": "Detener",
+      "comenzar": "Comenzar",
+      "startAriaLabel": "Comenzar ejercicio de respiración 4-7-8",
+      "stopAriaLabel": "Detener ejercicio de respiración"
+    },
+    "grounding": {
+      "titulo": "Técnica 5-4-3-2-1",
+      "tts": "Esta técnica te trae de vuelta al presente cuando la mente se dispara. Sin prisa, busca cinco cosas que puedas ver ahora mismo. Luego cuatro que puedas tocar. Tres que puedas oír. Dos que puedas oler. Y una que puedas saborear. No hace falta decirlas en voz alta, solo notarlas. Cada sentido que activas reduce la activación del sistema nervioso.",
+      "senseVer": "VER",
+      "senseTocar": "TOCAR",
+      "senseOir": "OÍR",
+      "senseOler": "OLER",
+      "senseSaborear": "SABOREAR",
+      "cosasQuePuedes": "cosas que puedes",
+      "ahoraMismo": "ahora mismo",
+      "completado": "¡Completado!",
+      "tomateMomento": "Tómate un momento antes de seguir.",
+      "siguiente": "Siguiente",
+      "siguienteAriaLabel": "Siguiente: {{n}} cosas que puedes {{sense}}",
+      "completarAriaLabel": "Completar ejercicio",
+      "repetir": "Repetir"
+    },
+    "coldWater": {
+      "titulo": "Regulación con frío",
+      "tts": "El frío es una herramienta muy efectiva para calmarte en pocos segundos. Busca agua fría o un cubito de hielo. Pon las manos bajo el agua durante unos treinta segundos, o simplemente sostén el hielo. El frío activa el sistema nervioso parasimpático y frena la respuesta de alarma del cuerpo casi de inmediato.",
+      "steps": [
+        "Busca agua fría o un cubo de hielo",
+        "Pon las manos bajo agua fría 30 segundos",
+        "O sostén un cubito de hielo en la mano",
+        "El frío activa el sistema nervioso parasimpático y frena la respuesta de alarma"
+      ],
+      "tip": "Ideal cuando hay mucha activación o sensación de pánico."
+    }
+  },
+  "sonidos": {
+    "heading": "Sonidos para calmar",
+    "lilPenguin": {
+      "ariaLabel": "Lil Penguin Studios en YouTube — sonidos de larga duración (se abre en nueva pestaña)",
+      "titulo": "Lil Penguin Studios",
+      "desc": "Vídeos de horas de duración con sonidos relajantes: lluvia, ruido blanco, cafeterías, chimeneas y más. Especialmente recomendado durante meltdowns y momentos de sobrecarga sensorial.",
+      "abrirEnYoutube": "Abrir en YouTube"
+    }
+  },
+  "apoyo": {
+    "heading": "Más recursos de apoyo",
+    "visitarWeb": "Visitar web",
+    "ariaLabelSuffix": "se abre en nueva pestaña",
+    "items": [
+      { "nombre": "Autismo España", "desc": "Recursos, orientación y red de servicios para personas autistas y familias." },
+      { "nombre": "Federación Autismo Madrid", "desc": "Apoyo directo y orientación en la Comunidad de Madrid." },
+      { "nombre": "ConecTEA — Red de apoyo", "desc": "Familias con miembros neurodivergentes. Grupos de apoyo presencial." },
+      { "nombre": "Proyecto STOP SUICIDIOS", "desc": "Información y recursos sobre conducta suicida." }
+    ]
+  }
+}

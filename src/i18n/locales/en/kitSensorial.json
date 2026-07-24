@@ -1,0 +1,188 @@
+{
+  "estados": {
+    "meltdown": {
+      "titulo": "Meltdown",
+      "subtitulo": "Overload crisis",
+      "que": "An involuntary response to sensory, emotional, or cognitive overload that exceeds the nervous system's limit. It's not a tantrum or a voluntary act: the brain is literally overflowing.",
+      "signos": [
+        "Uncontrollable crying or screaming",
+        "Hitting, biting, or mild self-injury (urgent self-stimulation)",
+        "Fleeing the place",
+        "Inability to speak or respond",
+        "Rigidity or shaking in the body"
+      ],
+      "ayuda": [
+        "Reduce stimuli: lights, sound, people",
+        "Don't speak or touch unless the person asks",
+        "Offer a safe, quiet space",
+        "Wait without judgment until the nervous system settles",
+        "Afterward, don't ask for an immediate explanation"
+      ],
+      "tts": "If you're in a meltdown right now, what's happening isn't something you're doing on purpose. It's your nervous system hitting its limit after too much load. There may be crying, screaming, a need to move or to flee. All of that is an involuntary response, not a failure on your part. What helps most right now is reducing what's coming in: turn off lights, lower the sound, step away from people if you can. You don't need to explain anything right now. Regulate first, talk later."
+    },
+    "shutdown": {
+      "titulo": "Shutdown",
+      "subtitulo": "Internal power-down",
+      "que": "A closing-down response to overload: the nervous system \"shuts off\" to protect itself. Unlike a meltdown, a shutdown turns inward — silence, stillness, disconnection.",
+      "signos": [
+        "Sudden silence and social withdrawal",
+        "A fixed or distant stare",
+        "Slow or \"frozen\" movements",
+        "Inability to speak (temporary mutism)",
+        "A feeling of being \"behind glass\""
+      ],
+      "ayuda": [
+        "Calm presence without demanding a response",
+        "Don't read the silence as indifference",
+        "Offer blankets, headphones, or comfort objects",
+        "Allow time without stimulation",
+        "Once it passes, gently ask what they need"
+      ],
+      "tts": "In a shutdown your nervous system closes down to protect itself from overload. It's not that you don't want to respond, it's that you can't. Staying silent, still, or disconnected isn't indifference, it's survival. Don't push yourself to snap out of it. What helps is a calm environment, no questions or demands, with some comfort nearby if you're open to it: a blanket, headphones, darkness. Your nervous system will come back at its own pace."
+    },
+    "burnout": {
+      "titulo": "Autistic burnout",
+      "subtitulo": "Accumulated exhaustion",
+      "que": "A state of deep exhaustion caused by the sustained effort of masking, adapting to a neurotypical world, and handling a sensory and social load beyond available resources. It can last weeks or months.",
+      "signos": [
+        "Losing skills that used to be automatic",
+        "Increased sensory sensitivity",
+        "Extreme difficulty processing and communicating",
+        "Isolation and withdrawal from activities",
+        "Exhaustion that doesn't improve with usual rest"
+      ],
+      "ayuda": [
+        "Drastically reduce demands and masking",
+        "Prioritize true rest (not just physical)",
+        "Review and drop non-essential commitments",
+        "Seek professional support experienced with autism",
+        "Allow yourself to function at a slower pace without guilt"
+      ],
+      "tts": "Autistic burnout is the result of giving too much for too long, trying to fit into a world that isn't built for you. It's not laziness or depression, even though it can look like it. You might notice things you used to do without thinking now take a huge effort. That's normal in burnout. The most important thing right now is to reduce what you can: commitments, demands, the effort of masking. Give yourself permission to function more slowly. Seek support if you can, ideally from someone who understands autism. Recovery takes time, and that's okay."
+    }
+  },
+  "estadoCard": {
+    "openAriaLabel": "Open details for {{titulo}}",
+    "closeAriaLabel": "Close details for {{titulo}}",
+    "verInfografia": "View infographic",
+    "verInfografiaAriaLabel": "View infographic for {{titulo}} (opens in a new tab)",
+    "senales": "Signs",
+    "queAyuda": "What helps"
+  },
+  "regulacion": {
+    "Frío": {
+      "titulo": "Cold",
+      "desc": "Cold water on wrists and face, ice in your hands or on your forehead. Triggers the dive reflex and slows the nervous system.",
+      "tts": "If you're feeling overwhelmed, cold can help you regulate very quickly. Put cold water on your wrists and face, or hold an ice cube in your hand. You'll notice the effect within seconds: cold triggers the dive reflex and tells the nervous system to slow down."
+    },
+    "Respiración": {
+      "titulo": "Breathing",
+      "desc": "Exhale twice as long as you inhale. 4 sec. in, 8 out. Activates the vagus nerve and regulates heart rate.",
+      "tts": "Exhale twice as long as you inhale. Four seconds breathing in, eight breathing out. That long exhale activates the vagus nerve and regulates your heart rate. If four and eight feels like too much, start with two and four. What matters is that the out-breath is slow."
+    },
+    "Movimiento": {
+      "titulo": "Movement",
+      "desc": "Jumping, squeezing a ball, clenching your fists, stretching. Proprioceptive movement calms the nervous system.",
+      "tts": "When your body feels overloaded, moving helps release tension. Jump, squeeze a ball, clench your fists, or stretch. This kind of movement signals to the nervous system that everything is under control and helps it calm down."
+    },
+    "Sonido": {
+      "titulo": "Sound",
+      "desc": "Earplugs, noise-canceling headphones, or background sound (rain, white noise). Reduces auditory sensory load.",
+      "tts": "If the environment is too loud, cover your ears. Use earplugs or noise-canceling headphones. You can also play background sound like rain or white noise. Reducing auditory load frees up resources your nervous system can use to regulate."
+    },
+    "Oscuridad": {
+      "titulo": "Darkness",
+      "desc": "Covering your eyes, sunglasses, or a dark room. Removes visual overload and gives a sense of shelter.",
+      "tts": "Darkness can be a shelter when overload is visual. Cover your eyes, put on sunglasses, or find a dark room. Removing visual stimulation gives your brain the break it needs."
+    },
+    "Presión": {
+      "titulo": "Pressure",
+      "desc": "A weighted blanket, a snug jacket, or simply hugging your knees. Deep pressure regulates the nervous system.",
+      "tts": "Deep pressure is very calming for the nervous system. Use a weighted blanket, put on a snug jacket, or simply hug your own knees. You'll notice arousal drop and your body start to relax."
+    },
+    "Sabor intenso": {
+      "titulo": "Strong flavor",
+      "desc": "A sour candy, gum, ice. Strong oral stimulation pulls the nervous system's attention to one single thing.",
+      "tts": "A very strong flavor can anchor the nervous system's attention to one single thing and break the overload loop. Eat a sour candy, chew gum, or hold ice in your mouth. The stronger the flavor, the more effective the anchor."
+    },
+    "Grounding 5-4-3": {
+      "titulo": "5-4-3-2-1 grounding",
+      "desc": "Name 5 things you see, 4 you touch, 3 you hear, 2 you smell, 1 you taste. Anchors you in the present.",
+      "tts": "If you're stuck in your head and need to come back to the present, name five things you can see right now, four you can touch, three you can hear, two you can smell, and one you can taste. You don't have to say it out loud, just noticing them is enough. Every sense you engage lowers nervous-system arousal."
+    },
+    "Salida": {
+      "titulo": "Leaving",
+      "desc": "Changing environment — stepping into a hallway, bathroom, or outside. Sometimes the only regulator is breaking the stimulus.",
+      "tts": "Sometimes the only regulator available is changing your environment. If you can, leave the space you're in: a hallway, the bathroom, outside. Stepping away from the stimulus breaks the overload cycle and gives your nervous system a cleaner starting point."
+    }
+  },
+  "kits": {
+    "pequeno": {
+      "label": "Small bag",
+      "shortLabel": "Small",
+      "sublabel": "Emergency essentials",
+      "tts": "Small bag for emergencies. What to pack: headphones or earplugs to block noise, sunglasses for bright light, sour candy for oral regulation, a textured object for your hands, your crisis card with your information and needs, and a charged phone.",
+      "items": [
+        { "label": "Headphones or earplugs", "nota": "Noise blockers" },
+        { "label": "Sunglasses", "nota": "For bright light" },
+        { "label": "Sour candy", "nota": "Oral regulation" },
+        { "label": "Textured object", "nota": "Hand stim" },
+        { "label": "Crisis card", "nota": "With your info and needs" },
+        { "label": "Charged phone", "nota": "With support apps" }
+      ]
+    },
+    "grande": {
+      "label": "Large bag",
+      "shortLabel": "Large",
+      "sublabel": "For long outings",
+      "tts": "Large bag for long outings. Pack active noise-canceling headphones, sunglasses, sensory snacks like candy or gum, a fidget toy for your hands, your crisis card, your phone with a portable charger, cold water for cold-based regulation, an eye mask in case you need emergency darkness, your medication if you take it regularly, and something to distract you like a book or a device.",
+      "items": [
+        { "label": "Noise-canceling headphones", "nota": "Active noise cancellation" },
+        { "label": "Sunglasses", "nota": "Light filter" },
+        { "label": "Sensory snacks", "nota": "Candy, gum, crunchy foods" },
+        { "label": "Fidget toy", "nota": "Spinner, stress cube" },
+        { "label": "Crisis card", "nota": "AAC or plain text" },
+        { "label": "Phone + power bank", "nota": "Support apps and extra charge" },
+        { "label": "Cold water", "nota": "Cold-based regulation" },
+        { "label": "Eye mask", "nota": "For emergency darkness" },
+        { "label": "Medication", "nota": "If you take it regularly" },
+        { "label": "Distraction", "nota": "Book, puzzle, device" }
+      ]
+    },
+    "enorme": {
+      "label": "Large backpack",
+      "shortLabel": "Backpack",
+      "sublabel": "Hard days or trips",
+      "tts": "Large backpack for hard days or trips. Bring the best noise-canceling headphones you have, polarized sunglasses, a sensory assortment with different flavors and textures, several fidgets of different types and weights, your crisis or communication support cards, your phone with a high-capacity power bank, cold water and snacks for hydration and regulation, a small blanket for weight or tactile comfort, an eye mask for emergency darkness, your medication with an extra dose if your doctor approves, some entertainment like a console, book, or tablet, your favorite perfume or scent for olfactory stimulation, spare earplugs in case your headphones fail, and comfortable spare clothes in case your current fabric becomes intolerable.",
+      "items": [
+        { "label": "Premium noise-canceling headphones", "nota": "The most important tool" },
+        { "label": "Dark sunglasses", "nota": "Polarized if possible" },
+        { "label": "Sensory assortment", "nota": "Various flavors and textures" },
+        { "label": "Fidget set", "nota": "Different textures and weights" },
+        { "label": "Support cards", "nota": "Crisis, needs, AAC" },
+        { "label": "Phone + power bank", "nota": "High-capacity power bank" },
+        { "label": "Cold water + snacks", "nota": "Hydration and oral regulation" },
+        { "label": "Small blanket", "nota": "Weight or tactile comfort" },
+        { "label": "Eye mask", "nota": "Emergency darkness" },
+        { "label": "Medication", "nota": "With extra dose if your doctor approves" },
+        { "label": "Distraction", "nota": "Nintendo Switch, book, tablet" },
+        { "label": "Olfactory stimulation", "nota": "Favorite perfume, lavender" },
+        { "label": "Spare earplugs", "nota": "In case headphones fail" },
+        { "label": "Extra comfortable clothes", "nota": "In case the fabric becomes intolerable" }
+      ]
+    }
+  },
+  "sizeGroupAriaLabel": "Bag size",
+  "itemsCount_one": "{{count}} item",
+  "itemsCount_other": "{{count}} items",
+  "sections": {
+    "estados": { "heading": "What's happening to me?", "sub": "Meltdown, Shutdown & Burnout — what they are and how to tell them apart" },
+    "regulacion": { "heading": "How to regulate", "sub": "Sensory and emotional regulation techniques" },
+    "kit": { "heading": "My go-bag kit", "sub": "Pick a size and see what to pack" },
+    "explorarMas": "Explore more"
+  },
+  "navCards": {
+    "senales": { "titulo": "Warning signs before a crisis", "desc": "Learn to recognize the signs that your nervous system is reaching its limit before it happens." },
+    "guias": { "titulo": "Resources & documents", "desc": "Guides, PDFs, and articles about autism and neurodiversity to read, download, and carry with you." }
+  }
+}

@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Link, useSearchParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import Breadcrumb from '../components/ui/Breadcrumb'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { RECURSOS_PDF } from '../data/recursos-pdf'
@@ -9,28 +10,15 @@ import { usePageMeta } from '../hooks/usePageMeta'
 
 const BASE_URL = import.meta.env.BASE_URL
 
-const TTS_POR_PDF = {
-  1: 'Este artículo del doctor Guillermo Zurita explica desde un enfoque de neurodiversidad qué son el meltdown, el shutdown y el burnout autista, por qué ocurren y cómo diferenciarlos entre sí. Está en formato de artículo web y puedes leerlo directamente online.',
-  2: 'Esta tarjeta de crisis de Pempox es para llevar siempre encima. Si en algún momento no puedes hablar, puedes mostrarla para que la otra persona sepa qué te pasa y cómo ayudarte. Hay que imprimirla, cortarla y plastificarla para que dure.',
-  3: 'Esta guía de Autismo Madrid tiene setenta páginas sobre regulación emocional en el autismo. Explica las causas de las conductas desafiantes, cómo identificarlas y qué estrategias de intervención usar. Es útil tanto para la propia persona autista como para quien la acompaña.',
-  4: 'Esta guía de la Universidad Autónoma de Chile está pensada para la comunidad universitaria. Responde al qué hago cuando pasa esto en situaciones académicas y de convivencia con estudiantes autistas. Tiene un enfoque práctico e interdisciplinario.',
-  5: 'Este documento de doscientas diez páginas cubre la educación de personas adultas con autismo. Incluye modelos teóricos, orientaciones pedagógicas y estrategias para la transición a la vida adulta. Es una guía completa para familias, profesores y terapeutas.',
-  6: 'Este artículo de Mujeres y Autismo da estrategias prácticas para recuperarse del burnout siendo autista: cómo descansar de verdad, reducir el enmascaramiento, encontrar apoyos y crear ritmos sostenibles.',
-  7: 'Esta guía del IACS está pensada para personas con TDAH. Explica qué es el trastorno, cómo se diagnostica, qué tratamientos existen y da orientaciones concretas para el día a día. Es un documento oficial del Sistema Nacional de Salud.',
-  8: 'Esta guía breve de la Universidad Complutense explica cómo se observa la dislexia en el aula: en la lectura, la escritura y la comunicación oral. Incluye recomendaciones prácticas para docentes y adaptaciones para exámenes y trabajos.',
-  9: 'Este manual de la Fundación FIPP explica el Trastorno Obsesivo Compulsivo desde dentro: qué tipos de obsesiones y compulsiones existen, cómo registrarlas y qué técnicas cognitivo-conductuales ayudan a manejarlas, como posponer el ritual o cambiar el modo de obsesionarse.',
-  10: 'Esta infografía de la Asociación Dislexia Burgos recoge las señales de discalculia agrupadas por áreas: señales tempranas, estimación, numeración y conteo, cálculo mental, resolución de problemas, vida cotidiana y dificultades visoespaciales. Está basada en la lista de cotejo de la Universidad de Valladolid.',
-  11: 'Esta guía sobre masking autista explica qué es el enmascaramiento, por qué aparece, ejemplos cotidianos y consecuencias. Incluye un checklist para identificarlo y estrategias para reducirlo de forma gradual y segura.',
-}
-
 // Unique categories preserving first-seen order
 const CATEGORIAS = [...new Set(RECURSOS_PDF.map(p => p.categoria))]
 // Color per category (from first document in that category)
 const CAT_COLOR = Object.fromEntries(RECURSOS_PDF.map(p => [p.categoria, p.color]))
 
 function PDFCard({ pdf, prefersReduced, index }) {
+  const { t } = useTranslation('recursos')
   const href = pdf.url ?? `${BASE_URL}docs/${pdf.archivo}`
-  const tts = TTS_POR_PDF[pdf.id]
+  const tts = t(`ttsPorPdf.${pdf.id}`, { defaultValue: '' })
   return (
     <motion.div
       initial={prefersReduced ? {} : { opacity: 0, y: 16 }}
@@ -76,9 +64,10 @@ function PDFCard({ pdf, prefersReduced, index }) {
 }
 
 export default function RecursosPage() {
+  const { t } = useTranslation(['recursos', 'pages'])
   usePageMeta({
-    title: 'Guías y recursos sobre autismo y neurodivergencia — Refugio Sensorial',
-    description: 'Documentos PDF y artículos sobre meltdown, burnout autista, regulación emocional y educación. Recursos descargables para personas TEA, TDAH y sus familias.',
+    title: t('recursos:meta.title'),
+    description: t('recursos:meta.description'),
   })
   const prefersReduced = useReducedMotion()
   const [searchParams, setSearchParams] = useSearchParams()
@@ -113,9 +102,9 @@ export default function RecursosPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 pb-20 pt-8">
       <Breadcrumb items={[
-        { href: '/', label: 'Inicio' },
-        { href: '/entender-y-prepararse', label: 'Entender y prepararse' },
-        { label: 'Guías y recursos' },
+        { href: '/', label: t('pages:breadcrumbHome') },
+        { href: '/entender-y-prepararse', label: t('pages:entenderPrepararse.breadcrumb') },
+        { label: t('recursos:breadcrumb') },
       ]} />
 
       <motion.div
@@ -129,8 +118,8 @@ export default function RecursosPage() {
             <i className="fa-solid fa-folder-open" aria-hidden="true" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-text leading-tight">Guías y recursos</h1>
-            <p className="text-sm text-muted">Guías, PDFs y artículos sobre autismo y neurodiversidad</p>
+            <h1 className="text-2xl font-bold text-text leading-tight">{t('recursos:heading')}</h1>
+            <p className="text-sm text-muted">{t('recursos:sub')}</p>
           </div>
         </div>
       </motion.div>
@@ -142,15 +131,15 @@ export default function RecursosPage() {
           type="search"
           value={search}
           onChange={e => updateSearch(e.target.value)}
-          placeholder="Buscar por título, descripción o categoría..."
+          placeholder={t('recursos:searchPlaceholder')}
           className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-surface border border-border text-text text-sm placeholder:text-faint outline-none focus:border-pri/50 focus:ring-1 focus:ring-pri/30 transition-colors duration-200"
-          aria-label="Buscar recursos"
+          aria-label={t('recursos:searchAriaLabel')}
         />
         {search && (
           <button
             onClick={() => updateSearch('')}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-faint hover:text-text transition-colors"
-            aria-label="Borrar búsqueda"
+            aria-label={t('recursos:clearSearchAriaLabel')}
           >
             <i className="fa-solid fa-xmark text-sm" aria-hidden="true" />
           </button>
@@ -158,7 +147,7 @@ export default function RecursosPage() {
       </div>
 
       {/* Category chips */}
-      <div className="flex flex-wrap gap-2 mb-6" role="group" aria-label="Filtrar por categoría">
+      <div className="flex flex-wrap gap-2 mb-6" role="group" aria-label={t('recursos:catFilterAriaLabel')}>
         <button
           onClick={() => updateCat('todas')}
           className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors duration-200 ${
@@ -168,7 +157,7 @@ export default function RecursosPage() {
           }`}
           aria-pressed={catFilter === 'todas'}
         >
-          Todas ({RECURSOS_PDF.length})
+          {t('recursos:todas')} ({RECURSOS_PDF.length})
         </button>
         {CATEGORIAS.map(cat => {
           const active = catFilter === cat
@@ -193,8 +182,8 @@ export default function RecursosPage() {
       {/* Result count */}
       <p className="text-xs text-faint mb-4" aria-live="polite" aria-atomic="true">
         {results.length === RECURSOS_PDF.length
-          ? <><strong className="text-muted">{results.length}</strong> documentos</>
-          : <><strong className="text-text">{results.length}</strong> resultado{results.length !== 1 ? 's' : ''}</>
+          ? <><strong className="text-muted">{results.length}</strong> {t('recursos:documentosLabel')}</>
+          : <><strong className="text-text">{results.length}</strong> {t('recursos:resultadoLabel', { count: results.length })}</>
         }
       </p>
 
@@ -207,18 +196,18 @@ export default function RecursosPage() {
       ) : (
         <div className="text-center py-14 rounded-card border border-border bg-surface">
           <i className="fa-solid fa-magnifying-glass text-3xl text-faint mb-4 block" aria-hidden="true" />
-          <p className="text-muted text-sm font-medium mb-1">Sin resultados</p>
-          <p className="text-faint text-xs mb-5">Prueba con otras palabras o quita el filtro de categoría.</p>
+          <p className="text-muted text-sm font-medium mb-1">{t('recursos:emptyState.title')}</p>
+          <p className="text-faint text-xs mb-5">{t('recursos:emptyState.sub')}</p>
           <button
             onClick={() => { updateSearch(''); updateCat('todas') }}
             className="px-4 py-2 rounded-lg bg-pri/10 text-pri text-xs font-semibold border border-pri/25 hover:bg-pri/18 transition-colors duration-200"
           >
-            Ver todos los recursos
+            {t('recursos:emptyState.cta')}
           </button>
         </div>
       )}
 
-      <nav aria-label="Continúa aprendiendo" className="grid sm:grid-cols-2 gap-3 mt-10">
+      <nav aria-label={t('recursos:continueAriaLabel')} className="grid sm:grid-cols-2 gap-3 mt-10">
         {[
           {
             to: '/entender-y-prepararse/estados',
@@ -227,8 +216,8 @@ export default function RecursosPage() {
             bg: 'bg-coral/10',
             border: 'border-coral/25',
             bgCard: 'bg-coral/5',
-            label: 'Meltdown, shutdown y burnout',
-            desc: 'Entiende los estados y cómo diferenciarlos',
+            label: t('recursos:links.estados.label'),
+            desc: t('recursos:links.estados.desc'),
           },
           {
             to: '/entender-y-prepararse/tecnicas',
@@ -237,8 +226,8 @@ export default function RecursosPage() {
             bg: 'bg-acc/10',
             border: 'border-acc/25',
             bgCard: 'bg-acc/5',
-            label: 'Técnicas de regulación',
-            desc: '9 técnicas para aplicar cuando lo necesitas',
+            label: t('recursos:links.tecnicas.label'),
+            desc: t('recursos:links.tecnicas.desc'),
           },
         ].map(link => (
           <Link

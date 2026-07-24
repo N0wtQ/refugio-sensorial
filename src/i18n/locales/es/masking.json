@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "title": "Masking autista: qué es, por qué ocurre y cómo reducirlo — Refugio Sensorial",
+    "description": "Qué es el masking o camuflaje autista, por qué ocurre, ejemplos cotidianos, consecuencias y estrategias para reducirlo de forma gradual y segura."
+  },
+  "articleTitulo": "Masking autista: qué es, por qué ocurre y cómo reducirlo",
+  "breadcrumb": "Masking",
+  "heading": "Masking autista",
+  "sub": "El camuflaje que agota sin que nadie lo vea",
+  "queEs": {
+    "heading": "¿Qué es el masking?",
+    "p1": "El masking —también llamado camuflaje autista— es el proceso de suprimir, ocultar o modificar comportamientos, formas de comunicarse y necesidades propias para adaptarse a las expectativas sociales del entorno.",
+    "p2": "No es una decisión consciente la mayoría de las veces. Es una respuesta aprendida, muchas veces desde la infancia, a entornos que no aceptaban o comprendían la neurodivergencia.",
+    "tts": "El masking o camuflaje autista es el proceso de suprimir, ocultar o modificar comportamientos propios para adaptarse a las expectativas sociales del entorno. No es una decisión consciente la mayoría de las veces. Es una respuesta aprendida, muchas veces desde la infancia, a entornos que no aceptaban o comprendían la neurodivergencia."
+  },
+  "razonesHeading": "¿Por qué ocurre?",
+  "razones": [
+    { "titulo": "Encajar socialmente", "desc": "Desde pequeños aprendemos que comportarse de cierta forma hace que los demás nos acepten. El masking nace de ese aprendizaje repetido." },
+    { "titulo": "Evitar el rechazo", "desc": "Cada vez que una forma de ser «diferente» recibió una respuesta negativa, el cerebro registró: cambia esto para que no te rechacen." },
+    { "titulo": "Bullying y presión social", "desc": "Experiencias de acoso o ridiculización en el pasado dejan una huella que lleva a suprimir comportamientos propios para evitar que se repitan." },
+    { "titulo": "Entornos laborales", "desc": "El lugar de trabajo puede exigir una actuación constante: vocabulario, tono, expresiones y ritmos que no son los propios." },
+    { "titulo": "Dinámica familiar", "desc": "Crecer en un entorno que no entendía o aceptaba la neurodivergencia lleva a aprender a actuar normal desde muy pequeño." },
+    { "titulo": "Diagnóstico tardío o ausente", "desc": "Años sin saber que eres autista significan años aprendiendo a imitar sin tener herramientas para gestionarlo." }
+  ],
+  "ejemplosHeading": "Ejemplos cotidianos",
+  "ejemplos": [
+    { "titulo": "Forzar el contacto visual", "desc": "Mirar a los ojos aunque sea incómodo o doloroso, porque así se hace en las conversaciones." },
+    { "titulo": "Copiar expresiones", "desc": "Imitar la cara, el tono y los gestos de los demás para parecer empático o entusiasmado aunque no se sienta así." },
+    { "titulo": "Ensayar conversaciones", "desc": "Preparar mentalmente qué decir, cómo responder y qué cara poner antes de cualquier interacción social." },
+    { "titulo": "Reprimir el stimming", "desc": "Parar de balancearse, taparse los oídos o mover las manos en público aunque eso dificulte la regulación." },
+    { "titulo": "Fingir que estás bien", "desc": "Responder «estoy bien» cuando en realidad estás al límite, para no incomodar a los demás." },
+    { "titulo": "Ocultar intereses", "desc": "No mencionar los temas que te apasionan por miedo a parecer raro o diferente." }
+  ],
+  "consecuenciasHeading": "¿Cómo te afecta?",
+  "consecuencias": [
+    {
+      "titulo": "Agotamiento extremo",
+      "desc": "Mantener una actuación constante consume una cantidad enorme de energía cognitiva. Al final del día puede quedar nada.",
+      "tts": "Mantener una actuación constante consume una cantidad enorme de energía cognitiva. Al final del día, de la semana o del año puede quedar nada. El masking no es gratis: tiene un coste directo sobre el sistema nervioso."
+    },
+    {
+      "titulo": "Ansiedad crónica",
+      "desc": "Estar permanentemente pendiente de cómo te comportas, cómo suenas y cómo te ven genera un estado de alerta constante.",
+      "tts": "Estar permanentemente pendiente de cómo te comportas, cómo suenas y cómo te ven los demás genera un estado de alerta constante. Con el tiempo, ese nivel de vigilancia se convierte en ansiedad crónica."
+    },
+    {
+      "titulo": "Burnout autista",
+      "desc": "El masking sostenido es uno de los principales factores que llevan al burnout autista: un colapso profundo y difícil de recuperar.",
+      "tts": "El masking sostenido durante mucho tiempo es uno de los principales factores que llevan al burnout autista: un colapso profundo que puede durar meses o años y que es difícil de recuperar."
+    },
+    {
+      "titulo": "Depresión",
+      "desc": "No poder ser uno mismo durante años puede llevar a una sensación de vacío y, eventualmente, a depresión clínica.",
+      "tts": "No poder ser uno mismo durante años puede llevar a una sensación de vacío, de no saber quién eres realmente, y eventualmente a depresión clínica."
+    },
+    {
+      "titulo": "Pérdida de identidad",
+      "desc": "Después de años de masking intenso, muchas personas no saben cómo son «de verdad» fuera del personaje.",
+      "tts": "Después de años de masking intenso, muchas personas sienten que no saben cómo son de verdad o qué les gusta fuera del personaje que han construido para el mundo."
+    }
+  ],
+  "checklist": {
+    "heading": "¿Lo estoy haciendo?",
+    "sub": "Señales de que el masking forma parte de tu día a día",
+    "tts": "Checklist de masking autista. Si reconoces varias de estas situaciones, es posible que el masking forme parte de tu día a día. Recuerda: identificarlo no es para etiquetarte, sino para entenderte mejor y poder cuidarte. Al llegar a casa tras interacciones sociales te sientes completamente agotado. En público actúas de forma muy diferente a como eres en privado. Tienes que pensar activamente cómo comportarte en la mayoría de situaciones sociales. Suprimes comportamientos que te ayudan a regularte. Finges emociones que no sientes o escondes las que sí tienes. Después de tiempo con gente necesitas largo tiempo a solas para recuperarte. No sabes muy bien cómo eres de verdad fuera de los contextos sociales. Sientes alivio cuando estás solo porque puedes quitarte la máscara.",
+    "items": [
+      "Al llegar a casa tras interacciones sociales te sientes completamente agotado",
+      "En público actúas de forma muy diferente a como eres en privado",
+      "Tienes que pensar activamente cómo comportarte en la mayoría de situaciones sociales",
+      "Suprimes comportamientos que te ayudan a regularte (stimming, movimiento, quietud...)",
+      "Finges emociones que no sientes o escondes las que sí tienes",
+      "Después de tiempo con gente necesitas largo tiempo a solas para recuperarte",
+      "No sabes muy bien cómo eres «tú de verdad» fuera de los contextos sociales",
+      "Sientes alivio cuando estás solo porque puedes quitarte la máscara"
+    ],
+    "footer": "Identificar el masking no es para etiquetarte, sino para entenderte mejor y poder cuidarte."
+  },
+  "estrategiasHeading": "Cómo reducirlo gradualmente",
+  "estrategias": [
+    { "titulo": "Empieza en entornos seguros", "desc": "Practica siendo más tú mismo con una persona de confianza antes de hacerlo en grupos más grandes. Un entorno seguro es el primer paso." },
+    { "titulo": "Gestiona tu energía", "desc": "Identifica qué situaciones requieren más masking y reduce las que puedas. No todas las interacciones merecen el mismo coste energético." },
+    { "titulo": "Permítete el stimming en privado", "desc": "Cuando estés solo, permite los comportamientos que necesitas para regularte. No tienes que suprimirlos cuando no hay nadie mirando." },
+    { "titulo": "Comunica tus necesidades", "desc": "Con personas de confianza, practica pedir lo que necesitas directamente en lugar de intentar adivinar qué esperan de ti." },
+    { "titulo": "Reducción gradual", "desc": "No es necesario ni recomendable dejar de enmascarar de golpe. Cada pequeño paso hacia ser más auténtico cuenta." }
+  ],
+  "mitosHeading": "Mitos y realidades",
+  "mitos": [
+    { "mito": "Todo el mundo hace masking", "realidad": "La intensidad es completamente diferente. Ajustar el tono en una entrevista no es lo mismo que construir un personaje completo para sobrevivir en cada interacción." },
+    { "mito": "Es fácil de parar cuando quieres", "realidad": "Para muchas personas autistas el masking es automático después de años de práctica. Reducirlo requiere trabajo activo y un entorno que lo permita." },
+    { "mito": "Si haces masking, no eres «tan autista»", "realidad": "El masking puede ocultar completamente las señales de autismo, lo que lleva a diagnósticos tardíos o erróneos. No tiene nada que ver con la intensidad del autismo." },
+    { "mito": "Basta con decidir dejarlo", "realidad": "El masking es una respuesta aprendida de supervivencia. Reducirlo de golpe sin un entorno seguro puede ser perjudicial." },
+    { "mito": "Te lo inventas para excusarte", "realidad": "El masking es un fenómeno documentado e investigado. El agotamiento que genera es real y mesurable, aunque desde fuera no se vea." }
+  ],
+  "continueAriaLabel": "Continúa aprendiendo",
+  "links": {
+    "estados": { "label": "Meltdown, shutdown y burnout", "desc": "Qué son, cómo diferenciarlos y cómo gestionarlos" },
+    "guia": { "label": "Guía: Masking Autista", "desc": "Descarga la guía práctica con checklist y ejercicios" }
+  }
+}

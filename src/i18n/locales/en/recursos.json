@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "title": "Guides and resources on autism and neurodivergence — Refugio Sensorial",
+    "description": "PDF documents and articles on meltdown, autistic burnout, emotional regulation, and education. Downloadable resources for autistic and ADHD people and their families."
+  },
+  "breadcrumb": "Guides and resources",
+  "heading": "Guides and resources",
+  "sub": "Guides, PDFs, and articles about autism and neurodiversity",
+  "searchPlaceholder": "Search by title, description, or category...",
+  "searchAriaLabel": "Search resources",
+  "clearSearchAriaLabel": "Clear search",
+  "catFilterAriaLabel": "Filter by category",
+  "todas": "All",
+  "documentosLabel": "documents",
+  "resultadoLabel_one": "result",
+  "resultadoLabel_other": "results",
+  "emptyState": {
+    "title": "No results",
+    "sub": "Try different words or remove the category filter.",
+    "cta": "See all resources"
+  },
+  "continueAriaLabel": "Keep learning",
+  "links": {
+    "estados": { "label": "Meltdown, shutdown & burnout", "desc": "Understand the states and how to tell them apart" },
+    "tecnicas": { "label": "Regulation techniques", "desc": "9 techniques to use when you need them" }
+  },
+  "ttsPorPdf": {
+    "1": "This article by Dr. Guillermo Zurita explains, from a neurodiversity perspective, what meltdown, shutdown, and autistic burnout are, why they happen, and how to tell them apart. It's a web article you can read directly online.",
+    "2": "This crisis card from Pempox is meant to carry with you at all times. If at any point you can't speak, you can show it so the other person knows what's happening and how to help. Print it, cut it out, and laminate it so it lasts.",
+    "3": "This guide from Autismo Madrid is seventy pages on emotional regulation in autism. It explains the causes of challenging behaviors, how to identify them, and what intervention strategies to use. It's useful both for the autistic person themselves and for whoever supports them.",
+    "4": "This guide from the Universidad Autónoma de Chile is designed for the university community. It answers \"what do I do when this happens\" in academic and everyday situations with autistic students. It takes a practical, interdisciplinary approach.",
+    "5": "This 210-page document covers the education of autistic adults. It includes theoretical models, teaching guidance, and strategies for the transition to adult life. It's a complete guide for families, teachers, and therapists.",
+    "6": "This article from Mujeres y Autismo gives practical strategies for recovering from burnout as an autistic person: how to truly rest, reduce masking, find support, and build sustainable rhythms.",
+    "7": "This guide from the IACS is designed for people with ADHD. It explains what the condition is, how it's diagnosed, what treatments exist, and gives concrete day-to-day guidance. It's an official document from the Spanish National Health System.",
+    "8": "This short guide from the Universidad Complutense explains how dyslexia shows up in the classroom: in reading, writing, and oral communication. It includes practical recommendations for teachers and adaptations for exams and assignments.",
+    "9": "This manual from Fundación FIPP explains Obsessive-Compulsive Disorder from the inside: what types of obsessions and compulsions exist, how to track them, and which cognitive-behavioral techniques help manage them, like postponing the ritual or changing how you engage with the obsession.",
+    "10": "This infographic from Asociación Dislexia Burgos collects the signs of dyscalculia grouped by area: early signs, estimation, numbering and counting, mental math, problem solving, everyday life, and visuospatial difficulties. It's based on the checklist from the Universidad de Valladolid.",
+    "11": "This guide on autistic masking explains what masking is, why it happens, everyday examples, and consequences. It includes a checklist to help identify it and strategies to reduce it gradually and safely."
+  }
+}

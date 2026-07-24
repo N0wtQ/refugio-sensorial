@@ -1,0 +1,86 @@
+{
+  "meta": {
+    "title": "I need help now — Crisis techniques for neurodivergent people | Refugio Sensorial",
+    "description": "Immediate regulation techniques for an autistic crisis: 4-7-8 breathing, 5-4-3-2-1 grounding, cold water. Support contacts and emergency resources for autism and ADHD."
+  },
+  "breadcrumbAriaLabel": "Breadcrumb",
+  "breadcrumbHome": "Home",
+  "breadcrumbCurrent": "I need help now",
+  "header": {
+    "heading": "You're in a safe place",
+    "sub": "Here you'll find regulation techniques and support resources. Go at your own pace, there's no rush."
+  },
+  "urgentes": {
+    "heading": "Immediate support",
+    "items": [
+      { "nombre": "Teléfono de la Esperanza (Spain)", "desc": "24h emotional support — crisis, anxiety, hard moments.", "accion": "Call 717 003 717" },
+      { "nombre": "Emergency services (Spain)", "desc": "If you or someone else is in immediate danger.", "accion": "Call 112" }
+    ]
+  },
+  "tecnicas": {
+    "heading": "Regulation techniques",
+    "breathing": {
+      "titulo": "4-7-8 breathing",
+      "tts": "The four-seven-eight breathing technique helps you calm down right now. Breathe in counting to four, hold counting to seven, and release it very slowly counting to eight. When you exhale more than you inhale, you're telling your body it's safe. You can repeat the cycle two or three times.",
+      "phaseInhala": "Inhale",
+      "phaseManten": "Hold",
+      "phaseExhala": "Exhale",
+      "pulsaLine1": "Press to",
+      "pulsaLine2": "start",
+      "cycles_one": "{{count}} cycle completed",
+      "cycles_other": "{{count}} cycles completed",
+      "detener": "Stop",
+      "comenzar": "Start",
+      "startAriaLabel": "Start the 4-7-8 breathing exercise",
+      "stopAriaLabel": "Stop the breathing exercise"
+    },
+    "grounding": {
+      "titulo": "5-4-3-2-1 technique",
+      "tts": "This technique brings you back to the present when your mind is racing. Without rushing, find five things you can see right now. Then four you can touch. Three you can hear. Two you can smell. And one you can taste. You don't have to say them out loud, just notice them. Every sense you engage lowers your nervous system's arousal.",
+      "senseVer": "SEE",
+      "senseTocar": "TOUCH",
+      "senseOir": "HEAR",
+      "senseOler": "SMELL",
+      "senseSaborear": "TASTE",
+      "cosasQuePuedes": "things you can",
+      "ahoraMismo": "right now",
+      "completado": "Done!",
+      "tomateMomento": "Take a moment before continuing.",
+      "siguiente": "Next",
+      "siguienteAriaLabel": "Next: {{n}} things you can {{sense}}",
+      "completarAriaLabel": "Complete exercise",
+      "repetir": "Repeat"
+    },
+    "coldWater": {
+      "titulo": "Cold-based regulation",
+      "tts": "Cold is a very effective tool to calm down in a few seconds. Get cold water or an ice cube. Put your hands under cold water for about thirty seconds, or just hold the ice. Cold activates the parasympathetic nervous system and slows the body's alarm response almost immediately.",
+      "steps": [
+        "Get cold water or an ice cube",
+        "Put your hands under cold water for 30 seconds",
+        "Or hold an ice cube in your hand",
+        "Cold activates the parasympathetic nervous system and slows the alarm response"
+      ],
+      "tip": "Ideal when there's a lot of activation or a feeling of panic."
+    }
+  },
+  "sonidos": {
+    "heading": "Sounds to calm down",
+    "lilPenguin": {
+      "ariaLabel": "Lil Penguin Studios on YouTube — long-form sounds (opens in a new tab)",
+      "titulo": "Lil Penguin Studios",
+      "desc": "Hours-long videos with relaxing sounds: rain, white noise, cafés, fireplaces, and more. Especially recommended during meltdowns and moments of sensory overload.",
+      "abrirEnYoutube": "Open on YouTube"
+    }
+  },
+  "apoyo": {
+    "heading": "More support resources",
+    "visitarWeb": "Visit website",
+    "ariaLabelSuffix": "opens in a new tab",
+    "items": [
+      { "nombre": "Autismo España (Spain)", "desc": "Resources, guidance, and a service network for autistic people and families." },
+      { "nombre": "Federación Autismo Madrid (Spain)", "desc": "Direct support and guidance in the Madrid region." },
+      { "nombre": "ConecTEA — Support network (Spain)", "desc": "Families with neurodivergent members. In-person support groups." },
+      { "nombre": "Proyecto STOP SUICIDIOS (Spain)", "desc": "Information and resources about suicidal behavior." }
+    ]
+  }
+}
