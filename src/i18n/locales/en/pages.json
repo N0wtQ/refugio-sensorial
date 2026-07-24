@@ -1,0 +1,237 @@
+{
+  "home": {
+    "meta": {
+      "title": "Refugio Sensorial — Resources for neurodivergent people in Spain",
+      "description": "Map of quiet spaces, digital tools for autism and ADHD, sensory kit, and crisis support. Resources for neurodivergent people in Spain."
+    },
+    "hero": {
+      "kicker": "Refugio Sensorial",
+      "badge": "Resources for Neurodivergent People",
+      "heading": "Safe spaces and real tools for you",
+      "sub": "Map of places with quiet hours and sensory accessibility in Spain. A library of apps and resources for neurodivergent everyday life.",
+      "ctaMap": "See the map",
+      "ctaTools": "See tools",
+      "stats": {
+        "spaces": "verified spaces",
+        "tools": "digital tools",
+        "categories": "need categories"
+      }
+    },
+    "cards": {
+      "map": {
+        "label": "Map",
+        "description": "Places with quiet hours, sensory rooms, and the Sunflower lanyard scheme, with contributions from the whole community.",
+        "linkText": "Open the map",
+        "badge": "{{count}} spaces"
+      },
+      "tools": {
+        "label": "Tools",
+        "description": "Apps and digital resources classified by category and neurodivergent profile.",
+        "linkText": "See tools",
+        "badge": "{{count}}+ tools"
+      },
+      "lilPenguin": {
+        "label": "Lil Penguin Studios",
+        "description": "Ambient sounds and white noise on YouTube to calm sensory overload.",
+        "linkText": "See the channel"
+      },
+      "entender": {
+        "label": "Understand & prepare",
+        "description": "Meltdown, shutdown, burnout — what they are, how to regulate, and what to pack in your go-bag.",
+        "linkText": "See the guide",
+        "badge": "Guide"
+      }
+    },
+    "about": {
+      "quote": "Hi, I'm <0>Almudena</0>. I'm autistic and I created Refugio Sensorial because when I needed it most, I couldn't find resources like this.",
+      "signature": "Almudena · Creator of Refugio Sensorial"
+    },
+    "contact": {
+      "heading": "Contact us"
+    }
+  },
+  "library": {
+    "meta": {
+      "title": "Digital tools for autism and ADHD — Neurodivergent Library | Refugio Sensorial",
+      "description": "80+ apps, extensions, and digital resources classified by neurodivergent profile: autism, ADHD, dyslexia, OCD, and more. Filter by category and price."
+    },
+    "badge": "Digital library",
+    "heading": "Tools for everyday life",
+    "sub": "Apps, sites, and digital resources classified by category and neurodivergent profile. Every tool has been selected and rated by the community."
+  },
+  "map": {
+    "meta": {
+      "title": "Map of quiet, accessible spaces — Refugio Sensorial",
+      "description": "Find and share quiet, accessible, safe places for autistic people and people with sensory hypersensitivity, in Spain and anywhere in the world."
+    },
+    "badge": "Interactive map",
+    "heading": "Quiet spaces around the world",
+    "sub": "Verified places with quiet hours, sensory accessibility, and hidden-disability lanyard schemes — mostly in Spain today, and growing to more countries thanks to community contributions.",
+    "loading": "Loading the map...",
+    "loadingAriaLabel": "Loading map..."
+  },
+  "entenderPrepararse": {
+    "meta": {
+      "title": "Understand & prepare — Meltdown, regulation, and autistic crisis | Refugio Sensorial",
+      "description": "Learn about autistic meltdown, shutdown, and burnout. Warning signs, regulation techniques, go-bag kit, and downloadable guides for neurodivergent people."
+    },
+    "breadcrumb": "Understand & prepare",
+    "heading": "Understand & prepare",
+    "sub": "Everything you need to know yourself better and go out into the world with more confidence",
+    "sectionsAriaLabel": "Understand & prepare sections",
+    "secciones": {
+      "estados": {
+        "titulo": "Meltdown, shutdown & burnout",
+        "desc": "Understand what they are, why they happen, and how to tell them apart. With signs, coping strategies, and downloadable infographics.",
+        "badge": "Start here"
+      },
+      "senales": {
+        "titulo": "Warning signs",
+        "desc": "Learn to recognize physical, cognitive, emotional, and behavioral signs before reaching your limit."
+      },
+      "tecnicas": {
+        "titulo": "Regulation techniques",
+        "desc": "9 sensory and emotional regulation techniques to use when you need them: cold, breathing, grounding, and more."
+      },
+      "masking": {
+        "titulo": "Masking",
+        "desc": "Understand autistic camouflaging: why it happens, how it affects you, and strategies to reduce it safely."
+      },
+      "kitBolso": {
+        "titulo": "Go-bag kit",
+        "desc": "What to bring when you leave the house? Pick your kit size and find out what to pack to be ready for anything."
+      },
+      "guias": {
+        "titulo": "Guides & resources",
+        "desc": "Verified PDFs, articles, and guides about autism and neurodiversity to read, download, and share."
+      }
+    },
+    "crisis": {
+      "titulo": "Are you struggling right now?",
+      "desc": "Immediate techniques, calming sounds, and support lines available now.",
+      "cta": "Go now"
+    }
+  },
+  "estados": {
+    "meta": {
+      "title": "Autistic meltdown, shutdown & burnout — What they are and how to tell them apart | Refugio Sensorial",
+      "description": "Understand what autistic meltdown, shutdown, and burnout are, why they happen, and how to tell them apart. Signs, coping strategies, and downloadable infographics."
+    },
+    "breadcrumb": "Meltdown, shutdown & burnout",
+    "heading": "Meltdown, shutdown & burnout",
+    "sub": "What they are, why they happen, and how to tell them apart",
+    "continueAriaLabel": "Keep learning",
+    "links": {
+      "senales": { "label": "Warning signs", "desc": "How to spot them before reaching your limit" },
+      "tecnicas": { "label": "Regulation techniques", "desc": "What to do when they happen" },
+      "ayuda": { "label": "I need help now", "desc": "Immediate and crisis resources" }
+    }
+  },
+  "tecnicas": {
+    "meta": {
+      "title": "Sensory & emotional regulation techniques — 9 techniques for meltdowns | Refugio Sensorial",
+      "description": "9 sensory and emotional regulation techniques for an autistic crisis: cold, breathing, grounding, movement, pressure, and more. With audio explanations."
+    },
+    "breadcrumb": "Regulation techniques",
+    "heading": "Regulation techniques",
+    "sub": "9 sensory and emotional regulation techniques",
+    "exploreAriaLabel": "Explore more",
+    "links": {
+      "herramientas": { "label": "Digital tools", "desc": "Apps and resources for everyday life" },
+      "guias": { "label": "Guides & resources", "desc": "PDFs and articles about autism" }
+    }
+  },
+  "kitBolso": {
+    "meta": {
+      "title": "Sensory go-bag kit for autistic people — Refugio Sensorial",
+      "description": "What to bring when you leave the house? Pick your sensory kit size and find out what to pack to be ready for anything."
+    },
+    "breadcrumb": "Go-bag kit",
+    "heading": "Go-bag kit",
+    "sub": "Pick a size and see what to pack",
+    "sizeGroupAriaLabel": "Bag size",
+    "itemsCount_one": "{{count}} item",
+    "itemsCount_other": "{{count}} items",
+    "alsoInterestedAriaLabel": "You might also like",
+    "links": {
+      "senales": { "label": "Warning signs", "desc": "Learn to spot them before reaching your limit" },
+      "tecnicas": { "label": "Regulation techniques", "desc": "9 techniques for when you need them" }
+    }
+  },
+  "accesibilidad": {
+    "meta": {
+      "title": "Accessibility statement — Refugio Sensorial",
+      "description": "Refugio Sensorial's WCAG 2.2 AA conformance statement. Commitments, evaluated criteria, and contact channels to report accessibility issues."
+    },
+    "breadcrumb": "Accessibility",
+    "heading": "Accessibility statement",
+    "updated": "Refugio Sensorial · Updated June 2025",
+    "intro": "Refugio Sensorial is designed by and for neurodivergent people. We are committed to meeting WCAG 2.2 level AA guidelines and continuously improving the experience for all users, regardless of their abilities or assistive technologies.",
+    "scoreLabel": "criteria met",
+    "scoreSummary": "{{pass}} of {{total}} evaluated criteria meet WCAG 2.2 AA.",
+    "scoreAriaLabel": "{{pct}}% of WCAG 2.2 AA criteria met",
+    "commitmentsHeading": "Commitments",
+    "commitments": [
+      "Full keyboard navigation on every page",
+      "\"Skip to main content\" link visible on focus",
+      "Alt text on every non-text element",
+      "prefers-reduced-motion support: no non-essential animations",
+      "Text-to-speech (TTS) available on resources and crisis signals",
+      "ARIA roles and live regions for dynamic announcements",
+      "Visible focus indicators on every interactive element",
+      "Correct HTML semantics with landmarks, headings, and lists",
+      "Forms with labels, error messages, and aria-invalid"
+    ],
+    "criteriaHeading": "Evaluated criteria",
+    "criteriaTableAriaLabel": "Table of evaluated WCAG 2.2 criteria",
+    "criteriaColCriterio": "Criterion",
+    "criteriaColNivel": "Level",
+    "criteriaColEstado": "Status",
+    "status": { "pass": "Meets", "partial": "Partial", "fail": "Doesn't meet", "na": "N/A" },
+    "criteria": {
+      "1.1.1": "Non-text content",
+      "1.3.1": "Info and relationships",
+      "1.3.2": "Meaningful sequence",
+      "1.4.1": "Use of color",
+      "1.4.3": "Contrast (minimum)",
+      "1.4.4": "Resize text",
+      "1.4.10": "Reflow",
+      "1.4.11": "Non-text contrast",
+      "2.1.1": "Keyboard",
+      "2.1.2": "No keyboard trap",
+      "2.3.3": "Animation from interactions",
+      "2.4.1": "Bypass blocks",
+      "2.4.3": "Focus order",
+      "2.4.4": "Link purpose (in context)",
+      "2.4.7": "Focus visible",
+      "2.5.3": "Label in name",
+      "3.1.1": "Language of page",
+      "3.3.1": "Error identification",
+      "3.3.2": "Labels or instructions",
+      "3.3.4": "Error prevention",
+      "4.1.1": "Parsing",
+      "4.1.2": "Name, role, value",
+      "4.1.3": "Status messages"
+    },
+    "limitationsHeading": "Known limitations",
+    "limitations": [
+      "The interactive Leaflet map has limited keyboard support for individual markers. Map data is also available in text form.",
+      "Some color-contrast values on dynamic elements (category badges) may fall below 4.5:1 in edge cases. We're reviewing the palette.",
+      "The 3D visuals (logo and background) are decorative and don't affect content; they only render if the device supports WebGL."
+    ],
+    "contactHeading": "Found an accessibility problem?",
+    "contactText": "If you run into an accessibility barrier or something that doesn't work well with your assistive technology, let us know. Your feedback is essential to improving.",
+    "contactCta": "Contact us"
+  },
+  "notFound": {
+    "meta": {
+      "title": "Page not found — Refugio Sensorial",
+      "description": "This page doesn't exist. Visit Refugio Sensorial to find resources for neurodivergent people in Spain."
+    },
+    "heading": "Page not found",
+    "textLine1": "This page doesn't exist or has been moved.",
+    "textLine2": "Go back home to find the resources.",
+    "cta": "Back to home"
+  },
+  "breadcrumbHome": "Home"
+}

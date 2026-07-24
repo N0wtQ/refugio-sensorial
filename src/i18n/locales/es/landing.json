@@ -1,0 +1,88 @@
+{
+  "seeAll": "Ver todas",
+  "otherProfiles": "Otros perfiles",
+  "toolCount_one": "{{count}} herramienta",
+  "toolCount_other": "{{count}} herramientas",
+  "perfiles": {
+    "autismo": {
+      "label": "Autismo (TEA)",
+      "desc": "Apps, webs y herramientas especialmente útiles para personas autistas: regulación sensorial, comunicación aumentativa, rutinas y vida independiente.",
+      "seoTitle": "Herramientas para personas autistas (TEA) — Refugio Sensorial",
+      "seoDescription": "Apps y herramientas digitales seleccionadas para personas autistas: regulación sensorial, comunicación aumentativa, rutinas y bienestar."
+    },
+    "tdah": {
+      "label": "TDAH",
+      "desc": "Herramientas para gestionar el tiempo, mantener el foco, crear rutinas y reducir la carga cognitiva en el día a día con TDAH.",
+      "seoTitle": "Herramientas para personas con TDAH — Refugio Sensorial",
+      "seoDescription": "Apps y herramientas digitales para personas con TDAH: gestión del tiempo, concentración, rutinas y reducción de la carga cognitiva."
+    },
+    "dislexia": {
+      "label": "Dislexia",
+      "desc": "Herramientas de accesibilidad lectora: texto a voz, bionic reading, correctores y lectores adaptados para personas con dislexia.",
+      "seoTitle": "Herramientas para personas con dislexia — Refugio Sensorial",
+      "seoDescription": "Apps y extensiones para personas con dislexia: texto a voz, bionic reading, correctores especializados y lectores adaptados."
+    },
+    "toc": {
+      "label": "TOC / Ansiedad",
+      "desc": "Herramientas de mindfulness, regulación emocional y organización del entorno para personas con TOC o ansiedad.",
+      "seoTitle": "Herramientas para personas con TOC o ansiedad — Refugio Sensorial",
+      "seoDescription": "Apps y herramientas para TOC y ansiedad: mindfulness, regulación emocional, automatización del hogar y organización."
+    }
+  },
+  "categorias": {
+    "concentracion": {
+      "label": "Concentración y enfoque",
+      "desc": "Temporizadores visuales, bloqueadores de distracciones, técnica Pomodoro y herramientas para mantener el foco con neurodivergencia.",
+      "seoTitle": "Herramientas de concentración y enfoque para neurodivergentes — Refugio Sensorial",
+      "seoDescription": "Apps y herramientas de concentración para TDAH y TEA: Pomodoro, bloqueadores de distracciones, temporizadores visuales."
+    },
+    "regulacion": {
+      "label": "Regulación sensorial",
+      "desc": "Tapones, modo oscuro, paisajes sonoros y herramientas para reducir la sobrecarga sensorial y crear entornos manejables.",
+      "seoTitle": "Herramientas de regulación sensorial — Refugio Sensorial",
+      "seoDescription": "Apps y herramientas de regulación sensorial: cancelación de ruido, modo oscuro, paisajes sonoros y más."
+    },
+    "comunicacion": {
+      "label": "Comunicación",
+      "desc": "Comunicación aumentativa y alternativa (CAA), pictogramas, texto a voz y herramientas para apoyar la comunicación en momentos difíciles.",
+      "seoTitle": "Herramientas de comunicación para autismo (CAA) — Refugio Sensorial",
+      "seoDescription": "Apps de comunicación aumentativa, pictogramas y texto a voz para personas autistas con dificultades de comunicación."
+    },
+    "accesibilidad": {
+      "label": "Accesibilidad cognitiva",
+      "desc": "Lectores adaptados, correctores, bionic reading y herramientas para mejorar la accesibilidad cognitiva en la vida diaria.",
+      "seoTitle": "Herramientas de accesibilidad cognitiva — Refugio Sensorial",
+      "seoDescription": "Herramientas de accesibilidad cognitiva: lectura fácil, texto a voz, correctores y extensiones para dislexia y TDAH."
+    },
+    "aprendizaje": {
+      "label": "Aprendizaje",
+      "desc": "Apps educativas y herramientas de aprendizaje adaptadas para niños y adultos con necesidades neurodivergentes.",
+      "seoTitle": "Herramientas de aprendizaje para neurodivergentes — Refugio Sensorial",
+      "seoDescription": "Apps y herramientas de aprendizaje para TEA y dislexia: lectura, escritura y herramientas educativas adaptadas."
+    },
+    "productividad": {
+      "label": "Productividad",
+      "desc": "Planificadores visuales, recordatorios, gestión de tareas y herramientas para superar las dificultades ejecutivas del TDAH y el autismo.",
+      "seoTitle": "Herramientas de productividad para TDAH y autismo — Refugio Sensorial",
+      "seoDescription": "Apps de productividad adaptadas para TDAH y autismo: planificadores visuales, tareas, recordatorios y gestión del tiempo."
+    },
+    "autonomia": {
+      "label": "Autonomía y vida independiente",
+      "desc": "Herramientas para la vida cotidiana: organización del hogar, rutinas de limpieza, alimentación y hábitos independientes.",
+      "seoTitle": "Herramientas para vida independiente con autismo — Refugio Sensorial",
+      "seoDescription": "Apps para la vida independiente con autismo: hogar, rutinas, alimentación y autonomía en el día a día."
+    },
+    "bienestar": {
+      "label": "Bienestar emocional",
+      "desc": "Diarios emocionales, meditación guiada, seguimiento del estado de ánimo y herramientas de autocuidado para neurodivergentes.",
+      "seoTitle": "Herramientas de bienestar emocional para neurodivergentes — Refugio Sensorial",
+      "seoDescription": "Apps de bienestar emocional para TEA y TDAH: meditación, diario emocional, mindfulness y autocuidado."
+    },
+    "tiendas-fidgets": {
+      "label": "Dónde comprar fidgets sensoriales",
+      "desc": "Tiendas verificadas de todo el mundo para comprar fidgets y productos de regulación sensorial.",
+      "seoTitle": "Dónde comprar fidgets sensoriales — Directorio de tiendas | Refugio Sensorial",
+      "seoDescription": "Directorio verificado de tiendas para comprar fidgets y productos de regulación sensorial: fabricantes, tiendas especializadas, grandes comercios y marketplaces de todo el mundo."
+    }
+  }
+}

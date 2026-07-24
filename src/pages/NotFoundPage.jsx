@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { usePageMeta } from '../hooks/usePageMeta'
 
@@ -50,11 +51,12 @@ const mirror = (dur, delay = 0) => ({
 })
 
 export default function NotFoundPage() {
+  const { t } = useTranslation('pages')
   const reduced = useReducedMotion()
 
   usePageMeta({
-    title: 'Página no encontrada — Refugio Sensorial',
-    description: 'Esta página no existe. Visita Refugio Sensorial para encontrar recursos para personas neurodivergentes en España.',
+    title: t('notFound.meta.title'),
+    description: t('notFound.meta.description'),
     noIndex: true,
   })
 
@@ -214,11 +216,11 @@ export default function NotFoundPage() {
           </motion.div>
 
           <h1 className="text-xl font-bold text-text mb-3 leading-snug">
-            Página no encontrada
+            {t('notFound.heading')}
           </h1>
           <p className="text-sm text-muted leading-relaxed mb-8">
-            Esta página no existe o ha sido movida.<br />
-            Vuelve al inicio para encontrar los recursos.
+            {t('notFound.textLine1')}<br />
+            {t('notFound.textLine2')}
           </p>
 
           <Link
@@ -229,7 +231,7 @@ export default function NotFoundPage() {
                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pri focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
           >
             <i className="fa-solid fa-house text-sm" aria-hidden="true" />
-            Volver al inicio
+            {t('notFound.cta')}
           </Link>
         </div>
       </motion.div>

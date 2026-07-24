@@ -3,6 +3,8 @@
     "name": "Refugio Sensorial",
     "skipToContent": "Saltar al contenido principal"
   },
+  "mainSections": "Secciones principales",
+  "breadcrumbAriaLabel": "Ruta de navegación",
   "actions": {
     "close": "Cerrar",
     "clear": "Borrar",

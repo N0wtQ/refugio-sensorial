@@ -9,6 +9,7 @@
 import { useMemo, useState, useEffect, useRef } from 'react'
 import { useParams, useSearchParams, Link, Navigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 import { usePageMeta } from '../../hooks/usePageMeta'
 import Breadcrumb from '../../components/ui/Breadcrumb'
@@ -209,12 +210,18 @@ function PaisDropdown({ value, options }) {
 
 export default function HerramientasLandingPage() {
   const { slug } = useParams()
+  const { t } = useTranslation(['landing', 'pages', 'nav'])
   const [searchParams, setSearchParams] = useSearchParams()
   const prefersReduced = useReducedMotion()
 
   const perfil   = useMemo(() => PERFILES_CONFIG.find(p => p.slug === slug),    [slug])
   const categoria = useMemo(() => CATEGORIAS_CONFIG.find(c => c.slug === slug), [slug])
   const config    = perfil ?? categoria
+  // Label/desc/SEO text are translated (landing.json, keyed by slug); the
+  // rest of `config` (icon, color, filterKey, cats...) stays untranslated data.
+  const kind = perfil ? 'perfiles' : categoria ? 'categorias' : null
+  const configLabel = kind ? t(`landing:${kind}.${slug}.label`) : ''
+  const configDesc  = kind ? t(`landing:${kind}.${slug}.desc`) : ''
 
   const todasLasTiendas = useMemo(() => {
     if (perfil)    return getToolsByProfile(slug)
@@ -280,17 +287,17 @@ export default function HerramientasLandingPage() {
   }
 
   usePageMeta({
-    title:       config?.seo?.title ?? `Herramientas · ${slug} — Refugio Sensorial`,
-    description: config?.seo?.description ?? config?.desc ?? '',
+    title:       kind ? t(`landing:${kind}.${slug}.seoTitle`) : `Herramientas · ${slug} — Refugio Sensorial`,
+    description: kind ? t(`landing:${kind}.${slug}.seoDescription`) : '',
     section:     'herramientas',
   })
 
   if (!config) return <Navigate to="/herramientas" replace />
 
   const breadcrumbItems = [
-    { href: '/',             label: 'Inicio' },
-    { href: '/herramientas', label: 'Herramientas' },
-    {                        label: config.label },
+    { href: '/',             label: t('pages:breadcrumbHome') },
+    { href: '/herramientas', label: t('nav:links.herramientas.label') },
+    {                        label: configLabel },
   ]
 
   return (
@@ -304,13 +311,13 @@ export default function HerramientasLandingPage() {
             <i className={`fa-solid ${config.icon} ${config.color} text-lg`} aria-hidden="true" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-text leading-tight">{config.label}</h1>
-            <p className="text-sm text-muted mt-1 max-w-2xl leading-relaxed">{config.desc}</p>
+            <h1 className="text-2xl font-bold text-text leading-tight">{configLabel}</h1>
+            <p className="text-sm text-muted mt-1 max-w-2xl leading-relaxed">{configDesc}</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
           <span className="text-xs text-faint">
-            {herramientas.length} herramienta{herramientas.length !== 1 ? 's' : ''}
+            {t('landing:toolCount', { count: herramientas.length })}
           </span>
           <span aria-hidden="true" className="text-border">·</span>
           <Link
@@ -318,14 +325,14 @@ export default function HerramientasLandingPage() {
             className="text-xs text-faint hover:text-text transition-colors duration-150 flex items-center gap-1"
           >
             <i className="fa-solid fa-arrow-left text-[10px]" aria-hidden="true" />
-            Ver todas
+            {t('landing:seeAll')}
           </Link>
         </div>
       </div>
 
       {/* Filter pills — other profiles */}
       {perfil && (
-        <nav aria-label="Otros perfiles" className="flex flex-wrap gap-2 mb-8">
+        <nav aria-label={t('landing:otherProfiles')} className="flex flex-wrap gap-2 mb-8">
           {PERFILES_CONFIG.filter(p => p.slug !== slug).map(p => (
             <Link
               key={p.slug}

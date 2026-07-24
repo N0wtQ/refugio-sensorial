@@ -1,6 +1,7 @@
 import { useEffect, useRef, lazy, Suspense, Component } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useReducedMotion } from '../hooks/useReducedMotion'
@@ -22,11 +23,13 @@ class Logo3DBoundary extends Component {
   }
 }
 
-const STATS = [
-  { value: LUGARES.length,      label: 'espacios verificados', icon: 'fa-location-dot',  color: 'text-pri' },
-  { value: herramientas.length, label: 'herramientas digitales', icon: 'fa-toolbox',     color: 'text-sec' },
-  { value: 10,                  label: 'categorías de necesidad', icon: 'fa-layer-group', color: 'text-acc' },
-]
+function useStats(t) {
+  return [
+    { value: LUGARES.length,      label: t('home.hero.stats.spaces'),     icon: 'fa-location-dot',  color: 'text-pri' },
+    { value: herramientas.length, label: t('home.hero.stats.tools'),      icon: 'fa-toolbox',       color: 'text-sec' },
+    { value: 10,                  label: t('home.hero.stats.categories'), icon: 'fa-layer-group',   color: 'text-acc' },
+  ]
+}
 
 function fadeUp(prefersReduced, delay = 0) {
   return {
@@ -37,6 +40,8 @@ function fadeUp(prefersReduced, delay = 0) {
 }
 
 export default function Hero() {
+  const { t } = useTranslation('pages')
+  const STATS = useStats(t)
   const prefersReduced = useReducedMotion()
   const wrapRef = useRef()
 
@@ -83,13 +88,13 @@ export default function Hero() {
         {...fadeUp(prefersReduced, 0.04)}
         aria-hidden="true"
       >
-        Refugio Sensorial
+        {t('home.hero.kicker')}
       </motion.p>
 
       {/* Badge */}
       <motion.div {...fadeUp(prefersReduced, 0.08)} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pri/10 border border-sky-400/15 text-pri text-xs font-semibold uppercase tracking-widest mb-5">
         <i className="fa-solid fa-infinity text-[10px]" aria-hidden="true" />
-        Recursos para Neurodivergentes
+        {t('home.hero.badge')}
       </motion.div>
 
       {/* Heading */}
@@ -98,13 +103,12 @@ export default function Hero() {
         {...fadeUp(prefersReduced, 0.15)}
         className="text-4xl sm:text-5xl lg:text-[3.2rem] font-bold leading-tight tracking-tight text-text mb-4"
       >
-        Espacios seguros y herramientas<br className="hidden sm:block" /> reales para ti
+        {t('home.hero.heading')}
       </motion.h1>
 
       {/* Sub */}
       <motion.p {...fadeUp(prefersReduced, 0.22)} className="max-w-lg mx-auto text-base sm:text-lg leading-relaxed text-muted mb-8">
-        Mapa de lugares con hora silenciosa y accesibilidad sensorial en España.
-        Biblioteca de apps y recursos para el día a día neurodivergente.
+        {t('home.hero.sub')}
       </motion.p>
 
       {/* CTAs */}
@@ -114,14 +118,14 @@ export default function Hero() {
           className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-pri text-white font-semibold text-sm tracking-wide hover:bg-pri/85 active:scale-95 transition-all duration-200 min-w-[190px] justify-center shadow-lg shadow-pri/20"
         >
           <i className="fa-solid fa-location-dot" aria-hidden="true" />
-          Ver el mapa
+          {t('home.hero.ctaMap')}
         </Link>
         <Link
           to="/biblioteca"
           className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-white/6 border border-white/12 text-text font-semibold text-sm tracking-wide hover:bg-white/10 active:scale-95 transition-all duration-200 min-w-[190px] justify-center"
         >
           <i className="fa-solid fa-toolbox" aria-hidden="true" />
-          Ver herramientas
+          {t('home.hero.ctaTools')}
         </Link>
       </motion.div>
 

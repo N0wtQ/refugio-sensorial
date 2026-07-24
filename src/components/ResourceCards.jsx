@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { herramientas } from '../data/herramientas'
 import { LUGARES } from '../data/lugares'
@@ -9,60 +10,62 @@ import { injectGlowStyles } from '@/components/ui/spotlight-card'
 const mapCount  = LUGARES.length
 const toolCount = herramientas.length
 
-const cards = [
-  {
-    to: '/espacios',
-    icon: 'fa-location-dot',
-    iconBg: 'bg-pri/10 text-pri',
-    label: 'Mapa',
-    description: 'Lugares con hora silenciosa, salas sensoriales y distintivo Sunflower, con aportaciones de toda la comunidad.',
-    linkText: 'Abrir el mapa',
-    linkColor: 'text-pri',
-    badge: `${mapCount} espacios`,
-    badgeColor: 'text-pri bg-pri/8 border-pri/15',
-    glow: 'rgba(58,130,202,0.08)',
-    hueBase: 210, hueSpread: 40,
-  },
-  {
-    to: '/herramientas',
-    icon: 'fa-toolbox',
-    iconBg: 'bg-sec/10 text-sec',
-    label: 'Herramientas',
-    description: 'Apps y recursos digitales clasificados por categoría y perfil neurodivergente.',
-    linkText: 'Ver herramientas',
-    linkColor: 'text-sec',
-    badge: `${toolCount}+ herramientas`,
-    badgeColor: 'text-sec bg-sec/8 border-sec/15',
-    glow: 'rgba(129,106,183,0.08)',
-    hueBase: 260, hueSpread: 50,
-  },
-  {
-    href: 'https://www.youtube.com/@LilPenguinStudios',
-    icon: 'fa-headphones',
-    iconBg: 'bg-coral/10 text-coral',
-    label: 'Lil Penguin Studios',
-    description: 'Sonidos ambientales y ruido blanco en YouTube para calmar la sobrecarga sensorial.',
-    linkText: 'Ver el canal',
-    linkColor: 'text-coral',
-    badge: 'YouTube',
-    badgeColor: 'text-coral bg-coral/8 border-coral/15',
-    glow: 'rgba(240,100,80,0.08)',
-    hueBase: 345, hueSpread: 30,
-  },
-  {
-    to: '/entender-y-prepararse',
-    icon: 'fa-brain',
-    iconBg: 'bg-acc/10 text-acc',
-    label: 'Entender y prepararse',
-    description: 'Meltdown, Shutdown, Burnout — qué son, cómo regularte y qué meter en tu bolso.',
-    linkText: 'Ver la guía',
-    linkColor: 'text-acc',
-    badge: 'Guía',
-    badgeColor: 'text-acc bg-acc/8 border-acc/15',
-    glow: 'rgba(72,176,161,0.08)',
-    hueBase: 172, hueSpread: 40,
-  },
-]
+function useCards(t) {
+  return [
+    {
+      to: '/espacios',
+      icon: 'fa-location-dot',
+      iconBg: 'bg-pri/10 text-pri',
+      label: t('home.cards.map.label'),
+      description: t('home.cards.map.description'),
+      linkText: t('home.cards.map.linkText'),
+      linkColor: 'text-pri',
+      badge: t('home.cards.map.badge', { count: mapCount }),
+      badgeColor: 'text-pri bg-pri/8 border-pri/15',
+      glow: 'rgba(58,130,202,0.08)',
+      hueBase: 210, hueSpread: 40,
+    },
+    {
+      to: '/herramientas',
+      icon: 'fa-toolbox',
+      iconBg: 'bg-sec/10 text-sec',
+      label: t('home.cards.tools.label'),
+      description: t('home.cards.tools.description'),
+      linkText: t('home.cards.tools.linkText'),
+      linkColor: 'text-sec',
+      badge: t('home.cards.tools.badge', { count: toolCount }),
+      badgeColor: 'text-sec bg-sec/8 border-sec/15',
+      glow: 'rgba(129,106,183,0.08)',
+      hueBase: 260, hueSpread: 50,
+    },
+    {
+      href: 'https://www.youtube.com/@LilPenguinStudios',
+      icon: 'fa-headphones',
+      iconBg: 'bg-coral/10 text-coral',
+      label: t('home.cards.lilPenguin.label'),
+      description: t('home.cards.lilPenguin.description'),
+      linkText: t('home.cards.lilPenguin.linkText'),
+      linkColor: 'text-coral',
+      badge: 'YouTube',
+      badgeColor: 'text-coral bg-coral/8 border-coral/15',
+      glow: 'rgba(240,100,80,0.08)',
+      hueBase: 345, hueSpread: 30,
+    },
+    {
+      to: '/entender-y-prepararse',
+      icon: 'fa-brain',
+      iconBg: 'bg-acc/10 text-acc',
+      label: t('home.cards.entender.label'),
+      description: t('home.cards.entender.description'),
+      linkText: t('home.cards.entender.linkText'),
+      linkColor: 'text-acc',
+      badge: t('home.cards.entender.badge'),
+      badgeColor: 'text-acc bg-acc/8 border-acc/15',
+      glow: 'rgba(72,176,161,0.08)',
+      hueBase: 172, hueSpread: 40,
+    },
+  ]
+}
 
 // Each card is its own component so it gets an independent ref and pointer tracker.
 // --x/--y  = viewport coords   → used by ::before/::after (background-attachment: fixed)
@@ -188,11 +191,13 @@ function ResourceCard({ card, index, prefersReduced }) {
 }
 
 export default function ResourceCards() {
+  const { t } = useTranslation(['pages', 'common'])
+  const cards = useCards(t)
   const prefersReduced = useReducedMotion()
 
   return (
     <section aria-labelledby="cards-heading" className="px-4 pb-14">
-      <h2 id="cards-heading" className="sr-only">Secciones principales</h2>
+      <h2 id="cards-heading" className="sr-only">{t('common:mainSections')}</h2>
       <div className="max-w-3xl mx-auto grid sm:grid-cols-2 gap-6">
         {cards.map((card, i) => (
           <ResourceCard key={card.to || card.href} card={card} index={i} prefersReduced={prefersReduced} />

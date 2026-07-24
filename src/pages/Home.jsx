@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { useTranslation, Trans } from 'react-i18next'
 import Hero from '../components/Hero'
 import ResourceCards from '../components/ResourceCards'
 import ContactForm from '../components/ContactForm'
@@ -24,10 +25,11 @@ function FadeSection({ id, children, className = '' }) {
 }
 
 export default function Home() {
+  const { t } = useTranslation('pages')
   const { state } = useLocation()
   usePageMeta({
-    title: 'Refugio Sensorial — Recursos para personas neurodivergentes en España',
-    description: 'Mapa de sitios silenciosos, herramientas digitales para TEA y TDAH, kit sensorial y apoyo en crisis. Recursos para personas neurodivergentes en España.',
+    title: t('home.meta.title'),
+    description: t('home.meta.description'),
   })
 
   useEffect(() => {
@@ -58,15 +60,15 @@ export default function Home() {
                 <blockquote className="text-base leading-relaxed text-muted mb-3 relative">
                   <i className="fa-solid fa-quote-left text-sec/30 text-2xl absolute -top-1 -left-1" aria-hidden="true" />
                   <span className="pl-6">
-                    Hola, soy <strong className="text-text font-semibold">Almudena</strong>.
-                    Soy autista y creé Refugio Sensorial porque cuando más lo necesitaba,
-                    no encontraba recursos como este.
+                    <Trans i18nKey="pages:home.about.quote">
+                      Hola, soy <strong className="text-text font-semibold">Almudena</strong>. Soy autista y creé Refugio Sensorial porque cuando más lo necesitaba, no encontraba recursos como este.
+                    </Trans>
                     <i className="fa-solid fa-quote-right text-sec/30 text-2xl align-middle ml-1" aria-hidden="true" />
                   </span>
                 </blockquote>
                 <div className="flex items-center gap-2 pl-6">
                   <span className="w-6 h-px bg-sec/40" aria-hidden="true" />
-                  <span className="text-xs font-semibold text-sec">Almudena · Creadora de Refugio Sensorial</span>
+                  <span className="text-xs font-semibold text-sec">{t('home.about.signature')}</span>
                 </div>
               </div>
             </div>
@@ -77,7 +79,7 @@ export default function Home() {
       {/* ── Contacto ── */}
       <FadeSection id="contacto">
         <div className="rounded-card bg-surface border border-border p-8 md:p-10">
-          <h2 className="text-2xl font-bold text-text mb-7">Contáctanos</h2>
+          <h2 className="text-2xl font-bold text-text mb-7">{t('home.contact.heading')}</h2>
           <ContactForm />
         </div>
       </FadeSection>

@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useJsonLd } from '../../hooks/useJsonLd'
 
 const SITE_URL = 'https://www.refugio-sensorial.com'
 
 export default function Breadcrumb({ items }) {
+  const { t } = useTranslation('common')
   useJsonLd({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -16,7 +18,7 @@ export default function Breadcrumb({ items }) {
   })
 
   return (
-    <nav aria-label="Ruta de navegación" className="mb-6 text-sm text-faint">
+    <nav aria-label={t('breadcrumbAriaLabel')} className="mb-6 text-sm text-faint">
       <ol className="flex items-center gap-2 list-none p-0 m-0 flex-wrap">
         {items.map((item, idx) => (
           <li key={idx} className="flex items-center gap-2">

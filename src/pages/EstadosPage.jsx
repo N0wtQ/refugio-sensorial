@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { useJsonLd } from '../hooks/useJsonLd'
@@ -8,9 +9,10 @@ import Breadcrumb from '../components/ui/Breadcrumb'
 import { ESTADOS, EstadoCard } from '../components/KitSensorial'
 
 export default function EstadosPage() {
+  const { t } = useTranslation('pages')
   usePageMeta({
-    title: 'Meltdown, shutdown y burnout autista — Qué son y cómo diferenciarlos | Refugio Sensorial',
-    description: 'Entiende qué son el meltdown, el shutdown y el burnout autista, por qué ocurren y cómo diferenciarlos. Señales, estrategias de ayuda e infografías descargables.',
+    title: t('estados.meta.title'),
+    description: t('estados.meta.description'),
   })
   useJsonLd(articleLd({
     titulo: 'Meltdown, shutdown y burnout autista: qué son y cómo diferenciarlos',
@@ -22,9 +24,9 @@ export default function EstadosPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 pb-20 pt-8">
       <Breadcrumb items={[
-        { href: '/', label: 'Inicio' },
-        { href: '/entender-y-prepararse', label: 'Entender y prepararse' },
-        { label: 'Meltdown, shutdown y burnout' },
+        { href: '/', label: t('breadcrumbHome') },
+        { href: '/entender-y-prepararse', label: t('entenderPrepararse.breadcrumb') },
+        { label: t('estados.breadcrumb') },
       ]} />
 
       <motion.div
@@ -38,8 +40,8 @@ export default function EstadosPage() {
             <i className="fa-solid fa-brain" aria-hidden="true" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-text leading-tight">Meltdown, shutdown y burnout</h1>
-            <p className="text-sm text-muted">Qué son, por qué ocurren y cómo diferenciarlos</p>
+            <h1 className="text-2xl font-bold text-text leading-tight">{t('estados.heading')}</h1>
+            <p className="text-sm text-muted">{t('estados.sub')}</p>
           </div>
         </div>
       </motion.div>
@@ -55,7 +57,7 @@ export default function EstadosPage() {
         ))}
       </div>
 
-      <nav aria-label="Continúa aprendiendo" className="grid sm:grid-cols-3 gap-3">
+      <nav aria-label={t('estados.continueAriaLabel')} className="grid sm:grid-cols-3 gap-3">
         {[
           {
             to: '/entender-y-prepararse/senales',
@@ -64,8 +66,8 @@ export default function EstadosPage() {
             bg: 'bg-sec/10',
             border: 'border-sec/25',
             bgCard: 'bg-sec/5',
-            label: 'Señales de aviso',
-            desc: 'Cómo detectarlas antes de llegar al límite',
+            label: t('estados.links.senales.label'),
+            desc: t('estados.links.senales.desc'),
           },
           {
             to: '/entender-y-prepararse/tecnicas',
@@ -74,8 +76,8 @@ export default function EstadosPage() {
             bg: 'bg-acc/10',
             border: 'border-acc/25',
             bgCard: 'bg-acc/5',
-            label: 'Técnicas de regulación',
-            desc: 'Qué hacer cuando ocurren',
+            label: t('estados.links.tecnicas.label'),
+            desc: t('estados.links.tecnicas.desc'),
           },
           {
             to: '/ayuda',
@@ -84,8 +86,8 @@ export default function EstadosPage() {
             bg: 'bg-coral/10',
             border: 'border-coral/25',
             bgCard: 'bg-coral/5',
-            label: 'Necesito ayuda ahora',
-            desc: 'Recursos inmediatos y de crisis',
+            label: t('estados.links.ayuda.label'),
+            desc: t('estados.links.ayuda.desc'),
           },
         ].map(link => (
           <Link

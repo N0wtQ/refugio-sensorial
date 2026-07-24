@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { useJsonLd } from '../hooks/useJsonLd'
@@ -10,9 +11,10 @@ import TTSButton from '../components/ui/TTSButton'
 import { KITS, KitSelectorCard } from '../components/KitSensorial'
 
 export default function KitBolsoPage() {
+  const { t } = useTranslation('pages')
   usePageMeta({
-    title: 'Kit de bolso sensorial para personas autistas — Refugio Sensorial',
-    description: '¿Qué llevar cuando sales? Elige el tamaño de tu kit sensorial y descubre qué meter para estar preparado ante cualquier situación.',
+    title: t('kitBolso.meta.title'),
+    description: t('kitBolso.meta.description'),
   })
   useJsonLd(articleLd({
     titulo: 'Kit de bolso sensorial para personas autistas: qué llevar al salir',
@@ -26,9 +28,9 @@ export default function KitBolsoPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 pb-20 pt-8">
       <Breadcrumb items={[
-        { href: '/', label: 'Inicio' },
-        { href: '/entender-y-prepararse', label: 'Entender y prepararse' },
-        { label: 'Kit de bolso' },
+        { href: '/', label: t('breadcrumbHome') },
+        { href: '/entender-y-prepararse', label: t('entenderPrepararse.breadcrumb') },
+        { label: t('kitBolso.breadcrumb') },
       ]} />
 
       <motion.div
@@ -42,13 +44,13 @@ export default function KitBolsoPage() {
             <i className="fa-solid fa-kit-medical" aria-hidden="true" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-text leading-tight">Kit de bolso</h1>
-            <p className="text-sm text-muted">Elige el tamaño y ve qué meter</p>
+            <h1 className="text-2xl font-bold text-text leading-tight">{t('kitBolso.heading')}</h1>
+            <p className="text-sm text-muted">{t('kitBolso.sub')}</p>
           </div>
         </div>
       </motion.div>
 
-      <div className="flex justify-center gap-6 mb-8" role="group" aria-label="Tamaño del bolso">
+      <div className="flex justify-center gap-6 mb-8" role="group" aria-label={t('kitBolso.sizeGroupAriaLabel')}>
         {KITS.map(kit => (
           <KitSelectorCard
             key={kit.id}
@@ -82,7 +84,7 @@ export default function KitBolsoPage() {
               <div className="flex items-center gap-2">
                 <TTSButton iconOnly text={activeKit.tts} />
                 <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg border ${activeKit.badgeBg}`}>
-                  {activeKit.items.length} objetos
+                  {t('kitBolso.itemsCount', { count: activeKit.items.length })}
                 </span>
               </div>
             </div>
@@ -104,7 +106,7 @@ export default function KitBolsoPage() {
         </motion.div>
       </AnimatePresence>
 
-      <nav aria-label="También puede interesarte" className="grid sm:grid-cols-2 gap-3">
+      <nav aria-label={t('kitBolso.alsoInterestedAriaLabel')} className="grid sm:grid-cols-2 gap-3">
         {[
           {
             to: '/entender-y-prepararse/senales',
@@ -113,8 +115,8 @@ export default function KitBolsoPage() {
             bg: 'bg-sec/10',
             border: 'border-sec/25',
             bgCard: 'bg-sec/5',
-            label: 'Señales de aviso',
-            desc: 'Aprende a detectarlas antes de llegar al límite',
+            label: t('kitBolso.links.senales.label'),
+            desc: t('kitBolso.links.senales.desc'),
           },
           {
             to: '/entender-y-prepararse/tecnicas',
@@ -123,8 +125,8 @@ export default function KitBolsoPage() {
             bg: 'bg-acc/10',
             border: 'border-acc/25',
             bgCard: 'bg-acc/5',
-            label: 'Técnicas de regulación',
-            desc: '9 técnicas para cuando lo necesitas',
+            label: t('kitBolso.links.tecnicas.label'),
+            desc: t('kitBolso.links.tecnicas.desc'),
           },
         ].map(link => (
           <Link

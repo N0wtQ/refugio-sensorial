@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { useJsonLd } from '../hooks/useJsonLd'
@@ -9,9 +10,10 @@ import TTSButton from '../components/ui/TTSButton'
 import { REGULACION } from '../components/KitSensorial'
 
 export default function TecnicasPage() {
+  const { t } = useTranslation('pages')
   usePageMeta({
-    title: 'Técnicas de regulación sensorial y emocional — 9 técnicas para el meltdown | Refugio Sensorial',
-    description: '9 técnicas de regulación sensorial y emocional para aplicar en crisis autista: frío, respiración, grounding, movimiento, presión y más. Con audio explicativo.',
+    title: t('tecnicas.meta.title'),
+    description: t('tecnicas.meta.description'),
   })
   useJsonLd(articleLd({
     titulo: '9 técnicas de regulación sensorial y emocional para crisis autistas',
@@ -23,9 +25,9 @@ export default function TecnicasPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 pb-20 pt-8">
       <Breadcrumb items={[
-        { href: '/', label: 'Inicio' },
-        { href: '/entender-y-prepararse', label: 'Entender y prepararse' },
-        { label: 'Técnicas de regulación' },
+        { href: '/', label: t('breadcrumbHome') },
+        { href: '/entender-y-prepararse', label: t('entenderPrepararse.breadcrumb') },
+        { label: t('tecnicas.breadcrumb') },
       ]} />
 
       <motion.div
@@ -39,8 +41,8 @@ export default function TecnicasPage() {
             <i className="fa-solid fa-heart-pulse" aria-hidden="true" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-text leading-tight">Técnicas de regulación</h1>
-            <p className="text-sm text-muted">9 técnicas de regulación sensorial y emocional</p>
+            <h1 className="text-2xl font-bold text-text leading-tight">{t('tecnicas.heading')}</h1>
+            <p className="text-sm text-muted">{t('tecnicas.sub')}</p>
           </div>
         </div>
       </motion.div>
@@ -69,7 +71,7 @@ export default function TecnicasPage() {
         ))}
       </div>
 
-      <nav aria-label="Explorar más" className="grid sm:grid-cols-2 gap-3">
+      <nav aria-label={t('tecnicas.exploreAriaLabel')} className="grid sm:grid-cols-2 gap-3">
         {[
           {
             to: '/herramientas',
@@ -78,8 +80,8 @@ export default function TecnicasPage() {
             bg: 'bg-sec/10',
             border: 'border-sec/25',
             bgCard: 'bg-sec/5',
-            label: 'Herramientas digitales',
-            desc: 'Apps y recursos para el día a día',
+            label: t('tecnicas.links.herramientas.label'),
+            desc: t('tecnicas.links.herramientas.desc'),
           },
           {
             to: '/entender-y-prepararse/guias',
@@ -88,8 +90,8 @@ export default function TecnicasPage() {
             bg: 'bg-pri/10',
             border: 'border-pri/25',
             bgCard: 'bg-pri/5',
-            label: 'Guías y recursos',
-            desc: 'PDFs y artículos sobre autismo',
+            label: t('tecnicas.links.guias.label'),
+            desc: t('tecnicas.links.guias.desc'),
           },
         ].map(link => (
           <Link

@@ -1,96 +1,101 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { usePageMeta } from '../hooks/usePageMeta'
 import Breadcrumb from '../components/ui/Breadcrumb'
 
-const SECCIONES = [
-  {
-    to: '/entender-y-prepararse/estados',
-    icon: 'fa-brain',
-    color: 'text-coral',
-    bg: 'bg-coral/10',
-    border: 'border-coral/25',
-    bgCard: 'bg-coral/5',
-    glow: 'rgba(229,123,134,0.07)',
-    titulo: 'Meltdown, shutdown y burnout',
-    desc: 'Entiende qué son, por qué ocurren y cómo diferenciarlos. Con señales, estrategias de ayuda e infografías descargables.',
-    badge: 'Empieza aquí',
-  },
-  {
-    to: '/entender-y-prepararse/senales',
-    icon: 'fa-triangle-exclamation',
-    color: 'text-sec',
-    bg: 'bg-sec/10',
-    border: 'border-sec/25',
-    bgCard: 'bg-sec/5',
-    glow: 'rgba(129,106,183,0.07)',
-    titulo: 'Señales de aviso',
-    desc: 'Aprende a reconocer las señales corporales, cognitivas, emocionales y conductuales antes de llegar al límite.',
-    badge: null,
-  },
-  {
-    to: '/entender-y-prepararse/tecnicas',
-    icon: 'fa-heart-pulse',
-    color: 'text-acc',
-    bg: 'bg-acc/10',
-    border: 'border-acc/25',
-    bgCard: 'bg-acc/5',
-    glow: 'rgba(72,176,161,0.07)',
-    titulo: 'Técnicas de regulación',
-    desc: '9 técnicas de regulación sensorial y emocional para aplicar cuando lo necesitas: frío, respiración, grounding y más.',
-    badge: null,
-  },
-  {
-    to: '/entender-y-prepararse/masking',
-    icon: 'fa-masks-theater',
-    color: 'text-pri',
-    bg: 'bg-pri/10',
-    border: 'border-pri/25',
-    bgCard: 'bg-pri/5',
-    glow: 'rgba(58,130,202,0.07)',
-    titulo: 'Masking',
-    desc: 'Entiende el camuflaje autista: por qué ocurre, cómo te afecta y estrategias para reducirlo de forma segura.',
-    badge: null,
-  },
-  {
-    to: '/entender-y-prepararse/kit-de-bolso',
-    icon: 'fa-kit-medical',
-    color: 'text-pri',
-    bg: 'bg-pri/10',
-    border: 'border-pri/25',
-    bgCard: 'bg-pri/5',
-    glow: 'rgba(58,130,202,0.07)',
-    titulo: 'Kit de bolso',
-    desc: '¿Qué llevar cuando sales? Elige el tamaño de tu kit y descubre qué meter para estar preparado ante cualquier situación.',
-    badge: null,
-  },
-  {
-    to: '/entender-y-prepararse/guias',
-    icon: 'fa-folder-open',
-    color: 'text-sec',
-    bg: 'bg-sec/10',
-    border: 'border-sec/25',
-    bgCard: 'bg-sec/5',
-    glow: 'rgba(129,106,183,0.07)',
-    titulo: 'Guías y recursos',
-    desc: 'PDFs, artículos y guías verificadas sobre autismo y neurodiversidad para leer, descargar y compartir.',
-    badge: null,
-  },
-]
+function useSecciones(t) {
+  return [
+    {
+      to: '/entender-y-prepararse/estados',
+      icon: 'fa-brain',
+      color: 'text-coral',
+      bg: 'bg-coral/10',
+      border: 'border-coral/25',
+      bgCard: 'bg-coral/5',
+      glow: 'rgba(229,123,134,0.07)',
+      titulo: t('entenderPrepararse.secciones.estados.titulo'),
+      desc: t('entenderPrepararse.secciones.estados.desc'),
+      badge: t('entenderPrepararse.secciones.estados.badge'),
+    },
+    {
+      to: '/entender-y-prepararse/senales',
+      icon: 'fa-triangle-exclamation',
+      color: 'text-sec',
+      bg: 'bg-sec/10',
+      border: 'border-sec/25',
+      bgCard: 'bg-sec/5',
+      glow: 'rgba(129,106,183,0.07)',
+      titulo: t('entenderPrepararse.secciones.senales.titulo'),
+      desc: t('entenderPrepararse.secciones.senales.desc'),
+      badge: null,
+    },
+    {
+      to: '/entender-y-prepararse/tecnicas',
+      icon: 'fa-heart-pulse',
+      color: 'text-acc',
+      bg: 'bg-acc/10',
+      border: 'border-acc/25',
+      bgCard: 'bg-acc/5',
+      glow: 'rgba(72,176,161,0.07)',
+      titulo: t('entenderPrepararse.secciones.tecnicas.titulo'),
+      desc: t('entenderPrepararse.secciones.tecnicas.desc'),
+      badge: null,
+    },
+    {
+      to: '/entender-y-prepararse/masking',
+      icon: 'fa-masks-theater',
+      color: 'text-pri',
+      bg: 'bg-pri/10',
+      border: 'border-pri/25',
+      bgCard: 'bg-pri/5',
+      glow: 'rgba(58,130,202,0.07)',
+      titulo: t('entenderPrepararse.secciones.masking.titulo'),
+      desc: t('entenderPrepararse.secciones.masking.desc'),
+      badge: null,
+    },
+    {
+      to: '/entender-y-prepararse/kit-de-bolso',
+      icon: 'fa-kit-medical',
+      color: 'text-pri',
+      bg: 'bg-pri/10',
+      border: 'border-pri/25',
+      bgCard: 'bg-pri/5',
+      glow: 'rgba(58,130,202,0.07)',
+      titulo: t('entenderPrepararse.secciones.kitBolso.titulo'),
+      desc: t('entenderPrepararse.secciones.kitBolso.desc'),
+      badge: null,
+    },
+    {
+      to: '/entender-y-prepararse/guias',
+      icon: 'fa-folder-open',
+      color: 'text-sec',
+      bg: 'bg-sec/10',
+      border: 'border-sec/25',
+      bgCard: 'bg-sec/5',
+      glow: 'rgba(129,106,183,0.07)',
+      titulo: t('entenderPrepararse.secciones.guias.titulo'),
+      desc: t('entenderPrepararse.secciones.guias.desc'),
+      badge: null,
+    },
+  ]
+}
 
 export default function EntenderPrepararsePage() {
+  const { t } = useTranslation('pages')
+  const SECCIONES = useSecciones(t)
   usePageMeta({
-    title: 'Entender y prepararse — Meltdown, regulación y crisis autista | Refugio Sensorial',
-    description: 'Aprende sobre meltdown, shutdown y burnout autista. Señales de aviso, técnicas de regulación, kit de bolso y guías descargables para personas neurodivergentes.',
+    title: t('entenderPrepararse.meta.title'),
+    description: t('entenderPrepararse.meta.description'),
   })
   const prefersReduced = useReducedMotion()
 
   return (
     <div className="max-w-3xl mx-auto px-4 pb-20 pt-8">
       <Breadcrumb items={[
-        { href: '/', label: 'Inicio' },
-        { label: 'Entender y prepararse' },
+        { href: '/', label: t('breadcrumbHome') },
+        { label: t('entenderPrepararse.breadcrumb') },
       ]} />
 
       <motion.div
@@ -104,13 +109,13 @@ export default function EntenderPrepararsePage() {
             <i className="fa-solid fa-book-open-reader" aria-hidden="true" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-text leading-tight">Entender y prepararse</h1>
-            <p className="text-sm text-muted">Todo lo que necesitas para conocerte mejor y salir al mundo con más seguridad</p>
+            <h1 className="text-2xl font-bold text-text leading-tight">{t('entenderPrepararse.heading')}</h1>
+            <p className="text-sm text-muted">{t('entenderPrepararse.sub')}</p>
           </div>
         </div>
       </motion.div>
 
-      <nav aria-label="Secciones de Entender y prepararse" className="space-y-3">
+      <nav aria-label={t('entenderPrepararse.sectionsAriaLabel')} className="space-y-3">
         {SECCIONES.map((s, i) => (
           <motion.div
             key={s.to}
@@ -160,14 +165,14 @@ export default function EntenderPrepararsePage() {
           <i className="fa-solid fa-heart-pulse text-base" aria-hidden="true" />
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-semibold text-text mb-0.5">¿Lo estás pasando mal ahora mismo?</p>
-          <p className="text-xs text-muted">Técnicas inmediatas, sonidos calmantes y líneas de apoyo disponibles ahora.</p>
+          <p className="text-sm font-semibold text-text mb-0.5">{t('entenderPrepararse.crisis.titulo')}</p>
+          <p className="text-xs text-muted">{t('entenderPrepararse.crisis.desc')}</p>
         </div>
         <Link
           to="/ayuda"
           className="shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-coral text-white text-xs font-semibold hover:bg-coral/85 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
         >
-          Ir ahora
+          {t('entenderPrepararse.crisis.cta')}
           <i className="fa-solid fa-arrow-right text-[10px]" aria-hidden="true" />
         </Link>
       </motion.div>

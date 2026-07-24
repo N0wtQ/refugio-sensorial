@@ -1,0 +1,88 @@
+{
+  "seeAll": "See all",
+  "otherProfiles": "Other profiles",
+  "toolCount_one": "{{count}} tool",
+  "toolCount_other": "{{count}} tools",
+  "perfiles": {
+    "autismo": {
+      "label": "Autism (ASD)",
+      "desc": "Apps, sites, and tools especially useful for autistic people: sensory regulation, augmentative communication, routines, and independent living.",
+      "seoTitle": "Tools for autistic people (ASD) — Refugio Sensorial",
+      "seoDescription": "Digital apps and tools selected for autistic people: sensory regulation, augmentative communication, routines, and wellbeing."
+    },
+    "tdah": {
+      "label": "ADHD",
+      "desc": "Tools to manage time, stay focused, build routines, and reduce cognitive load in everyday life with ADHD.",
+      "seoTitle": "Tools for people with ADHD — Refugio Sensorial",
+      "seoDescription": "Digital apps and tools for people with ADHD: time management, focus, routines, and reducing cognitive load."
+    },
+    "dislexia": {
+      "label": "Dyslexia",
+      "desc": "Reading-accessibility tools: text-to-speech, bionic reading, spell-checkers, and adapted readers for people with dyslexia.",
+      "seoTitle": "Tools for people with dyslexia — Refugio Sensorial",
+      "seoDescription": "Apps and extensions for people with dyslexia: text-to-speech, bionic reading, specialized spell-checkers, and adapted readers."
+    },
+    "toc": {
+      "label": "OCD / Anxiety",
+      "desc": "Mindfulness, emotional regulation, and environment-organizing tools for people with OCD or anxiety.",
+      "seoTitle": "Tools for people with OCD or anxiety — Refugio Sensorial",
+      "seoDescription": "Apps and tools for OCD and anxiety: mindfulness, emotional regulation, home automation, and organization."
+    }
+  },
+  "categorias": {
+    "concentracion": {
+      "label": "Focus & concentration",
+      "desc": "Visual timers, distraction blockers, the Pomodoro technique, and tools to stay focused as a neurodivergent person.",
+      "seoTitle": "Focus and concentration tools for neurodivergent people — Refugio Sensorial",
+      "seoDescription": "Focus tools for ADHD and autism: Pomodoro, distraction blockers, visual timers."
+    },
+    "regulacion": {
+      "label": "Sensory regulation",
+      "desc": "Earplugs, dark mode, soundscapes, and tools to reduce sensory overload and build manageable environments.",
+      "seoTitle": "Sensory regulation tools — Refugio Sensorial",
+      "seoDescription": "Sensory regulation apps and tools: noise cancellation, dark mode, soundscapes, and more."
+    },
+    "comunicacion": {
+      "label": "Communication",
+      "desc": "Augmentative and alternative communication (AAC), pictograms, text-to-speech, and tools to support communication in hard moments.",
+      "seoTitle": "Communication tools for autism (AAC) — Refugio Sensorial",
+      "seoDescription": "Augmentative communication apps, pictograms, and text-to-speech for autistic people with communication difficulties."
+    },
+    "accesibilidad": {
+      "label": "Cognitive accessibility",
+      "desc": "Adapted readers, spell-checkers, bionic reading, and tools to improve cognitive accessibility in daily life.",
+      "seoTitle": "Cognitive accessibility tools — Refugio Sensorial",
+      "seoDescription": "Cognitive accessibility tools: easy reading, text-to-speech, spell-checkers, and extensions for dyslexia and ADHD."
+    },
+    "aprendizaje": {
+      "label": "Learning",
+      "desc": "Educational apps and learning tools adapted for children and adults with neurodivergent needs.",
+      "seoTitle": "Learning tools for neurodivergent people — Refugio Sensorial",
+      "seoDescription": "Learning apps and tools for autism and dyslexia: reading, writing, and adapted educational tools."
+    },
+    "productividad": {
+      "label": "Productivity",
+      "desc": "Visual planners, reminders, task management, and tools to work around ADHD and autism executive-function difficulties.",
+      "seoTitle": "Productivity tools for ADHD and autism — Refugio Sensorial",
+      "seoDescription": "Productivity apps adapted for ADHD and autism: visual planners, tasks, reminders, and time management."
+    },
+    "autonomia": {
+      "label": "Independent living",
+      "desc": "Everyday tools: home organization, cleaning routines, food, and independent-living habits.",
+      "seoTitle": "Independent-living tools for autism — Refugio Sensorial",
+      "seoDescription": "Apps for independent living with autism: home, routines, food, and everyday autonomy."
+    },
+    "bienestar": {
+      "label": "Emotional wellbeing",
+      "desc": "Mood journals, guided meditation, mood tracking, and self-care tools for neurodivergent people.",
+      "seoTitle": "Emotional wellbeing tools for neurodivergent people — Refugio Sensorial",
+      "seoDescription": "Emotional wellbeing apps for autism and ADHD: meditation, mood journal, mindfulness, and self-care."
+    },
+    "tiendas-fidgets": {
+      "label": "Where to buy sensory fidgets",
+      "desc": "Verified stores from around the world to buy fidgets and sensory regulation products.",
+      "seoTitle": "Where to buy sensory fidgets — Store directory | Refugio Sensorial",
+      "seoDescription": "Verified directory of stores to buy fidgets and sensory regulation products: manufacturers, specialty stores, major retailers, and marketplaces from around the world."
+    }
+  }
+}
