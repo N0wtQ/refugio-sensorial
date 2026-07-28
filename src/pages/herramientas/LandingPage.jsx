@@ -253,7 +253,7 @@ export default function HerramientasLandingPage() {
   // Filtro por país — igual de restringido: solo se etiquetan tiendas cuyo
   // país aparece ya documentado (fabricante estadounidense, tienda española...);
   // las que no tienen país confirmado (Lautie, ONO Roller, Kaiko,
-  // ADHS Store, Fidget Toys Plus...) se quedan sin país y solo
+  // ADHS Store, Cuboss, Fidget Toys Plus...) se quedan sin país y solo
   // aparecen con el filtro "Todos los países".
   const paisesDisponibles = useMemo(() => {
     if (slug !== 'tiendas-fidgets') return []
