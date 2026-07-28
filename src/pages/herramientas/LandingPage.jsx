@@ -95,9 +95,12 @@ function ToolCard({ h, index, categoryIcon }) {
 
       <div className="flex items-center justify-between gap-2 flex-wrap">
         <div className="flex items-center gap-1.5 flex-wrap">
-          <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded border ${PRECIO_BADGE[h.precio] ?? 'text-faint bg-surface border-border'}`}>
-            {h.precio}
-          </span>
+          {/* Las tiendas de fidgets siempre son "Pago" — el badge no aporta info, se omite */}
+          {h.categoria !== 'Dónde comprar fidgets sensoriales' && (
+            <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded border ${PRECIO_BADGE[h.precio] ?? 'text-faint bg-surface border-border'}`}>
+              {h.precio}
+            </span>
+          )}
           {h.tipo && (
             <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded border ${TIPO_BADGE[h.tipo] ?? 'text-faint bg-surface border-border'}`}>
               {h.tipo}
@@ -249,8 +252,8 @@ export default function HerramientasLandingPage() {
 
   // Filtro por país — igual de restringido: solo se etiquetan tiendas cuyo
   // país aparece ya documentado (fabricante estadounidense, tienda española...);
-  // las que no se han podido verificar en vivo (Lautie, ONO Roller, Kaiko,
-  // ADHS Store, Cuboss, Fidget Toys Plus...) se quedan sin país y solo
+  // las que no tienen país confirmado (Lautie, ONO Roller, Kaiko,
+  // ADHS Store, Fidget Toys Plus...) se quedan sin país y solo
   // aparecen con el filtro "Todos los países".
   const paisesDisponibles = useMemo(() => {
     if (slug !== 'tiendas-fidgets') return []
