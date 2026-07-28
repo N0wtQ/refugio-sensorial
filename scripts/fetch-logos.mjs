@@ -7,7 +7,7 @@
 
 import { mkdir, writeFile } from 'node:fs/promises'
 import { herramientas } from '../src/data/herramientas.js'
-import { slugify } from '../src/lib/logos.js'
+import { slugify, MANUAL_LOGOS } from '../src/lib/logos.js'
 
 const OUT_DIR = new URL('../public/logos/', import.meta.url)
 const FAVICON = (domain) => `https://www.google.com/s2/favicons?domain=${domain}&sz=64`
@@ -15,7 +15,7 @@ const TIMEOUT_MS = 10_000
 const CONCURRENCY = 8
 
 // Store pages whose favicon would be the store's logo, not the tool's.
-const STORE_HOSTS = ['play.google.com', 'apps.apple.com', 'chromewebstore.google.com']
+const STORE_HOSTS = ['play.google.com', 'apps.apple.com', 'chromewebstore.google.com', 'instagram.com']
 
 // Official domains for tools whose enlace points to an app store.
 // Tools linked to a store WITHOUT an override here are skipped (icon fallback).
@@ -48,6 +48,7 @@ function domainFor(tool) {
 }
 
 async function fetchLogo(tool) {
+  if (MANUAL_LOGOS[tool.nombre]) return { tool: tool.nombre, status: 'skipped (manual logo)' }
   const domain = domainFor(tool)
   if (!domain) return { tool: tool.nombre, status: 'skipped (store link, no override)' }
   try {
