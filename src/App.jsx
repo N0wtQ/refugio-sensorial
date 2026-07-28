@@ -186,8 +186,8 @@ function Footer() {
   return (
     <footer className="border-t border-border">
       <div className="max-w-5xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-faint">
-        <p>{t('footer.tagline')}</p>
-        <div className="flex items-center gap-4">
+        <p className="text-center sm:text-left">{t('footer.tagline')}</p>
+        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 sm:gap-4">
           <span>{t('footer.creator')}</span>
           <span aria-hidden="true">·</span>
           <a
