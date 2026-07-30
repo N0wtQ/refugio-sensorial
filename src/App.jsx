@@ -28,14 +28,36 @@ import KitBolsoPage from './pages/KitBolsoPage'
 import MaskingPage from './pages/MaskingPage'
 import { useReducedMotion } from './hooks/useReducedMotion'
 
+// Vite's hashed chunk filenames change on every deploy — a tab left open
+// across a deploy will 404 when it later tries to lazy-load a chunk (map,
+// search, a landing page…) that no longer exists at that URL. That's not a
+// real crash, just a stale page, so reload once automatically instead of
+// showing the scary "something went wrong" fallback. The sessionStorage
+// guard stops a reload loop if the failure is a genuine, persistent bug.
+function isStaleChunkError(error) {
+  return /dynamically imported module|error loading dynamically imported module|Importing a module script failed/i
+    .test(error?.message ?? '')
+}
+
 // Global error boundary — catches any React crash and shows a calm fallback.
 // Class component, so translations come in via the withTranslation() HOC
 // rather than the useTranslation() hook.
 class AppErrorBoundaryBase extends Component {
   constructor(props) { super(props); this.state = { error: null } }
   static getDerivedStateFromError(error) { return { error } }
+  componentDidCatch(error) {
+    if (!isStaleChunkError(error)) return
+    const key = 'refugio-sensorial-stale-chunk-reload'
+    if (sessionStorage.getItem(key)) return // already tried once this session — avoid a reload loop
+    sessionStorage.setItem(key, '1')
+    window.location.reload()
+  }
   render() {
     if (this.state.error) {
+      // On the first hit this renders for a moment before componentDidCatch's
+      // reload kicks in — harmless. If the reload already happened and the
+      // error recurred, this is the real, persistent fallback: keep showing
+      // it (with the manual reload button) rather than going blank.
       const { t } = this.props
       return (
         <div className="min-h-dvh flex items-center justify-center p-8 text-center">
