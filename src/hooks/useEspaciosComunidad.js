@@ -44,13 +44,24 @@ export function useEspaciosComunidad() {
     // formulario NO depende de esto: llama a refetch() directamente (ver
     // más abajo), así que añadir/editar/borrar tu propio espacio siempre
     // se refleja al instante, esté o no activado el Realtime.
-    const channel = supabase
-      .channel('espacios_comunidad_changes')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'espacios_comunidad' }, fetchEspacios)
-      .subscribe()
+    //
+    // El canal abre un WebSocket — si el navegador lo bloquea (CSP, extensión,
+    // red restrictiva...) puede lanzar de forma síncrona en vez de fallar en
+    // silencio. Esto es solo una mejora en directo, así que cualquier fallo
+    // aquí no debe tirar abajo el mapa entero: se captura y se sigue sin
+    // Realtime, con los datos ya cargados por fetchEspacios().
+    let channel = null
+    try {
+      channel = supabase
+        .channel('espacios_comunidad_changes')
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'espacios_comunidad' }, fetchEspacios)
+        .subscribe()
+    } catch {
+      // Realtime no disponible — la lista sigue funcionando sin actualizaciones en vivo.
+    }
 
     return () => {
-      supabase.removeChannel(channel)
+      if (channel) supabase.removeChannel(channel)
     }
   }, [])
 
