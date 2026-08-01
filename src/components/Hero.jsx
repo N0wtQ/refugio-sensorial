@@ -112,7 +112,7 @@ export default function Hero() {
       </motion.p>
 
       {/* CTAs */}
-      <motion.div {...fadeUp(prefersReduced, 0.28)} className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
+      <motion.div {...fadeUp(prefersReduced, 0.28)} className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 mb-12">
         <Link
           to="/mapa"
           className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-pri text-white font-semibold text-sm tracking-wide hover:bg-pri/85 active:scale-95 transition-all duration-200 min-w-[190px] justify-center shadow-lg shadow-pri/20"
@@ -126,6 +126,13 @@ export default function Hero() {
         >
           <i className="fa-solid fa-toolbox" aria-hidden="true" />
           {t('home.hero.ctaTools')}
+        </Link>
+        <Link
+          to="/herramientas/categoria/tiendas-fidgets"
+          className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-white/6 border border-white/12 text-text font-semibold text-sm tracking-wide hover:bg-white/10 active:scale-95 transition-all duration-200 min-w-[190px] justify-center"
+        >
+          <i className="fa-solid fa-cart-shopping" aria-hidden="true" />
+          {t('home.hero.ctaFidgets')}
         </Link>
       </motion.div>
 
