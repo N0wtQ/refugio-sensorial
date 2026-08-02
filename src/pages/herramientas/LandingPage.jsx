@@ -350,9 +350,11 @@ export default function HerramientasLandingPage() {
         </nav>
       )}
 
-      {/* Filtros — plegados por defecto para no saturar la vista */}
+      {/* Filtros — plegados por defecto para no saturar la vista. La barra
+          queda fija bajo la cabecera al hacer scroll, para no tener que
+          volver arriba para cambiarlos en una lista larga. */}
       {(paisesDisponibles.length > 0 || productosDisponibles.length > 0) && (
-        <div className="mb-8">
+        <div className="sticky top-[72px] z-30 -mx-4 px-4 bg-bg/95 backdrop-blur-sm mb-8 pb-3">
           <button
             type="button"
             onClick={() => setFiltrosAbiertos(o => !o)}
@@ -378,53 +380,43 @@ export default function HerramientasLandingPage() {
                 transition={{ duration: 0.2, ease: 'easeInOut' }}
                 className="overflow-hidden"
               >
-                <div className="flex flex-col gap-4 mt-4">
+                {/* País y tipo de producto en la misma fila */}
+                <div className="flex flex-wrap items-center gap-2 mt-4" role="group" aria-label="Filtrar por país y tipo de producto">
                   {paisesDisponibles.length > 0 && (
-                    <div>
-                      <p className="text-xs font-semibold text-faint uppercase tracking-wider mb-2">
-                        País
-                      </p>
-                      <PaisDropdown value={paisFilter} options={paisesDisponibles} />
-                    </div>
+                    <PaisDropdown value={paisFilter} options={paisesDisponibles} />
                   )}
-
                   {productosDisponibles.length > 0 && (
-                    <div>
-                      <p className="text-xs font-semibold text-faint uppercase tracking-wider mb-2">
-                        Tipo de producto
-                      </p>
-                      <div className="flex flex-wrap gap-2" role="group" aria-label="Filtrar por tipo de producto">
+                    <>
+                      <button
+                        onClick={() => {
+                          const next = new URLSearchParams(searchParams)
+                          next.delete('producto')
+                          setSearchParams(next, { replace: true })
+                        }}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors duration-200 ${
+                          productoFilter === 'todos'
+                            ? 'bg-sec/15 text-sec border-sec/30'
+                            : 'bg-surface text-muted border-border hover:text-text hover:border-border/80'
+                        }`}
+                        aria-pressed={productoFilter === 'todos'}
+                      >
+                        Todos ({todasLasTiendas.length})
+                      </button>
+                      {productosDisponibles.map(([producto, count]) => (
                         <button
-                          onClick={() => {
-                            const next = new URLSearchParams(searchParams)
-                            next.delete('producto')
-                            setSearchParams(next, { replace: true })
-                          }}
+                          key={producto}
+                          onClick={() => handleProductoClick(producto)}
                           className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors duration-200 ${
-                            productoFilter === 'todos'
-                              ? 'bg-sec/15 text-sec border-sec/30'
+                            productoFilter === producto
+                              ? 'bg-sec/15 text-sec border-sec/30 ring-1 ring-sec/40 ring-inset'
                               : 'bg-surface text-muted border-border hover:text-text hover:border-border/80'
                           }`}
-                          aria-pressed={productoFilter === 'todos'}
+                          aria-pressed={productoFilter === producto}
                         >
-                          Todos ({todasLasTiendas.length})
+                          {producto} ({count})
                         </button>
-                        {productosDisponibles.map(([producto, count]) => (
-                          <button
-                            key={producto}
-                            onClick={() => handleProductoClick(producto)}
-                            className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors duration-200 ${
-                              productoFilter === producto
-                                ? 'bg-sec/15 text-sec border-sec/30 ring-1 ring-sec/40 ring-inset'
-                                : 'bg-surface text-muted border-border hover:text-text hover:border-border/80'
-                            }`}
-                            aria-pressed={productoFilter === producto}
-                          >
-                            {producto} ({count})
-                          </button>
-                        ))}
-                      </div>
-                    </div>
+                      ))}
+                    </>
                   )}
                 </div>
               </motion.div>
