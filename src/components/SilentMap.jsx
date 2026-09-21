@@ -57,6 +57,15 @@ function getColor(tipo) {
 // recentra según la ubicación del visitante.
 const DEFAULT_VIEW = { lat: 20, lng: -20, zoom: 2 }
 
+// Desde agosto de 2026 CARTO exige API key incluso en su nivel gratuito —
+// sin ella, las teselas llevan el aviso "API KEY REQUIRED" en vez del mapa.
+// Clave gratis e instantánea (sin cuenta) en https://carto.com/basemaps/apikey
+// — ver .env.example / docs/espacios-supabase-setup.md.
+const CARTO_API_KEY = import.meta.env.VITE_CARTO_API_KEY
+const CARTO_TILE_URL = CARTO_API_KEY
+  ? `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=${CARTO_API_KEY}`
+  : 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+
 // Stats by type
 const STATS = TIPOS.reduce((acc, t) => {
   acc[t] = LUGARES.filter(l => l.tipo === t).length
@@ -244,7 +253,7 @@ export default function SilentMap() {
           aria-label={t('mapAriaLabel')}
         >
           <TileLayer
-            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+            url={CARTO_TILE_URL}
             attribution='&copy; <a href="https://carto.com/">CARTO</a>'
             maxZoom={18}
           />
