@@ -47,6 +47,22 @@
       "quote": "Hi, I'm <1>Almudena</1>. I'm autistic and I created Refugio Sensorial because when I needed it most, I couldn't find resources like this.",
       "signature": "Almudena · Creator of Refugio Sensorial"
     },
+    "community": {
+      "heading": "Join the ChaTEA community",
+      "sub": "Talk with other neurodivergent people, ask questions, and share what helps you.",
+      "discord": {
+        "label": "ChaTEA Comunidad",
+        "sublabel": "Discord",
+        "description": "A space to chat, ask questions, and share with other neurodivergent people.",
+        "cta": "Join on Discord"
+      },
+      "whatsapp": {
+        "label": "ChaTEA Experience",
+        "sublabel": "WhatsApp channel",
+        "description": "Broadcast channel with community news and content.",
+        "cta": "Join on WhatsApp"
+      }
+    },
     "contact": {
       "heading": "Contact us"
     }

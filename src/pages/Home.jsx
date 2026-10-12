@@ -76,6 +76,54 @@ export default function Home() {
         </div>
       </FadeSection>
 
+      {/* ── Comunidad ── */}
+      <FadeSection id="comunidad" className="mb-10">
+        <div className="rounded-card bg-surface border border-border p-8">
+          <h2 className="text-xl font-bold text-text mb-1">{t('home.community.heading')}</h2>
+          <p className="text-sm text-muted mb-6">{t('home.community.sub')}</p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <a
+              href="https://discord.gg/Pvfj7KbYDQ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-start gap-4 p-5 rounded-card bg-bg border border-border hover:border-pri/40 hover:-translate-y-0.5 hover:shadow-md hover:shadow-black/20 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pri focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+            >
+              <div className="shrink-0 w-11 h-11 rounded-xl bg-pri/10 border border-pri/20 flex items-center justify-center text-pri">
+                <i className="fa-brands fa-discord text-lg" aria-hidden="true" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-text leading-snug">{t('home.community.discord.label')}</p>
+                <p className="text-xs text-pri font-medium mb-1.5">{t('home.community.discord.sublabel')}</p>
+                <p className="text-xs text-muted leading-relaxed mb-2.5">{t('home.community.discord.description')}</p>
+                <span className="text-xs font-semibold text-pri inline-flex items-center gap-1">
+                  {t('home.community.discord.cta')}
+                  <i className="fa-solid fa-arrow-up-right-from-square text-[9px]" aria-hidden="true" />
+                </span>
+              </div>
+            </a>
+            <a
+              href="https://whatsapp.com/channel/0029VbDSjim5kg731GTMsw2s"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-start gap-4 p-5 rounded-card bg-bg border border-border hover:border-acc/40 hover:-translate-y-0.5 hover:shadow-md hover:shadow-black/20 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pri focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+            >
+              <div className="shrink-0 w-11 h-11 rounded-xl bg-acc/10 border border-acc/20 flex items-center justify-center text-acc">
+                <i className="fa-brands fa-whatsapp text-lg" aria-hidden="true" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-text leading-snug">{t('home.community.whatsapp.label')}</p>
+                <p className="text-xs text-acc font-medium mb-1.5">{t('home.community.whatsapp.sublabel')}</p>
+                <p className="text-xs text-muted leading-relaxed mb-2.5">{t('home.community.whatsapp.description')}</p>
+                <span className="text-xs font-semibold text-acc inline-flex items-center gap-1">
+                  {t('home.community.whatsapp.cta')}
+                  <i className="fa-solid fa-arrow-up-right-from-square text-[9px]" aria-hidden="true" />
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </FadeSection>
+
       {/* ── Contacto ── */}
       <FadeSection id="contacto">
         <div className="rounded-card bg-surface border border-border p-8 md:p-10">
