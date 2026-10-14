@@ -83,7 +83,7 @@ export default function Home() {
           <p className="text-sm text-muted mb-6">{t('home.community.sub')}</p>
           <div className="grid sm:grid-cols-2 gap-4">
             <a
-              href="https://discord.gg/RRJENnCc3y"
+              href="https://discord.gg/X9YfeBM7sh"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-start gap-4 p-5 rounded-card bg-bg border border-border hover:border-pri/40 hover:-translate-y-0.5 hover:shadow-md hover:shadow-black/20 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pri focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
