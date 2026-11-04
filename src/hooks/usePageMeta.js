@@ -51,7 +51,8 @@ export function usePageMeta({
     metaDesc?.setAttribute('content', safeDesc)
 
     // ── canonical ──────────────────────────────────────────────────────────
-    const rawCanonical = canonical ?? `${BASE_URL}${window.location.pathname}`
+    // Pages 301s /ruta to /ruta/, so the slash form is the one that must be canonical
+    const rawCanonical = canonical ?? `${BASE_URL}${window.location.pathname.replace(/\/?$/, '/')}`
     const canonicalUrl = sanitizeUrl(rawCanonical) || `${BASE_URL}/`
 
     let canonicalEl = document.querySelector('link[rel="canonical"]')

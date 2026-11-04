@@ -54,6 +54,9 @@ export default function Home() {
               <img
                 src={`${import.meta.env.BASE_URL}almudena.jpeg`}
                 alt="Almudena, creadora de Refugio Sensorial"
+                width="224"
+                height="224"
+                loading="lazy"
                 className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover border-2 border-sec/30 shrink-0"
               />
               <div>

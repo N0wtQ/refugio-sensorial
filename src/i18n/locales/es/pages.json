@@ -243,6 +243,11 @@
   "entenderEstado": {
     "metaTitle": "{{titulo}} — {{subtitulo}} | Refugio Sensorial",
     "metaTitleFallback": "Estado · {{slug}} — Refugio Sensorial",
+    "seo": {
+      "meltdown": { "title": "Meltdown autista: qué es, señales y qué ayuda | Refugio Sensorial", "description": "Qué es un meltdown autista, cómo reconocer las señales de alerta, qué ayuda, qué evitar y cuánto puede durar la recuperación." },
+      "shutdown": { "title": "Shutdown autista: qué es, señales y qué ayuda | Refugio Sensorial", "description": "Qué es un shutdown autista, sus señales de alerta, qué ayuda, qué conviene evitar y cuánto puede durar la recuperación." },
+      "burnout-autista": { "title": "Burnout autista: qué es, señales y recuperación | Refugio Sensorial", "description": "Qué es el burnout autista, sus señales de alerta, qué ayuda, qué conviene evitar y cuánto puede durar la recuperación." }
+    },
     "sections": {
       "senales": "Señales de alerta",
       "queAyuda": "Qué ayuda",

@@ -243,6 +243,11 @@
   "entenderEstado": {
     "metaTitle": "{{titulo}} — {{subtitulo}} | Refugio Sensorial",
     "metaTitleFallback": "State · {{slug}} — Refugio Sensorial",
+    "seo": {
+      "meltdown": { "title": "Autistic meltdown: what it is, signs and what helps | Refugio Sensorial", "description": "What an autistic meltdown is, how to recognise the warning signs, what helps, what to avoid and how long recovery can take." },
+      "shutdown": { "title": "Autistic shutdown: what it is, signs and what helps | Refugio Sensorial", "description": "What an autistic shutdown is, its warning signs, what helps, what to avoid and how long recovery can take." },
+      "burnout-autista": { "title": "Autistic burnout: what it is, signs and recovery | Refugio Sensorial", "description": "What autistic burnout is, its warning signs, what helps, what to avoid and how long recovery can take." }
+    },
     "sections": {
       "senales": "Warning signs",
       "queAyuda": "What helps",

@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation, Link } from 'react-router-dom'
 import { useEffect, useState, Component, lazy, Suspense } from 'react'
-import { motion } from 'framer-motion'
+import { motion, PresenceContext } from 'framer-motion'
 import { useTranslation, withTranslation } from 'react-i18next'
 import Navbar from './components/Navbar'
 import StorageToast from './components/ui/StorageToast'
@@ -9,9 +9,6 @@ const CanvasBg = lazy(() =>
   import('./components/CanvasBg').catch(() => ({ default: () => null }))
 )
 const GlobalSearch = lazy(() => import('./components/search/GlobalSearch'))
-const HerramientasLandingPage = lazy(() => import('./pages/herramientas/LandingPage'))
-const CiudadPage = lazy(() => import('./pages/espacios/CiudadPage'))
-const EntenderEstadoPage = lazy(() => import('./pages/EntenderEstadoPage'))
 
 import Home from './pages/Home'
 import MapPage from './pages/MapPage'
@@ -26,6 +23,10 @@ import EstadosPage from './pages/EstadosPage'
 import TecnicasPage from './pages/TecnicasPage'
 import KitBolsoPage from './pages/KitBolsoPage'
 import MaskingPage from './pages/MaskingPage'
+// Static, not lazy: a Suspense fallback would blank the prerendered HTML while the chunk loads.
+import EntenderEstadoPage from './pages/EntenderEstadoPage'
+import HerramientasLandingPage from './pages/herramientas/LandingPage'
+import CiudadPage from './pages/espacios/CiudadPage'
 import { useReducedMotion } from './hooks/useReducedMotion'
 
 // Vite's hashed chunk filenames change on every deploy — a tab left open
@@ -88,6 +89,29 @@ class CanvasSilentBoundary extends Component {
   }
 }
 
+// Prerendered pages are already on screen when React starts. Entrance animations
+// would blank them from opacity 0, the flash this audience comes here to avoid.
+// initial: false makes every motion component mount in its final state. The object
+// must stay the same: framer-motion runs different hooks for a null context.
+const PRERENDERED_PRESENCE = document.getElementById('root')?.hasChildNodes()
+  ? { initial: false, isPresent: true, register: () => () => {}, onExitComplete: () => {} }
+  : null
+
+// The WebGL background pulls in three.js: wait until the page has settled
+function useIdleReady() {
+  const [ready, setReady] = useState(false)
+  useEffect(() => {
+    const start = () => {
+      if (window.requestIdleCallback) window.requestIdleCallback(() => setReady(true), { timeout: 4000 })
+      else setTimeout(() => setReady(true), 1500)
+    }
+    if (document.readyState === 'complete') start()
+    else window.addEventListener('load', start, { once: true })
+    return () => window.removeEventListener('load', start)
+  }, [])
+  return ready
+}
+
 // Fade-in wrapper — instant when prefers-reduced-motion
 function PageTransition({ children }) {
   const prefersReduced = useReducedMotion()
@@ -127,7 +151,7 @@ function AppRoutes({ onOpenSearch }) {
         {/* Entender y prepararse hub + sub-pages */}
         <Route path="/entender-y-prepararse"              element={<PageTransition><EntenderPrepararsePage /></PageTransition>} />
         <Route path="/entender-y-prepararse/estados"      element={<PageTransition><EstadosPage /></PageTransition>} />
-        <Route path="/entender-y-prepararse/estados/:slug" element={<PageTransition><Suspense fallback={null}><EntenderEstadoPage /></Suspense></PageTransition>} />
+        <Route path="/entender-y-prepararse/estados/:slug" element={<PageTransition><EntenderEstadoPage /></PageTransition>} />
         <Route path="/entender-y-prepararse/senales"      element={<PageTransition><SenalesPage /></PageTransition>} />
         <Route path="/entender-y-prepararse/tecnicas"     element={<PageTransition><TecnicasPage /></PageTransition>} />
         <Route path="/entender-y-prepararse/kit-de-bolso" element={<PageTransition><KitBolsoPage /></PageTransition>} />
@@ -135,11 +159,11 @@ function AppRoutes({ onOpenSearch }) {
         <Route path="/entender-y-prepararse/guias"        element={<PageTransition><RecursosPage /></PageTransition>} />
 
         {/* Dynamic herramientas landings */}
-        <Route path="/herramientas/:slug"           element={<PageTransition><Suspense fallback={null}><HerramientasLandingPage /></Suspense></PageTransition>} />
-        <Route path="/herramientas/categoria/:slug" element={<PageTransition><Suspense fallback={null}><HerramientasLandingPage /></Suspense></PageTransition>} />
+        <Route path="/herramientas/:slug"           element={<PageTransition><HerramientasLandingPage /></PageTransition>} />
+        <Route path="/herramientas/categoria/:slug" element={<PageTransition><HerramientasLandingPage /></PageTransition>} />
 
         {/* Dynamic ciudad page */}
-        <Route path="/espacios/:ciudad" element={<PageTransition><Suspense fallback={null}><CiudadPage /></Suspense></PageTransition>} />
+        <Route path="/espacios/:ciudad" element={<PageTransition><CiudadPage /></PageTransition>} />
 
         {/* Redirects from old URLs */}
         <Route path="/mapa"         element={<Navigate to="/espacios" replace />} />
@@ -157,6 +181,12 @@ function AppRoutes({ onOpenSearch }) {
 export default function App() {
   const { t } = useTranslation('common')
   const [searchOpen, setSearchOpen] = useState(false)
+  const bgReady = useIdleReady()
+
+  // Later navigations animate as usual
+  useEffect(() => {
+    if (PRERENDERED_PRESENCE) PRERENDERED_PRESENCE.initial = undefined
+  }, [])
 
   // Global Ctrl/Cmd+K to open search
   useEffect(() => {
@@ -171,10 +201,11 @@ export default function App() {
   }, [])
 
   return (
+    <PresenceContext.Provider value={PRERENDERED_PRESENCE}>
     <BrowserRouter basename="/">
       <CanvasSilentBoundary>
         <Suspense fallback={null}>
-          <CanvasBg />
+          {bgReady && <CanvasBg />}
         </Suspense>
       </CanvasSilentBoundary>
       <div className="relative z-10 min-h-dvh flex flex-col">
@@ -200,6 +231,7 @@ export default function App() {
         </AppErrorBoundary>
       </div>
     </BrowserRouter>
+    </PresenceContext.Provider>
   )
 }
 

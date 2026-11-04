@@ -60,9 +60,9 @@ export default function EntenderEstadoPage() {
 
   usePageMeta({
     title: estado
-      ? t('pages:entenderEstado.metaTitle', { titulo, subtitulo })
+      ? t(`pages:entenderEstado.seo.${slug}.title`, { defaultValue: t('pages:entenderEstado.metaTitle', { titulo, subtitulo }) })
       : t('pages:entenderEstado.metaTitleFallback', { slug }),
-    description: que,
+    description: t(`pages:entenderEstado.seo.${slug}.description`, { defaultValue: que }),
     section: 'estados',
   })
   useJsonLd(estado ? articleLd({

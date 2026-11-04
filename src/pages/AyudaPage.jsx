@@ -10,6 +10,7 @@ import { usePageMeta } from '../hooks/usePageMeta'
 // Presentational metadata only — nombre/desc/accion come from the 'ayuda'
 // i18n namespace as parallel arrays, matched here by index.
 const URGENTES_META = [
+  { href: 'tel:024', icon: 'fa-phone', color: 'coral' },
   { href: 'tel:717003717', icon: 'fa-phone', color: 'coral' },
   { href: 'tel:112', icon: 'fa-truck-medical', color: 'coral' },
 ]
