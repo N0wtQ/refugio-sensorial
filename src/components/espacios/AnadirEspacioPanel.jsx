@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react'
 import { crearEspacio, actualizarEspacio, borrarEspacio } from '../../lib/espaciosComunidadApi'
 import { esZonaMaritima } from '../../lib/geoValidacion'
+import { esErrorDeConexion } from '../../lib/espaciosPendientes'
+
+const MENSAJE_SIN_CONEXION = 'No hemos podido conectar con el servidor. Tus cambios siguen aquí: vuelve a intentarlo en un momento.'
 
 const CATEGORIAS = ['Sensorial', 'Relax', 'Aventura', 'Cultural', 'Gastronómico', 'Otro']
 
 const INITIAL = { nombre: '', descripcion: '', categoria: 'Sensorial', imagenUrl: '', autorNombre: '', _trap: '' }
 
 // modo: { tipo: 'crear' } | { tipo: 'editar', espacio, token }
-export default function AnadirEspacioPanel({ modo, posicion, onCancel, onSaved, onDeleted }) {
+export default function AnadirEspacioPanel({ modo, posicion, onCancel, onSaved, onDeleted, onQueued }) {
   const [values, setValues] = useState(INITIAL)
   const [status, setStatus] = useState('idle') // idle | loading | error
   const [errorMsg, setErrorMsg] = useState('')
@@ -40,6 +43,18 @@ export default function AnadirEspacioPanel({ modo, posicion, onCancel, onSaved, 
       setErrorMsg('Haz clic en el mapa para marcar la ubicación.')
       return
     }
+    // Mismos límites que la tabla en Supabase — así nunca se guarda en la
+    // cola de pendientes algo que la base de datos rechazaría después.
+    if (values.nombre.trim().length < 2) {
+      setStatus('error')
+      setErrorMsg('El nombre necesita al menos 2 caracteres.')
+      return
+    }
+    if (values.descripcion.trim().length < 10) {
+      setStatus('error')
+      setErrorMsg('La descripción necesita al menos 10 caracteres.')
+      return
+    }
     setStatus('loading')
     setErrorMsg('')
 
@@ -61,11 +76,17 @@ export default function AnadirEspacioPanel({ modo, posicion, onCancel, onSaved, 
 
     if (modo.tipo === 'crear') {
       const { data, error } = await crearEspacio(payload)
+      if (error && esErrorDeConexion(error) && onQueued) {
+        // Sin conexión con la base de datos: no se pierde — queda guardado
+        // en este dispositivo y se publica solo en cuanto se pueda.
+        onQueued(payload)
+        return
+      }
       if (error) { setStatus('error'); setErrorMsg(error.message); return }
       onSaved({ id: data.id, token: data.manage_token })
     } else {
       const { error } = await actualizarEspacio({ id: modo.espacio.id, token: modo.token, ...payload })
-      if (error) { setStatus('error'); setErrorMsg(error.message); return }
+      if (error) { setStatus('error'); setErrorMsg(esErrorDeConexion(error) ? MENSAJE_SIN_CONEXION : error.message); return }
       onSaved({ id: modo.espacio.id, token: modo.token })
     }
   }
@@ -75,7 +96,7 @@ export default function AnadirEspacioPanel({ modo, posicion, onCancel, onSaved, 
     if (!confirm(`¿Borrar «${modo.espacio.nombre}»? No se puede deshacer.`)) return
     setStatus('loading')
     const { error } = await borrarEspacio({ id: modo.espacio.id, token: modo.token })
-    if (error) { setStatus('error'); setErrorMsg(error.message); return }
+    if (error) { setStatus('error'); setErrorMsg(esErrorDeConexion(error) ? MENSAJE_SIN_CONEXION : error.message); return }
     onDeleted(modo.espacio.id)
   }
 

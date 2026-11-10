@@ -91,3 +91,23 @@ No hace falta tocar nada en **Authentication** — esta función no lo usa.
   Si aparece algo inapropiado, puedes borrarlo directamente desde el
   **Table Editor** de Supabase (tabla `espacios_comunidad`), sin necesitar
   el `manage_token` — tú tienes acceso completo como propietaria del proyecto.
+
+## Que los espacios no se pierdan nunca
+
+- **Si falla al publicar** (sin conexión, Supabase caído o pausado), el
+  espacio no se pierde: se guarda en el navegador de quien lo añadió, se ve
+  en el mapa como "pendiente de publicar" y se reintenta solo (al recargar,
+  al volver la conexión y cada minuto). La primera vez que falla también te
+  llega una copia por email (vía Formspree, el mismo formulario que el de
+  contacto), por si esa persona no vuelve a abrir la web.
+- **Supabase gratuito se pausa tras 7 días sin uso.** El workflow
+  `.github/workflows/supabase-keepalive.yml` hace una consulta cada 3 días
+  para mantenerlo activo. Si el proyecto ya estaba pausado, ese workflow
+  falla con "Supabase no responde": entra en el panel de Supabase y pulsa
+  **Restore project**.
+- **Copia de seguridad**: cada ejecución del workflow guarda todos los
+  espacios en un artefacto `espacios-comunidad-…` (pestaña **Actions** del
+  repo, se conserva 90 días). Para restaurar, descarga el JSON e insértalo
+  desde el SQL Editor de Supabase.
+- GitHub desactiva los workflows programados de un repo sin commits durante
+  60 días: si eso pasa, vuelve a activarlo desde la pestaña **Actions**.
