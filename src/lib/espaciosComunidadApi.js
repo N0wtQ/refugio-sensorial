@@ -5,7 +5,7 @@ import { supabase } from './supabase'
 // "auth" is possessing the manage_token returned once at creation time.
 
 export async function crearEspacio({ nombre, descripcion, categoria, latitud, longitud, imagenUrl, autorNombre }) {
-  if (!supabase) return { error: { message: 'Añadir espacios todavía no está activado en este sitio.' } }
+  if (!supabase) return { error: { message: 'Añadir espacios todavía no está activado en este sitio.', code: 'NO_CONFIG' } }
   const { data, error } = await supabase.rpc('crear_espacio_comunidad', {
     p_nombre: nombre,
     p_descripcion: descripcion,
@@ -20,7 +20,7 @@ export async function crearEspacio({ nombre, descripcion, categoria, latitud, lo
 }
 
 export async function actualizarEspacio({ id, token, nombre, descripcion, categoria, latitud, longitud, imagenUrl, autorNombre }) {
-  if (!supabase) return { error: { message: 'Añadir espacios todavía no está activado en este sitio.' } }
+  if (!supabase) return { error: { message: 'Añadir espacios todavía no está activado en este sitio.', code: 'NO_CONFIG' } }
   const { error } = await supabase.rpc('actualizar_espacio_comunidad', {
     p_id: id,
     p_token: token,
@@ -36,7 +36,7 @@ export async function actualizarEspacio({ id, token, nombre, descripcion, catego
 }
 
 export async function borrarEspacio({ id, token }) {
-  if (!supabase) return { error: { message: 'Añadir espacios todavía no está activado en este sitio.' } }
+  if (!supabase) return { error: { message: 'Añadir espacios todavía no está activado en este sitio.', code: 'NO_CONFIG' } }
   const { error } = await supabase.rpc('borrar_espacio_comunidad', { p_id: id, p_token: token })
   return { error }
 }

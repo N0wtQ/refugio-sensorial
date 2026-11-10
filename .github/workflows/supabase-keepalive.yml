@@ -1,0 +1,52 @@
+name: Mantener activa y respaldar la base de datos de espacios
+
+# Los proyectos gratuitos de Supabase se pausan solos tras 7 días sin
+# actividad, y entonces añadir espacios desde la web falla ("Failed to
+# fetch"). Esta consulta cada 3 días lo mantiene activo y, de paso, guarda
+# una copia de todos los espacios de la comunidad como artefacto (90 días),
+# para que nunca se pierdan aunque le pase algo al proyecto.
+
+on:
+  schedule:
+    - cron: '17 6 */3 * *'
+  push:
+    branches: [main]
+    paths: ['.github/workflows/supabase-keepalive.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Consultar los espacios de la comunidad
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ]; then
+            echo "::error::Faltan los secretos SUPABASE_URL / SUPABASE_ANON_KEY"
+            exit 1
+          fi
+          mkdir -p backup
+          status=$(curl -sS -o backup/espacios-comunidad.json -w '%{http_code}' --max-time 30 \
+            -H "apikey: $SUPABASE_ANON_KEY" -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
+            "$SUPABASE_URL/rest/v1/espacios_comunidad?select=id,nombre,descripcion,categoria,latitud,longitud,imagen_url,autor_nombre,created_at,updated_at&order=created_at.asc") || status=000
+          echo "HTTP $status"
+          if [ "$status" != "200" ]; then
+            head -c 500 backup/espacios-comunidad.json 2>/dev/null || true
+            echo
+            echo "::error::Supabase no responde (HTTP $status). Si el proyecto está pausado, restáuralo desde el panel de Supabase."
+            exit 1
+          fi
+          echo "Espacios de la comunidad en la base de datos: $(jq length backup/espacios-comunidad.json)"
+
+      - name: Guardar copia de seguridad
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: espacios-comunidad-${{ github.run_id }}
+          path: backup/espacios-comunidad.json
+          retention-days: 90

@@ -6,6 +6,7 @@ import L from 'leaflet'
 import { LUGARES, TIPOS } from '../data/lugares'
 import { useEspaciosComunidad } from '../hooks/useEspaciosComunidad'
 import { useMisEspaciosLocal } from '../hooks/useMisEspaciosLocal'
+import { useEspaciosPendientes } from '../hooks/useEspaciosPendientes'
 import LocationPickerLayer from './espacios/LocationPickerLayer'
 import AnadirEspacioPanel from './espacios/AnadirEspacioPanel'
 import MisEspaciosList from './espacios/MisEspaciosList'
@@ -25,6 +26,16 @@ function comunidadMarkerIcon(color) {
     html: `<span style="display:block;width:14px;height:14px;border-radius:9999px;background:${color};border:2px solid rgba(12,14,30,0.9);box-shadow:0 0 0 2px ${color}40"></span>`,
     iconSize: [14, 14],
     iconAnchor: [7, 7],
+  })
+}
+
+// Igual que el de comunidad pero con borde discontinuo: aún no publicado.
+function pendienteMarkerIcon(color) {
+  return L.divIcon({
+    className: '',
+    html: `<span style="display:block;width:16px;height:16px;border-radius:9999px;background:${color}80;border:2px dashed #FBB027"></span>`,
+    iconSize: [16, 16],
+    iconAnchor: [8, 8],
   })
 }
 
@@ -79,6 +90,10 @@ export default function SilentMap() {
   const [search, setSearch] = useState(() => searchParams.get('q') ?? '')
   const { espacios: espaciosComunidad, refetch: refetchEspaciosComunidad } = useEspaciosComunidad()
   const { misEspacios, añadir: recordarLocal, quitar: olvidarLocal, tokenDe } = useMisEspaciosLocal()
+  const { pendientes, encolar } = useEspaciosPendientes({
+    onPublicado: ({ id, token }) => { recordarLocal(id, token); refetchEspaciosComunidad() },
+  })
+  const [avisoPendiente, setAvisoPendiente] = useState(false)
 
   // modo: null | { tipo: 'crear' } | { tipo: 'editar', espacio, token }
   const [modo, setModo] = useState(null)
@@ -125,6 +140,12 @@ export default function SilentMap() {
     setPosicion(null)
     refetchEspaciosComunidad()
   }
+  const enCola = (payload) => {
+    encolar(payload)
+    setModo(null)
+    setPosicion(null)
+    setAvisoPendiente(true)
+  }
   const borrado = (id) => {
     olvidarLocal(id)
     setModo(null)
@@ -150,7 +171,20 @@ export default function SilentMap() {
           onCancel={cancelar}
           onSaved={guardado}
           onDeleted={borrado}
+          onQueued={enCola}
         />
+      )}
+
+      {pendientes.length > 0 && (
+        <div role="status" className="flex items-start gap-2.5 p-3 rounded-xl border border-warm/25 bg-warm/5">
+          <i className="fa-solid fa-cloud-arrow-up text-warm text-sm mt-0.5 shrink-0" aria-hidden="true" />
+          <p className="text-xs text-muted leading-relaxed">
+            {avisoPendiente && <strong className="text-text font-semibold">No hemos podido publicarlo ahora mismo, pero no se ha perdido. </strong>}
+            {pendientes.length === 1
+              ? <>«{pendientes[0].payload.nombre}» está guardado en este dispositivo y se publicará automáticamente en cuanto haya conexión.</>
+              : <>{pendientes.length} espacios están guardados en este dispositivo y se publicarán automáticamente en cuanto haya conexión.</>}
+          </p>
+        </div>
       )}
 
       <MisEspaciosList
@@ -367,6 +401,32 @@ export default function SilentMap() {
                         <i className="fa-solid fa-pen" style={{ fontSize: '10px' }} aria-hidden="true" /> {t('popup.editar')}
                       </button>
                     )}
+                  </div>
+                </Popup>
+              </Marker>
+            )
+          })}
+
+          {/* Espacios de este navegador que aún no se han podido publicar */}
+          {pendientes.map((p) => {
+            const cfg = CATEGORIA_COMUNIDAD_CONFIG[p.payload.categoria] ?? CATEGORIA_COMUNIDAD_CONFIG.Otro
+            return (
+              <Marker key={p.localId} position={[p.payload.latitud, p.payload.longitud]} icon={pendienteMarkerIcon(cfg.color)}>
+                <Popup maxWidth={280}>
+                  <div className="text-sm" style={{ minWidth: '220px', fontFamily: 'Inter, system-ui, sans-serif', padding: '14px 16px 12px' }}>
+                    <p className="text-xs font-bold uppercase tracking-wider" style={{ color: '#FBB027', margin: '0 0 6px' }}>
+                      <i className="fa-solid fa-cloud-arrow-up mr-1.5" aria-hidden="true" />
+                      Pendiente de publicar
+                    </p>
+                    <h3 style={{ fontWeight: 600, color: '#E5E7EB', fontSize: '15px', marginBottom: '4px', lineHeight: '1.3' }}>
+                      {p.payload.nombre}
+                    </h3>
+                    <p style={{ color: '#D1D5DB', fontSize: '12px', lineHeight: '1.55', marginBottom: '6px' }}>
+                      {p.payload.descripcion}
+                    </p>
+                    <p style={{ color: '#6B7280', fontSize: '11px', margin: 0 }}>
+                      Guardado en este dispositivo. Se publicará solo en cuanto haya conexión.
+                    </p>
                   </div>
                 </Popup>
               </Marker>
