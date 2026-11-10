@@ -13,6 +13,7 @@
   "urgentes": {
     "heading": "Apoyo inmediato",
     "items": [
+      { "nombre": "Línea 024", "desc": "Atención a la conducta suicida. Gratuita, confidencial y 24h, todos los días.", "accion": "Llamar al 024" },
       { "nombre": "Teléfono de la Esperanza", "desc": "Apoyo emocional 24h — crisis, ansiedad, momentos difíciles.", "accion": "Llamar al 717 003 717" },
       { "nombre": "Emergencias generales", "desc": "Si tú o alguien está en peligro inmediato.", "accion": "Llamar al 112" }
     ]

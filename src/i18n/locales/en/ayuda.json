@@ -13,6 +13,7 @@
   "urgentes": {
     "heading": "Immediate support",
     "items": [
+      { "nombre": "024 helpline (Spain)", "desc": "Support for suicidal thoughts or crisis. Free, confidential, 24/7.", "accion": "Call 024" },
       { "nombre": "Teléfono de la Esperanza (Spain)", "desc": "24h emotional support — crisis, anxiety, hard moments.", "accion": "Call 717 003 717" },
       { "nombre": "Emergency services (Spain)", "desc": "If you or someone else is in immediate danger.", "accion": "Call 112" }
     ]

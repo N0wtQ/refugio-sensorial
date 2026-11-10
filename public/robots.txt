@@ -1,9 +1,6 @@
 User-agent: *
 Allow: /
 
-# Excluye assets técnicos del índice
-Disallow: /assets/
-
 Sitemap: https://www.refugio-sensorial.com/sitemap.xml
 
 # Verificación Google Search Console: googled79dac902b2e21a3.html

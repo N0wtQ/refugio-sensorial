@@ -17,7 +17,6 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          three: ['three', '@react-three/fiber', '@react-three/drei'],
           leaflet: ['leaflet', 'react-leaflet'],
           motion: ['framer-motion', 'gsap'],
           router: ['react-router-dom'],

@@ -114,14 +114,14 @@ export default function Hero() {
       {/* CTAs */}
       <motion.div {...fadeUp(prefersReduced, 0.28)} className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 mb-12">
         <Link
-          to="/mapa"
+          to="/espacios"
           className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-pri text-white font-semibold text-sm tracking-wide hover:bg-pri/85 active:scale-95 transition-all duration-200 min-w-[190px] justify-center shadow-lg shadow-pri/20"
         >
           <i className="fa-solid fa-location-dot" aria-hidden="true" />
           {t('home.hero.ctaMap')}
         </Link>
         <Link
-          to="/biblioteca"
+          to="/herramientas"
           className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-white/6 border border-white/12 text-text font-semibold text-sm tracking-wide hover:bg-white/10 active:scale-95 transition-all duration-200 min-w-[190px] justify-center"
         >
           <i className="fa-solid fa-toolbox" aria-hidden="true" />

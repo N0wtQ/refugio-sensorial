@@ -9,11 +9,22 @@ Guía de implementación SEO para el SPA React/Vite desplegado en GitHub Pages.
 | Capa | Tecnología |
 |------|-----------|
 | Framework | React 18 + Vite 5 |
-| Routing | React Router v6 (`BrowserRouter`, `basename="/refugio-sensorial"`) |
-| Hosting | GitHub Pages (subpath `/refugio-sensorial/`) |
+| Routing | React Router v6 (`BrowserRouter`) |
+| Hosting | GitHub Pages (dominio propio) |
 | SEO dinámico | `usePageMeta` hook (DOM manipulation) |
 | Structured data | `useJsonLd` hook + JSON-LD en `index.html` |
 | Sitemap | Estático en `public/sitemap.xml` |
+
+---
+
+## Prerender y rastreo
+
+`npm run build` genera HTML real para cada URL de `public/sitemap.xml` con Chrome headless (`scripts/prerender-routes.mjs`). Si una ruta sale sin H1 o canonical, el build falla y no se publica.
+
+- **Añadir una página o ciudad:** añádela a `public/sitemap.xml`; sin eso no tiene HTML propio y responde 404.
+- **`robots.txt`:** nunca bloquear `/assets/`, Google necesita JS y CSS para renderizar.
+- **Imágenes sociales:** `node scripts/generate-og.mjs` regenera `public/og/`.
+- **Primera carga:** `PRERENDERED_PRESENCE` en `src/App.jsx` evita repetir animaciones de entrada sobre contenido ya visible. Ese objeto no debe pasar a `null`: framer-motion rompería la app.
 
 ---
 
