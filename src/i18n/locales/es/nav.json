@@ -16,6 +16,7 @@
   "links": {
     "home": "Inicio",
     "map": "Mapa",
+    "guias": "Guías y recursos",
     "herramientas": {
       "label": "Herramientas",
       "library": {
@@ -48,10 +49,6 @@
       "masking": {
         "label": "Masking",
         "desc": "Camuflaje autista: qué es y cómo reducirlo"
-      },
-      "guias": {
-        "label": "Guías y recursos",
-        "desc": "PDFs y artículos sobre autismo verificados"
       }
     }
   }

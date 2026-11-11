@@ -67,18 +67,6 @@ function useSecciones(t) {
       desc: t('entenderPrepararse.secciones.kitBolso.desc'),
       badge: null,
     },
-    {
-      to: '/entender-y-prepararse/guias',
-      icon: 'fa-folder-open',
-      color: 'text-sec',
-      bg: 'bg-sec/10',
-      border: 'border-sec/25',
-      bgCard: 'bg-sec/5',
-      glow: 'rgba(129,106,183,0.07)',
-      titulo: t('entenderPrepararse.secciones.guias.titulo'),
-      desc: t('entenderPrepararse.secciones.guias.desc'),
-      badge: null,
-    },
   ]
 }
 

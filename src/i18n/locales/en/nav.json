@@ -16,6 +16,7 @@
   "links": {
     "home": "Home",
     "map": "Map",
+    "guias": "Guides & resources",
     "herramientas": {
       "label": "Tools",
       "library": {
@@ -48,10 +49,6 @@
       "masking": {
         "label": "Masking",
         "desc": "Autistic camouflaging: what it is and how to reduce it"
-      },
-      "guias": {
-        "label": "Guides & resources",
-        "desc": "Verified PDFs and articles about autism"
       }
     }
   }

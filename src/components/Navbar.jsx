@@ -69,16 +69,20 @@ function buildLinks(t) {
           color: 'text-pri',
           desc: t('links.entender.masking.desc'),
         },
-        {
-          to: '/entender-y-prepararse/guias',
-          label: t('links.entender.guias.label'),
-          icon: 'fa-folder-open',
-          color: 'text-sec',
-          desc: t('links.entender.guias.desc'),
-        },
       ],
     },
+    { to: '/entender-y-prepararse/guias', label: t('links.guias') },
   ]
+}
+
+// A dropdown is "active" only for its own pages — guias lives under
+// /entender-y-prepararse/ in the URL but is its own top-level item.
+function isDropdownActive(link, pathname) {
+  return pathname.replace(/\/$/, '') === link.basePath || link.children.some(c => pathname.startsWith(c.to))
+}
+
+function isLinkActive(link, pathname) {
+  return link.to === '/' ? pathname === '/' : pathname.startsWith(link.to)
 }
 
 // ── Desktop dropdown ───────────────────────────────────────────────────────────
@@ -87,7 +91,7 @@ function DesktopDropdown({ link, pathname }) {
   const [open, setOpen] = useState(false)
   const ref = useRef(null)
   const triggerRef = useRef(null)
-  const active = pathname.startsWith(link.basePath)
+  const active = isDropdownActive(link, pathname)
 
   useEffect(() => {
     const onClickOutside = (e) => {
@@ -124,7 +128,7 @@ function DesktopDropdown({ link, pathname }) {
         to={link.basePath}
         aria-haspopup="true"
         aria-expanded={open}
-        className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-medium tracking-wide transition-all duration-200 ${
+        className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm whitespace-nowrap font-medium tracking-wide transition-all duration-200 ${
           active ? 'bg-white/8 text-text' : 'text-muted hover:text-text hover:bg-white/5'
         }`}
       >
@@ -219,25 +223,25 @@ export default function Navbar({ onOpenSearch }) {
           : 'bg-bg/80 backdrop-blur-sm border-b border-transparent'
       }`}
     >
-      <div className="max-w-5xl mx-auto px-5 flex items-center justify-between h-[72px] gap-4">
+      <div className="max-w-6xl mx-auto px-5 flex items-center justify-between h-[72px] gap-4">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 shrink-0" aria-label={t('logoAriaLabel')}>
           <img src={`${import.meta.env.BASE_URL}logo-icon.svg`} alt="" className="h-10 w-auto" aria-hidden="true" />
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-1" aria-label={t('ariaLabel')}>
+        <nav className="hidden min-[1120px]:flex items-center gap-0.5" aria-label={t('ariaLabel')}>
           {links.map((link) => {
             if (link.children) {
               return <DesktopDropdown key={link.label} link={link} pathname={pathname} />
             }
-            const active = pathname === link.to
+            const active = isLinkActive(link, pathname)
             return (
               <Link
                 key={link.to}
                 to={link.to}
                 aria-current={active ? 'page' : undefined}
-                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-medium tracking-wide transition-all duration-200 ${
+                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm whitespace-nowrap font-medium tracking-wide transition-all duration-200 ${
                   active
                     ? 'bg-white/8 text-text'
                     : 'text-muted hover:text-text hover:bg-white/5'
@@ -260,7 +264,7 @@ export default function Navbar({ onOpenSearch }) {
           <LanguageSwitcher className="ml-1" />
           <Link
             to="/ayuda"
-            className="ml-1 flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-semibold text-coral border border-coral/25 bg-coral/5 hover:bg-coral/12 hover:border-coral/40 transition-all duration-200"
+            className="ml-1 flex items-center gap-2 px-3 py-2 rounded-lg text-sm whitespace-nowrap font-semibold text-coral border border-coral/25 bg-coral/5 hover:bg-coral/12 hover:border-coral/40 transition-all duration-200"
             aria-label={tc('crisisCta.navAriaLabel')}
           >
             <i className="fa-solid fa-heart-pulse text-xs" aria-hidden="true" />
@@ -269,7 +273,7 @@ export default function Navbar({ onOpenSearch }) {
         </nav>
 
         {/* Mobile right side */}
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 min-[1120px]:hidden">
           <button
             type="button"
             onClick={onOpenSearch}
@@ -300,7 +304,7 @@ export default function Navbar({ onOpenSearch }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.18 }}
-            className="md:hidden border-t border-border bg-bg/98 backdrop-blur-md px-5 pb-4 pt-3 flex flex-col gap-0.5"
+            className="min-[1120px]:hidden border-t border-border bg-bg/98 backdrop-blur-md px-5 pb-4 pt-3 flex flex-col gap-0.5"
             aria-label={t('mobileAriaLabel')}
             onKeyDown={(e) => {
               if (e.key === 'Escape') {
@@ -326,7 +330,7 @@ export default function Navbar({ onOpenSearch }) {
             {links.map((link) => {
               if (link.children) {
                 const isExpanded = expandedMobile === link.label
-                const isActive = pathname.startsWith(link.basePath)
+                const isActive = isDropdownActive(link, pathname)
                 return (
                   <div key={link.label}>
                     <div className={`flex items-center rounded-lg transition-colors duration-200 ${isActive ? 'bg-white/5' : ''}`}>
@@ -388,7 +392,7 @@ export default function Navbar({ onOpenSearch }) {
                 )
               }
 
-              const isActive = pathname === link.to
+              const isActive = isLinkActive(link, pathname)
               return (
                 <Link
                   key={link.to}
