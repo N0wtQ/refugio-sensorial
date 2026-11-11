@@ -103,7 +103,6 @@ export default function RecursosPage() {
     <div className="max-w-3xl mx-auto px-4 pb-20 pt-8">
       <Breadcrumb items={[
         { href: '/', label: t('pages:breadcrumbHome') },
-        { href: '/entender-y-prepararse', label: t('pages:entenderPrepararse.breadcrumb') },
         { label: t('recursos:breadcrumb') },
       ]} />
 
