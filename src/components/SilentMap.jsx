@@ -227,7 +227,7 @@ export default function SilentMap() {
           }`}
           aria-pressed={filter === 'todos'}
         >
-          {t('filters.all')} ({LUGARES.length})
+          {t('filters.all')} ({LUGARES.length + espaciosComunidad.length})
         </button>
         {TIPOS.map(tipo => {
           const cfg = TYPE_CONFIG[tipo]
